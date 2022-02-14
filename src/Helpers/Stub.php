@@ -2,25 +2,23 @@
 
 namespace Regnerisch\LaravelBeyond\Helpers;
 
-use Symfony\Component\Filesystem\Filesystem;
+use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
+use Regnerisch\LaravelBeyond\Actions\MoveFileAction;
+use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class Stub
 {
     public static function makeFromTemplate(string $template, string $path, array $variables = []): void
     {
-        $fs = new Filesystem();
-        $fs->copy(
-            __DIR__ . "/../../stubs/{$template}",
-            $path,
+        $action = new MoveAndRefactorFileAction(
+            new MoveFileAction(),
+            new RefactorFileAction()
         );
 
-        file_put_contents(
+        $action->execute(
+            __DIR__ . "/../../stubs/{$template}",
             $path,
-            str_replace(
-                array_keys($variables),
-                $variables,
-                file_get_contents($path)
-            )
+            $variables
         );
     }
 }

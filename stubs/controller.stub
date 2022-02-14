@@ -2,8 +2,12 @@
 
 namespace App\{{ application }}\Controllers;
 
+use Illuminate\Routing\Controller;
+
 class {{ className }} extends Controller
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     public function index()
     {
 
