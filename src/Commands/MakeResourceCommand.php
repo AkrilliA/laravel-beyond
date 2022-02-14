@@ -15,13 +15,13 @@ class MakeResourceCommand extends Command
     {
         $application = $this->argument('application');
         $className = $this->argument('className');
-        $collection = $this->argument('collection');
+        $collection = $this->option('collection');
 
         $stub = $collection ? 'collection.stub' : 'resource.stub';
 
-        Stub::makeFromTemplate(
+        beyond_copy_stub(
             $stub,
-            app_path() . "/../src/App/{$application}/Resources/{$className}.php",
+            base_path() . "/src/App/{$application}/Resources/{$className}.php",
             [
                 '{{ application }}' => $application,
                 '{{ className }}' => $className,

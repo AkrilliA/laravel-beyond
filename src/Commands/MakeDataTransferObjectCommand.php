@@ -16,9 +16,9 @@ class MakeDataTransferObjectCommand extends Command
         $domain = $this->argument('domain');
         $className = $this->argument('className');
 
-        Stub::makeFromTemplate(
+        beyond_copy_stub(
             'data-transfer-object.stub',
-            app_path() . "/../src/Domain/{$domain}/DataTransferObjects/{$className}.php",
+            base_path() . "/src/Domain/{$domain}/DataTransferObjects/{$className}.php",
             [
                 '{{ domain }}' => $domain,
                 '{{ className }}' => $className,

@@ -17,9 +17,9 @@ class MakePolicyCommand extends Command
         $className = $this->argument('className');
         $model = $this->argument('model');
 
-        Stub::makeFromTemplate(
+        beyond_copy_stub(
             'policy.stub',
-            app_path() . "/../src/Domain/{$domain}/Policies/{$className}.php",
+            base_path() . "/src/Domain/{$domain}/Policies/{$className}.php",
             [
                 '{{ domain }}' => $domain,
                 '{{ className }}' => $className,
