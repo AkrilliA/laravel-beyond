@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Helpers\Stub;
 
 class MakeDataTransferObjectCommand extends Command
 {
-    protected $signature = 'beyond:make:action {domain} {className}';
+    protected $signature = 'beyond:make:dto {domain} {className}';
 
     protected $description = 'Make a new data transfer object';
 
