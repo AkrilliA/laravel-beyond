@@ -16,9 +16,9 @@ class MakeActionCommand extends Command
         $domain = $this->argument('domain');
         $className = $this->argument('className');
 
-        Stub::makeFromTemplate(
+        beyond_copy_stub(
             'action.stub',
-            app_path() . "/../src/Domain/{$domain}/Actions/{$className}.php",
+            base_path() . "/src/Domain/{$domain}/Actions/{$className}.php",
             [
                 '{{ domain }}' => $domain,
                 '{{ className }}' => $className,

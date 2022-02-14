@@ -6,21 +6,19 @@ use Illuminate\Filesystem\Filesystem;
 
 class MoveFileAction
 {
-    public function execute(string $srcPath, string $targetPath, array $refactor = [])
+    public function execute(string $srcPath, string $targetPath)
     {
         $fs = new Filesystem();
+
+        $fs->ensureDirectoryExists(
+            dirname($targetPath),
+            0755,
+            true
+        );
+
         $fs->copy(
             $srcPath,
             $targetPath,
-        );
-
-        file_put_contents(
-            $targetPath,
-            str_replace(
-                array_keys($refactor),
-                $refactor,
-                file_get_contents($targetPath)
-            )
         );
     }
 }

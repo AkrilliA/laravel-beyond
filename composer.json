@@ -5,7 +5,10 @@
     "autoload": {
         "psr-4": {
             "Regnerisch\\LaravelBeyond\\": "src/"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "authors": [
         {

@@ -4,12 +4,8 @@ namespace Regnerisch\LaravelBeyond\Actions;
 
 class RefactorFileAction
 {
-    public function execute(string $path, array $refactor = []): void
+    public function execute(string $path, array $refactor): void
     {
-        if (!$refactor) {
-            return;
-        }
-
         file_put_contents(
             $path,
             str_replace(

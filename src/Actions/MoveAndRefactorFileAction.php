@@ -13,6 +13,10 @@ class MoveAndRefactorFileAction
     public function execute(string $sourcePath, string $targetPath, array $refactor = []): void
     {
         $this->moveFileAction->execute($sourcePath, $targetPath);
-        $this->refactorFileAction->execute($targetPath, $refactor);
+
+        if ($refactor) {
+            $this->refactorFileAction->execute($targetPath, $refactor);
+        }
+
     }
 }

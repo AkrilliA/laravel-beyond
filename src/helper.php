@@ -1,24 +1,30 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Helpers;
-
 use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\MoveFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
-class Stub
-{
-    public static function makeFromTemplate(string $template, string $path, array $variables = []): void
-    {
+if (!function_exists('beyond_path')) {
+
+    function beyond_path(): string {
+        return dirname(__DIR__);
+    }
+
+}
+
+if (!function_exists('beyond_copy_stub')) {
+
+    function beyond_copy_stub(string $stub, string $path, array $refactor = []): void {
         $action = new MoveAndRefactorFileAction(
             new MoveFileAction(),
             new RefactorFileAction()
         );
 
         $action->execute(
-            __DIR__ . "/../../stubs/{$template}",
+            beyond_path() . "/stubs/{$stub}",
             $path,
-            $variables
+            $refactor
         );
     }
+
 }

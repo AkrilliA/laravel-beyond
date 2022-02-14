@@ -16,9 +16,9 @@ class MakeQueryCommand extends Command
         $application = $this->argument('application');
         $className = $this->argument('className');
 
-        Stub::makeFromTemplate(
+        beyond_copy_stub(
             'query.stub',
-            app_path() . "/../src/App/{$application}/Queries/{$className}.php",
+            base_path() . "/src/App/{$application}/Queries/{$className}.php",
             [
                 '{{ application }}' => $application,
                 '{{ className }}' => $className,
