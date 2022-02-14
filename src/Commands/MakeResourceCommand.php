@@ -7,13 +7,13 @@ use Regnerisch\LaravelBeyond\Helpers\Stub;
 
 class MakeResourceCommand extends Command
 {
-    protected $signature = 'beyond:make:resource {domain} {className} {--collection}';
+    protected $signature = 'beyond:make:resource {application} {className} {--collection}';
 
     protected $description = 'Make a new resource';
 
     public function handle()
     {
-        $domain = $this->argument('domain');
+        $application = $this->argument('application');
         $className = $this->argument('className');
         $collection = $this->argument('collection');
 
@@ -21,9 +21,9 @@ class MakeResourceCommand extends Command
 
         Stub::makeFromTemplate(
             $stub,
-            app_path() . "/../src/Domain/{$domain}/Http/Resources/{$className}.php",
+            app_path() . "/../src/App/{$application}/Resources/{$className}.php",
             [
-                '{{ domain }}' => $domain,
+                '{{ application }}' => $application,
                 '{{ className }}' => $className,
             ]
         );

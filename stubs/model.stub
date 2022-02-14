@@ -2,7 +2,7 @@
 
 namespace Domain\{{ domain }}\Models;
 
-use use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class {{ className }} extends Model
 {

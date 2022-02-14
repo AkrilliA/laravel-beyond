@@ -3,9 +3,10 @@
 namespace Domain\{{ domain }}\Policies;
 
 use Domain\{{ domain }}\Models\{{ model }};
+use Domain\Users\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AddressPolicy
+class {{ className }}
 {
     use HandlesAuthorization;
 
