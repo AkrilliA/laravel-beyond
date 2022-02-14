@@ -1,0 +1,17 @@
+<?php
+
+namespace Domain\{{ domain }}\DataTransferObjects;
+
+use Illuminate\Http\Request;
+
+class {{ className }}
+{
+    public string $name;
+
+    public static function fromRequest(Request $request)
+    {
+        return new {{ classname }}(
+            name: $request->get('name')
+        );
+    }
+}

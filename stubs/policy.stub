@@ -1,0 +1,43 @@
+<?php
+
+namespace Domain\{{ domain }}\Policies;
+
+use Domain\{{ domain }}\Models\{{ model }};
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class AddressPolicy
+{
+    use HandlesAuthorization;
+
+    public function before(User $user)
+    {
+    }
+
+    public function viewAny(User $user)
+    {
+    }
+
+    public function view(User $user, {{ model }} $object)
+    {
+    }
+
+    public function create(User $user)
+    {
+    }
+
+    public function update(User $user, {{ model }} $object)
+    {
+    }
+
+    public function delete(User $user, {{ model }} $object)
+    {
+    }
+
+    public function restore(User $user, {{ model }} $object)
+    {
+    }
+
+    public function forceDelete(User $user, {{ model }} $object)
+    {
+    }
+}
