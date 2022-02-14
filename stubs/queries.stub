@@ -1,0 +1,17 @@
+<?php
+
+namespace App\{{ application }}\Queries;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
+
+class {{ className }} extends QueryBuilder
+{
+    public function __construct(Request $request)
+    {
+        $subject = Model::query();
+
+        parent::__construct($subject, $request);
+    }
+}

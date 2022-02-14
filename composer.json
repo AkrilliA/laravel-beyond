@@ -1,0 +1,29 @@
+{
+    "name": "regnerisch/laravel-beyond",
+    "type": "library",
+    "license": "ISC",
+    "autoload": {
+        "psr-4": {
+            "Regnerisch\\LaravelBeyond\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonas Regner",
+            "email": "regnerjonas@protonmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^8.0",
+        "illuminate/console": "^8.0",
+        "symfony/filesystem": "^6.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Regnerisch\\LaravelBeyond\\LaravelBeyondServiceProvider"
+            ]
+        }
+    }
+}

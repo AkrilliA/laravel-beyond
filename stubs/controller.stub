@@ -1,0 +1,16 @@
+<?php
+
+namespace App\{{ application }}\Controllers;
+
+class {{ className }} extends Controller
+{
+    public function index()
+    {
+
+    }
+
+    public function show()
+    {
+
+    }
+}
