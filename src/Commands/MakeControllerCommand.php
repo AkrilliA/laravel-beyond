@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Helpers\Stub;
 
 class MakeControllerCommand extends Command
 {
-    protected $signature = 'beyond:make:controller {application} {className}';
+    protected $signature = 'beyond:make:controller {application} {className} {--api}';
 
     protected $description = 'Make a new controller';
 
@@ -15,9 +15,12 @@ class MakeControllerCommand extends Command
     {
         $application = $this->argument('application');
         $className = $this->argument('className');
+        $api = $this->option('api');
 
-        Stub::makeFromTemplate(
-            'controller.stub',
+        $stub = $api ? 'controller.api.stub' : 'controller.stub';
+
+        beyond_copy_stub(
+            $stub,
             app_path() . "/../src/App/{$application}/Controllers/{$className}.php",
             [
                 '{{ application }}' => $application,

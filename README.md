@@ -11,11 +11,18 @@ Install laravel-beyond with composer
 composer require --dev regnerisch/laravel-beyond
 ```
 
-## Usage/Examples
+## Usage
 
+You can easily set up a DDD application with `php artisan beyond:setup` after installation. You should only run this 
+command on a freshly installed Laravel app, as it will delete files and rename things.
+
+After you run `beyond:setup` you can make additional controllers, actions, models, etc. as you know it from Laravel:
 ```bash
 php artisan beyond:make:action Users CreateUserAction
+php artisan beyond:make:command UpdateUsersCommand
 php artisan beyond:make:controller Users UserController
+php artisan beyond:make:query Users UserIndexQuery # requires spatie/laravel-query-builder
+php artisan beyond:make:request Users CreateUserRequest
 ```
 
 ## Roadmap
