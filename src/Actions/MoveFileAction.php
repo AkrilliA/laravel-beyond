@@ -16,7 +16,7 @@ class MoveFileAction
             true
         );
 
-        $fs->copy(
+        $fs->move(
             $srcPath,
             $targetPath,
         );

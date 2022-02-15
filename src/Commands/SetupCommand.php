@@ -4,8 +4,10 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
+use Regnerisch\LaravelBeyond\Actions\DeleteAppFolderAction;
 use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
+use Regnerisch\LaravelBeyond\Actions\ReplaceFileContentAction;
 
 class SetupCommand extends Command
 {
@@ -17,6 +19,8 @@ class SetupCommand extends Command
         protected MoveAndRefactorFileAction $moveAndRefactorFileAction,
         protected RefactorFileAction $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
+        protected ReplaceFileContentAction $replaceFileContentAction,
+        protected DeleteAppFolderAction $deleteAppFolderAction,
     ) {
         parent::__construct();
     }
@@ -71,8 +75,19 @@ class SetupCommand extends Command
         // Bootstrap
         $this->prepareBootstrap();
 
+        // Configs
+        $this->replaceFileContentAction->execute(
+            'config/auth.php',
+            [
+                'App\Models\User::class' => 'Domain\Users\Models\User::class'
+            ]
+        );
+
         // Composer Autoloader
         $this->changeComposerAutoloaderAction->execute();
+
+        // Delete app folder
+        $this->deleteAppFolderAction->execute();
     }
 
     protected function moveMiddlewares(): void
