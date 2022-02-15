@@ -23,9 +23,9 @@
     ],
     "require": {
         "php": "^8.0.2",
-        "illuminate/support": "^v9.0.0",
-        "illuminate/console": "^v9.0.0",
-        "illuminate/filesystem": "^v9.0.0"
+        "illuminate/support": "^v9.0",
+        "illuminate/console": "^v9.0",
+        "illuminate/filesystem": "^v9.0"
     },
     "extra": {
         "laravel": {
