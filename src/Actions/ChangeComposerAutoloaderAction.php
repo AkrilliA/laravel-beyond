@@ -10,7 +10,7 @@ class ChangeComposerAutoloaderAction
 {
     public function execute()
     {
-        $path = app_path() . '/composer.json';
+        $path = base_path() . '/composer.json';
 
         $fs = new Filesystem();
 
@@ -34,8 +34,8 @@ class ChangeComposerAutoloaderAction
 
         $composer = json_decode($fs->get($path));
 
-        foreach ($namespaces as $namespace => $path) {
-            $composer->autoload->{'psr-4'}->{$namespace} = $path;
+        foreach ($namespaces as $namespace => $namespacePath) {
+            $composer->autoload->{'psr-4'}->{$namespace} = $namespacePath;
         }
 
         $composer = json_encode($composer, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
