@@ -2,7 +2,7 @@
     "name": "regnerisch/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "autoload": {
         "psr-4": {
             "Regnerisch\\LaravelBeyond\\": "src/"
@@ -15,13 +15,17 @@
         {
             "name": "Jonas Regner",
             "email": "regnerjonas@protonmail.com"
+        },
+        {
+            "name": "Alexander Gaal",
+            "email": "alexander.gaal@gipfel.dev"
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/support": "^8.0",
-        "illuminate/console": "^8.0",
-        "illuminate/filesystem": "^8.0"
+        "php": "^8.0.2",
+        "illuminate/support": "^v9.0.0",
+        "illuminate/console": "^v9.0.0",
+        "illuminate/filesystem": "^v9.0.0"
     },
     "extra": {
         "laravel": {
