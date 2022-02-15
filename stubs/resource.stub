@@ -4,7 +4,7 @@ namespace Domain\{{ className }}\Http\Resources\\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class {{ className }}Resource extends JsonResource
+class {{ className }} extends JsonResource
 {
     /**
      * Transform the resource into an array.

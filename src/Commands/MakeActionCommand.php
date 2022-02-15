@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Helpers\Stub;
 
 class MakeActionCommand extends Command
 {

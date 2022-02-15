@@ -7,8 +7,6 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class {{ className }} extends DataTransferObject
 {
-    public string $name;
-
     public static function fromRequest(Request $request): self
     {
         return new self($request->all());

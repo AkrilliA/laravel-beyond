@@ -191,7 +191,7 @@ class SetupCommand extends Command
 
         file_put_contents(
             app_path() . '/../composer.json',
-            json_encode($array)
+            json_encode($array, JSON_PRETTY_PRINT)
         );
     }
 }

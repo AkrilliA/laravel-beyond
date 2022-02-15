@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Helpers\Stub;
 
 class MakeResourceCommand extends Command
 {
@@ -17,7 +16,7 @@ class MakeResourceCommand extends Command
         $className = $this->argument('className');
         $collection = $this->option('collection');
 
-        $stub = $collection ? 'collection.stub' : 'resource.stub';
+        $stub = (str_contains($className, 'Collection') || $collection) ? 'collection.stub' : 'resource.stub';
 
         beyond_copy_stub(
             $stub,
