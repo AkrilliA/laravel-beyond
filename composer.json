@@ -2,6 +2,7 @@
     "name": "regnerisch/laravel-beyond",
     "type": "library",
     "license": "ISC",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Regnerisch\\LaravelBeyond\\": "src/"
