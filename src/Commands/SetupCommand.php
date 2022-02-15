@@ -3,6 +3,7 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
@@ -14,7 +15,8 @@ class SetupCommand extends Command
 
     public function __construct(
         protected MoveAndRefactorFileAction $moveAndRefactorFileAction,
-        protected RefactorFileAction $refactorFileAction
+        protected RefactorFileAction $refactorFileAction,
+        protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
     ) {
         parent::__construct();
     }
@@ -69,8 +71,8 @@ class SetupCommand extends Command
         // Bootstrap
         $this->prepareBootstrap();
 
-        // Others
-        $this->changeComposerAutoloader();
+        // Composer Autoloader
+        $this->changeComposerAutoloaderAction->execute();
     }
 
     protected function moveMiddlewares(): void
