@@ -18,7 +18,7 @@ class SetupCommand extends Command
         protected MoveAndRefactorFileAction $moveAndRefactorFileAction,
         protected RefactorFileAction $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
-        protected DeleteAction $deleteAppFolderAction,
+        protected DeleteAction $deleteACtion,
     ) {
         parent::__construct();
     }
@@ -85,7 +85,7 @@ class SetupCommand extends Command
         $this->changeComposerAutoloaderAction->execute();
 
         // Delete app folder
-        $this->deleteAppFolderAction->execute(base_path() . '/app');
+        $this->deleteACtion->execute(base_path() . '/app');
     }
 
     protected function moveMiddlewares(): void
