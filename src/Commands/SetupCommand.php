@@ -180,20 +180,4 @@ class SetupCommand extends Command
             ]
         );
     }
-
-    protected function changeComposerAutoloader(): void
-    {
-        $array = json_decode(file_get_contents(app_path() . '/../composer.json'), true);
-
-        $psr4 = $array['autoload']['psr-4'];
-        $psr4['App\\'] = 'src/App/';
-        $psr4['Domain\\'] = 'src/Domain/';
-        $psr4['Support\\'] = 'src/Support/';
-        $array['autoload']['psr-4'] = $psr4;
-
-        file_put_contents(
-            app_path() . '/../composer.json',
-            json_encode($array, JSON_PRETTY_PRINT)
-        );
-    }
 }

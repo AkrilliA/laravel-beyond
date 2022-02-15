@@ -14,15 +14,15 @@ class ChangeComposerAutoloaderAction
 
         $fs = new Filesystem();
 
-        if (false === $fs->exists($path)) {
+        if (!$fs->exists($path)) {
             throw new FileNotFoundException('composer.json not found.');
         }
 
-        if (false === $fs->isReadable($path)) {
+        if (!$fs->isReadable($path)) {
             throw new IOException('composer.json is not readable.');
         }
 
-        if (false === $fs->isWritable($path)) {
+        if (!$fs->isWritable($path)) {
             throw new IOException('composer.json is not writable');
         }
 
