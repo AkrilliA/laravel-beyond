@@ -6,11 +6,11 @@ use Illuminate\Filesystem\Filesystem;
 
 class DeleteAction
 {
-    public function execute(string $path, bool $file = false)
+    public function execute(string $path)
     {
         $fs = new Filesystem();
 
-        if ($file) {
+        if ($fs->isFile($path)) {
             $fs->delete($path);
         } else {
             $fs->deleteDirectory($path);

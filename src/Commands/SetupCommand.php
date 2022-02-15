@@ -18,7 +18,7 @@ class SetupCommand extends Command
         protected MoveAndRefactorFileAction $moveAndRefactorFileAction,
         protected RefactorFileAction $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
-        protected DeleteAction $deleteACtion,
+        protected DeleteAction $deleteAction,
     ) {
         parent::__construct();
     }
@@ -75,7 +75,7 @@ class SetupCommand extends Command
 
         // Configs
         $this->refactorFileAction->execute(
-            'config/auth.php',
+            base_path() . '/config/auth.php',
             [
                 'App\Models\User::class' => 'Domain\Users\Models\User::class'
             ]
@@ -85,7 +85,7 @@ class SetupCommand extends Command
         $this->changeComposerAutoloaderAction->execute();
 
         // Delete app folder
-        $this->deleteACtion->execute(base_path() . '/app');
+        $this->deleteAction->execute(base_path() . '/app');
     }
 
     protected function moveMiddlewares(): void
