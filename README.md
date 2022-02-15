@@ -32,6 +32,7 @@ php artisan beyond:make:request Users CreateUserRequest
 ## Authors
 
 - [@regnerisch](https://github.com/regnerisch)
+- [@alexgaal](https://github.com/alexgaal)
 
 ## License
 
