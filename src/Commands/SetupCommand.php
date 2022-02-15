@@ -3,6 +3,7 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
@@ -14,7 +15,8 @@ class SetupCommand extends Command
 
     public function __construct(
         protected MoveAndRefactorFileAction $moveAndRefactorFileAction,
-        protected RefactorFileAction $refactorFileAction
+        protected RefactorFileAction $refactorFileAction,
+        protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
     ) {
         parent::__construct();
     }
@@ -69,8 +71,8 @@ class SetupCommand extends Command
         // Bootstrap
         $this->prepareBootstrap();
 
-        // Others
-        $this->changeComposerAutoloader();
+        // Composer Autoloader
+        $this->changeComposerAutoloaderAction->execute();
     }
 
     protected function moveMiddlewares(): void
@@ -176,22 +178,6 @@ class SetupCommand extends Command
                 'new Illuminate\Foundation\Application' => 'new App\Application',
                 'App\Http\Kernel::class' => 'App\HttpKernel::class',
             ]
-        );
-    }
-
-    protected function changeComposerAutoloader(): void
-    {
-        $array = json_decode(file_get_contents(app_path() . '/../composer.json'), true);
-
-        $psr4 = $array['autoload']['psr-4'];
-        $psr4['App\\'] = 'src/App/';
-        $psr4['Domain\\'] = 'src/Domain/';
-        $psr4['Support\\'] = 'src/Support/';
-        $array['autoload']['psr-4'] = $psr4;
-
-        file_put_contents(
-            app_path() . '/../composer.json',
-            json_encode($array, JSON_PRETTY_PRINT)
         );
     }
 }
