@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| {{ application }} Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register routes for {{ application }}. These
+| routes needs to be added to the RouteServiceProvider.
+| Now create something great!
+|
+*/
+
+Route::get('/{{ application }}/', function () {
+    return view('welcome');
+});
