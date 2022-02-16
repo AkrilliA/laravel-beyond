@@ -73,7 +73,7 @@ class SetupCommand extends Command
         // Bootstrap
         $this->prepareBootstrap();
 
-        // Rewrite configs
+        // Configs
         $this->refactorFileAction->execute(
             base_path() . '/config/auth.php',
             [
