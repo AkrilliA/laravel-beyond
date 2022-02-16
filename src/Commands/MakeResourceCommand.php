@@ -3,28 +3,35 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeResourceCommand extends Command
 {
-    protected $signature = 'beyond:make:resource {application} {className} {--collection}';
+    protected $signature = 'beyond:make:resource {name} {--collection}';
 
     protected $description = 'Make a new resource';
 
-    public function handle()
+    public function handle(): void
     {
-        $application = $this->argument('application');
-        $className = $this->argument('className');
-        $collection = $this->option('collection');
+        try {
+            $name = $this->argument('name');
+            $collection = $this->option('collection');
 
-        $stub = (str_contains($className, 'Collection') || $collection) ? 'collection.stub' : 'resource.stub';
+            $schema = new AppNameSchemaResolver($name);
 
-        beyond_copy_stub(
-            $stub,
-            base_path() . "/src/App/{$application}/Resources/{$className}.php",
-            [
-                '{{ application }}' => $application,
-                '{{ className }}' => $className,
-            ]
-        );
+            $stub = (str_contains($schema->getClassName(), 'Collection') || $collection) ? 'collection.stub' : 'resource.stub';
+
+            beyond_copy_stub(
+                $stub,
+                base_path() . '/src/App/' . $schema->getPath('Resources') . '.php',
+                [
+                    '{{ application }}' => $schema->getAppName(),
+                    '{{ module }}' => $schema->getModuleName(),
+                    '{{ className }}' => $schema->getClassName(),
+                ]
+            );
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }

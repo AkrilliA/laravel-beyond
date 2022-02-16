@@ -3,27 +3,31 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakePolicyCommand extends Command
 {
-    protected $signature = 'beyond:make:policy {domain} {className} {--model=}';
+    protected $signature = 'beyond:make:policy {name}';
 
     protected $description = 'Make a new policy';
 
-    public function handle()
+    public function handle(): void
     {
-        $domain = $this->argument('domain');
-        $className = $this->argument('className');
-        $model = $this->argument('model');
+        try {
+            $name = $this->argument('name');
 
-        beyond_copy_stub(
-            'policy.stub',
-            base_path() . "/src/Domain/{$domain}/Policies/{$className}.php",
-            [
-                '{{ domain }}' => $domain,
-                '{{ className }}' => $className,
-                '{{ model }}' => $model,
-            ]
-        );
+            $schema = new DomainNameSchemaResolver($name);
+
+            beyond_copy_stub(
+                'policy.stub',
+                base_path() . '/src/Domain/' . $schema->getPath('Policies') . '.php',
+                [
+                    '{{ domain }}' => $schema->getDomainName(),
+                    '{{ className }}' => $schema->getClassName(),
+                ]
+            );
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }
