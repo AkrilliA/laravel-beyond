@@ -16,7 +16,7 @@ class MakeRouteCommand extends Command
 
         beyond_copy_stub(
             'routes.stub',
-            app_path() . "/../src/App/{$application}/routes.php",
+            app_path() . "/../src/App/{$application}/routes/web.php",
             [
                 '{{ application }}' => $application,
             ]
