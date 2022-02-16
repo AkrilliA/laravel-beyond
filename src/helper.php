@@ -1,7 +1,7 @@
 <?php
 
-use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
-use Regnerisch\LaravelBeyond\Actions\MoveFileAction;
+use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
+use Regnerisch\LaravelBeyond\Actions\CopyFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 if (!function_exists('beyond_path')) {
@@ -15,8 +15,8 @@ if (!function_exists('beyond_path')) {
 if (!function_exists('beyond_copy_stub')) {
 
     function beyond_copy_stub(string $stub, string $path, array $refactor = []): void {
-        $action = new MoveAndRefactorFileAction(
-            new MoveFileAction(),
+        $action = new CopyAndRefactorFileAction(
+            new CopyFileAction(),
             new RefactorFileAction()
         );
 

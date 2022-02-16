@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Actions;
 
 use Illuminate\Filesystem\Filesystem;
 
-class MoveFileAction
+class CopyFileAction
 {
     public function execute(string $srcPath, string $targetPath)
     {

@@ -3,28 +3,35 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeControllerCommand extends Command
 {
-    protected $signature = 'beyond:make:controller {application} {className} {--api}';
+    protected $signature = 'beyond:make:controller {name} {--api}';
 
     protected $description = 'Make a new controller';
 
-    public function handle()
+    public function handle(): void
     {
-        $application = $this->argument('application');
-        $className = $this->argument('className');
-        $api = $this->option('api');
+        try {
+            $name = $this->argument('name');
+            $api = $this->option('api');
 
-        $stub = $api ? 'controller.api.stub' : 'controller.stub';
+            $stub = $api ? 'controller.api.stub' : 'controller.stub';
 
-        beyond_copy_stub(
-            $stub,
-            app_path() . "/../src/App/{$application}/Controllers/{$className}.php",
-            [
-                '{{ application }}' => $application,
-                '{{ className }}' => $className,
-            ]
-        );
+            $schema = new AppNameSchemaResolver($name);
+
+            beyond_copy_stub(
+                $stub,
+                base_path() . '/src/App/' . $schema->getPath('Controllers') . '.php',
+                [
+                    '{{ application }}' => $schema->getAppName(),
+                    '{{ module }}' => $schema->getModuleName(),
+                    '{{ className }}' => $schema->getClassName(),
+                ]
+            );
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }

@@ -3,25 +3,31 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeDataTransferObjectCommand extends Command
 {
-    protected $signature = 'beyond:make:dto {domain} {className}';
+    protected $signature = 'beyond:make:dto {name}';
 
     protected $description = 'Make a new data transfer object';
 
-    public function handle()
+    public function handle(): void
     {
-        $domain = $this->argument('domain');
-        $className = $this->argument('className');
+        try {
+            $name = $this->argument('name');
 
-        beyond_copy_stub(
-            'data-transfer-object.stub',
-            base_path() . "/src/Domain/{$domain}/DataTransferObjects/{$className}.php",
-            [
-                '{{ domain }}' => $domain,
-                '{{ className }}' => $className,
-            ]
-        );
+            $schema = new DomainNameSchemaResolver($name);
+
+            beyond_copy_stub(
+                'data-transfer-object.stub',
+                base_path() . '/src/Domain/' . $schema->getPath('DataTransferObjects') . '.php',
+                [
+                    '{{ domain }}' => $schema->getDomainName(),
+                    '{{ className }}' => $schema->getClassName(),
+                ]
+            );
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }

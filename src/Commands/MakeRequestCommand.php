@@ -3,25 +3,32 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeRequestCommand extends Command
 {
-    protected $signature = 'beyond:make:request {application} {className}';
+    protected $signature = 'beyond:make:request {name}';
 
     protected $description = 'Make a new request';
 
-    public function handle()
+    public function handle(): void
     {
-        $application = $this->argument('application');
-        $className = $this->argument('className');
+        try {
+            $name = $this->argument('name');
 
-        beyond_copy_stub(
-            'request.stub',
-            base_path() . "/src/App/{$application}/Requests/{$className}.php",
-            [
-                '{{ application }}' => $application,
-                '{{ className }}' => $className,
-            ]
-        );
+            $schema = new AppNameSchemaResolver($name);
+
+            beyond_copy_stub(
+                'request.stub',
+                base_path() . '/src/App/' . $schema->getPath('Requests') . '.php',
+                [
+                    '{{ application }}' => $schema->getAppName(),
+                    '{{ module }}' => $schema->getModuleName(),
+                    '{{ className }}' => $schema->getClassName(),
+                ]
+            );
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }
