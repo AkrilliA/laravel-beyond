@@ -5,7 +5,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use Regnerisch\LaravelBeyond\Actions\DeleteAction;
-use Regnerisch\LaravelBeyond\Actions\MoveAndRefactorFileAction;
+use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
@@ -15,10 +15,10 @@ class SetupCommand extends Command
     protected $description = '';
 
     public function __construct(
-        protected MoveAndRefactorFileAction $moveAndRefactorFileAction,
-        protected RefactorFileAction $refactorFileAction,
+        protected CopyAndRefactorFileAction      $moveAndRefactorFileAction,
+        protected RefactorFileAction             $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
-        protected DeleteAction $deleteAction,
+        protected DeleteAction                   $deleteAction,
     ) {
         parent::__construct();
     }
