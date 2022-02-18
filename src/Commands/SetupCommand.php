@@ -10,7 +10,7 @@ use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
 {
-    protected $signature = 'beyond:setup {directory=src}';
+    protected $signature = 'beyond:setup {directory=src} {--with-deletes}';
 
     protected $description = '';
 
@@ -25,6 +25,8 @@ class SetupCommand extends Command
 
     public function handle(): void
     {
+        $withDeletes = $this->option('with-deletes');
+
         // Console
         $this->copyAndRefactorFileAction->execute(
             base_path() . '/app/Console/Kernel.php',
@@ -84,8 +86,10 @@ class SetupCommand extends Command
         // Composer Autoloader
         $this->changeComposerAutoloaderAction->execute();
 
-        // Delete app folder
-        $this->deleteAction->execute(base_path() . '/app');
+        if ($withDeletes) {
+            // Delete app folder
+            $this->deleteAction->execute(base_path() . '/app');
+        }
     }
 
     protected function moveMiddlewares(): void
