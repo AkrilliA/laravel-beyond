@@ -2,7 +2,7 @@
     "name": "regnerisch/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "2.3.4",
+    "version": "2.3.5",
     "autoload": {
         "psr-4": {
             "Regnerisch\\LaravelBeyond\\": "src/"
@@ -23,9 +23,9 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^v9.1.0",
-        "illuminate/console": "^v9.1.0",
-        "illuminate/filesystem": "^v9.1.0"
+        "illuminate/support": "^9.0.0",
+        "illuminate/console": "^9.0.0",
+        "illuminate/filesystem": "^9.0.0"
     },
     "extra": {
         "laravel": {
