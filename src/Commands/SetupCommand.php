@@ -10,7 +10,7 @@ use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
 {
-    protected $signature = 'beyond:setup {directory=src} {--no-delete}';
+    protected $signature = 'beyond:setup {--no-delete}';
 
     protected $description = '';
 
@@ -25,7 +25,7 @@ class SetupCommand extends Command
 
     public function handle(): void
     {
-        $noDelete = $this->option('--no-delete');
+        $noDelete = $this->option('no-delete');
 
         // Console
         $this->copyAndRefactorFileAction->execute(
