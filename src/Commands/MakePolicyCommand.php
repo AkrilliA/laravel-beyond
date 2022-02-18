@@ -19,26 +19,17 @@ class MakePolicyCommand extends Command
 
             $schema = new DomainNameSchemaResolver($name);
 
-            if ($model) {
-                $stub = 'policy.stub';
-                $replacements = [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
-                    '{{ modelName }}' => $model,
-                    '{{ modelVariable }}' => mb_strtolower($model),
-                ];
-            } else {
-                $stub = 'policy.plain.stub';
-                $replacements = [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
-                ];
-            }
+            $stub = $model ? 'policy.stub' : 'policy.plain.stub';
 
             beyond_copy_stub(
                 $stub,
                 base_path() . '/src/Domain/' . $schema->getPath('Policies') . '.php',
-                $replacements
+                [
+                    '{{ domain }}' => $schema->getDomainName(),
+                    '{{ className }}' => $schema->getClassName(),
+                    '{{ modelName }}' => $model,
+                    '{{ modelVariable }}' => mb_strtolower($model),
+                ]
             );
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
