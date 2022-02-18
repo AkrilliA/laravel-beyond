@@ -28,7 +28,7 @@ class MakePolicyCommand extends Command
                     '{{ domain }}' => $schema->getDomainName(),
                     '{{ className }}' => $schema->getClassName(),
                     '{{ modelName }}' => $model,
-                    '{{ modelVariable }}' => mb_strtolower($model),
+                    '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
                 ]
             );
         } catch (\Exception $exception) {
