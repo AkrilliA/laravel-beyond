@@ -17,7 +17,7 @@ class MakeRouteCommand extends Command
 
         beyond_copy_stub(
             'routes.stub',
-            app_path() . "/../src/App/{$application}/routes/{$applicationNameLowerCase}.php",
+            app_path() . "/../routes/{$applicationNameLowerCase}.php",
             [
                 '{{ application }}' => $applicationNameLowerCase,
             ]
@@ -25,12 +25,12 @@ class MakeRouteCommand extends Command
 
 
         $this->info(
-            "Please add following route entry to your RouteServiceProvider" . PHP_EOL . PHP_EOL .
+            "Please add following route entry to your RouteServiceProvider. Please take care of using the correct middleware. This could differ from the default middleware." . PHP_EOL . PHP_EOL .
 
-                "\tRoute::prefix('api')" . PHP_EOL .
-                    "\t\t->middleware('api')" . PHP_EOL .
-                    "\t\t->namespace($this->namespace)" . PHP_EOL .
-                    "\t\t->group(base_path('routes/api.php'));"
+            "\tRoute::prefix('" . $applicationNameLowerCase . "')" . PHP_EOL .
+                "\t\t->middleware('api')" . PHP_EOL .
+                "\t\t->namespace($this->namespace)" . PHP_EOL .
+                "\t\t->group(base_path('routes/$applicationNameLowerCase.php'));"
         );
     }
 }
