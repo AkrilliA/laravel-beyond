@@ -18,6 +18,7 @@ class SetupCommand extends Command
         protected CopyAndRefactorFileAction      $copyAndRefactorFileAction,
         protected RefactorFileAction             $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
+        protected DeleteAction                   $deleteAction,
     ) {
         parent::__construct();
     }
@@ -87,7 +88,7 @@ class SetupCommand extends Command
 
         if (!$noDelete) {
             // Delete app folder
-            (new DeleteAction())->execute(base_path() . '/app');
+            $this->deleteAction->execute(base_path() . '/app');
         }
     }
 
