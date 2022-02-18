@@ -10,7 +10,7 @@ use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
 {
-    protected $signature = 'beyond:setup {directory=src} {--skip-delete}';
+    protected $signature = 'beyond:setup {directory=src} {--no-delete}';
 
     protected $description = '';
 
@@ -25,7 +25,7 @@ class SetupCommand extends Command
 
     public function handle(): void
     {
-        $skipDelete = $this->option('--skip-delete');
+        $noDelete = $this->option('--no-delete');
 
         // Console
         $this->copyAndRefactorFileAction->execute(
@@ -86,7 +86,7 @@ class SetupCommand extends Command
         // Composer Autoloader
         $this->changeComposerAutoloaderAction->execute();
 
-        if (!$skipDelete) {
+        if (!$noDelete) {
             // Delete app folder
             $this->deleteAction->execute(base_path() . '/app');
         }
