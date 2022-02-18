@@ -29,7 +29,7 @@ class MakeRouteCommand extends Command
 
             "\tRoute::prefix('{$routeNameLowerCase}')" . PHP_EOL .
                 "\t\t->middleware('api')" . PHP_EOL .
-                "\t\t->namespace($this->namespace)" . PHP_EOL .
+                "\t\t" . '->namespace($this->namespace)' . PHP_EOL .
                 "\t\t->group(base_path('routes/{$routeNameLowerCase}.php'));"
         );
     }
