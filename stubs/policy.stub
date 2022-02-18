@@ -18,7 +18,7 @@ class {{ className }}
     {
     }
 
-    public function view(User $user, {{ model }} $object)
+    public function view(User $user, {{ model }} ${{ modelVariable }})
     {
     }
 
@@ -26,19 +26,19 @@ class {{ className }}
     {
     }
 
-    public function update(User $user, {{ model }} $object)
+    public function update(User $user, {{ model }} ${{ modelVariable }})
     {
     }
 
-    public function delete(User $user, {{ model }} $object)
+    public function delete(User $user, {{ model }} ${{ modelVariable }})
     {
     }
 
-    public function restore(User $user, {{ model }} $object)
+    public function restore(User $user, {{ model }} ${{ modelVariable }})
     {
     }
 
-    public function forceDelete(User $user, {{ model }} $object)
+    public function forceDelete(User $user, {{ model }} ${{ modelVariable }})
     {
     }
 }
