@@ -27,10 +27,10 @@ class MakeRouteCommand extends Command
         $this->info(
             "Please add following route entry to your RouteServiceProvider. Please take care of using the correct middleware. This could differ from the default middleware." . PHP_EOL . PHP_EOL .
 
-            "\tRoute::prefix('{$routeNameLowerCase}')" . PHP_EOL .
-                "\t\t->middleware('api')" . PHP_EOL .
-                "\t\t" . '->namespace($this->namespace)' . PHP_EOL .
-                "\t\t->group(base_path('routes/{$routeNameLowerCase}.php'));"
+            "Route::prefix('{$routeNameLowerCase}')" . PHP_EOL .
+                "\t->middleware('api')" . PHP_EOL .
+                "\t" . '->namespace($this->namespace)' . PHP_EOL .
+                "\t->group(base_path('routes/{$routeNameLowerCase}.php'));"
         );
     }
 }

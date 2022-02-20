@@ -5,27 +5,22 @@ namespace Regnerisch\LaravelBeyond\Commands;
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeResourceCommand extends Command
+class MakeJobCommand extends Command
 {
-    protected $signature = 'beyond:make:resource {name} {--collection}';
+    protected $signature = 'beyond:make:job {name}';
 
-    protected $description = 'Make a new resource';
+    protected $description = 'Make a new job';
 
     public function handle(): void
     {
         try {
             $name = $this->argument('name');
-            $collection = $this->option('collection');
 
             $schema = new AppNameSchemaResolver($name);
 
-            $stub = (str_contains($schema->getClassName(), 'Collection') || $collection) ?
-                'resource.collection.stub' :
-                'resource.stub';
-
             beyond_copy_stub(
-                $stub,
-                base_path() . '/src/App/' . $schema->getPath('Resources') . '.php',
+                'job.stub',
+                base_path() . '/src/App/' . $schema->getPath('Jobs') . '.php',
                 [
                     '{{ application }}' => $schema->getAppName(),
                     '{{ module }}' => $schema->getModuleName(),

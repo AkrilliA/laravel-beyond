@@ -34,14 +34,18 @@ only need to enter the command name: `php artisan beyond:make:command SyncUsersC
 ### Commands
 ```bash
 php artisan beyond:make:action Users/CreateUserAction
+php artisan beyond:make:collection Users/UserCollection
 php artisan beyond:make:command UpdateUsersCommand
 php artisan beyond:make:controller Admin/Users/UserController
-php artisan beyond:make:dto Users/UserData
+php artisan beyond:make:dto Users/UserData # required spatie/data-transfer-object
+php artisan beyond:make:job Admin/Users/SyncUsersJob
 php artisan beyond:make:model Users/User
 php artisan beyond:make:policy Users/UserPolicy
+php artisan beyond:make:query-builder Users/UserQueryBuilder
 php artisan beyond:make:query Admin/Users/UserIndexQuery # requires spatie/laravel-query-builder
 php artisan beyond:make:request Admin/Users/CreateUserRequest
 php artisan beyond:make:resource Admin/Users/UserResource
+php artisan beyond:make:route Users
 php artisan beyond:setup
 ```
 

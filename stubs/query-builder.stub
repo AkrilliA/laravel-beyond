@@ -1,0 +1,10 @@
+<?php
+
+namespace Domain\{{ domain }}\QueryBuilders;
+
+use Illuminate\Database\Eloquent\Builder;
+
+class {{ className }} extends Builder
+{
+
+}
