@@ -31,6 +31,8 @@ class MakePolicyCommand extends Command
                     '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
                 ]
             );
+
+            $this->info("Policy created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }
