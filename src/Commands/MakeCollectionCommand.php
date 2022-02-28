@@ -40,6 +40,7 @@ class MakeCollectionCommand extends Command
                 "\t" . 'return new ' . $schema->getClassName() . '($models); ' . PHP_EOL .
                 '}'
             );
+
             $this->info("Collection created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());

@@ -32,6 +32,7 @@ class MakeRouteCommand extends Command
                 "\t" . '->namespace($this->namespace)' . PHP_EOL .
                 "\t->group(base_path('routes/{$routeNameLowerCase}.php'));"
         );
+
         $this->info("Route created.");
     }
 }
