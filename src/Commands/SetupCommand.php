@@ -90,6 +90,8 @@ class SetupCommand extends Command
             // Delete app folder
             $this->deleteAction->execute(base_path() . '/app');
         }
+
+        $this->info('Setup completed.');
     }
 
     protected function moveMiddlewares(): void

@@ -27,6 +27,8 @@ class MakeActionCommand extends Command
                     '{{ className }}' => $schema->getClassName(),
                 ]
             );
+
+            $this->info("Action created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

@@ -36,6 +36,8 @@ class MakeQueryBuilderCommand extends Command
                 "\t" . 'return new ' . $schema->getClassName() . '($query); ' . PHP_EOL .
                 '}'
             );
+
+            $this->info("Query Builder created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

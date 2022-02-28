@@ -32,6 +32,8 @@ class MakeResourceCommand extends Command
                     '{{ className }}' => $schema->getClassName(),
                 ]
             );
+
+            $this->info("Resource created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

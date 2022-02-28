@@ -26,6 +26,8 @@ class MakeDataTransferObjectCommand extends Command
                     '{{ className }}' => $schema->getClassName(),
                 ]
             );
+
+            $this->info("DataTransferObject created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

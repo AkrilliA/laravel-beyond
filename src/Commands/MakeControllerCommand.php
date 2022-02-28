@@ -30,6 +30,8 @@ class MakeControllerCommand extends Command
                     '{{ className }}' => $schema->getClassName(),
                 ]
             );
+
+            $this->info("Controller created.");
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

@@ -23,5 +23,7 @@ class MakeCommandCommand extends Command
                 '{{ command }}' => $command,
             ]
         );
+
+        $this->info("Command created.");
     }
 }
