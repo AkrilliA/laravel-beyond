@@ -13,45 +13,31 @@ composer require --dev regnerisch/laravel-beyond
 
 ## Usage
 
-You can easily set up a DDD application with `php artisan beyond:setup` after installation. You should only run this 
-command on a freshly installed Laravel app, as it will delete files and rename things. After the setup has finished
-you need to run `composer dump-autoload`.
-
-You can 'make' Controllers, Commands, Models as you know it from Laravels' `php artisan make:...` with the `beyond:make:...` command.
-For application commands e.g. `php artisan beyond:make:controller` you need to enter the following schema: `{App}/{Module}/{Class}`:
-```bash
-php artisan beyond:make:controller Admin/Users/UserController
-```
-
-For domain commands e.g. `php artisan beyond:make:action` you need to enter the following schema: `{Domain}/{Class}`:
-```bash
-php artisan beyond:make:action Users/CreateUserAction
-```
-
-Making commands (with `php artisan beyond:make:command`) will automatically force them to the `Command` application, so you 
-only need to enter the command name: `php artisan beyond:make:command SyncUsersCommand`.
-
 ### Commands
-```bash
-php artisan beyond:make:action Users/CreateUserAction
-php artisan beyond:make:collection Users/UserCollection
-php artisan beyond:make:command UpdateUsersCommand
-php artisan beyond:make:controller Admin/Users/UserController
-php artisan beyond:make:dto Users/UserData # required spatie/data-transfer-object
-php artisan beyond:make:job Admin/Users/SyncUsersJob
-php artisan beyond:make:model Users/User
-php artisan beyond:make:policy Users/UserPolicy
-php artisan beyond:make:query-builder Users/UserQueryBuilder
-php artisan beyond:make:query Admin/Users/UserIndexQuery # requires spatie/laravel-query-builder
-php artisan beyond:make:request Admin/Users/CreateUserRequest
-php artisan beyond:make:resource Admin/Users/UserResource
-php artisan beyond:make:route Users
-php artisan beyond:setup
-```
+|Command|Namespace|Required Packages|
+|-|-|
+|`php artisan beyond:make:action Users/CreateUserAction`|Domain/Users/Actions/CreateUserAction||
+|`php artisan beyond:make:collection Users/UserCollection`|Domain/Users/Collections/UserCollection||
+|`php artisan beyond:make:command SyncUsersCommand`|App/Console/Commands/SyncUsersCommand||
+|`php artisan beyond:make:controller Admin/Users/UserController`|App/Admin/Users/Controllers/UserController||
+|`php artisan beyond:make:dto Users/UserData`|Domain/Users/DataTransferObjects/UserData|spatie/data-transfer-object|
+|`php artisan beyond:make:job Admin/Users/SyncUsersJob`|App/Admin/Users/Jobs/SyncUsersJob||
+|`php artisan beyond:make:model Users/User`|Domain/Users/Models/User||
+|`php artisan beyond:make:policy Users/UserPolicy`|Domain/Users/Policies/UserPolicy||
+|`php artisan beyond:make:query-builder Users/UserQueryBuilder`|Domain/Users/QueryBuilders/UserQueryBuilder||
+|`php artisan beyond:make:query Admin/Users/UserIndexQuery`|App/Admin/Users/Queries/UserIndexQuery|spatie/laravel-query-builder|
+|`php artisan beyond:make:request Admin/Users/CreateUserRequest`|App/Admin/Users/Requests/CreateUserRequest||
+|`php artisan beyond:make:resource Admin/Users/UserResource`|App/Admin/Users/Resources/UserResource||
+|`php artisan beyond:make:route Users`|Creates a new file at routes/users.php||
+|`php artisan beyond:setup`|Sets up a domain-driven application||
 
-## Roadmap
+#### Set up a domain-driven application
+After installing `laravel-beyond` you can easily set up a domain-driven application. 
+You just need to run `php artisan beyond:setup` on a fresh Laravel application or 
+`php artisan beyond:setup --skip-delete` to keep you `app` directory with your existing
+code. 
 
-- tbc.
+Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
 
 ## Authors
 
