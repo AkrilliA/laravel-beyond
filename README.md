@@ -15,7 +15,7 @@ composer require --dev regnerisch/laravel-beyond
 
 ### Commands
 |Command|Namespace|Required Packages|
-|---|---|
+|---|---|---|
 |`php artisan beyond:make:action Users/CreateUserAction`|Domain/Users/Actions/CreateUserAction||
 |`php artisan beyond:make:collection Users/UserCollection`|Domain/Users/Collections/UserCollection||
 |`php artisan beyond:make:command SyncUsersCommand`|App/Console/Commands/SyncUsersCommand||
