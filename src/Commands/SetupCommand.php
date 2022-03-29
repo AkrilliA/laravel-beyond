@@ -3,6 +3,7 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use Regnerisch\LaravelBeyond\Actions\DeleteAction;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
@@ -10,7 +11,7 @@ use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
 {
-    protected $signature = 'beyond:setup {--no-delete}';
+    protected $signature = 'beyond:setup {--skip-delete}';
 
     protected $description = '';
 
@@ -96,69 +97,15 @@ class SetupCommand extends Command
 
     protected function moveMiddlewares(): void
     {
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/Authenticate.php',
-            base_path() . '/src/Support/Middlewares/Authenticate.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
+        $fs = new Filesystem();
+        $middlewares = $fs->files(base_path() . '/app/Http/Middleware');
 
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/EncryptCookies.php',
-            base_path() . '/src/Support/Middlewares/EncryptCookies.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
-            base_path() . '/src/Support/Middlewares/PreventRequestsDuringMaintenance.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/RedirectIfAuthenticated.php',
-            base_path() . '/src/Support/Middlewares/RedirectIfAuthenticated.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/TrimStrings.php',
-            base_path() . '/src/Support/Middlewares/TrimStrings.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/TrustHosts.php',
-            base_path() . '/src/Support/Middlewares/TrustHosts.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/TrustProxies.php',
-            base_path() . '/src/Support/Middlewares/TrustProxies.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/VerifyCsrfToken.php',
-            base_path() . '/src/Support/Middlewares/VerifyCsrfToken.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
+        foreach ($middlewares as $middleware) {
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Http/Middleware/' . $middleware->getFilename(),
+                base_path() . '/src/App/Http/Middleware/' . $middleware->getFilename()
+            );
+        }
     }
 
     protected function moveProviders(): void
