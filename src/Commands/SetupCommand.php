@@ -39,7 +39,7 @@ class SetupCommand extends Command
         // Exceptions
         $this->copyAndRefactorFileAction->execute(
             base_path() . '/app/Exceptions/Handler.php',
-            base_path() . '/src/App/Exceptions/Handler.php',
+            base_path() . '/src/App/Exceptions/Handler.php'
         );
 
         // Middlewares
@@ -53,7 +53,7 @@ class SetupCommand extends Command
                 'namespace App\Http;' => 'namespace App;',
                 'use Illuminate\Foundation\Http\Kernel as HttpKernel;' => 'use Illuminate\Foundation\Http\Kernel;',
                 'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
-                '\App\Http\Middleware\\' => '\Support\Middlewares\\',
+                '\App\Http\Middleware\\' => '\Support\Middlewares\\'
             ]
         );
 
@@ -68,7 +68,7 @@ class SetupCommand extends Command
             base_path() . '/app/Models/User.php',
             base_path() . '/src/Domain/Users/Models/User.php',
             [
-                'namespace App\Models;' => 'namespace Domain\Users\Models;',
+                'namespace App\Models;' => 'namespace Domain\Users\Models;'
             ]
         );
 
@@ -116,7 +116,7 @@ class SetupCommand extends Command
         foreach ($providers as $provider) {
             $this->copyAndRefactorFileAction->execute(
                 base_path() . '/app/Providers/' . $provider->getFilename(),
-                base_path() . '/src/App/Providers/' . $provider->getFilename(),
+                base_path() . '/src/App/Providers/' . $provider->getFilename()
             );
         }
     }
@@ -127,7 +127,7 @@ class SetupCommand extends Command
             base_path() . '/bootstrap/app.php',
             [
                 'new Illuminate\Foundation\Application' => 'new App\Application',
-                'App\Http\Kernel::class' => 'App\HttpKernel::class',
+                'App\Http\Kernel::class' => 'App\HttpKernel::class'
             ]
         );
     }
