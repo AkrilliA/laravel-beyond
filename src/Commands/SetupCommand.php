@@ -101,7 +101,10 @@ class SetupCommand extends Command
     {
         $this->copyAndRefactorDirectoryAction->execute(
             base_path() . '/app/Http/Middleware',
-            base_path() . '/src/App/Http/Middleware'
+            base_path() . '/src/App/Http/Middleware',
+            [
+                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
+            ]
         );
     }
 
@@ -113,7 +116,7 @@ class SetupCommand extends Command
         foreach ($providers as $provider) {
             $this->copyAndRefactorFileAction->execute(
                 base_path() . '/app/Providers/' . $provider->getFilename(),
-                base_path() . '/src/App/Providers/' . $provider->getFilename()
+                base_path() . '/src/App/Providers/' . $provider->getFilename(),
             );
         }
     }
