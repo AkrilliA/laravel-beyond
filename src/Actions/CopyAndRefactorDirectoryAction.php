@@ -18,8 +18,8 @@ class CopyAndRefactorDirectoryAction
 
         foreach ($files as $file) {
             $this->copyAndRefactorFileAction->execute(
-                $sourcePath . DIRECTORY_SEPARATOR . $file->getFilename(),
-                $targetPath . DIRECTORY_SEPARATOR . $file->getFilename(),
+                $sourcePath . '/' . $file->getFilename(),
+                $targetPath . '/' . $file->getFilename(),
                 $refactor
             );
         }
