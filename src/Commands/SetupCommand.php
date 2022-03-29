@@ -5,6 +5,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
+use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
 use Regnerisch\LaravelBeyond\Actions\DeleteAction;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
@@ -16,10 +17,11 @@ class SetupCommand extends Command
     protected $description = '';
 
     public function __construct(
-        protected CopyAndRefactorFileAction      $copyAndRefactorFileAction,
-        protected RefactorFileAction             $refactorFileAction,
+        protected CopyAndRefactorFileAction $copyAndRefactorFileAction,
+        protected CopyAndRefactorDirectoryAction $copyAndRefactorDirectoryAction,
+        protected RefactorFileAction $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
-        protected DeleteAction                   $deleteAction,
+        protected DeleteAction $deleteAction,
     ) {
         parent::__construct();
     }
@@ -97,15 +99,10 @@ class SetupCommand extends Command
 
     protected function moveMiddlewares(): void
     {
-        $fs = new Filesystem();
-        $middlewares = $fs->files(base_path() . '/app/Http/Middleware');
-
-        foreach ($middlewares as $middleware) {
-            $this->copyAndRefactorFileAction->execute(
-                base_path() . '/app/Http/Middleware/' . $middleware->getFilename(),
-                base_path() . '/src/App/Http/Middleware/' . $middleware->getFilename()
-            );
-        }
+        $this->copyAndRefactorDirectoryAction->execute(
+            base_path() . '/app/Http/Middleware',
+            base_path() . '/src/App/Http/Middleware'
+        );
     }
 
     protected function moveProviders(): void
