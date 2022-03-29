@@ -3,29 +3,32 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
+use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
 use Regnerisch\LaravelBeyond\Actions\DeleteAction;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
 {
-    protected $signature = 'beyond:setup {--no-delete}';
+    protected $signature = 'beyond:setup {--skip-delete}';
 
     protected $description = '';
 
     public function __construct(
-        protected CopyAndRefactorFileAction      $copyAndRefactorFileAction,
-        protected RefactorFileAction             $refactorFileAction,
+        protected CopyAndRefactorFileAction $copyAndRefactorFileAction,
+        protected CopyAndRefactorDirectoryAction $copyAndRefactorDirectoryAction,
+        protected RefactorFileAction $refactorFileAction,
         protected ChangeComposerAutoloaderAction $changeComposerAutoloaderAction,
-        protected DeleteAction                   $deleteAction,
+        protected DeleteAction $deleteAction,
     ) {
         parent::__construct();
     }
 
     public function handle(): void
     {
-        $noDelete = $this->option('no-delete');
+        $skipDelete = $this->option('skip-delete');
 
         // Console
         $this->copyAndRefactorFileAction->execute(
@@ -36,7 +39,7 @@ class SetupCommand extends Command
         // Exceptions
         $this->copyAndRefactorFileAction->execute(
             base_path() . '/app/Exceptions/Handler.php',
-            base_path() . '/src/App/Exceptions/Handler.php',
+            base_path() . '/src/App/Exceptions/Handler.php'
         );
 
         // Middlewares
@@ -50,7 +53,7 @@ class SetupCommand extends Command
                 'namespace App\Http;' => 'namespace App;',
                 'use Illuminate\Foundation\Http\Kernel as HttpKernel;' => 'use Illuminate\Foundation\Http\Kernel;',
                 'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
-                '\App\Http\Middleware\\' => '\Support\Middlewares\\',
+                '\App\Http\Middleware\\' => '\Support\Middlewares\\'
             ]
         );
 
@@ -65,7 +68,7 @@ class SetupCommand extends Command
             base_path() . '/app/Models/User.php',
             base_path() . '/src/Domain/Users/Models/User.php',
             [
-                'namespace App\Models;' => 'namespace Domain\Users\Models;',
+                'namespace App\Models;' => 'namespace Domain\Users\Models;'
             ]
         );
 
@@ -86,7 +89,7 @@ class SetupCommand extends Command
         // Composer Autoloader
         $this->changeComposerAutoloaderAction->execute();
 
-        if (!$noDelete) {
+        if (!$skipDelete) {
             // Delete app folder
             $this->deleteAction->execute(base_path() . '/app');
         }
@@ -96,65 +99,9 @@ class SetupCommand extends Command
 
     protected function moveMiddlewares(): void
     {
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/Authenticate.php',
-            base_path() . '/src/Support/Middlewares/Authenticate.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/EncryptCookies.php',
-            base_path() . '/src/Support/Middlewares/EncryptCookies.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
-            base_path() . '/src/Support/Middlewares/PreventRequestsDuringMaintenance.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/RedirectIfAuthenticated.php',
-            base_path() . '/src/Support/Middlewares/RedirectIfAuthenticated.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/TrimStrings.php',
-            base_path() . '/src/Support/Middlewares/TrimStrings.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/TrustHosts.php',
-            base_path() . '/src/Support/Middlewares/TrustHosts.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/TrustProxies.php',
-            base_path() . '/src/Support/Middlewares/TrustProxies.php',
-            [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
-            ]
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Middleware/VerifyCsrfToken.php',
-            base_path() . '/src/Support/Middlewares/VerifyCsrfToken.php',
+        $this->copyAndRefactorDirectoryAction->execute(
+            base_path() . '/app/Http/Middleware',
+            base_path() . '/src/Support/Middlewares',
             [
                 'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
             ]
@@ -163,30 +110,15 @@ class SetupCommand extends Command
 
     protected function moveProviders(): void
     {
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/AppServiceProvider.php',
-            base_path() . '/src/App/Providers/AppServiceProvider.php',
-        );
+        $fs = new Filesystem();
+        $providers = $fs->files(base_path() . '/app/Providers');
 
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/AuthServiceProvider.php',
-            base_path() . '/src/App/Providers/AuthServiceProvider.php',
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/BroadcastServiceProvider.php',
-            base_path() . '/src/App/Providers/BroadcastServiceProvider.php',
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/EventServiceProvider.php',
-            base_path() . '/src/App/Providers/EventServiceProvider.php',
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/RouteServiceProvider.php',
-            base_path() . '/src/App/Providers/RouteServiceProvider.php',
-        );
+        foreach ($providers as $provider) {
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Providers/' . $provider->getFilename(),
+                base_path() . '/src/App/Providers/' . $provider->getFilename()
+            );
+        }
     }
 
     protected function prepareBootstrap(): void
@@ -195,7 +127,7 @@ class SetupCommand extends Command
             base_path() . '/bootstrap/app.php',
             [
                 'new Illuminate\Foundation\Application' => 'new App\Application',
-                'App\Http\Kernel::class' => 'App\HttpKernel::class',
+                'App\Http\Kernel::class' => 'App\HttpKernel::class'
             ]
         );
     }
