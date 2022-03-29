@@ -101,7 +101,7 @@ class SetupCommand extends Command
     {
         $this->copyAndRefactorDirectoryAction->execute(
             base_path() . '/app/Http/Middleware',
-            base_path() . '/src/App/Http/Middleware',
+            base_path() . '/src/Support/Middlewares',
             [
                 'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
             ]
