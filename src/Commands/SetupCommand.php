@@ -110,30 +110,15 @@ class SetupCommand extends Command
 
     protected function moveProviders(): void
     {
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/AppServiceProvider.php',
-            base_path() . '/src/App/Providers/AppServiceProvider.php',
-        );
+        $fs = new Filesystem();
+        $providers = $fs->files(base_path() . '/app/Providers');
 
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/AuthServiceProvider.php',
-            base_path() . '/src/App/Providers/AuthServiceProvider.php',
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/BroadcastServiceProvider.php',
-            base_path() . '/src/App/Providers/BroadcastServiceProvider.php',
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/EventServiceProvider.php',
-            base_path() . '/src/App/Providers/EventServiceProvider.php',
-        );
-
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Providers/RouteServiceProvider.php',
-            base_path() . '/src/App/Providers/RouteServiceProvider.php',
-        );
+        foreach ($providers as $provider) {
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Providers/' . $provider->getFilename(),
+                base_path() . '/src/App/Providers/' . $provider->getFilename()
+            );
+        }
     }
 
     protected function prepareBootstrap(): void
