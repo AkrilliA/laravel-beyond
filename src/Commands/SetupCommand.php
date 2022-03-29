@@ -28,7 +28,7 @@ class SetupCommand extends Command
 
     public function handle(): void
     {
-        $noDelete = $this->option('no-delete');
+        $skipDelete = $this->option('skip-delete');
 
         // Console
         $this->copyAndRefactorFileAction->execute(
@@ -89,7 +89,7 @@ class SetupCommand extends Command
         // Composer Autoloader
         $this->changeComposerAutoloaderAction->execute();
 
-        if (!$noDelete) {
+        if (!$skipDelete) {
             // Delete app folder
             $this->deleteAction->execute(base_path() . '/app');
         }
