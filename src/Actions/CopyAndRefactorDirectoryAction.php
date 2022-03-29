@@ -8,7 +8,6 @@ class CopyAndRefactorDirectoryAction
 {
     public function __construct(
         protected CopyAndRefactorFileAction $copyAndRefactorFileAction,
-        protected RefactorDirectoryAction $refactorDirectoryAction
     ) {
     }
 
