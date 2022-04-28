@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class MakeServiceProviderCommand extends Command
 {
-    protected $signature = 'beyond:make:service:provider {className}';
+    protected $signature = 'beyond:make:provider {className}';
 
     protected $description = 'Create a new service provider';
 
