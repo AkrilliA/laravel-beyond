@@ -10,7 +10,7 @@ class MakeServiceProviderCommand extends Command
 
     protected $description = 'Create a new service provider';
 
-    public function handle()
+    public function handle(): void
     {
         try {
             $className = $this->argument('className');
