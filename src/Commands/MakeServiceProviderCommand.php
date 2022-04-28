@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeServiceProviderCommand extends Command
 {

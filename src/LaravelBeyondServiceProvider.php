@@ -11,7 +11,6 @@ use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
 use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeProviderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeQueryBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRequestCommand;
