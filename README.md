@@ -29,6 +29,7 @@ composer require --dev regnerisch/laravel-beyond
 |`php artisan beyond:make:request Admin/Users/CreateUserRequest`|App/Admin/Users/Requests/CreateUserRequest||
 |`php artisan beyond:make:resource Admin/Users/UserResource`|App/Admin/Users/Resources/UserResource||
 |`php artisan beyond:make:route Users`|Creates a new file at routes/users.php||
+|`php artisan beyond:make:provider UserServiceProvider`|App/Providers/UserServiceProvider||
 |`php artisan beyond:setup`|Sets up a domain-driven application||
 
 #### Set up a domain-driven application
