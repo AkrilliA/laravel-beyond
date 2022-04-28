@@ -25,7 +25,6 @@ class LaravelBeyondServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                MakeServiceProviderCommand::class,
                 MakeActionCommand::class,
                 MakeCollectionCommand::class,
                 MakeCommandCommand::class,
@@ -38,6 +37,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeQueryCommand::class,
                 MakeRequestCommand::class,
                 MakeResourceCommand::class,
+                MakeServiceProviderCommand::class,
                 MakeRouteCommand::class,
                 SetupCommand::class,
             ]);
