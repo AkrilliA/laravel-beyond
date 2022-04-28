@@ -37,8 +37,8 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeQueryCommand::class,
                 MakeRequestCommand::class,
                 MakeResourceCommand::class,
-                MakeServiceProviderCommand::class,
                 MakeRouteCommand::class,
+                MakeServiceProviderCommand::class,
                 SetupCommand::class,
             ]);
         }
