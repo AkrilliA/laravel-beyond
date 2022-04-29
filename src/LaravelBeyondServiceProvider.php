@@ -16,6 +16,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRequestCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeResourceCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRouteCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeServiceProviderCommand;
 use Regnerisch\LaravelBeyond\Commands\SetupCommand;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
@@ -37,6 +38,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeRequestCommand::class,
                 MakeResourceCommand::class,
                 MakeRouteCommand::class,
+                MakeServiceProviderCommand::class,
                 SetupCommand::class,
             ]);
         }

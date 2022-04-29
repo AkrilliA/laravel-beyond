@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeCollectionCommand extends Command
