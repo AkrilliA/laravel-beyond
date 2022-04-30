@@ -2,7 +2,7 @@
     "name": "regnerisch/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "2.4.6",
+    "version": "2.4.7",
     "autoload": {
         "psr-4": {
             "Regnerisch\\LaravelBeyond\\": "src/"
@@ -19,6 +19,10 @@
         {
             "name": "Alexander Gaal",
             "email": "alexander.gaal@gipfel.dev"
+        },
+        {
+            "name": "Nils Vennemann",
+            "email": "nilsvennemann95@gmail.com"
         }
     ],
     "require": {
