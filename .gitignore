@@ -2,3 +2,4 @@
 vendor/
 
 tests/files/
+.phpunit.result.cache
