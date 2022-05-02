@@ -37,5 +37,8 @@
                 "Regnerisch\\LaravelBeyond\\LaravelBeyondServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21"
     }
 }
