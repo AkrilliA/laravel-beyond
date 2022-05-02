@@ -8,6 +8,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCommandCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeEnumCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
 use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
@@ -30,6 +31,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeCommandCommand::class,
                 MakeControllerCommand::class,
                 MakeDataTransferObjectCommand::class,
+                MakeEnumCommand::class,
                 MakeJobCommand::class,
                 MakeModelCommand::class,
                 MakePolicyCommand::class,

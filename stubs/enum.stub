@@ -1,0 +1,8 @@
+<?php
+
+namespace Domain\{{ domain }}\Enums;
+
+enum {{ className }}
+{
+    //
+}
