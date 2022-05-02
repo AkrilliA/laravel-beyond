@@ -20,6 +20,7 @@ composer require --dev regnerisch/laravel-beyond
 |`php artisan beyond:make:collection Users/UserCollection`|Domain/Users/Collections/UserCollection||
 |`php artisan beyond:make:command SyncUsersCommand`|App/Console/Commands/SyncUsersCommand||
 |`php artisan beyond:make:controller Admin/Users/UserController`|App/Admin/Users/Controllers/UserController||
+|`php artisan beyond:make:enum Users/UserEnum`|Domain/Users/Enums/UserEnum||
 |`php artisan beyond:make:dto Users/UserData`|Domain/Users/DataTransferObjects/UserData|spatie/data-transfer-object|
 |`php artisan beyond:make:job Admin/Users/SyncUsersJob`|App/Admin/Users/Jobs/SyncUsersJob||
 |`php artisan beyond:make:model Users/User`|Domain/Users/Models/User||
