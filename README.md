@@ -30,11 +30,17 @@ php artisan beyond:make:controller Admin/Users/UserController
 # Creates an enum at Domain/Users/Enums/UserStatusEnum
 php artisan beyond:make:enum Users/UserStatusEnum
 
+# Creates an event at Domain/Users/Events/UserCreatedEvent
+php artisan beyond:make:event Users/UserCreatedEvent
+
 # Creates a data transfer object at Domain/Users/DataTransferObjects/UserData (requires spatie/data-transfer-object)
 php artisan beyond:make:dto Users/UserData
 
 # Creates a job at App/Admin/Users/Jobs/SyncUsersJob
 php artisan beyond:make:job Admin/Users/SyncUsersJob
+
+# Creates a listener at Doamin/Users/Listeners/UserCreatedListener
+php artisan beyond:make:listener Users/Listeners/UserCreatedListener
 
 # Creates a model at Domain/Users/Models/User
 php artisan beyond:make:model Users/User
