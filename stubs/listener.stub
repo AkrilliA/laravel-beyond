@@ -1,0 +1,19 @@
+<?php
+
+namespace Domain\{{ domain }}\Listeners;
+
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class {{ className }}
+{
+    public function __construct()
+    {
+        //
+    }
+
+    public function handle($event)
+    {
+        //
+    }
+}
