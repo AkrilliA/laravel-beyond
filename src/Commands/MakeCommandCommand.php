@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class MakeCommandCommand extends Command
 {
-    protected $signature = 'beyond:make:command {name} {--command=command:name}';
+    protected $signature = 'beyond:make:command {className} {--command=command:name}';
 
     protected $description = 'Make a new command';
 
