@@ -12,8 +12,8 @@ class AppNameSchemaResolver
     {
         $this->parts = explode('/', $name);
 
-        if (empty($this->parts[2]) || !preg_match('/^[a-zA-Z0-9]+$/', $this->parts[2])) {
-            throw new InvalidNameSchemaException('Invalid name schema! Please ensure that the class name must not be empty or contain special characters.');
+        if (empty($this->parts[2])) {
+            throw new InvalidNameSchemaException('Invalid name schema! Please ensure that the class name must not be empty.');
         }
 
         if (3 !== count($this->parts)) {
