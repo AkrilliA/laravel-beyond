@@ -12,6 +12,10 @@ class DomainNameSchemaResolver
     {
         $this->parts = explode('/', $name);
 
+        if (empty($this->parts[1]) || !preg_match('/^[a-zA-Z0-9]+$/', $this->parts[1])) {
+            throw new InvalidNameSchemaException('Invalid name schema! Please ensure that the class name must not be empty or contain special characters.');
+        }
+
         if (2 !== count($this->parts)) {
             throw new InvalidNameSchemaException(
                 'Invalid name schema! Please ensure the required schema: {Domain}/{ClassName}.'
