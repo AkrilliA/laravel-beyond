@@ -3,6 +3,7 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends Command
@@ -28,7 +29,7 @@ class MakeModelCommand extends Command
             );
 
             if ($this->option('migration')) {
-                $tableName = pluralize(strtolower($schema->getClassName()));
+                $tableName = Str::plural(strtolower($schema->getClassName()));
                 $fileName = now()->format('Y_m_d_his') . '_create_' . $tableName . '_table';
 
                 beyond_copy_stub(

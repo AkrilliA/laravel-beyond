@@ -28,17 +28,3 @@ if (!function_exists('beyond_copy_stub')) {
     }
 
 }
-
-if (!function_exists('pluralize')) {
-
-    function pluralize(string $singular): string {
-        $lastLetter = substr($singular, strlen($singular) - 1);
-
-        return match ($lastLetter) {
-            'y' => substr($singular,0,-1).'ies',
-            's' => $singular.'es',
-            default => $singular.'s'
-        };
-    }
-
-}
