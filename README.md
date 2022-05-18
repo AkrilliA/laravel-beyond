@@ -83,6 +83,7 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 - [@regnerisch](https://github.com/regnerisch)
 - [@alexgaal](https://github.com/alexgaal)
 - [@nilsvennemann](https://github.com/nilsvennemann)
+- [@Enaah](https://github.com/Enaah)
 
 ## License
 
