@@ -17,6 +17,12 @@ class AppNameSchemaResolver
                 'Invalid name schema! Please ensure the required schema: {App}/{Module}/{ClassName}.'
             );
         }
+
+        foreach ($this->parts as $part) {
+            if (!$part) {
+                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
+            }
+        }
     }
 
     public function getAppName(): string
