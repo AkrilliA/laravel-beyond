@@ -12,6 +12,12 @@ class AppNameSchemaResolver
     {
         $this->parts = explode('/', $name);
 
+        foreach ($this->parts as $part) {
+            if (!$part) {
+                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
+            }
+        }
+
         if (3 !== count($this->parts)) {
             throw new InvalidNameSchemaException(
                 'Invalid name schema! Please ensure the required schema: {App}/{Module}/{ClassName}.'
