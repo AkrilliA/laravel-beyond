@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends Command
 {
-    protected $signature = 'beyond:make:model {name}';
+    protected $signature = 'beyond:make:model {name} {-m|--migration}';
 
     protected $description = 'Make a new model';
 
@@ -26,6 +26,19 @@ class MakeModelCommand extends Command
                     '{{ className }}' => $schema->getClassName(),
                 ]
             );
+
+            if ($this->option('migration')) {
+                $tableName = pluralize(strtolower($schema->getClassName()));
+                $fileName = now()->format('Y_m_d_his') . '_create_' . $tableName . '_table';
+
+                beyond_copy_stub(
+                    'migration.stub',
+                    base_path() . '/database/migrations' . $fileName . '.php',
+                    [
+                        '{{ tableName }}' => $tableName
+                    ]
+                );
+            }
 
             $this->info("Model created.");
         } catch (\Exception $exception) {
