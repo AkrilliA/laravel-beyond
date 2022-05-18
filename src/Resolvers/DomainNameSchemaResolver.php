@@ -12,16 +12,16 @@ class DomainNameSchemaResolver
     {
         $this->parts = explode('/', $name);
 
-        foreach ($this->parts as $part) {
-            if (!$part) {
-                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
-            }
-        }
-
         if (2 !== count($this->parts)) {
             throw new InvalidNameSchemaException(
                 'Invalid name schema! Please ensure the required schema: {Domain}/{ClassName}.'
             );
+        }
+
+        foreach ($this->parts as $part) {
+            if (!$part) {
+                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
+            }
         }
     }
 
