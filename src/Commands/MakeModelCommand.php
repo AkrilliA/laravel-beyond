@@ -29,7 +29,7 @@ class MakeModelCommand extends Command
             );
 
             if ($this->option('migration')) {
-                $tableName = Str::plural(strtolower($schema->getClassName()));
+                $tableName = Str::pluralStudly(Str::snake($schema->getClassName()));
                 $fileName = now()->format('Y_m_d_his') . '_create_' . $tableName . '_table';
 
                 beyond_copy_stub(
