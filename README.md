@@ -39,7 +39,7 @@ php artisan beyond:make:dto Users/UserData
 # Creates a job at App/Admin/Users/Jobs/SyncUsersJob
 php artisan beyond:make:job Admin/Users/SyncUsersJob
 
-# Creates a listener at Doamin/Users/Listeners/UserCreatedListener
+# Creates a listener at Domain/Users/Listeners/UserCreatedListener
 php artisan beyond:make:listener Users/Listeners/UserCreatedListener
 
 # Creates a model at Domain/Users/Models/User
