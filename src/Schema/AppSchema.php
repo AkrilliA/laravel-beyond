@@ -2,15 +2,14 @@
 
 namespace Regnerisch\LaravelBeyond\Schema;
 
-use Illuminate\Support\Str;
-
 class AppSchema
 {
     public function __construct(
         protected string $appName,
         protected string $moduleName,
         protected string $className
-    ) {}
+    ) {
+    }
 
     public function appName(): string
     {

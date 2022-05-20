@@ -29,7 +29,7 @@ class ChangeComposerAutoloaderAction
         $namespaces = [
             'App\\' => 'src/App/',
             'Domain\\' => 'src/Domain/',
-            'Support\\' => 'src/Support/'
+            'Support\\' => 'src/Support/',
         ];
 
         $composer = json_decode($fs->get($path));

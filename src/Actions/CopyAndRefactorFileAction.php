@@ -5,7 +5,7 @@ namespace Regnerisch\LaravelBeyond\Actions;
 class CopyAndRefactorFileAction
 {
     public function __construct(
-        protected CopyFileAction     $copyFileAction,
+        protected CopyFileAction $copyFileAction,
         protected RefactorFileAction $refactorFileAction
     ) {
     }
@@ -17,6 +17,5 @@ class CopyAndRefactorFileAction
         if ($refactor) {
             $this->refactorFileAction->execute($targetPath, $refactor);
         }
-
     }
 }

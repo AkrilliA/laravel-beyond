@@ -15,8 +15,7 @@ class DomainNameSchemaResolver
     public function __construct(
         protected Command $command,
         protected ?string $className = null,
-    )
-    {
+    ) {
     }
 
     public function handle(): DomainSchema
@@ -26,11 +25,11 @@ class DomainNameSchemaResolver
 
         do {
             $domainName = $this->command->anticipate('Please enter the domain name:', $domains);
-        } while(!$domainName);
+        } while (!$domainName);
 
         do {
             $className = $this->className ?? $this->command->ask('Please enter the class name:');
-        } while(!$className);
+        } while (!$className);
 
         return new DomainSchema($domainName, $className);
     }

@@ -4,7 +4,6 @@ namespace Regnerisch\LaravelBeyond\Resolvers;
 
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
-use Regnerisch\LaravelBeyond\Exceptions\InvalidNameSchemaException;
 use Regnerisch\LaravelBeyond\Schema\AppSchema;
 
 class AppNameSchemaResolver
@@ -30,7 +29,7 @@ class AppNameSchemaResolver
             $apps = $action->execute(base_path() . '/src/App');
             do {
                 $appName = $this->command->anticipate('Please enter the app name:', $apps);
-            } while(!$appName);
+            } while (!$appName);
         }
 
         $moduleName = $this->moduleName;
@@ -38,7 +37,7 @@ class AppNameSchemaResolver
             $modules = $action->execute(base_path() . '/src/App/' . $appName);
             do {
                 $moduleName = $this->command->anticipate('Please enter the module name (App/' . $appName . '):', $modules);
-            } while(!$moduleName);
+            } while (!$moduleName);
         }
 
         $className = $this->className ?? $this->command->ask('Please enter the class name:');

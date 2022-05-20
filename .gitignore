@@ -1,6 +1,4 @@
 .idea/
-node_modules/
 vendor/
 
-package.json
-package-lock.json
+.php-cs-fixer.cache

@@ -7,7 +7,8 @@ class DomainSchema
     public function __construct(
         protected string $domainName,
         protected string $className
-    ) {}
+    ) {
+    }
 
     public function domainName(): string
     {

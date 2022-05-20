@@ -6,16 +6,15 @@ use Regnerisch\LaravelBeyond\Actions\CopyFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 if (!function_exists('beyond_path')) {
-
-    function beyond_path(): string {
+    function beyond_path(): string
+    {
         return dirname(__DIR__);
     }
-
 }
 
 if (!function_exists('beyond_copy_stub')) {
-
-    function beyond_copy_stub(string $stub, string $path, array $refactor = []): void {
+    function beyond_copy_stub(string $stub, string $path, array $refactor = []): void
+    {
         $action = new CopyAndRefactorFileAction(
             new CopyFileAction(),
             new RefactorFileAction()
@@ -27,11 +26,9 @@ if (!function_exists('beyond_copy_stub')) {
             $refactor
         );
     }
-
 }
 
 if (!function_exists('beyond_commands')) {
-
     function beyond_commands()
     {
         return array_filter(
