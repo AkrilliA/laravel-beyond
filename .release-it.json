@@ -7,7 +7,7 @@
         "web": true
     },
     "hooks": {
-        "after:bump": "docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) composer update --lock"
+        "after:bump": "docker run --rm -v $PWD:/app -u $(id -u):$(id -g) composer update --lock"
     },
     "npm": {
         "publish": false
