@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeRequestCommand extends Command
 {
-    protected $signature = 'beyond:make:request {name}';
+    protected $signature = 'beyond:make:request {name?}';
 
     protected $description = 'Make a new request';
 
@@ -16,15 +16,15 @@ class MakeRequestCommand extends Command
         try {
             $name = $this->argument('name');
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'request.stub',
-                base_path() . '/src/App/' . $schema->getPath('Requests') . '.php',
+                base_path() . '/src/App/' . $schema->path('Requests') . '.php',
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ application }}' => $schema->appName(),
+                    '{{ module }}' => $schema->moduleName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 

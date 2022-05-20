@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeEventCommand extends Command
 {
-    protected $signature = 'beyond:make:event {name}';
+    protected $signature = 'beyond:make:event {name?}';
 
     protected $description = 'Make a new event';
 
@@ -16,14 +16,14 @@ class MakeEventCommand extends Command
         try {
             $name = $this->argument('name');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'event.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('Events') . '.php',
+                base_path() . '/src/Domain/' . $schema->path('Events') . '.php',
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ domain }}' => $schema->domainName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 

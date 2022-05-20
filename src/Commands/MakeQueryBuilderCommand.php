@@ -8,7 +8,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeQueryBuilderCommand extends Command
 {
-    protected $signature = 'beyond:make:query-builder {name}';
+    protected $signature = 'beyond:make:query-builder {name?}';
 
     protected $description = 'Make a new eloquent query builder';
 
@@ -17,14 +17,14 @@ class MakeQueryBuilderCommand extends Command
         try {
             $name = $this->argument('name');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'query-builder.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('QueryBuilders') . '.php',
+                base_path() . '/src/Domain/' . $schema->path('QueryBuilders') . '.php',
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ domain }}' => $schema->domainName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 
@@ -33,7 +33,7 @@ class MakeQueryBuilderCommand extends Command
 
                 'public function newEloquentBuilder($query)' . PHP_EOL .
                 '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->getClassName() . '($query); ' . PHP_EOL .
+                "\t" . 'return new ' . $schema->className() . '($query); ' . PHP_EOL .
                 '}'
             );
 

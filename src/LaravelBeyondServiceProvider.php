@@ -5,6 +5,7 @@ namespace Regnerisch\LaravelBeyond;
 use Illuminate\Support\ServiceProvider;
 use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCommandCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
@@ -28,6 +29,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                MakeCommand::class,
                 MakeActionCommand::class,
                 MakeCollectionCommand::class,
                 MakeCommandCommand::class,

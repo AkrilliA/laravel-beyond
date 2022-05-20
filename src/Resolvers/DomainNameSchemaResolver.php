@@ -2,47 +2,36 @@
 
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
-use Regnerisch\LaravelBeyond\Exceptions\InvalidNameSchemaException;
+use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use Regnerisch\LaravelBeyond\Schema\DomainSchema;
 
 class DomainNameSchemaResolver
 {
-    protected array $parts = [];
+    protected string $app;
 
-    public function __construct(string $name)
+    protected string $module;
+
+    public function __construct(
+        protected Command $command,
+        protected ?string $className = null,
+    )
     {
-        $this->parts = explode('/', $name);
-
-        if (2 !== count($this->parts)) {
-            throw new InvalidNameSchemaException(
-                'Invalid name schema! Please ensure the required schema: {Domain}/{ClassName}.'
-            );
-        }
-
-        foreach ($this->parts as $part) {
-            if (!$part) {
-                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
-            }
-        }
     }
 
-    public function getDomainName(): string
+    public function handle(): DomainSchema
     {
-        return $this->parts[0];
+        $action = new FetchDirectoryNamesFromPathAction();
+        $domains = $action->execute(base_path() . '/src/Domain');
+
+        do {
+            $domainName = $this->command->anticipate('Please enter the domain name:', $domains);
+        } while(!$domainName);
+
+        do {
+            $className = $this->className ?? $this->command->ask('Please enter the class name:');
+        } while(!$className);
+
+        return new DomainSchema($domainName, $className);
     }
-
-    public function getClassName(): string
-    {
-        return $this->parts[1];
-    }
-
-    public function getPath(string $directory): string
-    {
-        $parts = $this->parts;
-
-        array_splice($parts, 1, 0, $directory);
-
-        return implode('/', $parts);
-    }
-
-
 }

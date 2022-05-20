@@ -6,6 +6,6 @@ class {{ className }}
 {
     public function execute()
     {
-
+        //
     }
 }

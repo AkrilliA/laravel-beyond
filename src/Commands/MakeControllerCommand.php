@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeControllerCommand extends Command
 {
-    protected $signature = 'beyond:make:controller {name} {--api}';
+    protected $signature = 'beyond:make:controller {name?} {--api}';
 
     protected $description = 'Make a new controller';
 
@@ -19,15 +19,15 @@ class MakeControllerCommand extends Command
 
             $stub = $api ? 'controller.api.stub' : 'controller.stub';
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/App/' . $schema->getPath('Controllers') . '.php',
+                base_path() . '/src/App/' . $schema->path('Controllers') . '.php',
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ application }}' => $schema->appName(),
+                    '{{ module }}' => $schema->moduleName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 

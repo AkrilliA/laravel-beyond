@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\CopyFileAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
@@ -27,4 +28,18 @@ if (!function_exists('beyond_copy_stub')) {
         );
     }
 
+}
+
+if (!function_exists('beyond_commands')) {
+
+    function beyond_commands()
+    {
+        return array_filter(
+            Artisan::all(),
+            function ($command, $key) {
+                return str_starts_with($key, 'beyond:');
+            },
+            ARRAY_FILTER_USE_BOTH
+        );
+    }
 }

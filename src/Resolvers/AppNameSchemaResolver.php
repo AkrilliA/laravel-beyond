@@ -2,52 +2,47 @@
 
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
+use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
 use Regnerisch\LaravelBeyond\Exceptions\InvalidNameSchemaException;
+use Regnerisch\LaravelBeyond\Schema\AppSchema;
 
 class AppNameSchemaResolver
 {
+    protected bool $deprecated = false;
+
     protected array $parts = [];
 
-    public function __construct(string $name)
-    {
-        $this->parts = explode('/', $name);
+    public function __construct(
+        protected Command $command,
+        protected ?string $className = null,
+        protected ?string $moduleName = null,
+        protected ?string $appName = null
+    ) {
+    }
 
-        if (3 !== count($this->parts)) {
-            throw new InvalidNameSchemaException(
-                'Invalid name schema! Please ensure the required schema: {App}/{Module}/{ClassName}.'
-            );
+    public function handle(): AppSchema
+    {
+        $action = new FetchDirectoryNamesFromPathAction();
+
+        $appName = $this->appName;
+        if (!$appName) {
+            $apps = $action->execute(base_path() . '/src/App');
+            do {
+                $appName = $this->command->anticipate('Please enter the app name:', $apps);
+            } while(!$appName);
         }
 
-        foreach ($this->parts as $part) {
-            if (!$part) {
-                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
-            }
+        $moduleName = $this->moduleName;
+        if (!$moduleName) {
+            $modules = $action->execute(base_path() . '/src/App/' . $appName);
+            do {
+                $moduleName = $this->command->anticipate('Please enter the module name (App/' . $appName . '):', $modules);
+            } while(!$moduleName);
         }
+
+        $className = $this->className ?? $this->command->ask('Please enter the class name:');
+
+        return new AppSchema($appName, $moduleName, $className);
     }
-
-    public function getAppName(): string
-    {
-        return $this->parts[0];
-    }
-
-    public function getModuleName(): string
-    {
-        return $this->parts[1];
-    }
-
-    public function getClassName(): string
-    {
-        return $this->parts[2];
-    }
-
-    public function getPath(string $directory): string
-    {
-        $parts = $this->parts;
-
-        array_splice($parts, 2, 0, $directory);
-
-        return implode('/', $parts);
-    }
-
-
 }

@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakePolicyCommand extends Command
 {
-    protected $signature = 'beyond:make:policy {name} {--model=}';
+    protected $signature = 'beyond:make:policy {name?} {--model=}';
 
     protected $description = 'Make a new policy';
 
@@ -17,16 +17,16 @@ class MakePolicyCommand extends Command
             $name = $this->argument('name');
             $model = $this->option('model');
 
-            $schema = new DomainNameSchemaResolver($name);
-
             $stub = $model ? 'policy.stub' : 'policy.plain.stub';
+
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/Domain/' . $schema->getPath('Policies') . '.php',
+                base_path() . '/src/Domain/' . $schema->path('Policies') . '.php',
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ domain }}' => $schema->domainName(),
+                    '{{ className }}' => $schema->className(),
                     '{{ modelName }}' => $model,
                     '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
                 ]

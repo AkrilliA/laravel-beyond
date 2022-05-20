@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeCollectionCommand extends Command
 {
-    protected $signature = 'beyond:make:collection {name} {--model=}';
+    protected $signature = 'beyond:make:collection {name?} {--model=}';
 
     protected $description = 'Make a new collection';
 
@@ -19,15 +19,14 @@ class MakeCollectionCommand extends Command
 
             $stub = $model ? 'collection.stub' : 'collection.plain.stub';
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/Domain/' . $schema->getPath('Collections') . '.php',
+                base_path() . '/src/Domain/' . $schema->path('Collections') . '.php',
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
-                    '{{ model }}' => $model,
+                    '{{ domain }}' => $schema->domainName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 
@@ -36,7 +35,7 @@ class MakeCollectionCommand extends Command
 
                 'public function newCollection(array $models = [])' . PHP_EOL .
                 '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->getClassName() . '($models); ' . PHP_EOL .
+                "\t" . 'return new ' . $schema->className() . '($models); ' . PHP_EOL .
                 '}'
             );
 

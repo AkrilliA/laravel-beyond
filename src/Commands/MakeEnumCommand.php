@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeEnumCommand extends Command
 {
-    protected $signature = 'beyond:make:enum {name}';
+    protected $signature = 'beyond:make:enum {name?}';
 
     protected $description = 'Make a new enum type';
 
@@ -16,14 +16,14 @@ class MakeEnumCommand extends Command
         try {
             $name = $this->argument('name');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'enum.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('Enums') . '.php',
+                base_path() . '/src/Domain/' . $schema->path('Enums') . '.php',
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ domain }}' => $schema->domainName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 

@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeResourceCommand extends Command
 {
-    protected $signature = 'beyond:make:resource {name} {--collection}';
+    protected $signature = 'beyond:make:resource {name?} {--collection}';
 
     protected $description = 'Make a new resource';
 
@@ -17,19 +17,19 @@ class MakeResourceCommand extends Command
             $name = $this->argument('name');
             $collection = $this->option('collection');
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
-            $stub = (str_contains($schema->getClassName(), 'Collection') || $collection) ?
+            $stub = (str_contains($schema->className(), 'Collection') || $collection) ?
                 'resource.collection.stub' :
                 'resource.stub';
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/App/' . $schema->getPath('Resources') . '.php',
+                base_path() . '/src/App/' . $schema->path('Resources') . '.php',
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ application }}' => $schema->appName(),
+                    '{{ module }}' => $schema->moduleName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 

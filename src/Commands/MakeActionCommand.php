@@ -8,7 +8,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeActionCommand extends Command
 {
-    protected $signature = 'beyond:make:action {name}';
+    protected $signature = 'beyond:make:action {name?}';
 
     protected $description = 'Make a new action';
 
@@ -17,14 +17,14 @@ class MakeActionCommand extends Command
         try {
             $name = $this->argument('name');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'action.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('Actions') . '.php',
+                base_path() . '/src/Domain/' . $schema->path('Actions') . '.php',
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ domain }}' => $schema->domainName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 

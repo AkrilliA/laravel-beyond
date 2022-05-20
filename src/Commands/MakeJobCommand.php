@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeJobCommand extends Command
 {
-    protected $signature = 'beyond:make:job {name}';
+    protected $signature = 'beyond:make:job {name?}';
 
     protected $description = 'Make a new job';
 
@@ -16,15 +16,15 @@ class MakeJobCommand extends Command
         try {
             $name = $this->argument('name');
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'job.stub',
-                base_path() . '/src/App/' . $schema->getPath('Jobs') . '.php',
+                base_path() . '/src/App/' . $schema->path('Jobs') . '.php',
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ application }}' => $schema->appName(),
+                    '{{ module }}' => $schema->moduleName(),
+                    '{{ className }}' => $schema->className(),
                 ]
             );
 
