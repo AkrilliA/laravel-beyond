@@ -33,7 +33,7 @@ class MakeResourceCommand extends Command
                 ]
             );
 
-            $this->info("Resource created.");
+            $this->info('Resource created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

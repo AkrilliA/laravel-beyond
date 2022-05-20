@@ -27,7 +27,7 @@ class MakeListenerCommand extends Command
                 ]
             );
 
-            $this->info("Listener created.");
+            $this->info('Listener created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

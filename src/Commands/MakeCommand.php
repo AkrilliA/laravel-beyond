@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class MakeCommand extends Command
 {
@@ -24,7 +23,7 @@ class MakeCommand extends Command
     {
         $command = $this->commands()[$input] ?? null;
 
-        if ($command === null) {
+        if (null === $command) {
             return null;
         }
 

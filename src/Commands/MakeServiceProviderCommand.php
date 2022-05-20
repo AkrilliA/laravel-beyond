@@ -24,7 +24,7 @@ class MakeServiceProviderCommand extends Command
             );
 
             $this->info('Service provider created.');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
     }

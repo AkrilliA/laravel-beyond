@@ -27,7 +27,7 @@ class MakeEventCommand extends Command
                 ]
             );
 
-            $this->info("Event created.");
+            $this->info('Event created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

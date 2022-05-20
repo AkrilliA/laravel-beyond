@@ -27,6 +27,6 @@ class MakeCommandCommand extends Command
             ]
         );
 
-        $this->info("Command created.");
+        $this->info('Command created.');
     }
 }

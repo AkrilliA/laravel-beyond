@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeActionCommand extends Command
@@ -28,7 +27,7 @@ class MakeActionCommand extends Command
                 ]
             );
 
-            $this->info("Action created.");
+            $this->info('Action created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

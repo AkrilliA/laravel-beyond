@@ -31,7 +31,7 @@ class MakeCollectionCommand extends Command
             );
 
             $this->info(
-                "Please add following code to your related model" . PHP_EOL . PHP_EOL .
+                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
 
                 'public function newCollection(array $models = [])' . PHP_EOL .
                 '{' . PHP_EOL .
@@ -39,7 +39,7 @@ class MakeCollectionCommand extends Command
                 '}'
             );
 
-            $this->info("Collection created.");
+            $this->info('Collection created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

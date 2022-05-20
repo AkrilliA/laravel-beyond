@@ -28,11 +28,11 @@ class MakePolicyCommand extends Command
                     '{{ domain }}' => $schema->domainName(),
                     '{{ className }}' => $schema->className(),
                     '{{ modelName }}' => $model,
-                    '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
+                    '{{ modelVariable }}' => 'User' === $model ? 'object' : mb_strtolower($model),
                 ]
             );
 
-            $this->info("Policy created.");
+            $this->info('Policy created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

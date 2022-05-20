@@ -6,8 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
-use Regnerisch\LaravelBeyond\Actions\DeleteAction;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
+use Regnerisch\LaravelBeyond\Actions\DeleteAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
@@ -53,7 +53,7 @@ class SetupCommand extends Command
                 'namespace App\Http;' => 'namespace App;',
                 'use Illuminate\Foundation\Http\Kernel as HttpKernel;' => 'use Illuminate\Foundation\Http\Kernel;',
                 'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
-                '\App\Http\Middleware\\' => '\Support\Middlewares\\'
+                '\App\Http\Middleware\\' => '\Support\Middlewares\\',
             ]
         );
 
@@ -68,7 +68,7 @@ class SetupCommand extends Command
             base_path() . '/app/Models/User.php',
             base_path() . '/src/Domain/Users/Models/User.php',
             [
-                'namespace App\Models;' => 'namespace Domain\Users\Models;'
+                'namespace App\Models;' => 'namespace Domain\Users\Models;',
             ]
         );
 
@@ -82,7 +82,7 @@ class SetupCommand extends Command
         $this->refactorFileAction->execute(
             base_path() . '/config/auth.php',
             [
-                'App\Models\User::class' => 'Domain\Users\Models\User::class'
+                'App\Models\User::class' => 'Domain\Users\Models\User::class',
             ]
         );
 
@@ -96,7 +96,7 @@ class SetupCommand extends Command
 
         $this->info('Setup completed.');
         $this->info(
-            "Do not forget to add following code into the boot() function of your AppServiceProvider:" . PHP_EOL . PHP_EOL .
+            'Do not forget to add following code into the boot() function of your AppServiceProvider:' . PHP_EOL . PHP_EOL .
 
             'Factory::guessFactoryNamesUsing(function (string $modelName) {' . PHP_EOL .
                 "\t" . 'return \'Database\\Factories\\\' . class_basename($modelName) . \'Factory\';' . PHP_EOL .
@@ -110,7 +110,7 @@ class SetupCommand extends Command
             base_path() . '/app/Http/Middleware',
             base_path() . '/src/Support/Middlewares',
             [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;'
+                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;',
             ]
         );
     }
@@ -134,7 +134,7 @@ class SetupCommand extends Command
             base_path() . '/bootstrap/app.php',
             [
                 'new Illuminate\Foundation\Application' => 'new App\Application',
-                'App\Http\Kernel::class' => 'App\HttpKernel::class'
+                'App\Http\Kernel::class' => 'App\HttpKernel::class',
             ]
         );
     }

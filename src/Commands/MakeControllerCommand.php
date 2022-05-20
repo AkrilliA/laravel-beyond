@@ -31,7 +31,7 @@ class MakeControllerCommand extends Command
                 ]
             );
 
-            $this->info("Controller created.");
+            $this->info('Controller created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

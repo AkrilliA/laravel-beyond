@@ -28,7 +28,7 @@ class MakeRequestCommand extends Command
                 ]
             );
 
-            $this->info("Request created.");
+            $this->info('Request created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

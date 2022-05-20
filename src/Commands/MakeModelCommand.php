@@ -19,7 +19,6 @@ class MakeModelCommand extends Command
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
-
             beyond_copy_stub(
                 'model.stub',
                 base_path() . '/src/Domain/' . $schema->path('Models') . '.php',
@@ -37,12 +36,12 @@ class MakeModelCommand extends Command
                     'migration.stub',
                     base_path() . '/database/migrations' . $fileName . '.php',
                     [
-                        '{{ tableName }}' => $tableName
+                        '{{ tableName }}' => $tableName,
                     ]
                 );
             }
 
-            $this->info("Model created.");
+            $this->info('Model created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

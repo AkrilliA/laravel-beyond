@@ -1,5 +1,18 @@
 
 
+# [3.0.0-beta.3](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2022-05-20)
+
+
+### Bug Fixes
+
+* fix php-cs-fixer init script ([0f9267d](https://github.com/regnerisch/laravel-beyond/commit/0f9267df2f932a2af25f6465d966656cf5b4a1cf))
+* fix php-cs-fixer init script ([7ba3764](https://github.com/regnerisch/laravel-beyond/commit/7ba3764a3dfe6a223c0fb4ad84efaa1f1062e927))
+
+
+### Features
+
+* add php-cs-fixer & run php-cs-fixer ([729a350](https://github.com/regnerisch/laravel-beyond/commit/729a35077372965ccca9c3d5c91a7150483168ef))
+
 # [3.0.0-beta.2](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2022-05-20)
 
 

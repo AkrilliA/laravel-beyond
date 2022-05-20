@@ -28,7 +28,7 @@ class MakeQueryCommand extends Command
                 ]
             );
 
-            $this->info("Query created.");
+            $this->info('Query created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

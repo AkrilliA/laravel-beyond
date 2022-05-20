@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeQueryBuilderCommand extends Command
@@ -29,7 +28,7 @@ class MakeQueryBuilderCommand extends Command
             );
 
             $this->info(
-                "Please add following code to your related model" . PHP_EOL . PHP_EOL .
+                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
 
                 'public function newEloquentBuilder($query)' . PHP_EOL .
                 '{' . PHP_EOL .
@@ -37,7 +36,7 @@ class MakeQueryBuilderCommand extends Command
                 '}'
             );
 
-            $this->info("Query Builder created.");
+            $this->info('Query Builder created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

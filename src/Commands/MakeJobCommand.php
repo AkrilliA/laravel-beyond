@@ -28,7 +28,7 @@ class MakeJobCommand extends Command
                 ]
             );
 
-            $this->info("Job created.");
+            $this->info('Job created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

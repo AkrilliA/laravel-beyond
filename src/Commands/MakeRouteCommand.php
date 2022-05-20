@@ -23,9 +23,8 @@ class MakeRouteCommand extends Command
             ]
         );
 
-
         $this->info(
-            "Please add following route entry to your RouteServiceProvider. Please take care of using the correct middleware. This could differ from the default middleware." . PHP_EOL . PHP_EOL .
+            'Please add following route entry to your RouteServiceProvider. Please take care of using the correct middleware. This could differ from the default middleware.' . PHP_EOL . PHP_EOL .
 
             "Route::prefix('{$routeNameLowerCase}')" . PHP_EOL .
                 "\t->middleware('api')" . PHP_EOL .
@@ -33,6 +32,6 @@ class MakeRouteCommand extends Command
                 "\t->group(base_path('routes/{$routeNameLowerCase}.php'));"
         );
 
-        $this->info("Route created.");
+        $this->info('Route created.');
     }
 }

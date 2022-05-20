@@ -27,7 +27,7 @@ class MakeDataTransferObjectCommand extends Command
                 ]
             );
 
-            $this->info("DataTransferObject created.");
+            $this->info('DataTransferObject created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }
