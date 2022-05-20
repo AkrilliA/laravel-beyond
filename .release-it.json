@@ -6,6 +6,9 @@
         "release": true,
         "web": true
     },
+    "hooks": {
+        "after:bump": "composer update --lock"
+    },
     "npm": {
         "publish": false
     },
