@@ -1,6 +1,6 @@
 # Laravel Beyond
 
-This package should help you with creating and managing a Laravel DDD Application. 
+This package should help you with creating and managing a Laravel DDD Application.
 This package is heavily inspired by "Laravel beyond CRUD" from Spatie.
 
 ## Installation
@@ -39,8 +39,11 @@ php artisan beyond:make:dto Users/UserData
 # Creates a job at App/Admin/Users/Jobs/SyncUsersJob
 php artisan beyond:make:job Admin/Users/SyncUsersJob
 
-# Creates a listener at Doamin/Users/Listeners/UserCreatedListener
+# Creates a listener at Domain/Users/Listeners/UserCreatedListener
 php artisan beyond:make:listener Users/Listeners/UserCreatedListener
+
+# Creates a middleware at Support/Middlewares
+php artisan beyond:make:middleware UserMiddleware
 
 # Creates a model at Domain/Users/Models/User
 php artisan beyond:make:model Users/User
@@ -71,10 +74,10 @@ php artisan beyond:setup
 ```
 
 ### Set up a domain-driven application
-After installing `laravel-beyond` you can easily set up a domain-driven application. 
-You just need to run `php artisan beyond:setup` on a fresh Laravel application or 
+After installing `laravel-beyond` you can easily set up a domain-driven application.
+You just need to run `php artisan beyond:setup` on a fresh Laravel application or
 `php artisan beyond:setup --skip-delete` to keep you `app` directory with your existing
-code. 
+code.
 
 Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
 
@@ -83,6 +86,7 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 - [@regnerisch](https://github.com/regnerisch)
 - [@alexgaal](https://github.com/alexgaal)
 - [@nilsvennemann](https://github.com/nilsvennemann)
+- [@Enaah](https://github.com/Enaah)
 
 ## License
 

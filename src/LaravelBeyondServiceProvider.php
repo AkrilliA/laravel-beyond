@@ -12,6 +12,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeEnumCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeEventCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeListenerCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeMiddlewareCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
 use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeQueryBuilderCommand;
@@ -37,6 +38,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeEventCommand::class,
                 MakeJobCommand::class,
                 MakeListenerCommand::class,
+                MakeMiddlewareCommand::class,
                 MakeModelCommand::class,
                 MakePolicyCommand::class,
                 MakeQueryBuilderCommand::class,
