@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class MakeCommandCommand extends Command
 {
-    protected $signature = 'beyond:make:command {className} {--command=command:name}';
+    protected $signature = 'beyond:make:command {className} {--command=command:name} {--overwrite=false}';
 
     protected $description = 'Make a new command';
 
@@ -14,6 +14,7 @@ class MakeCommandCommand extends Command
     {
         $className = $this->argument('className');
         $command = $this->option('command');
+        $overwrite = $this->option('overwrite');
 
         beyond_copy_stub(
             'command.stub',
@@ -21,7 +22,8 @@ class MakeCommandCommand extends Command
             [
                 '{{ className }}' => $className,
                 '{{ command }}' => $command,
-            ]
+            ],
+            $overwrite
         );
 
         $this->info("Command created.");

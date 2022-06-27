@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeDataTransferObjectCommand extends Command
 {
-    protected $signature = 'beyond:make:dto {name}';
+    protected $signature = 'beyond:make:dto {name} {--overwrite=false}';
 
     protected $description = 'Make a new data transfer object';
 
@@ -15,6 +15,7 @@ class MakeDataTransferObjectCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = new DomainNameSchemaResolver($name);
 
@@ -24,7 +25,8 @@ class MakeDataTransferObjectCommand extends Command
                 [
                     '{{ domain }}' => $schema->getDomainName(),
                     '{{ className }}' => $schema->getClassName(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info("DataTransferObject created.");

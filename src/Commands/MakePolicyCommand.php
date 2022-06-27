@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakePolicyCommand extends Command
 {
-    protected $signature = 'beyond:make:policy {name} {--model=}';
+    protected $signature = 'beyond:make:policy {name} {--model=} {--overwrite=false}';
 
     protected $description = 'Make a new policy';
 
@@ -16,6 +16,7 @@ class MakePolicyCommand extends Command
         try {
             $name = $this->argument('name');
             $model = $this->option('model');
+            $overwrite = $this->option('overwrite');
 
             $schema = new DomainNameSchemaResolver($name);
 
@@ -29,7 +30,8 @@ class MakePolicyCommand extends Command
                     '{{ className }}' => $schema->getClassName(),
                     '{{ modelName }}' => $model,
                     '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info("Policy created.");

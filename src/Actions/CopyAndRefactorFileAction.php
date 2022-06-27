@@ -10,9 +10,9 @@ class CopyAndRefactorFileAction
     ) {
     }
 
-    public function execute(string $sourcePath, string $targetPath, array $refactor = []): void
+    public function execute(string $sourcePath, string $targetPath, array $refactor = [], bool $overwrite = false): void
     {
-        $this->copyFileAction->execute($sourcePath, $targetPath);
+        $this->copyFileAction->execute($sourcePath, $targetPath, $overwrite);
 
         if ($refactor) {
             $this->refactorFileAction->execute($targetPath, $refactor);

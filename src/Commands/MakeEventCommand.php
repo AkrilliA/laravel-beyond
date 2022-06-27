@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeEventCommand extends Command
 {
-    protected $signature = 'beyond:make:event {name}';
+    protected $signature = 'beyond:make:event {name} {--overwrite=false}';
 
     protected $description = 'Make a new event';
 
@@ -15,6 +15,7 @@ class MakeEventCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = new DomainNameSchemaResolver($name);
 
@@ -24,7 +25,8 @@ class MakeEventCommand extends Command
                 [
                     '{{ domain }}' => $schema->getDomainName(),
                     '{{ className }}' => $schema->getClassName(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info("Event created.");
