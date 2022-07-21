@@ -1,5 +1,12 @@
 
 
+# [3.0.0-beta.5](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2022-07-21)
+
+
+### Bug Fixes
+
+* fix name resolving ([56b3d35](https://github.com/regnerisch/laravel-beyond/commit/56b3d353b927f9870222db7455478bc1b1fb11d1))
+
 # [3.0.0-beta.4](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2022-07-21)
 
 
