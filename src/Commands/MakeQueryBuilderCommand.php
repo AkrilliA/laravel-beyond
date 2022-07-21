@@ -8,7 +8,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeQueryBuilderCommand extends Command
 {
-    protected $signature = 'beyond:make:query-builder {name}';
+    protected $signature = 'beyond:make:query-builder {name} {--overwrite}';
 
     protected $description = 'Make a new eloquent query builder';
 
@@ -16,6 +16,7 @@ class MakeQueryBuilderCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = new DomainNameSchemaResolver($name);
 
@@ -25,7 +26,8 @@ class MakeQueryBuilderCommand extends Command
                 [
                     '{{ domain }}' => $schema->getDomainName(),
                     '{{ className }}' => $schema->getClassName(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info(

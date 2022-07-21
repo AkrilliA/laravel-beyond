@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeEnumCommand extends Command
 {
-    protected $signature = 'beyond:make:enum {name}';
+    protected $signature = 'beyond:make:enum {name} {--overwrite}';
 
     protected $description = 'Make a new enum type';
 
@@ -15,6 +15,7 @@ class MakeEnumCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = new DomainNameSchemaResolver($name);
 
@@ -24,7 +25,8 @@ class MakeEnumCommand extends Command
                 [
                     '{{ domain }}' => $schema->getDomainName(),
                     '{{ className }}' => $schema->getClassName(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info('Enum created.');

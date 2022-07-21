@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class MakeRouteCommand extends Command
 {
-    protected $signature = 'beyond:make:route {routeName}';
+    protected $signature = 'beyond:make:route {routeName} {--overwrite}';
 
     protected $description = 'Make a new file for routes';
 
@@ -14,13 +14,15 @@ class MakeRouteCommand extends Command
     {
         $routeName = $this->argument('routeName');
         $routeNameLowerCase = mb_strtolower($routeName);
+        $overwrite = $this->option('overwrite');
 
         beyond_copy_stub(
             'routes.stub',
             base_path() . "/routes/{$routeNameLowerCase}.php",
             [
                 '{{ application }}' => $routeNameLowerCase,
-            ]
+            ],
+            $overwrite
         );
 
 
