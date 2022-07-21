@@ -1,5 +1,17 @@
 
 
+# [3.0.0-beta.4](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2022-07-21)
+
+
+### Bug Fixes
+
+* add missing class ([8fa2fd1](https://github.com/regnerisch/laravel-beyond/commit/8fa2fd1bc377111e54c0d87b72767f3126e82a6f))
+
+
+### Features
+
+* add rule command & refactor code ([1f0fd91](https://github.com/regnerisch/laravel-beyond/commit/1f0fd91612f79f76fc513caced7ba859a35a977f))
+
 # [3.0.0-beta.3](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2022-05-20)
 
 
