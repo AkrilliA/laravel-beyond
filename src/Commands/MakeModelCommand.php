@@ -8,7 +8,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends Command
 {
-    protected $signature = 'beyond:make:model {name?} {-m|--migration}';
+    protected $signature = 'beyond:make:model {name?} {-m|--migration} {--overwrite}';
 
     protected $description = 'Make a new model';
 
@@ -16,6 +16,7 @@ class MakeModelCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
@@ -25,7 +26,8 @@ class MakeModelCommand extends Command
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
-                ]
+                ],
+                $overwrite
             );
 
             if ($this->option('migration')) {
@@ -36,8 +38,9 @@ class MakeModelCommand extends Command
                     'migration.stub',
                     base_path() . '/database/migrations' . $fileName . '.php',
                     [
-                        '{{ tableName }}' => $tableName,
-                    ]
+                        '{{ tableName }}' => $tableName
+                    ],
+                    $overwrite
                 );
             }
 

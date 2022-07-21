@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeListenerCommand extends Command
 {
-    protected $signature = 'beyond:make:listener {name?}';
+    protected $signature = 'beyond:make:listener {name?} {--overwrite}';
 
     protected $description = 'Make a new listener';
 
@@ -15,6 +15,7 @@ class MakeListenerCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
@@ -24,7 +25,8 @@ class MakeListenerCommand extends Command
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info('Listener created.');

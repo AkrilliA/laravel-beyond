@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeActionCommand extends Command
 {
-    protected $signature = 'beyond:make:action {name?}';
+    protected $signature = 'beyond:make:action {name?} {--overwrite}';
 
     protected $description = 'Make a new action';
 
@@ -15,6 +15,7 @@ class MakeActionCommand extends Command
     {
         try {
             $name = $this->argument('name');
+            $overwrite = $this->option('overwrite');
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
@@ -24,7 +25,8 @@ class MakeActionCommand extends Command
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info('Action created.');

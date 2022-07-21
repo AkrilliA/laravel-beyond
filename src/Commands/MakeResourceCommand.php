@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeResourceCommand extends Command
 {
-    protected $signature = 'beyond:make:resource {name?} {--collection}';
+    protected $signature = 'beyond:make:resource {name?} {--collection} {--overwrite}';
 
     protected $description = 'Make a new resource';
 
@@ -16,6 +16,7 @@ class MakeResourceCommand extends Command
         try {
             $name = $this->argument('name');
             $collection = $this->option('collection');
+            $overwrite = $this->option('overwrite');
 
             $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
@@ -29,7 +30,8 @@ class MakeResourceCommand extends Command
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info('Resource created.');

@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeCollectionCommand extends Command
 {
-    protected $signature = 'beyond:make:collection {name?} {--model=}';
+    protected $signature = 'beyond:make:collection {name?} {--model=} {--overwrite}';
 
     protected $description = 'Make a new collection';
 
@@ -16,6 +16,7 @@ class MakeCollectionCommand extends Command
         try {
             $name = $this->argument('name');
             $model = $this->option('model');
+            $overwrite = $this->option('overwrite');
 
             $stub = $model ? 'collection.stub' : 'collection.plain.stub';
 
@@ -27,7 +28,8 @@ class MakeCollectionCommand extends Command
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
-                ]
+                ],
+                $overwrite
             );
 
             $this->info(
