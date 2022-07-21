@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeResourceCommand extends Command
 {
-    protected $signature = 'beyond:make:resource {name} {--collection} {--overwrite=false}';
+    protected $signature = 'beyond:make:resource {name} {--collection} {--overwrite}';
 
     protected $description = 'Make a new resource';
 

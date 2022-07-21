@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class MakeRouteCommand extends Command
 {
-    protected $signature = 'beyond:make:route {routeName} {--overwrite=false}';
+    protected $signature = 'beyond:make:route {routeName} {--overwrite}';
 
     protected $description = 'Make a new file for routes';
 

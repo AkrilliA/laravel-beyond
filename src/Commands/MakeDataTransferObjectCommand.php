@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeDataTransferObjectCommand extends Command
 {
-    protected $signature = 'beyond:make:dto {name} {--overwrite=false}';
+    protected $signature = 'beyond:make:dto {name} {--overwrite}';
 
     protected $description = 'Make a new data transfer object';
 

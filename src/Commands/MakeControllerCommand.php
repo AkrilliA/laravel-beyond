@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeControllerCommand extends Command
 {
-    protected $signature = 'beyond:make:controller {name} {--api} {--overwrite=false}';
+    protected $signature = 'beyond:make:controller {name} {--api} {--overwrite}';
 
     protected $description = 'Make a new controller';
 

@@ -8,7 +8,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeActionCommand extends Command
 {
-    protected $signature = 'beyond:make:action {name} {--overwrite=false}';
+    protected $signature = 'beyond:make:action {name} {--overwrite}';
 
     protected $description = 'Make a new action';
 

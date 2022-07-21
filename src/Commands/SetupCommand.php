@@ -12,7 +12,7 @@ use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends Command
 {
-    protected $signature = 'beyond:setup {--skip-delete} {--overwrite=false}';
+    protected $signature = 'beyond:setup {--skip-delete} {--overwrite}';
 
     protected $description = '';
 
