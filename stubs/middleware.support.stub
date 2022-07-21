@@ -1,0 +1,14 @@
+<?php
+
+namespace Support\Packages\Laravel\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class {{ className }}
+{
+    public function handle(Request $request, Closure $next)
+    {
+        return $next($request);
+    }
+}
