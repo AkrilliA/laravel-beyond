@@ -17,8 +17,9 @@ class DomainNameSchemaResolver extends BaseNameSchemaResolver
             return new SupportSchema('', $className);
         }
 
-        $namespace = $this->askNamespace();
-        $className = $this->askClassName();
+        [$namespace, $className] = $this->namespaceAndClassName();
+        $namespace = $namespace ?? $this->askNamespace();
+        $className = $className ?? $this->askClassName();
 
         return new DomainSchema($namespace, $className);
     }

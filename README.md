@@ -63,6 +63,9 @@ php artisan beyond:make:resource Admin/Users/UserResource
 # Creates a route file at routes/users.php
 php artisan beyond:make:route Users
 
+# Creates a rule at App/Admin/Users/Rules/IsAdminRule
+php artisan beyond:make:route Admin/Users/IsAdminRule
+
 # Creates a service provider at App/Providers/UserServiceProvider
 php artisan beyond:make:provider UserServiceProvider
 
