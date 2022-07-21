@@ -2,23 +2,28 @@
 
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use Regnerisch\LaravelBeyond\Contracts\Schema;
 use Regnerisch\LaravelBeyond\Schema\DomainSchema;
+use Regnerisch\LaravelBeyond\Schema\SupportSchema;
 
-class DomainNameSchemaResolver
+class DomainNameSchemaResolver extends BaseNameSchemaResolver
 {
-    protected string $app;
+    public function handle(): Schema
+    {
+        if ($this->support) {
+            $className = $this->askClassName();
 
-    protected string $module;
+            return new SupportSchema('', $className);
+        }
 
-    public function __construct(
-        protected Command $command,
-        protected ?string $className = null,
-    ) {
+        $namespace = $this->askNamespace();
+        $className = $this->askClassName();
+
+        return new DomainSchema($namespace, $className);
     }
 
-    public function handle(): DomainSchema
+    protected function askNamespace(): string
     {
         $action = new FetchDirectoryNamesFromPathAction();
         $domains = $action->execute(base_path() . '/src/Domain');
@@ -27,10 +32,11 @@ class DomainNameSchemaResolver
             $domainName = $this->command->anticipate('Please enter the domain name:', $domains);
         } while (!$domainName);
 
-        do {
-            $className = $this->className ?? $this->command->ask('Please enter the class name:');
-        } while (!$className);
+        return $domainName;
+    }
 
-        return new DomainSchema($domainName, $className);
+    protected function askClassName(): string
+    {
+        return $this->className ?? $this->command->ask('Please enter the class name:');
     }
 }

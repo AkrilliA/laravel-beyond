@@ -29,12 +29,12 @@ if (!function_exists('beyond_copy_stub')) {
 }
 
 if (!function_exists('beyond_commands')) {
-    function beyond_commands()
+    function beyond_commands(array $except = [])
     {
         return array_filter(
             Artisan::all(),
-            function ($command, $key) {
-                return str_starts_with($key, 'beyond:');
+            function ($command, $key) use ($except) {
+                return str_starts_with($key, 'beyond:') && !in_array($key, $except, true);
             },
             ARRAY_FILTER_USE_BOTH
         );

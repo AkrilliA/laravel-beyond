@@ -20,10 +20,9 @@ class MakeRequestCommand extends Command
 
             beyond_copy_stub(
                 'request.stub',
-                base_path() . '/src/App/' . $schema->path('Requests') . '.php',
+                $schema->path('Requests'),
                 [
-                    '{{ application }}' => $schema->appName(),
-                    '{{ module }}' => $schema->moduleName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

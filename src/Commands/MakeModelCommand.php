@@ -21,9 +21,9 @@ class MakeModelCommand extends Command
 
             beyond_copy_stub(
                 'model.stub',
-                base_path() . '/src/Domain/' . $schema->path('Models') . '.php',
+                $schema->path('Models'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

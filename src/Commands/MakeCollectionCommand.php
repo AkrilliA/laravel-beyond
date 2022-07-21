@@ -23,9 +23,9 @@ class MakeCollectionCommand extends Command
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/Domain/' . $schema->path('Collections') . '.php',
+                $schema->path('Collections'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

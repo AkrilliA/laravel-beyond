@@ -20,9 +20,9 @@ class MakeListenerCommand extends Command
 
             beyond_copy_stub(
                 'listener.stub',
-                base_path() . '/src/Domain/' . $schema->path('Listeners') . '.php',
+                $schema->path('Listeners'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

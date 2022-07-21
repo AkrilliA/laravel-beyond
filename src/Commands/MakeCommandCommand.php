@@ -20,9 +20,9 @@ class MakeCommandCommand extends Command
 
         beyond_copy_stub(
             'command.stub',
-            base_path() . "/src/App/{$schema->appName()}/{$schema->moduleName()}/{$schema->className()}.php",
+            $schema->path(''),
             [
-                '{{ className }}' => $name,
+                '{{ namespace }}' => $name,
                 '{{ command }}' => $command,
             ]
         );

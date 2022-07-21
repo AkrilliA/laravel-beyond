@@ -20,9 +20,9 @@ class MakeEventCommand extends Command
 
             beyond_copy_stub(
                 'event.stub',
-                base_path() . '/src/Domain/' . $schema->path('Events') . '.php',
+                $schema->path('Events'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

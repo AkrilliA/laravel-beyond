@@ -23,10 +23,9 @@ class MakeControllerCommand extends Command
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/App/' . $schema->path('Controllers') . '.php',
+                $schema->path('Controllers'),
                 [
-                    '{{ application }}' => $schema->appName(),
-                    '{{ module }}' => $schema->moduleName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

@@ -20,9 +20,9 @@ class MakeQueryBuilderCommand extends Command
 
             beyond_copy_stub(
                 'query-builder.stub',
-                base_path() . '/src/Domain/' . $schema->path('QueryBuilders') . '.php',
+                $schema->path('QueryBuilders'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

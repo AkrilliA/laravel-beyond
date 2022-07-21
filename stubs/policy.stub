@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\{{ domain }}\Policies;
+namespace Domain\{{ namespace }}\Policies;
 
-use Domain\{{ domain }}\Models\{{ modelName }};
+use Domain\{{ namespace }}\Models\{{ modelName }};
 use Domain\Users\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

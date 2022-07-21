@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ domain }}\Collections;
+namespace Domain\{{ namespace }}\Collections;
 
 use Illuminate\Database\Eloquent\Collection;
 

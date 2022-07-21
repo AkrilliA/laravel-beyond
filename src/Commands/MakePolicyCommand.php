@@ -23,9 +23,9 @@ class MakePolicyCommand extends Command
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/Domain/' . $schema->path('Policies') . '.php',
+                $schema->path('Policies'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                     '{{ modelName }}' => $model,
                     '{{ modelVariable }}' => 'User' === $model ? 'object' : mb_strtolower($model),

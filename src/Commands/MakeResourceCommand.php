@@ -25,10 +25,9 @@ class MakeResourceCommand extends Command
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/App/' . $schema->path('Resources') . '.php',
+                $schema->path('Resources'),
                 [
-                    '{{ application }}' => $schema->appName(),
-                    '{{ module }}' => $schema->moduleName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

@@ -53,7 +53,7 @@ class SetupCommand extends Command
                 'namespace App\Http;' => 'namespace App;',
                 'use Illuminate\Foundation\Http\Kernel as HttpKernel;' => 'use Illuminate\Foundation\Http\Kernel;',
                 'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
-                '\App\Http\Middleware\\' => '\Support\Middlewares\\',
+                '\App\Http\Middleware\\' => '\Support\Packages\Laravel\Middlewares\\',
             ]
         );
 
@@ -108,9 +108,9 @@ class SetupCommand extends Command
     {
         $this->copyAndRefactorDirectoryAction->execute(
             base_path() . '/app/Http/Middleware',
-            base_path() . '/src/Support/Middlewares',
+            base_path() . '/src/Support/Packages/Laravel/Middlewares',
             [
-                'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;',
+                'namespace App\Http\Middleware;' => 'namespace Support\Packages\Laravel\Middlewares;',
             ]
         );
     }

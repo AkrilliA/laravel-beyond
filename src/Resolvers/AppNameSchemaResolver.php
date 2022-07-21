@@ -4,23 +4,37 @@ namespace Regnerisch\LaravelBeyond\Resolvers;
 
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use Regnerisch\LaravelBeyond\Contracts\Schema;
 use Regnerisch\LaravelBeyond\Schema\AppSchema;
+use Regnerisch\LaravelBeyond\Schema\SupportSchema;
 
-class AppNameSchemaResolver
+class AppNameSchemaResolver extends BaseNameSchemaResolver
 {
-    protected bool $deprecated = false;
-
-    protected array $parts = [];
-
     public function __construct(
         protected Command $command,
         protected ?string $className = null,
         protected ?string $moduleName = null,
-        protected ?string $appName = null
+        protected ?string $appName = null,
+        protected bool $support = false,
     ) {
+        parent::__construct($this->command, $this->className, $this->support);
     }
 
-    public function handle(): AppSchema
+    public function handle(): Schema
+    {
+        if ($this->support) {
+            $className = $this->askClassName();
+
+            return new SupportSchema('', $className);
+        }
+
+        $namespace = $this->askNamespace();
+        $className = $this->askClassName();
+
+        return new AppSchema($namespace, $className);
+    }
+
+    protected function askNamespace(): string
     {
         $action = new FetchDirectoryNamesFromPathAction();
 
@@ -36,12 +50,15 @@ class AppNameSchemaResolver
         if (!$moduleName) {
             $modules = $action->execute(base_path() . '/src/App/' . $appName);
             do {
-                $moduleName = $this->command->anticipate('Please enter the module name (App/' . $appName . '):', $modules);
+                $moduleName = $this->command->anticipate('Please enter the module name (in App/' . $appName . '):', $modules);
             } while (!$moduleName);
         }
 
-        $className = $this->className ?? $this->command->ask('Please enter the class name:');
+        return $appName . '/' . $moduleName;
+    }
 
-        return new AppSchema($appName, $moduleName, $className);
+    protected function askClassName(): string
+    {
+        return $this->className ?? $this->command->ask('Please enter the class name:');
     }
 }

@@ -5,29 +5,33 @@ namespace Regnerisch\LaravelBeyond\Commands;
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeJobCommand extends Command
+class MakeRuleCommand extends Command
 {
-    protected $signature = 'beyond:make:job {name?}';
+    protected $signature = 'beyond:make:rule {name?} {--support}';
 
-    protected $description = 'Make a new job';
+    protected $description = 'Make a new rule';
 
     public function handle(): void
     {
         try {
             $name = $this->argument('name');
+            $support = $this->option('support');
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
+            $stub = $support ? 'rule.support.stub' : 'rule.stub';
+            $directory = $support ? 'Packages/Laravel/Rules' : 'Rules';
+
+            $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
 
             beyond_copy_stub(
-                'job.stub',
-                $schema->path('Jobs'),
+                $stub,
+                $schema->path($directory),
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );
 
-            $this->info('Job created.');
+            $this->info('Rule created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }

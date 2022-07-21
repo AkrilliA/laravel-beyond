@@ -10,34 +10,30 @@ class MakeCommand extends Command
 
     protected $description = 'Execute a beyond make command.';
 
-    protected $commands = [];
+    protected array $commands = [];
 
     public function handle(): void
     {
-        $input = $this->choice('Which command?', array_keys($this->commands()));
+        $input = $this->choice('Which command?', array_keys($this->commands()), null, 1);
 
         $this->call($this->command($input), $this->getArguments());
     }
 
-    protected function command(string $input): ?string
+    protected function command(string $input): string
     {
-        $command = $this->commands()[$input] ?? null;
+        $commands = $this->commands();
 
-        if (null === $command) {
-            return null;
-        }
-
-        return get_class($command);
+        return get_class($commands[$input]);
     }
 
     protected function commands(): array
     {
-        $hidden = ['beyond:make', 'beyond:make:provider', 'beyond:setup'];
+        if ($this->commands) {
+            return $this->commands;
+        }
 
-        $commands = beyond_commands();
+        $except = ['beyond:make', 'beyond:make:provider', 'beyond:setup'];
 
-        return array_filter($commands, function ($command) use ($hidden) {
-            return !in_array($command, $hidden);
-        });
+        return $this->commands = beyond_commands($except);
     }
 }

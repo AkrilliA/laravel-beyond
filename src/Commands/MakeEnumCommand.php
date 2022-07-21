@@ -20,9 +20,9 @@ class MakeEnumCommand extends Command
 
             beyond_copy_stub(
                 'enum.stub',
-                base_path() . '/src/Domain/' . $schema->path('Enums') . '.php',
+                $schema->path('Enums'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

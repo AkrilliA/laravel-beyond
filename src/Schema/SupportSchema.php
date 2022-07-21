@@ -2,14 +2,13 @@
 
 namespace Regnerisch\LaravelBeyond\Schema;
 
-class DomainSchema extends BaseSchema
+class SupportSchema extends BaseSchema
 {
     public function path(string $directory): string
     {
         return sprintf(
-            '%s/src/Domain/%s/%s/%s.php',
+            '%s/src/Support/%s/%s.php',
             base_path(),
-            $this->namespacePath(),
             $directory,
             $this->className
         );

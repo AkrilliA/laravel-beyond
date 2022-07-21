@@ -20,9 +20,9 @@ class MakeDataTransferObjectCommand extends Command
 
             beyond_copy_stub(
                 'data-transfer-object.stub',
-                base_path() . '/src/Domain/' . $schema->path('DataTransferObjects') . '.php',
+                $schema->path('DataTransferObjects'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );

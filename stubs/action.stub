@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ domain }}\Actions;
+namespace Domain\{{ namespace }}\Actions;
 
 class {{ className }}
 {

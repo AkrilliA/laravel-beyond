@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ domain }}\DataTransferObjects;
+namespace Domain\{{ namespace }}\DataTransferObjects;
 
 use Illuminate\Http\Request;
 use Spatie\DataTransferObject\DataTransferObject;

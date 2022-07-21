@@ -20,9 +20,9 @@ class MakeActionCommand extends Command
 
             beyond_copy_stub(
                 'action.stub',
-                base_path() . '/src/Domain/' . $schema->path('Actions') . '.php',
+                $schema->path('Actions'),
                 [
-                    '{{ domain }}' => $schema->domainName(),
+                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ]
             );
