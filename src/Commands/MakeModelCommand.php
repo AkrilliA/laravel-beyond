@@ -38,7 +38,7 @@ class MakeModelCommand extends Command
                     'migration.stub',
                     base_path() . '/database/migrations' . $fileName . '.php',
                     [
-                        '{{ tableName }}' => $tableName
+                        '{{ tableName }}' => $tableName,
                     ],
                     $overwrite
                 );

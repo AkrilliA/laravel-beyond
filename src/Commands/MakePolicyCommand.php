@@ -29,7 +29,7 @@ class MakePolicyCommand extends Command
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                     '{{ modelName }}' => $model,
-                    '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
+                    '{{ modelVariable }}' => 'User' === $model ? 'object' : mb_strtolower($model),
                 ],
                 $overwrite
             );
