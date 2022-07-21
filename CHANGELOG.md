@@ -1,5 +1,12 @@
 
 
+# [3.0.0-beta.7](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2022-07-21)
+
+
+### Features
+
+* add middleware command ([f968f02](https://github.com/regnerisch/laravel-beyond/commit/f968f02028f102124de681a0611e9522e1e717d6))
+
 # [3.0.0-beta.6](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2022-07-21)
 
 # [3.0.0-beta.5](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2022-07-21)
