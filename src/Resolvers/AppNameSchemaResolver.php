@@ -62,7 +62,7 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
     {
         do {
             $className = $this->className ?? $this->command->ask('Please enter the class name');
-        } while(!$className);
+        } while (!$className);
 
         return $className;
     }
