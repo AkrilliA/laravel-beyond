@@ -13,22 +13,27 @@ class MakeCommandCommand extends Command
 
     public function handle()
     {
-        $name = $this->argument('name');
-        $command = $this->option('command');
-        $overwrite = $this->option('overwrite');
+        try {
+            $name = $this->argument('name');
+            $command = $this->option('command');
+            $overwrite = $this->option('overwrite');
 
-        $schema = (new AppNameSchemaResolver($this, $name, 'Commands', 'Console'))->handle();
+            $schema = (new AppNameSchemaResolver($this, $name, 'Commands', 'Console'))->handle();
 
-        beyond_copy_stub(
-            'command.stub',
-            $schema->path(),
-            [
-                '{{ namespace }}' => $name,
-                '{{ command }}' => $command,
-            ],
-            $overwrite
-        );
+            beyond_copy_stub(
+                'command.stub',
+                $schema->path(),
+                [
+                    '{{ namespace }}' => $name,
+                    '{{ command }}' => $command,
+                    '{{ className }}' => $schema->className(),
+                ],
+                $overwrite
+            );
 
-        $this->info('Command created.');
+            $this->info('Command created.');
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }

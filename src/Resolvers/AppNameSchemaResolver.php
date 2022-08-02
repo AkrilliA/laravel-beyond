@@ -60,6 +60,10 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
 
     protected function askClassName(): string
     {
-        return $this->className ?? $this->command->ask('Please enter the class name');
+        do {
+            $className = $this->className ?? $this->command->ask('Please enter the class name');
+        } while(!$className);
+
+        return $className;
     }
 }
