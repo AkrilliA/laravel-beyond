@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Schema;
 
 class SupportSchema extends BaseSchema
 {
-    public function path(?string $directory): string
+    public function path(?string $directory = null): string
     {
         $directory = trim($directory, '/');
 

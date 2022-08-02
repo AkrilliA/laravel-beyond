@@ -27,5 +27,5 @@ abstract class BaseSchema implements Schema
         return $this->className;
     }
 
-    abstract public function path(?string $directory): string;
+    abstract public function path(?string $directory = null): string;
 }
