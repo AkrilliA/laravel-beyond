@@ -4,6 +4,7 @@ namespace Regnerisch\LaravelBeyond;
 
 use Illuminate\Support\ServiceProvider;
 use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCommandCommand;
@@ -16,7 +17,6 @@ use Regnerisch\LaravelBeyond\Commands\MakeListenerCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeMiddlewareCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
 use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRequestCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeResourceCommand;

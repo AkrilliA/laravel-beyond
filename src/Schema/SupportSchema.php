@@ -6,18 +6,12 @@ class SupportSchema extends BaseSchema
 {
     public function path(?string $directory): string
     {
-        if ($directory) {
-            return sprintf(
-                '%s/src/Support/%s/%s.php',
-                base_path(),
-                $directory,
-                $this->className
-            );
-        }
+        $directory = trim($directory, '/');
 
         return sprintf(
-            '%s/src/Support/%s.php',
+            '%s/src/Support%s/%s.php',
             base_path(),
+            $directory ? '/' . $directory : '',
             $this->className
         );
     }
