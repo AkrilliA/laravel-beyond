@@ -16,7 +16,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeListenerCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeMiddlewareCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
 use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeQueryBuilderCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRequestCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeResourceCommand;
@@ -44,7 +44,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeMiddlewareCommand::class,
                 MakeModelCommand::class,
                 MakePolicyCommand::class,
-                MakeQueryBuilderCommand::class,
+                MakeBuilderCommand::class,
                 MakeQueryCommand::class,
                 MakeRequestCommand::class,
                 MakeResourceCommand::class,

@@ -5,11 +5,11 @@ namespace Regnerisch\LaravelBeyond\Commands;
 use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeQueryBuilderCommand extends Command
+class MakeBuilderCommand extends Command
 {
-    protected $signature = 'beyond:make:query-builder {name?} {--overwrite}';
+    protected $signature = 'beyond:make:builder {name?} {--overwrite}';
 
-    protected $description = 'Make a new eloquent query builder';
+    protected $description = 'Make a new eloquent builder';
 
     public function handle(): void
     {
@@ -20,8 +20,8 @@ class MakeQueryBuilderCommand extends Command
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
-                'query-builder.stub',
-                $schema->path('QueryBuilders'),
+                'builder.stub',
+                $schema->path('Builders'),
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
@@ -38,7 +38,7 @@ class MakeQueryBuilderCommand extends Command
                 '}'
             );
 
-            $this->info('Query Builder created.');
+            $this->info('Builder created.');
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
         }
