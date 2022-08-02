@@ -3,7 +3,6 @@
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromfetchDirectoryNamesFromPathActionAction;
 use Regnerisch\LaravelBeyond\Contracts\Schema;
 use Regnerisch\LaravelBeyond\Schema\AppSchema;
 use Regnerisch\LaravelBeyond\Schema\SupportSchema;

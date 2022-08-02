@@ -1,5 +1,12 @@
 
 
+# [3.0.0-beta.8](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2022-08-02)
+
+
+### Bug Fixes
+
+* fix small bugs & optimize code ([700ab3d](https://github.com/regnerisch/laravel-beyond/commit/700ab3d43c3c431874583d198316773b46758f96))
+
 # [3.0.0-beta.7](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2022-07-21)
 
 
