@@ -1,5 +1,13 @@
 
 
+# [3.0.0-beta.10](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2022-08-02)
+
+
+### Bug Fixes
+
+* remove test cache file ([b32b102](https://github.com/regnerisch/laravel-beyond/commit/b32b102b636e8a741c0badd8a1156483ee72504e))
+* remove test cache file ([80c93a6](https://github.com/regnerisch/laravel-beyond/commit/80c93a654dc161964d71affd7a52500d4f689ee4))
+
 # [3.0.0-beta.9](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2022-08-02)
 
 # [3.0.0-beta.8](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2022-08-02)
