@@ -7,3 +7,11 @@ test('can make action', function () {
 
     expect(base_path() . '/src/Domain/User/Actions/CreateUserAction.php')->toBeFile();
 });
+
+test('namespace is correct', function () {
+    $this->artisan('beyond:make:action User/CreateUserAction');
+
+    $file = base_path() . '/src/Domain/User/Actions/CreateUserAction.php';
+    $content = file_get_contents($file);
+    expect($content)->toContain('namespace Domain\User\Actions;');
+});
