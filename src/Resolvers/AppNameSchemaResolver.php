@@ -3,7 +3,7 @@
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromfetchDirectoryNamesFromPathActionAction;
 use Regnerisch\LaravelBeyond\Contracts\Schema;
 use Regnerisch\LaravelBeyond\Schema\AppSchema;
 use Regnerisch\LaravelBeyond\Schema\SupportSchema;
@@ -37,11 +37,11 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
 
     protected function askNamespace(): string
     {
-        $action = new FetchDirectoryNamesFromPathAction();
+        $fetchDirectoryNamesFromPathAction = new FetchDirectoryNamesFromPathAction();
 
         $appName = $this->appName;
         if (!$appName) {
-            $apps = $action->execute(base_path() . '/src/App');
+            $apps = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/App');
             do {
                 $appName = $this->command->anticipate('Please enter the app name', $apps);
             } while (!$appName);
@@ -49,7 +49,7 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
 
         $moduleName = $this->moduleName;
         if (!$moduleName) {
-            $modules = $action->execute(base_path() . '/src/App/' . $appName);
+            $modules = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/App/' . $appName);
             do {
                 $moduleName = $this->command->anticipate('Please enter the module name (in App/' . $appName . ')', $modules);
             } while (!$moduleName);
