@@ -29,3 +29,21 @@ test('collection namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace App\Admin\User\Resources;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:resource Admin/User/UserResource');
+
+    $file = base_path() . '/src/App/Admin/User/Resources/UserResource.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});
+
+test('collection placeholder are replaced', function () {
+    $this->artisan('beyond:make:resource Admin/User/UserResourceCollection');
+
+    $file = base_path() . '/src/App/Admin/User/Resources/UserResourceCollection.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

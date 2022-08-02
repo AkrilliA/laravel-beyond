@@ -15,3 +15,12 @@ test('namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace Domain\User\Listeners;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:listener User/CreateUserListener');
+
+    $file = base_path() . '/src/Domain/User/Listeners/CreateUserListener.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

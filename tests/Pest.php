@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Filesystem\Filesystem;
+
 uses(Tests\TestCase::class)->in(__DIR__);
 
 /*
@@ -34,3 +36,12 @@ uses(Tests\TestCase::class)->in(__DIR__);
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
+
+uses()
+    ->afterEach(function () {
+        $fs = new Filesystem();
+
+        $fs->deleteDirectories(base_path() . '/src/App/Admin');
+        $fs->deleteDirectories(base_path() . '/src/Domain');
+    })
+    ->in('Commands');

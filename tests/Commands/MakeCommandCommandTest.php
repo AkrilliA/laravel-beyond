@@ -15,3 +15,12 @@ test('namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace App\Console\Commands;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:command InspireCommand');
+
+    $file = base_path() . '/src/App/Console/Commands/InspireCommand.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

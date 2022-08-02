@@ -29,3 +29,12 @@ test('support namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace Support\Packages\Laravel\Middleware;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:middleware Admin/User/PremiumUserMiddleware');
+
+    $file = base_path() . '/src/App/Admin/User/Middleware/PremiumUserMiddleware.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

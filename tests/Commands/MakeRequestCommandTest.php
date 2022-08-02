@@ -15,3 +15,12 @@ test('namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace App\Admin\User\Requests;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:request Admin/User/StoreUserRequest');
+
+    $file = base_path() . '/src/App/Admin/User/Requests/StoreUserRequest.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

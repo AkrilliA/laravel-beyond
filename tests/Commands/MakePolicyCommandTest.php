@@ -15,3 +15,12 @@ test('namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace Domain\User\Policies;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:policy User/UserPolicy');
+
+    $file = base_path() . '/src/Domain/User/Policies/UserPolicy.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

@@ -15,3 +15,12 @@ test('namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace Domain\User\Builders;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:builder User/UserBuilder');
+
+    $file = base_path() . '/src/Domain/User/Builders/UserBuilder.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});

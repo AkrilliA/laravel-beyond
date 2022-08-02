@@ -15,3 +15,12 @@ test('namespace is correct', function () {
     $content = file_get_contents($file);
     expect($content)->toContain('namespace Domain\User\Events;');
 });
+
+test('placeholder are replaced', function () {
+    $this->artisan('beyond:make:event User/CreateUserEvent');
+
+    $file = base_path() . '/src/Domain/User/Events/CreateUserEvent.php';
+    $content = file_get_contents($file);
+
+    expect($content)->not()->toMatch('/{{ .* }}/');
+});
