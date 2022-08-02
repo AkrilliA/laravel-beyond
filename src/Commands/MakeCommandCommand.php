@@ -17,11 +17,11 @@ class MakeCommandCommand extends Command
         $command = $this->option('command');
         $overwrite = $this->option('overwrite');
 
-        $schema = (new AppNameSchemaResolver($this, $name, 'Command', 'Console'))->handle();
+        $schema = (new AppNameSchemaResolver($this, $name, 'Commands', 'Console'))->handle();
 
         beyond_copy_stub(
             'command.stub',
-            $schema->path(''),
+            $schema->path(),
             [
                 '{{ namespace }}' => $name,
                 '{{ command }}' => $command,

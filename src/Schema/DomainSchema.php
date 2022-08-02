@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Schema;
 
 class DomainSchema extends BaseSchema
 {
-    public function path(string $directory): string
+    public function path(?string $directory): string
     {
         return sprintf(
             '%s/src/Domain/%s/%s/%s.php',

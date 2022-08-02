@@ -10,5 +10,5 @@ interface Schema
 
     public function className(): string;
 
-    public function path(string $directory): string;
+    public function path(?string $directory): string;
 }

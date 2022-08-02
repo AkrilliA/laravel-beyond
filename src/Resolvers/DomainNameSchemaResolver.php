@@ -26,11 +26,11 @@ class DomainNameSchemaResolver extends BaseNameSchemaResolver
 
     protected function askNamespace(): string
     {
-        $action = new FetchDirectoryNamesFromPathAction();
-        $domains = $action->execute(base_path() . '/src/Domain');
+        $fetchDirectoryNamesFromPathAction = new FetchDirectoryNamesFromPathAction();
+        $domains = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/Domain');
 
         do {
-            $domainName = $this->command->anticipate('Please enter the domain name:', $domains);
+            $domainName = $this->command->anticipate('Please enter the domain name', $domains);
         } while (!$domainName);
 
         return $domainName;
@@ -38,6 +38,6 @@ class DomainNameSchemaResolver extends BaseNameSchemaResolver
 
     protected function askClassName(): string
     {
-        return $this->className ?? $this->command->ask('Please enter the class name:');
+        return $this->className ?? $this->command->ask('Please enter the class name');
     }
 }

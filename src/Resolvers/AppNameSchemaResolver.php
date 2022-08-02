@@ -43,7 +43,7 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
         if (!$appName) {
             $apps = $action->execute(base_path() . '/src/App');
             do {
-                $appName = $this->command->anticipate('Please enter the app name:', $apps);
+                $appName = $this->command->anticipate('Please enter the app name', $apps);
             } while (!$appName);
         }
 
@@ -51,7 +51,7 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
         if (!$moduleName) {
             $modules = $action->execute(base_path() . '/src/App/' . $appName);
             do {
-                $moduleName = $this->command->anticipate('Please enter the module name (in App/' . $appName . '):', $modules);
+                $moduleName = $this->command->anticipate('Please enter the module name (in App/' . $appName . ')', $modules);
             } while (!$moduleName);
         }
 
@@ -60,6 +60,6 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
 
     protected function askClassName(): string
     {
-        return $this->className ?? $this->command->ask('Please enter the class name:');
+        return $this->className ?? $this->command->ask('Please enter the class name');
     }
 }

@@ -21,7 +21,7 @@ abstract class BaseNameSchemaResolver implements NameSchemaResolver
 
     protected function askClassName(): string
     {
-        return $this->className ?? $this->command->ask('Please enter the class name:');
+        return $this->className ?? $this->command->ask('Please enter the class name');
     }
 
     protected function namespaceAndClassName(): array
