@@ -4,22 +4,15 @@ namespace Regnerisch\LaravelBeyond\Schema;
 
 class DomainSchema extends BaseSchema
 {
-    public function path(?string $directory): string
+    public function path(?string $directory = null): string
     {
-        if ($directory) {
-            return sprintf(
-                '%s/src/Domain/%s/%s/%s.php',
-                base_path(),
-                $this->namespacePath(),
-                $directory,
-                $this->className
-            );
-        }
-
+        $directory = trim($directory, '/');
+        
         return sprintf(
-            '%s/src/Domain/%s/%s.php',
+            '%s/src/Domain/%s%s/%s.php',
             base_path(),
             $this->namespacePath(),
+            $directory ? '/' . $directory : '',
             $this->className
         );
     }
