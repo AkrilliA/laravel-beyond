@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Filesystem\Filesystem;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,9 +13,13 @@
 |
 */
 
-use Illuminate\Filesystem\Filesystem;
-
 uses(Tests\TestCase::class)->in(__DIR__);
+
+uses()
+    ->afterEach(function () {
+        (new Filesystem())->deleteDirectories(base_path() . '/src');
+    })
+    ->in(__DIR__ . '/Commands');
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +32,31 @@ uses(Tests\TestCase::class)->in(__DIR__);
 |
 */
 
+expect()->extend('toMatchNamespaceAndClassName', function () {
+    require $this->value;
+
+    $namespacedClassName = str_replace(
+        '/',
+        '\\',
+        substr($this->value, strpos($this->value, 'src') + 4, -4)
+    );
+
+    $class = new class() {
+        public function getName()
+        {
+            return null;
+        }
+    };
+
+    try {
+        $class = new ReflectionClass($namespacedClassName);
+    } catch (\ReflectionException $exception) {
+        // --
+    }
+
+    return expect($class->getName())->toBe($namespacedClassName);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions
@@ -36,12 +67,3 @@ uses(Tests\TestCase::class)->in(__DIR__);
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-
-uses()
-    ->afterEach(function () {
-        $fs = new Filesystem();
-
-        $fs->deleteDirectories(base_path() . '/src/App/Admin');
-        $fs->deleteDirectories(base_path() . '/src/Domain');
-    })
-    ->in('Commands');
