@@ -33,9 +33,9 @@ class MakeMiddlewareCommand extends Command
                 $overwrite
             );
 
-            $this->info('Middleware created.');
+            $this->components->info('Middleware created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

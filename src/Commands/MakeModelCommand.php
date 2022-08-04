@@ -44,9 +44,9 @@ class MakeModelCommand extends Command
                 );
             }
 
-            $this->info('Model created.');
+            $this->components->info('Model created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

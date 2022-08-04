@@ -29,9 +29,9 @@ class MakeEnumCommand extends Command
                 $overwrite
             );
 
-            $this->info('Enum created.');
+            $this->components->info('Enum created.');
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+            $this->components->error($e->getMessage());
         }
     }
 }

@@ -29,9 +29,9 @@ class MakeDataTransferObjectCommand extends Command
                 $overwrite
             );
 
-            $this->info('DataTransferObject created.');
+            $this->components->info('DataTransferObject created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

@@ -25,9 +25,9 @@ class MakeServiceProviderCommand extends Command
                 $overwrite
             );
 
-            $this->info('Service provider created.');
+            $this->components->info('Service provider created.');
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+            $this->components->error($e->getMessage());
         }
     }
 }

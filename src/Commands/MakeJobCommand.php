@@ -29,9 +29,9 @@ class MakeJobCommand extends Command
                 $overwrite
             );
 
-            $this->info('Job created.');
+            $this->components->info('Job created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

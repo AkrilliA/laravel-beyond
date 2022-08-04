@@ -29,9 +29,9 @@ class MakeActionCommand extends Command
                 $overwrite
             );
 
-            $this->info('Action created.');
+            $this->components->info('Action created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

@@ -34,9 +34,9 @@ class MakePolicyCommand extends Command
                 $overwrite
             );
 
-            $this->info('Policy created.');
+            $this->components->info('Policy created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

@@ -32,7 +32,7 @@ class MakeCollectionCommand extends Command
                 $overwrite
             );
 
-            $this->info(
+            $this->components->info(
                 'Please add following code to your related model' . PHP_EOL . PHP_EOL .
 
                 'public function newCollection(array $models = [])' . PHP_EOL .
@@ -41,9 +41,9 @@ class MakeCollectionCommand extends Command
                 '}'
             );
 
-            $this->info('Collection created.');
+            $this->components->info('Collection created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

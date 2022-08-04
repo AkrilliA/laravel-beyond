@@ -32,9 +32,9 @@ class MakeControllerCommand extends Command
                 $overwrite
             );
 
-            $this->info('Controller created.');
+            $this->components->info('Controller created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

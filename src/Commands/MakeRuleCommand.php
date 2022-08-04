@@ -33,9 +33,9 @@ class MakeRuleCommand extends Command
                 $overwrite
             );
 
-            $this->info('Rule created.');
+            $this->components->info('Rule created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

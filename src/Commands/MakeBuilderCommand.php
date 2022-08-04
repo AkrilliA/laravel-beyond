@@ -38,9 +38,9 @@ class MakeBuilderCommand extends Command
                 '}'
             );
 
-            $this->info('Builder created.');
+            $this->components->info('Builder created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

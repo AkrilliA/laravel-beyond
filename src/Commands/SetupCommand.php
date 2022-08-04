@@ -28,86 +28,90 @@ class SetupCommand extends Command
 
     public function handle(): void
     {
-        $skipDelete = $this->option('skip-delete');
-        $overwrite = $this->option('overwrite');
+        try {
+            $skipDelete = $this->option('skip-delete');
+            $overwrite = $this->option('overwrite');
 
-        // Console
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Console/Kernel.php',
-            base_path() . '/src/App/Console/Kernel.php',
-            overwrite: $overwrite
-        );
+            // Console
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Console/Kernel.php',
+                base_path() . '/src/App/Console/Kernel.php',
+                overwrite: $overwrite
+            );
 
-        // Exceptions
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Exceptions/Handler.php',
-            base_path() . '/src/App/Exceptions/Handler.php',
-            overwrite: $overwrite
-        );
+            // Exceptions
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Exceptions/Handler.php',
+                base_path() . '/src/App/Exceptions/Handler.php',
+                overwrite: $overwrite
+            );
 
-        // Middlewares
-        $this->moveMiddlewares($overwrite);
+            // Middlewares
+            $this->moveMiddlewares($overwrite);
 
-        // Http Kernel
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Http/Kernel.php',
-            base_path() . '/src/App/HttpKernel.php',
-            [
-                'namespace App\Http;' => 'namespace App;',
-                'use Illuminate\Foundation\Http\Kernel as HttpKernel;' => 'use Illuminate\Foundation\Http\Kernel;',
-                'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
-                '\App\Http\Middleware\\' => '\Support\Packages\Laravel\Middlewares\\',
-            ],
-            $overwrite
-        );
+            // Http Kernel
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Http/Kernel.php',
+                base_path() . '/src/App/HttpKernel.php',
+                [
+                    'namespace App\Http;' => 'namespace App;',
+                    'use Illuminate\Foundation\Http\Kernel as HttpKernel;' => 'use Illuminate\Foundation\Http\Kernel;',
+                    'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
+                    '\App\Http\Middleware\\' => '\Support\Packages\Laravel\Middlewares\\',
+                ],
+                $overwrite
+            );
 
-        // Application
-        beyond_copy_stub(
-            'application.stub',
-            base_path() . '/src/App/Application.php',
-            overwrite: $overwrite
-        );
+            // Application
+            beyond_copy_stub(
+                'application.stub',
+                base_path() . '/src/App/Application.php',
+                overwrite: $overwrite
+            );
 
-        // Models
-        $this->copyAndRefactorFileAction->execute(
-            base_path() . '/app/Models/User.php',
-            base_path() . '/src/Domain/Users/Models/User.php',
-            [
-                'namespace App\Models;' => 'namespace Domain\Users\Models;',
-            ],
-            $overwrite
-        );
+            // Models
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Models/User.php',
+                base_path() . '/src/Domain/Users/Models/User.php',
+                [
+                    'namespace App\Models;' => 'namespace Domain\Users\Models;',
+                ],
+                $overwrite
+            );
 
-        // Providers
-        $this->moveProviders($overwrite);
+            // Providers
+            $this->moveProviders($overwrite);
 
-        // Bootstrap
-        $this->prepareBootstrap();
+            // Bootstrap
+            $this->prepareBootstrap();
 
-        // Rewrite configs
-        $this->refactorFileAction->execute(
-            base_path() . '/config/auth.php',
-            [
-                'App\Models\User::class' => 'Domain\Users\Models\User::class',
-            ]
-        );
+            // Rewrite configs
+            $this->refactorFileAction->execute(
+                base_path() . '/config/auth.php',
+                [
+                    'App\Models\User::class' => 'Domain\Users\Models\User::class',
+                ]
+            );
 
-        // Composer Autoloader
-        $this->changeComposerAutoloaderAction->execute();
+            // Composer Autoloader
+            $this->changeComposerAutoloaderAction->execute();
 
-        if (!$skipDelete) {
-            // Delete app folder
-            $this->deleteAction->execute(base_path() . '/app');
-        }
+            if (!$skipDelete) {
+                // Delete app folder
+                $this->deleteAction->execute(base_path() . '/app');
+            }
 
-        $this->info('Setup completed.');
-        $this->info(
-            'Do not forget to add following code into the boot() function of your AppServiceProvider:' . PHP_EOL . PHP_EOL .
+            $this->components->info('Setup completed.');
+            $this->components->info(
+                'Do not forget to add following code into the boot() function of your AppServiceProvider:' . PHP_EOL . PHP_EOL .
 
-            'Factory::guessFactoryNamesUsing(function (string $modelName) {' . PHP_EOL .
+                'Factory::guessFactoryNamesUsing(function (string $modelName) {' . PHP_EOL .
                 "\t" . 'return \'Database\\Factories\\\' . class_basename($modelName) . \'Factory\';' . PHP_EOL .
-            '});' . PHP_EOL
-        );
+                '});' . PHP_EOL
+            );
+        } catch (\Exception $exception) {
+            $this->components->error($exception->getMessage());
+        }
     }
 
     protected function moveMiddlewares(bool $overwrite = false): void

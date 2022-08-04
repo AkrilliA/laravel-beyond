@@ -34,9 +34,9 @@ class MakeResourceCommand extends Command
                 $overwrite
             );
 
-            $this->info('Resource created.');
+            $this->components->info('Resource created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

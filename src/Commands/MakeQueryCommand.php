@@ -29,9 +29,9 @@ class MakeQueryCommand extends Command
                 $overwrite
             );
 
-            $this->info('Query created.');
+            $this->components->info('Query created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

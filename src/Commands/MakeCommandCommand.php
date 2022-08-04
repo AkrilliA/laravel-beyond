@@ -31,9 +31,9 @@ class MakeCommandCommand extends Command
                 $overwrite
             );
 
-            $this->info('Command created.');
+            $this->components->info('Command created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

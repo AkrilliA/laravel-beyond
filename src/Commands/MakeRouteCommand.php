@@ -40,9 +40,9 @@ class MakeRouteCommand extends Command
                 "\t->group(base_path('routes/{$routeNameLowerCase}.php'));"
             );
 
-            $this->info('Route created.');
+            $this->components->info('Route created.');
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+            $this->components->error($e->getMessage());
         }
     }
 }

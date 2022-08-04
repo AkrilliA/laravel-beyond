@@ -29,9 +29,9 @@ class MakeRequestCommand extends Command
                 $overwrite
             );
 
-            $this->info('Request created.');
+            $this->components->info('Request created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

@@ -29,9 +29,9 @@ class MakeListenerCommand extends Command
                 $overwrite
             );
 
-            $this->info('Listener created.');
+            $this->components->info('Listener created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

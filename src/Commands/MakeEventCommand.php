@@ -29,9 +29,9 @@ class MakeEventCommand extends Command
                 $overwrite
             );
 
-            $this->info('Event created.');
+            $this->components->info('Event created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }
