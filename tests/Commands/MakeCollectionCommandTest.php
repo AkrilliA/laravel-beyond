@@ -7,12 +7,6 @@ test('can make collection', function () {
 
     expect(base_path() . '/src/Domain/User/Collections/UserCollection.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:collection User/UserCollection');
-
-    expect(base_path() . '/src/Domain/User/Collections/UserCollection.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

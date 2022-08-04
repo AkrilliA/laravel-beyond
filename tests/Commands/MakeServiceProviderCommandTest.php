@@ -7,12 +7,6 @@ test('can make service provider', function () {
 
     expect(base_path() . '/src/App/Providers/UserServiceProvider.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:provider UserServiceProvider');
-
-    expect(base_path() . '/src/App/Providers/UserServiceProvider.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

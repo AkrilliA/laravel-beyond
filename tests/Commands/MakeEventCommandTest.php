@@ -7,12 +7,6 @@ test('can make event', function () {
 
     expect(base_path() . '/src/Domain/User/Events/CreateUserEvent.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:event User/CreateUserEvent');
-
-    expect(base_path() . '/src/Domain/User/Events/CreateUserEvent.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

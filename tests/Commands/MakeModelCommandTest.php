@@ -7,12 +7,6 @@ test('can make model', function () {
 
     expect(base_path() . '/src/Domain/User/Models/User.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:model User/User');
-
-    expect(base_path() . '/src/Domain/User/Models/User.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

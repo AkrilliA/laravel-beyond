@@ -7,12 +7,6 @@ test('can make controller', function () {
 
     expect(base_path() . '/src/App/Admin/User/Controllers/UserController.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:controller Admin/User/UserController');
-
-    expect(base_path() . '/src/App/Admin/User/Controllers/UserController.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

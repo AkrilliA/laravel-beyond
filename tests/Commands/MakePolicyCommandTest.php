@@ -7,12 +7,6 @@ test('can make policy', function () {
 
     expect(base_path() . '/src/Domain/User/Policies/UserPolicy.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:policy User/UserPolicy');
-
-    expect(base_path() . '/src/Domain/User/Policies/UserPolicy.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

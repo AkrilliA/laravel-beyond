@@ -7,12 +7,6 @@ test('can make listener', function () {
 
     expect(base_path() . '/src/Domain/User/Listeners/CreateUserListener.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:listener User/CreateUserListener');
-
-    expect(base_path() . '/src/Domain/User/Listeners/CreateUserListener.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

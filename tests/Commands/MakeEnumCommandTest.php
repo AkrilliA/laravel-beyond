@@ -7,12 +7,6 @@ test('can make enum', function () {
 
     expect(base_path() . '/src/Domain/User/Enums/UserStatusEnum.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:enum User/UserStatusEnum');
-
-    expect(base_path() . '/src/Domain/User/Enums/UserStatusEnum.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });

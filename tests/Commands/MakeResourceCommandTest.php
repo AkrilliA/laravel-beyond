@@ -7,7 +7,8 @@ test('can make resource', function () {
 
     expect(base_path() . '/src/App/Admin/User/Resources/UserResource.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
+        ->toMatchNamespaceAndClassName()
+        ->toPlaceholdersBeReplaced();
 });
 
 test('can make resource collection', function () {
@@ -15,21 +16,6 @@ test('can make resource collection', function () {
 
     expect(base_path() . '/src/App/Admin/User/Resources/UserResourceCollection.php')
         ->toBeFile()
-        ->toMatchNamespaceAndClassName();
-});
-
-test('placeholder are replaced', function () {
-    $this->artisan('beyond:make:resource Admin/User/UserResource');
-
-    $file = base_path() . '/src/App/Admin/User/Resources/UserResource.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
-});
-
-test('collection placeholder are replaced', function () {
-    $this->artisan('beyond:make:resource Admin/User/UserResourceCollection');
-
-    expect(base_path() . '/src/App/Admin/User/Resources/UserResourceCollection.php')
+        ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });
