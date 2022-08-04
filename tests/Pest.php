@@ -56,7 +56,6 @@ expect()->extend('toMatchNamespaceAndClassName', function () {
         // --
     }
 
-    $this->assertEquals($class->getName(), $namespacedClassName);
     assertSame($class->getName(), $namespacedClassName);
 
     return $this;
