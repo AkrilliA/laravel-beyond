@@ -13,8 +13,6 @@ test('can make request', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:request Admin/User/StoreUserRequest');
 
-    $file = base_path() . '/src/App/Admin/User/Requests/StoreUserRequest.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Admin/User/Requests/StoreUserRequest.php')
+        ->toPlaceholdersBeReplaced();
 });

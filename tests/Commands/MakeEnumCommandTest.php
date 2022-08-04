@@ -13,8 +13,6 @@ test('can make enum', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:enum User/UserStatusEnum');
 
-    $file = base_path() . '/src/Domain/User/Enums/UserStatusEnum.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/Enums/UserStatusEnum.php')
+        ->toPlaceholdersBeReplaced();
 });

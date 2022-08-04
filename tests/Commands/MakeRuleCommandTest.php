@@ -33,8 +33,6 @@ test('support namespace is correct', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:rule Admin/User/UserRule');
 
-    $file = base_path() . '/src/App/Admin/User/Rules/UserRule.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Admin/User/Rules/UserRule.php')
+        ->toPlaceholdersBeReplaced();
 });

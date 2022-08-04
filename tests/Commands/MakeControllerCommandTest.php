@@ -13,8 +13,6 @@ test('can make controller', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:controller Admin/User/UserController');
 
-    $file = base_path() . '/src/App/Admin/User/Controllers/UserController.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Admin/User/Controllers/UserController.php')
+        ->toPlaceholdersBeReplaced();
 });

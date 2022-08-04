@@ -13,8 +13,6 @@ test('can make dto', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:dto User/UserData');
 
-    $file = base_path() . '/src/Domain/User/DataTransferObjects/UserData.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/DataTransferObjects/UserData.php')
+        ->toPlaceholdersBeReplaced();
 });

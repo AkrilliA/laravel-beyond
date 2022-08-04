@@ -13,8 +13,6 @@ test('can make command', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:command InspireCommand');
 
-    $file = base_path() . '/src/App/Console/Commands/InspireCommand.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Console/Commands/InspireCommand.php')
+        ->toPlaceholdersBeReplaced();
 });

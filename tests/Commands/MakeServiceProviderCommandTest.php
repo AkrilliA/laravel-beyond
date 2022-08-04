@@ -13,8 +13,6 @@ test('can make service provider', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:provider UserServiceProvider');
 
-    $file = base_path() . '/src/App/Providers/UserServiceProvider.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Providers/UserServiceProvider.php')
+        ->toPlaceholdersBeReplaced();
 });

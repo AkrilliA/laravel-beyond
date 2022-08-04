@@ -13,8 +13,6 @@ test('can make event', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:event User/CreateUserEvent');
 
-    $file = base_path() . '/src/Domain/User/Events/CreateUserEvent.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/Events/CreateUserEvent.php')
+        ->toPlaceholdersBeReplaced();
 });

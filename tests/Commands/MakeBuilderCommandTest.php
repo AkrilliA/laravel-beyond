@@ -13,8 +13,6 @@ test('can make builder', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:builder User/UserBuilder');
 
-    $file = base_path() . '/src/Domain/User/Builders/UserBuilder.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/Builders/UserBuilder.php')
+        ->toPlaceholdersBeReplaced();
 });

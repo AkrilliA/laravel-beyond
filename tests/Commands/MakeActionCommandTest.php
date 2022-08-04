@@ -13,8 +13,6 @@ test('can make action', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:action User/CreateUserAction');
 
-    $file = base_path() . '/src/Domain/User/Actions/CreateUserAction.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/Actions/CreateUserAction.php')
+        ->toPlaceholdersBeReplaced();
 });

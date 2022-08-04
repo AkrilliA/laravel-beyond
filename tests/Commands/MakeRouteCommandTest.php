@@ -12,8 +12,6 @@ test('can make route', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:route Admin');
 
-    $file = base_path() . '/routes/admin.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/routes/admin.php')
+        ->toPlaceholdersBeReplaced();
 });

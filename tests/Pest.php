@@ -57,6 +57,12 @@ expect()->extend('toMatchNamespaceAndClassName', function () {
     return expect($class->getName())->toBe($namespacedClassName);
 });
 
+expect()->extend('toPlaceholdersBeReplaced', function () {
+    $content = (new Filesystem())->get($this->value);
+
+    return expect($content)->not()->toMatch('/{{ .* }}/');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions

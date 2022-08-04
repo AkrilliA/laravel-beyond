@@ -13,8 +13,6 @@ test('can make listener', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:listener User/CreateUserListener');
 
-    $file = base_path() . '/src/Domain/User/Listeners/CreateUserListener.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/Listeners/CreateUserListener.php')
+        ->toPlaceholdersBeReplaced();
 });

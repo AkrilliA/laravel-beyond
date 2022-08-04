@@ -13,8 +13,6 @@ test('can make job', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:job Admin/User/UserJob');
 
-    $file = base_path() . '/src/App/Admin/User/Jobs/UserJob.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Admin/User/Jobs/UserJob.php')
+        ->toPlaceholdersBeReplaced();
 });

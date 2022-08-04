@@ -13,8 +13,6 @@ test('can make query', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:query Admin/User/IndexUserQuery');
 
-    $file = base_path() . '/src/App/Admin/User/Queries/IndexUserQuery.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/App/Admin/User/Queries/IndexUserQuery.php')
+        ->toPlaceholdersBeReplaced();
 });

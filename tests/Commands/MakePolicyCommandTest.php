@@ -13,8 +13,6 @@ test('can make policy', function () {
 test('placeholder are replaced', function () {
     $this->artisan('beyond:make:policy User/UserPolicy');
 
-    $file = base_path() . '/src/Domain/User/Policies/UserPolicy.php';
-    $content = file_get_contents($file);
-
-    expect($content)->not()->toMatch('/{{ .* }}/');
+    expect(base_path() . '/src/Domain/User/Policies/UserPolicy.php')
+        ->toPlaceholdersBeReplaced();
 });
