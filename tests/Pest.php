@@ -2,8 +2,6 @@
 
 use Illuminate\Filesystem\Filesystem;
 
-use function PHPUnit\Framework\assertSame;
-
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -56,15 +54,20 @@ expect()->extend('toMatchNamespaceAndClassName', function () {
         // --
     }
 
-    assertSame($class->getName(), $namespacedClassName);
-
-    return $this;
+    return $this
+        ->and($class->getName())
+        ->toBe($namespacedClassName)
+        ->and($this->value);
 });
 
 expect()->extend('toPlaceholdersBeReplaced', function () {
     $content = (new Filesystem())->get($this->value);
 
-    return expect($content)->not()->toMatch('/{{ .* }}/');
+    return $this
+        ->and($content)
+        ->not()
+        ->toMatch('/{{ .* }}/')
+        ->and($this->value);
 });
 
 /*
