@@ -2,7 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;

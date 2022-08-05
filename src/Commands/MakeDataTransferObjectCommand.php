@@ -2,7 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeDataTransferObjectCommand extends Command
@@ -10,6 +9,10 @@ class MakeDataTransferObjectCommand extends Command
     protected $signature = 'beyond:make:dto {name?} {--overwrite}';
 
     protected $description = 'Make a new data transfer object';
+
+    protected array $requiredPackages = [
+        'spatie/data-transfer-object',
+    ];
 
     public function handle(): void
     {

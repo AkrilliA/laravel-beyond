@@ -2,7 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 

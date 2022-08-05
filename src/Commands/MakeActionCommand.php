@@ -2,7 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeActionCommand extends Command
@@ -30,6 +29,8 @@ class MakeActionCommand extends Command
             );
 
             $this->components->info('Action created.');
+
+            $this->healthy();
         } catch (\Exception $exception) {
             $this->components->error($exception->getMessage());
         }

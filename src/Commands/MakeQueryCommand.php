@@ -2,7 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeQueryCommand extends Command
@@ -10,6 +9,10 @@ class MakeQueryCommand extends Command
     protected $signature = 'beyond:make:query {name?} {--overwrite}';
 
     protected $description = 'Make a new query';
+
+    protected array $requiredPackages = [
+        'spatie/laravel-query-builder',
+    ];
 
     public function handle(): void
     {

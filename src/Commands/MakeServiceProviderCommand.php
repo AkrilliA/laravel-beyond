@@ -2,8 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
-
 class MakeServiceProviderCommand extends Command
 {
     protected $signature = 'beyond:make:provider {name} {--overwrite}';
