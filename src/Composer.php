@@ -28,7 +28,7 @@ final class Composer
 
     protected function getPackages(): array
     {
-        $packages = shell_exec('composer show --name-only');
+        $packages = shell_exec('cd ' . base_path() . ' && composer show --name-only');
         $packages = explode(PHP_EOL, $packages);
         $packages = array_map(fn ($package) => trim($package), $packages);
 

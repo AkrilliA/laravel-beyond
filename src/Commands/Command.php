@@ -4,6 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Composer;
 use Illuminate\Console\Command as BaseCommand;
+use Regnerisch\LaravelBeyond\Exceptions\RequiredPackagesAreMissingException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -13,44 +14,59 @@ abstract class Command extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $code = parent::execute($input, $output);
+        if (false === $this->requiredPackagesAreInstalled()) {
+            $missingPackages = $this->getMissingPackages();
 
-        $this->healthy();
+            $this->components->error(
+                sprintf(
+                    'There are missing packages. Run composer require %s to install them.',
+                    implode(' ', $missingPackages)
+                )
+            );
 
-        return $code;
+            foreach ($missingPackages as $missingPackage) {
+                $this->components->twoColumnDetail($missingPackage, 'MISSING');
+            }
+
+            return 1;
+        }
+
+        return parent::execute($input, $output);
     }
 
-    protected function healthy(): bool
+    protected function requiredPackagesAreInstalled(): bool
     {
-        $composer = Composer::getInstance();
-
         if ($this->requiredPackages === []) {
             return true;
         }
 
-        $notInstalledPackages = [];
+        $composer = Composer::getInstance();
 
         foreach ($this->requiredPackages as $package) {
             if (false === $composer->isPackageInstalled($package)) {
-                $notInstalledPackages[] = $package;
+                return false;
             }
-        }
-
-        if ($notInstalledPackages) {
-            $this->components->info(
-                sprintf(
-                    'There are missing required packages. Run composer install %s',
-                    implode(' ', $notInstalledPackages)
-                )
-            );
-
-            foreach ($notInstalledPackages as $package) {
-                $this->components->twoColumnDetail($package, 'MISSING');
-            }
-
-            return false;
         }
 
         return true;
+    }
+
+    protected function getMissingPackages(): array
+    {
+        $missingPackages = [];
+
+        if ($this->requiredPackages === []) {
+            return $missingPackages;
+        }
+
+        $composer = Composer::getInstance();
+
+        foreach ($this->requiredPackages as $package) {
+            if (false === $composer->isPackageInstalled($package)) {
+                $missingPackages[] = $package;
+            }
+        }
+
+        return $missingPackages;
     }
 }

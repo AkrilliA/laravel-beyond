@@ -29,8 +29,6 @@ class MakeActionCommand extends Command
             );
 
             $this->components->info('Action created.');
-
-            $this->healthy();
         } catch (\Exception $exception) {
             $this->components->error($exception->getMessage());
         }
