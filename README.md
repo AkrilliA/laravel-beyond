@@ -20,7 +20,7 @@ composer require --dev regnerisch/laravel-beyond
 #### `beyond:make:action`
 This command will create a new action class inside your domain.
 
-```php
+```bash
 php artisan beyond:make:action Users/CreateUserAction
 ```
 
@@ -33,7 +33,7 @@ php artisan beyond:make:action Users/CreateUserAction
 #### `beyond:make:builder`
 This command will create a new eloquent builder class inside your domain.
 
-```php
+```bash
 php artisan beyond:make:builder Users/UserBuilder
 ```
 
