@@ -9,7 +9,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: ['8.1']
-        dependency-version: [prefer-lowest, prefer-stable]
 
     steps:
       - name: Checkout
@@ -23,7 +22,7 @@ jobs:
           coverage: none
 
       - name: Install PHP dependencies
-        run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress --ansi
+        run: composer update --no-interaction --no-progress --ansi
 
       - name: Unit Tests
         run: vendor/bin/pest --colors=always
