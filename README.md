@@ -16,6 +16,29 @@ composer require --dev regnerisch/laravel-beyond
 ## Usage
 
 ### Commands
+
+#### `beyond:make:action`
+This command will create a new action class inside your domain.
+
+`php artisan beyond:make:action Users/CreateUserAction`
+
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+#### `beyond:make:builder`
+This command will create a new eloquent builder class inside your domain.
+
+`php artisan beyond:make:builder Users/UserBuilder`
+
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
 ```bash
 # Creates an action at Domain/Users/Actions/CreateUserAction
 php artisan beyond:make:action Users/CreateUserAction
