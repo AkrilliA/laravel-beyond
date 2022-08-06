@@ -1,7 +1,9 @@
 # Laravel Beyond
 
-This package should help you with creating and managing a Laravel DDD Application. 
-This package is heavily inspired by "Laravel beyond CRUD" from Spatie.
+*This package is heavily inspired by "Laravel Beyond CRUD" from Spatie. You should check out [their website](https://spatie.be/products/laravel-beyond-crud).*
+
+This package will help you with `beyond:make` commands to easily create classes inside your "Laravel Beyond CRUD" inspired application.
+We try to implement commands as near as possible on their original `make` counterparts.
 
 ## Installation
 
