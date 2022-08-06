@@ -33,7 +33,9 @@ php artisan beyond:make:action Users/CreateUserAction
 #### `beyond:make:builder`
 This command will create a new eloquent builder class inside your domain.
 
-`php artisan beyond:make:builder Users/UserBuilder`
+```php
+php artisan beyond:make:builder Users/UserBuilder
+```
 
 **Options**
 
