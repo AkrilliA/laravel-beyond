@@ -50,8 +50,7 @@
         "pestphp/pest": "^1.21",
         "orchestra/testbench": "^7.6",
         "spatie/data-transfer-object": "^3.8",
-        "spatie/laravel-query-builder": "^5.0",
-        "pestphp/pest-plugin-mock": "^1.0"
+        "spatie/laravel-query-builder": "^5.0"
     },
     "config": {
         "allow-plugins": {
