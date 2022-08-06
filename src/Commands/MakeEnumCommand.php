@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeEnumCommand extends Command
+class MakeEnumCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:enum {name?} {--overwrite}';
 

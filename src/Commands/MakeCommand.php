@@ -2,7 +2,7 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-class MakeCommand extends Command
+class MakeCommand extends BaseCommand
 {
     protected $signature = 'beyond:make';
 

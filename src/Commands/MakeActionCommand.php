@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeActionCommand extends Command
+class MakeActionCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:action {name?} {--overwrite}';
 

@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeCollectionCommand extends Command
+class MakeCollectionCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:collection {name?} {--model=} {--overwrite}';
 

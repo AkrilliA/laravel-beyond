@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeEventCommand extends Command
+class MakeEventCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:event {name?} {--overwrite}';
 

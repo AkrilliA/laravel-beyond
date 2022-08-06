@@ -2,16 +2,30 @@
 
 namespace Tests\Commands;
 
-use Regnerisch\LaravelBeyond\Composer;
+use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use Regnerisch\LaravelBeyond\Testing\Fakes\ComposerFake;
 
-test('test if package is installed', function () {
-    $composer = Composer::getInstance();
+test('test if fake composer is used', function () {
+    $composer = $this->app->make(ComposerContract::class);
 
-    expect($composer->isPackageInstalled('pestphp/pest'))->toBeTrue();
+    expect($composer)
+        ->toBeInstanceOf(ComposerFake::class);
 });
 
-test('test if package is not installed', function () {
-    $composer = Composer::getInstance();
+test('test if required package is installed', function () {
+    $composer = $this->app->make(ComposerContract::class);
 
-    expect($composer->isPackageInstalled('regnerisch/laravel-beyond'))->toBeFalse();
+    $composer->setPackages(['test/test']);
+
+    expect($composer->isPackageInstalled('test/test'))
+        ->toBeTrue();
+});
+
+test('test if required-dev package is installed', function () {
+    $composer = $this->app->make(ComposerContract::class);
+
+    $composer->setPackages(requireDev: ['test/test']);
+
+    expect($composer->isPackageInstalled('test/test', true))
+        ->toBeTrue();
 });

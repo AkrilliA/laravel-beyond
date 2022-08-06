@@ -2,36 +2,45 @@
 
 namespace Regnerisch\LaravelBeyond;
 
-final class Composer
+use Illuminate\Filesystem\Filesystem;
+use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+
+class Composer implements ComposerContract
 {
     protected static ?self $instance = null;
 
-    protected array $packages;
+    protected array $packages = [];
 
-    public static function getInstance(): self
+    public function isPackageInstalled(string $name, bool $withRequireDev = false): bool
     {
-        if (self::$instance === null) {
-            self::$instance = new self();
+        [
+            'require' => $require,
+            'requireDev' => $requireDev
+        ] = $this->getPackages();
+
+        if (in_array($name, $require, true)) {
+            return true;
         }
 
-        return self::$instance;
+        if ($withRequireDev && in_array($name, $requireDev, true)) {
+            return true;
+        }
+
+        return false;
     }
 
-    protected function __construct() {}
-
-    public function isPackageInstalled(string $name): bool
+    public function getPackages(): array
     {
-        $packages = $this->packages ?? $this->packages = $this->getPackages();
+        if (!empty($this->packages)) {
+            return $this->packages;
+        }
 
-        return in_array($name, $packages, true);
-    }
+        $content = (new Filesystem())->get(base_path() . '/composer.json');
+        $json = json_decode($content, true);
 
-    protected function getPackages(): array
-    {
-        $packages = shell_exec('cd ' . base_path() . ' && composer show --name-only');
-        $packages = explode(PHP_EOL, $packages);
-        $packages = array_map(fn ($package) => trim($package), $packages);
-
-        return array_filter($packages);
+        return $this->packages = [
+            'require' => array_keys($json['require']),
+            'requireDev' => array_keys($json['require-dev']),
+        ];
     }
 }

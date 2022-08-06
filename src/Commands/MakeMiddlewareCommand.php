@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeMiddlewareCommand extends Command
+class MakeMiddlewareCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:middleware {name?} {--support} {--overwrite}';
 

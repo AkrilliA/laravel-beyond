@@ -24,12 +24,15 @@ use Regnerisch\LaravelBeyond\Commands\MakeRouteCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRuleCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeServiceProviderCommand;
 use Regnerisch\LaravelBeyond\Commands\SetupCommand;
+use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         if ($this->app->runningInConsole()) {
+            $this->app->singleton(ComposerContract::class, Composer::class);
+
             $this->commands([
                 MakeCommand::class,
                 MakeActionCommand::class,

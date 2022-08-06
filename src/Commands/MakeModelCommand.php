@@ -5,7 +5,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 use Illuminate\Support\Str;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeModelCommand extends Command
+class MakeModelCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:model {name?} {-m|--migration} {--overwrite}';
 

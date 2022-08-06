@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeQueryCommand extends Command
+class MakeQueryCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:query {name?} {--overwrite}';
 

@@ -9,7 +9,7 @@ use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use Regnerisch\LaravelBeyond\Actions\DeleteAction;
 use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
-class SetupCommand extends Command
+class SetupCommand extends BaseCommand
 {
     protected $signature = 'beyond:setup {--skip-delete} {--overwrite}';
 

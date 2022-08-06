@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeControllerCommand extends Command
+class MakeControllerCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:controller {name?} {--api} {--overwrite}';
 

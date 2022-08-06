@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeJobCommand extends Command
+class MakeJobCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:job {name?} {--overwrite}';
 

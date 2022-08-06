@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeDataTransferObjectCommand extends Command
+class MakeDataTransferObjectCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:dto {name?} {--overwrite}';
 

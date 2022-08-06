@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeRequestCommand extends Command
+class MakeRequestCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:request {name?} {--overwrite}';
 

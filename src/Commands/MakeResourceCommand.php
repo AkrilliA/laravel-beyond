@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeResourceCommand extends Command
+class MakeResourceCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:resource {name?} {--collection} {--overwrite}';
 

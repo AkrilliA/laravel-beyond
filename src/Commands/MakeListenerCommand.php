@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeListenerCommand extends Command
+class MakeListenerCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:listener {name?} {--overwrite}';
 

@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakePolicyCommand extends Command
+class MakePolicyCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:policy {name?} {--model=} {--overwrite}';
 

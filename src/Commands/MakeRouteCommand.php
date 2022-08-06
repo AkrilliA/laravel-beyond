@@ -2,7 +2,7 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-class MakeRouteCommand extends Command
+class MakeRouteCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:route {routeName?} {--overwrite}';
 
