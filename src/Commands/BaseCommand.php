@@ -57,7 +57,7 @@ abstract class BaseCommand extends Command
 
     protected function checkVersion(): int
     {
-        if ($this->minimumVersion === null) {
+        if (null === $this->minimumVersion) {
             return 0;
         }
 
@@ -78,19 +78,8 @@ abstract class BaseCommand extends Command
 
     protected function getMissingPackages(): array
     {
-        if (empty($this->requiredPackages)) {
-            return [];
-        }
-
         $composer = $this->getLaravel()->get(ComposerContract::class);
 
-        $missing = [];
-        foreach ($this->requiredPackages as $package) {
-            if (!$composer->isPackageInstalled($package)) {
-                $missing[] = $package;
-            }
-        }
-
-        return $missing;
+        return array_diff($this->requiredPackages, $composer->getPackages()['require']);
     }
 }

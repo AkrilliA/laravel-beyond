@@ -2,8 +2,6 @@
 
 namespace Tests\Commands;
 
-use Illuminate\Testing\PendingCommand;
-
 test('cannot make enum on php 8.0', function () {
     $this->artisan('beyond:make:enum')
         ->expectsOutputToContain(

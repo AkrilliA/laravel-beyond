@@ -37,7 +37,7 @@ class MakeModelCommand extends BaseCommand
                     base_path() . '/database/factories/' . $fileName . '.php',
                     [
                         '{{ namespace }}' => $schema->namespace(),
-                        '{{ model }}' => $schema->className()
+                        '{{ model }}' => $schema->className(),
                     ],
                     $overwrite
                 );
