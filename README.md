@@ -61,9 +61,10 @@ php artisan beyond:make:collection Users/UserCollection
 
 **Options**
 
-| Name          | Description                                  |
-|---------------|----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists         |
+| Name          | Description                            |
+|---------------|----------------------------------------|
+| `--model=`    | Will create a model related collection |
+| `--overwrite` | Will overwrite the file if it exists   |
 
 ---
 
@@ -77,9 +78,10 @@ php artisan beyond:make:controller SyncUsersCommand
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name          | Description                                          |
+|---------------|------------------------------------------------------|
+| `--command=`  | Will use given `command:name` schema for new command |
+| `--overwrite` | Will overwrite the file if it exists                 |
 
 ---
 
@@ -93,9 +95,10 @@ php artisan beyond:make:controller Admin/Users/UserController
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name          | Description                          |
+|---------------|--------------------------------------|
+| `--api`       | Will overwrite an API controller     |
+| `--overwrite` | Will overwrite the file if it exists |
 
 ---
 
@@ -179,6 +182,23 @@ php artisan beyond:make:listener Users/UserCreatedListener
 
 ---
 
+#### `beyond:make:middleware`
+
+This command will create a new middleware class inside your application.
+
+```bash
+php artisan beyond:make:middleware Admin/Users/IdentifyUserMiddleware
+```
+
+**Options**
+
+| Name          | Description                                   |
+|---------------|-----------------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists          |
+| `--support`   | Will create a middleware in Support namespace |
+
+---
+
 #### `beyond:make:model`
 
 This command will create a new model class inside your domain.
@@ -189,9 +209,10 @@ php artisan beyond:make:model Users/User
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name                | Description                            |
+|---------------------|----------------------------------------|
+| `-m`, `--migration` | Will create a migration for this model |
+| `--overwrite`       | Will overwrite the file if it exists   |
 
 ---
 
@@ -205,9 +226,10 @@ php artisan beyond:make:policy Users/UserPolicy
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name          | Description                              |
+|---------------|------------------------------------------|
+| `--model=`    | Will create a policy for the given model |
+| `--overwrite` | Will overwrite the file if it exists     |
 
 ---
 
@@ -253,9 +275,10 @@ php artisan beyond:make:resource Admin/Users/UserResource
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name           | Description                          |
+|----------------|--------------------------------------|
+| `--collection` | Will create a collection             |
+| `--overwrite`  | Will overwrite the file if it exists |
 
 ---
 
@@ -285,9 +308,10 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name          | Description                                   |
+|---------------|-----------------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists          |
+| `--support`   | Will create a middleware in Support namespace |
 
 ---
 
@@ -317,9 +341,10 @@ php artisan beyond:setup
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name            | Description                             |
+|-----------------|-----------------------------------------|
+| `--overwrite`   | Will overwrite the file if it exists    |
+| `--skip-delete` | Will skip the deletion of app directory |
 
 ---
 
