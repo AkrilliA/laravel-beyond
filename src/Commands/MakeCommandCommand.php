@@ -2,30 +2,37 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeCommandCommand extends Command
+class MakeCommandCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:command {className} {--command=command:name} {--overwrite}';
+    protected $signature = 'beyond:make:command {name?} {appName?} {moduleName?} {--command=command:name} {--overwrite}';
 
     protected $description = 'Make a new command';
 
     public function handle()
     {
-        $className = $this->argument('className');
-        $command = $this->option('command');
-        $overwrite = $this->option('overwrite');
+        try {
+            $name = $this->argument('name');
+            $command = $this->option('command');
+            $overwrite = $this->option('overwrite');
 
-        beyond_copy_stub(
-            'command.stub',
-            base_path() . "/src/App/Console/Commands/{$className}.php",
-            [
-                '{{ className }}' => $className,
-                '{{ command }}' => $command,
-            ],
-            $overwrite
-        );
+            $schema = (new AppNameSchemaResolver($this, $name, 'Commands', 'Console'))->handle();
 
-        $this->info("Command created.");
+            beyond_copy_stub(
+                'command.stub',
+                $schema->path(),
+                [
+                    '{{ namespace }}' => $name,
+                    '{{ command }}' => $command,
+                    '{{ className }}' => $schema->className(),
+                ],
+                $overwrite
+            );
+
+            $this->components->info('Command created.');
+        } catch (\Exception $exception) {
+            $this->components->error($exception->getMessage());
+        }
     }
 }

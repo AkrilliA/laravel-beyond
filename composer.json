@@ -11,6 +11,11 @@
             "src/helper.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Jonas Regner",
@@ -40,5 +45,19 @@
                 "Regnerisch\\LaravelBeyond\\LaravelBeyondServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21",
+        "orchestra/testbench": "^7.6",
+        "spatie/data-transfer-object": "^3.8",
+        "spatie/laravel-query-builder": "^5.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
     }
 }

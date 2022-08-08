@@ -2,14 +2,17 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeDataTransferObjectCommand extends Command
+class MakeDataTransferObjectCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:dto {name} {--overwrite}';
+    protected $signature = 'beyond:make:dto {name?} {--overwrite}';
 
     protected $description = 'Make a new data transfer object';
+
+    protected array $requiredPackages = [
+        'spatie/data-transfer-object',
+    ];
 
     public function handle(): void
     {
@@ -17,21 +20,21 @@ class MakeDataTransferObjectCommand extends Command
             $name = $this->argument('name');
             $overwrite = $this->option('overwrite');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'data-transfer-object.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('DataTransferObjects') . '.php',
+                $schema->path('DataTransferObjects'),
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info("DataTransferObject created.");
+            $this->components->info('DataTransferObject created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

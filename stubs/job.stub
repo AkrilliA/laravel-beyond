@@ -1,6 +1,6 @@
 <?php
 
-namespace App\{{ application }}\{{ module }}\Jobs;
+namespace App\{{ namespace }}\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -15,11 +15,11 @@ class {{ className }} implements ShouldQueue
 
     public function __construct()
     {
-
+        //
     }
 
     public function handle()
     {
-
+        //
     }
 }

@@ -2,12 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeJobCommand extends Command
+class MakeJobCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:job {name} {--overwrite}';
+    protected $signature = 'beyond:make:job {name?} {--overwrite}';
 
     protected $description = 'Make a new job';
 
@@ -17,22 +16,21 @@ class MakeJobCommand extends Command
             $name = $this->argument('name');
             $overwrite = $this->option('overwrite');
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'job.stub',
-                base_path() . '/src/App/' . $schema->getPath('Jobs') . '.php',
+                $schema->path('Jobs'),
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info("Job created.");
+            $this->components->info('Job created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

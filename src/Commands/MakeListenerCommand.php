@@ -2,12 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeListenerCommand extends Command
+class MakeListenerCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:listener {name} {--overwrite}';
+    protected $signature = 'beyond:make:listener {name?} {--overwrite}';
 
     protected $description = 'Make a new listener';
 
@@ -17,21 +16,21 @@ class MakeListenerCommand extends Command
             $name = $this->argument('name');
             $overwrite = $this->option('overwrite');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'listener.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('Listeners') . '.php',
+                $schema->path('Listeners'),
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info("Listener created.");
+            $this->components->info('Listener created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

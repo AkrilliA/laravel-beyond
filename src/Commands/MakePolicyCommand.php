@@ -2,12 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakePolicyCommand extends Command
+class MakePolicyCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:policy {name} {--model=} {--overwrite}';
+    protected $signature = 'beyond:make:policy {name?} {--model=} {--overwrite}';
 
     protected $description = 'Make a new policy';
 
@@ -18,25 +17,25 @@ class MakePolicyCommand extends Command
             $model = $this->option('model');
             $overwrite = $this->option('overwrite');
 
-            $schema = new DomainNameSchemaResolver($name);
-
             $stub = $model ? 'policy.stub' : 'policy.plain.stub';
+
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/Domain/' . $schema->getPath('Policies') . '.php',
+                $schema->path('Policies'),
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                     '{{ modelName }}' => $model,
-                    '{{ modelVariable }}' => $model === 'User' ? 'object' : mb_strtolower($model),
+                    '{{ modelVariable }}' => 'User' === $model ? 'object' : mb_strtolower($model),
                 ],
                 $overwrite
             );
 
-            $this->info("Policy created.");
+            $this->components->info('Policy created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

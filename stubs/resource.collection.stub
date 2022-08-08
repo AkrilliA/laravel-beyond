@@ -1,17 +1,11 @@
 <?php
 
-namespace App\{{ application }}\{{ module }}\Resources;
+namespace App\{{ namespace }}\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class {{ className }} extends ResourceCollection
 {
-    /**
-     * Transform the resource collection into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function toArray($request)
     {
         return parent::toArray($request);

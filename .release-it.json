@@ -1,0 +1,31 @@
+{
+    "git": {
+        "commitMessage": "chore: release v${version}"
+    },
+    "github": {
+        "release": true,
+        "web": true
+    },
+    "hooks": {
+        "before:init": [
+            "docker run --rm -v $PWD:/app -w /app -u $(id -u):$(id -g) php:cli php vendor/bin/pest"
+        ],
+        "after:bump": [
+            "docker run --rm -v $PWD:/app -w /app -u $(id -u):$(id -g) php:cli php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix",
+            "docker run --rm -v $PWD:/app -u $(id -u):$(id -g) composer update --lock"
+        ]
+    },
+    "npm": {
+        "publish": false
+    },
+    "plugins": {
+        "@release-it/bumper": {
+            "in": "composer.json",
+            "out": "composer.json"
+        },
+        "@release-it/conventional-changelog": {
+            "preset": "angular",
+            "infile": "CHANGELOG.md"
+        }
+    }
+}

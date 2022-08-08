@@ -13,12 +13,10 @@ class CopyFileAction
 
         $fs->ensureDirectoryExists(
             dirname($targetPath),
-            0755,
-            true
         );
 
         if (!$overwrite && $fs->exists($targetPath)) {
-            throw new FileAlreadyExistsException();
+            throw new FileAlreadyExistsException('File already exists. You could use --overwrite to create a new file.');
         }
 
         $fs->copy(

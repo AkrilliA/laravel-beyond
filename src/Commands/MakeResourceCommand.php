@@ -2,12 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeResourceCommand extends Command
+class MakeResourceCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:resource {name} {--collection} {--overwrite}';
+    protected $signature = 'beyond:make:resource {name?} {--collection} {--overwrite}';
 
     protected $description = 'Make a new resource';
 
@@ -18,26 +17,25 @@ class MakeResourceCommand extends Command
             $collection = $this->option('collection');
             $overwrite = $this->option('overwrite');
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
-            $stub = (str_contains($schema->getClassName(), 'Collection') || $collection) ?
+            $stub = (str_contains($schema->className(), 'Collection') || $collection) ?
                 'resource.collection.stub' :
                 'resource.stub';
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/App/' . $schema->getPath('Resources') . '.php',
+                $schema->path('Resources'),
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info("Resource created.");
+            $this->components->info('Resource created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

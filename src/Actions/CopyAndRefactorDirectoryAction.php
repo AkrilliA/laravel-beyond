@@ -11,7 +11,7 @@ class CopyAndRefactorDirectoryAction
     ) {
     }
 
-    public function execute(string $sourcePath, string $targetPath, array $refactor = []): void
+    public function execute(string $sourcePath, string $targetPath, array $refactor = [], bool $overwrite = false): void
     {
         $fs = new Filesystem();
         $files = $fs->files($sourcePath);
@@ -20,7 +20,8 @@ class CopyAndRefactorDirectoryAction
             $this->copyAndRefactorFileAction->execute(
                 $sourcePath . '/' . $file->getFilename(),
                 $targetPath . '/' . $file->getFilename(),
-                $refactor
+                $refactor,
+                $overwrite
             );
         }
     }

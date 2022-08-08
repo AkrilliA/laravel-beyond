@@ -2,12 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeCollectionCommand extends Command
+class MakeCollectionCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:collection {name} {--model=} {--overwrite}';
+    protected $signature = 'beyond:make:collection {name?} {--model=} {--overwrite}';
 
     protected $description = 'Make a new collection';
 
@@ -20,31 +19,30 @@ class MakeCollectionCommand extends Command
 
             $stub = $model ? 'collection.stub' : 'collection.plain.stub';
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 $stub,
-                base_path() . '/src/Domain/' . $schema->getPath('Collections') . '.php',
+                $schema->path('Collections'),
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
-                    '{{ model }}' => $model,
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info(
-                "Please add following code to your related model" . PHP_EOL . PHP_EOL .
+            $this->components->info(
+                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
 
                 'public function newCollection(array $models = [])' . PHP_EOL .
                 '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->getClassName() . '($models); ' . PHP_EOL .
+                "\t" . 'return new ' . $schema->className() . '($models); ' . PHP_EOL .
                 '}'
             );
 
-            $this->info("Collection created.");
+            $this->components->info('Collection created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

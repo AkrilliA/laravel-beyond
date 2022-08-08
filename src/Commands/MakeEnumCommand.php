@@ -2,14 +2,15 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeEnumCommand extends Command
+class MakeEnumCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:enum {name} {--overwrite}';
+    protected $signature = 'beyond:make:enum {name?} {--overwrite}';
 
     protected $description = 'Make a new enum type';
+
+    public ?string $minimumVersion = '8.1';
 
     public function handle()
     {
@@ -17,21 +18,21 @@ class MakeEnumCommand extends Command
             $name = $this->argument('name');
             $overwrite = $this->option('overwrite');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'enum.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('Enums') . '.php',
+                $schema->path('Enums'),
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info('Enum created.');
+            $this->components->info('Enum created.');
         } catch (\Exception $e) {
-            $this->error($e->getMessage());
+            $this->components->error($e->getMessage());
         }
     }
 }

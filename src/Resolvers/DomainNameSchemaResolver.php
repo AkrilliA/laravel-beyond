@@ -2,47 +2,42 @@
 
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
-use Regnerisch\LaravelBeyond\Exceptions\InvalidNameSchemaException;
+use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use Regnerisch\LaravelBeyond\Contracts\Schema;
+use Regnerisch\LaravelBeyond\Schema\DomainSchema;
+use Regnerisch\LaravelBeyond\Schema\SupportSchema;
 
-class DomainNameSchemaResolver
+class DomainNameSchemaResolver extends BaseNameSchemaResolver
 {
-    protected array $parts = [];
-
-    public function __construct(string $name)
+    public function handle(): Schema
     {
-        $this->parts = explode('/', $name);
+        if ($this->support) {
+            $className = $this->askClassName();
 
-        if (2 !== count($this->parts)) {
-            throw new InvalidNameSchemaException(
-                'Invalid name schema! Please ensure the required schema: {Domain}/{ClassName}.'
-            );
+            return new SupportSchema('', $className);
         }
 
-        foreach ($this->parts as $part) {
-            if (!$part) {
-                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
-            }
-        }
+        [$namespace, $className] = $this->namespaceAndClassName();
+        $namespace = $namespace ?? $this->askNamespace();
+        $className = $className ?? $this->askClassName();
+
+        return new DomainSchema($namespace, $className);
     }
 
-    public function getDomainName(): string
+    protected function askNamespace(): string
     {
-        return $this->parts[0];
+        $fetchDirectoryNamesFromPathAction = new FetchDirectoryNamesFromPathAction();
+        $domains = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/Domain');
+
+        do {
+            $domainName = $this->command->anticipate('Please enter the domain name', $domains);
+        } while (!$domainName);
+
+        return $domainName;
     }
 
-    public function getClassName(): string
+    protected function askClassName(): string
     {
-        return $this->parts[1];
+        return $this->className ?? $this->command->ask('Please enter the class name');
     }
-
-    public function getPath(string $directory): string
-    {
-        $parts = $this->parts;
-
-        array_splice($parts, 1, 0, $directory);
-
-        return implode('/', $parts);
-    }
-
-
 }

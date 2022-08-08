@@ -2,52 +2,68 @@
 
 namespace Regnerisch\LaravelBeyond\Resolvers;
 
-use Regnerisch\LaravelBeyond\Exceptions\InvalidNameSchemaException;
+use Illuminate\Console\Command;
+use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use Regnerisch\LaravelBeyond\Contracts\Schema;
+use Regnerisch\LaravelBeyond\Schema\AppSchema;
+use Regnerisch\LaravelBeyond\Schema\SupportSchema;
 
-class AppNameSchemaResolver
+class AppNameSchemaResolver extends BaseNameSchemaResolver
 {
-    protected array $parts = [];
+    public function __construct(
+        protected Command $command,
+        protected ?string $className = null,
+        protected ?string $moduleName = null,
+        protected ?string $appName = null,
+        protected bool $support = false,
+    ) {
+        parent::__construct($this->command, $this->className, $this->support);
+    }
 
-    public function __construct(string $name)
+    public function handle(): Schema
     {
-        $this->parts = explode('/', $name);
+        if ($this->support) {
+            $className = $this->askClassName();
 
-        if (3 !== count($this->parts)) {
-            throw new InvalidNameSchemaException(
-                'Invalid name schema! Please ensure the required schema: {App}/{Module}/{ClassName}.'
-            );
+            return new SupportSchema('', $className);
         }
 
-        foreach ($this->parts as $part) {
-            if (!$part) {
-                throw new InvalidNameSchemaException('Invalid name schema! Please ensure that none of the required parts is empty.');
-            }
+        [$namespace, $className] = $this->namespaceAndClassName();
+        $namespace = $namespace ?? $this->askNamespace();
+        $className = $className ?? $this->askClassName();
+
+        return new AppSchema($namespace, $className);
+    }
+
+    protected function askNamespace(): string
+    {
+        $fetchDirectoryNamesFromPathAction = new FetchDirectoryNamesFromPathAction();
+
+        $appName = $this->appName;
+        if (!$appName) {
+            $apps = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/App');
+            do {
+                $appName = $this->command->anticipate('Please enter the app name', $apps);
+            } while (!$appName);
         }
+
+        $moduleName = $this->moduleName;
+        if (!$moduleName) {
+            $modules = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/App/' . $appName);
+            do {
+                $moduleName = $this->command->anticipate('Please enter the module name (in App/' . $appName . ')', $modules);
+            } while (!$moduleName);
+        }
+
+        return $appName . '/' . $moduleName;
     }
 
-    public function getAppName(): string
+    protected function askClassName(): string
     {
-        return $this->parts[0];
+        do {
+            $className = $this->className ?? $this->command->ask('Please enter the class name');
+        } while (!$className);
+
+        return $className;
     }
-
-    public function getModuleName(): string
-    {
-        return $this->parts[1];
-    }
-
-    public function getClassName(): string
-    {
-        return $this->parts[2];
-    }
-
-    public function getPath(string $directory): string
-    {
-        $parts = $this->parts;
-
-        array_splice($parts, 2, 0, $directory);
-
-        return implode('/', $parts);
-    }
-
-
 }

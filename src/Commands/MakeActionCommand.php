@@ -2,13 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
-class MakeActionCommand extends Command
+class MakeActionCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:action {name} {--overwrite}';
+    protected $signature = 'beyond:make:action {name?} {--overwrite}';
 
     protected $description = 'Make a new action';
 
@@ -18,21 +16,21 @@ class MakeActionCommand extends Command
             $name = $this->argument('name');
             $overwrite = $this->option('overwrite');
 
-            $schema = new DomainNameSchemaResolver($name);
+            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'action.stub',
-                base_path() . '/src/Domain/' . $schema->getPath('Actions') . '.php',
+                $schema->path('Actions'),
                 [
-                    '{{ domain }}' => $schema->getDomainName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
-                $overwrite,
+                $overwrite
             );
 
-            $this->info("Action created.");
+            $this->components->info('Action created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }

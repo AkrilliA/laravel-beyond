@@ -2,12 +2,11 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeRequestCommand extends Command
+class MakeRequestCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:request {name} {--overwrite}';
+    protected $signature = 'beyond:make:request {name?} {--overwrite}';
 
     protected $description = 'Make a new request';
 
@@ -17,22 +16,21 @@ class MakeRequestCommand extends Command
             $name = $this->argument('name');
             $overwrite = $this->option('overwrite');
 
-            $schema = new AppNameSchemaResolver($name);
+            $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
                 'request.stub',
-                base_path() . '/src/App/' . $schema->getPath('Requests') . '.php',
+                $schema->path('Requests'),
                 [
-                    '{{ application }}' => $schema->getAppName(),
-                    '{{ module }}' => $schema->getModuleName(),
-                    '{{ className }}' => $schema->getClassName(),
+                    '{{ namespace }}' => $schema->namespace(),
+                    '{{ className }}' => $schema->className(),
                 ],
                 $overwrite
             );
 
-            $this->info("Request created.");
+            $this->components->info('Request created.');
         } catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->components->error($exception->getMessage());
         }
     }
 }
