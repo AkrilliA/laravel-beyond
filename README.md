@@ -1,8 +1,10 @@
 # Laravel Beyond
 
-*This package is heavily inspired by "Laravel Beyond CRUD" from Spatie. You should check out [their website](https://spatie.be/products/laravel-beyond-crud).*
+*This package is heavily inspired by "Laravel Beyond CRUD" from Spatie. You should check
+out [their website](https://spatie.be/products/laravel-beyond-crud).*
 
-This package will help you with `beyond:make` commands to easily create classes inside your "Laravel Beyond CRUD" inspired application.
+This package will help you with `beyond:make` commands to easily create classes inside your "Laravel Beyond CRUD"
+inspired application.
 We try to implement commands as near as possible on their original `make` counterparts.
 
 ## Installation
@@ -18,6 +20,7 @@ composer require --dev regnerisch/laravel-beyond
 ### Commands
 
 #### `beyond:make:action`
+
 This command will create a new action class inside your domain.
 
 ```bash
@@ -30,7 +33,10 @@ php artisan beyond:make:action Users/CreateUserAction
 |---------------|---------------------------------------|
 | `--overwrite` | Will overwrite the file if it exists  |
 
+---
+
 #### `beyond:make:builder`
+
 This command will create a new eloquent builder class inside your domain.
 
 ```bash
@@ -43,70 +49,286 @@ php artisan beyond:make:builder Users/UserBuilder
 |---------------|---------------------------------------|
 | `--overwrite` | Will overwrite the file if it exists  |
 
+---
+
+#### `beyond:make:collection`
+
+This command will create a new collection class inside your domain.
+
 ```bash
-# Creates an action at Domain/Users/Actions/CreateUserAction
-php artisan beyond:make:action Users/CreateUserAction
-
-# Creates a collection at Domain/Users/Collections/UserCollection
 php artisan beyond:make:collection Users/UserCollection
+```
 
-# Creates a command at App/Console/Commands/SyncUserCommand
-php artisan beyond:make:command SyncUserCommand
+**Options**
 
-# Creates a controller at App/Admin/Users/Controllers/UserController
+| Name          | Description                                  |
+|---------------|----------------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists         |
+
+---
+
+#### `beyond:make:command`
+
+This command will create a new action class inside your console application.
+
+```bash
+php artisan beyond:make:controller SyncUsersCommand
+```
+
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:controller`
+
+This command will create a new action class inside your application.
+
+```bash
 php artisan beyond:make:controller Admin/Users/UserController
+```
 
-# Creates an enum at Domain/Users/Enums/UserStatusEnum
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:enum`
+
+This command will create a new enum class inside your domain.
+
+```bash
 php artisan beyond:make:enum Users/UserStatusEnum
+```
 
-# Creates an event at Domain/Users/Events/UserCreatedEvent
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:event`
+
+This command will create a new event class inside your application.
+
+```bash
 php artisan beyond:make:event Users/UserCreatedEvent
+```
 
-# Creates a data transfer object at Domain/Users/DataTransferObjects/UserData (requires spatie/data-transfer-object)
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:dto`
+
+This command will create a new data transfer object class inside your domain.
+
+```bash
 php artisan beyond:make:dto Users/UserData
+```
 
-# Creates a job at App/Admin/Users/Jobs/SyncUsersJob
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:job`
+
+This command will create a new job class inside your application.
+
+```bash
 php artisan beyond:make:job Admin/Users/SyncUsersJob
+```
 
-# Creates a listener at Domain/Users/Listeners/UserCreatedListener
-php artisan beyond:make:listener Users/Listeners/UserCreatedListener
+**Options**
 
-# Creates a model at Domain/Users/Models/User
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:listener`
+
+This command will create a new listener class inside your domain.
+
+```bash
+php artisan beyond:make:listener Users/UserCreatedListener
+```
+
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:model`
+
+This command will create a new model class inside your domain.
+
+```bash
 php artisan beyond:make:model Users/User
+```
 
-# Creates a policy at Domain/Users/Policies/UserPolicy
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:policy`
+
+This command will create a new policy class inside your domain.
+
+```bash
 php artisan beyond:make:policy Users/UserPolicy
+```
 
-# Creates an eloquent query builder at Domain/Users/QueryBuilders/UserQueryBuilder
-php artisan beyond:make:query-builder Users/UserQueryBuilder
+**Options**
 
-# Creates a query at App/Admin/Users/Queries/UserIndexQuery (requires spatie/laravel-query-builder)
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:query` __requires spatie/laravel-query-builder__
+
+This command will create a new query class inside your domain.
+
+```bash
 php artisan beyond:make:query Admin/Users/UserIndexQuery
+```
 
-# Creates a request at App/Admin/Users/Requests/CreateUserRequest
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:request`
+
+This command will create a new request class inside your application.
+
+```bash
 php artisan beyond:make:request Admin/Users/CreateUserRequest
+```
 
-# Creates a resource at App/Admin/Users/Resources/UserResource
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:resource`
+
+This command will create a new resource class inside your application.
+
+```bash
 php artisan beyond:make:resource Admin/Users/UserResource
+```
 
-# Creates a route file at routes/users.php
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:route`
+
+This command will create a new route file inside your routes folder.
+
+```bash
 php artisan beyond:make:route Users
+```
 
-# Creates a rule at App/Admin/Users/Rules/IsAdminRule
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:rule`
+
+This command will create a new rule class inside your application.
+
+```bash
 php artisan beyond:make:rule Admin/Users/IsAdminRule
+```
 
-# Creates a service provider at App/Providers/UserServiceProvider
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:provider`
+
+This command will create a new service provider class.
+
+```bash
 php artisan beyond:make:provider UserServiceProvider
+```
 
-# Sets up a domain-driven application
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:setup`
+
+This command will setup a default Laravel installation into a DDD structure.
+
+```bash
 php artisan beyond:setup
 ```
 
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
 ### Set up a domain-driven application
-After installing `laravel-beyond` you can easily set up a domain-driven application. 
-You just need to run `php artisan beyond:setup` on a fresh Laravel application or 
+
+After installing `laravel-beyond` you can easily set up a domain-driven application.
+You just need to run `php artisan beyond:setup` on a fresh Laravel application or
 `php artisan beyond:setup --skip-delete` to keep you `app` directory with your existing
-code. 
+code.
 
 Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
 
