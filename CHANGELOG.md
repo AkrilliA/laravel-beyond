@@ -1,5 +1,25 @@
 
 
+# [3.0.0](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.10...v3.0.0) (2022-08-08)
+
+
+### Bug Fixes
+
+* fix github workflow ([b60684d](https://github.com/regnerisch/laravel-beyond/commit/b60684de1c4f8bdef2132cd7473f72ffa3dce4d5))
+* fix github workflow ([d0ea2b1](https://github.com/regnerisch/laravel-beyond/commit/d0ea2b14c248a2ab340478549c0fe9a3cf8d6155))
+* fix github workflow ([b349115](https://github.com/regnerisch/laravel-beyond/commit/b3491159c044659e8f34595f63a9ee1721cb5a7a))
+* fix github workflow ([02f0b0f](https://github.com/regnerisch/laravel-beyond/commit/02f0b0fbc4c00c5d35a72666cf61ade1e153c558))
+* fix github workflow ([4ec3ea4](https://github.com/regnerisch/laravel-beyond/commit/4ec3ea462aa9f62f2d3cbf1d300cf376141e5961))
+* fix php dependency ([3fa9b26](https://github.com/regnerisch/laravel-beyond/commit/3fa9b265557db0aafa70a9ebef0f6653efa4ce78))
+* fix php dependency ([5646953](https://github.com/regnerisch/laravel-beyond/commit/56469536bc6894a9fa510313d64017a9a7ed72ac))
+* remove composer.lock ([e452357](https://github.com/regnerisch/laravel-beyond/commit/e45235787d448b78c5a0c5f111ffd3072ba9402c))
+* remove unused dependency ([ffd697f](https://github.com/regnerisch/laravel-beyond/commit/ffd697fec39299ca83b239d14055742d5c2034b5))
+
+
+### Features
+
+* add github workflow ([b177d49](https://github.com/regnerisch/laravel-beyond/commit/b177d4917afeeb285e65b367c58665f8f716650e))
+
 # [3.0.0-beta.10](https://github.com/regnerisch/laravel-beyond/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2022-08-02)
 
 
