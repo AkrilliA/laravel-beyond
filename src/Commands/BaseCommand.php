@@ -35,22 +35,22 @@ abstract class BaseCommand extends Command
 
     protected function checkDependencies(): int
     {
-        if ([] !== $missingPackages = $this->getMissingPackages()) {
-            $this->components->error(
-                sprintf(
-                    'There are missing packages. Run composer require %s to install them.',
-                    implode(' ', $missingPackages)
-                )
-            );
-
-            foreach ($missingPackages as $missingPackage) {
-                $this->components->twoColumnDetail($missingPackage, 'MISSING');
-            }
-
-            return 1;
+        if ([] === $missingPackages = $this->getMissingPackages()) {
+            return 0;
         }
 
-        return 0;
+        $this->components->error(
+            sprintf(
+                'There are missing packages. Run composer require %s to install them.',
+                implode(' ', $missingPackages)
+            )
+        );
+
+        foreach ($missingPackages as $missingPackage) {
+            $this->components->twoColumnDetail($missingPackage, 'MISSING');
+        }
+
+        return 1;
     }
 
     protected function checkVersion(): int
