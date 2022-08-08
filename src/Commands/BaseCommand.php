@@ -11,7 +11,29 @@ abstract class BaseCommand extends Command
 {
     protected array $requiredPackages = [];
 
+    protected ?string $minimumVersion = null;
+
     protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->before();
+
+        return parent::execute($input, $output);
+    }
+
+    protected function before(): int
+    {
+        if ($code = $this->checkVersion()) {
+            return $code;
+        }
+
+        if ($code = $this->checkDependencies()) {
+            return $code;
+        }
+
+        return 0;
+    }
+
+    protected function checkDependencies(): int
     {
         if ([] !== $missingPackages = $this->getMissingPackages()) {
             $this->components->error(
@@ -28,7 +50,28 @@ abstract class BaseCommand extends Command
             return 1;
         }
 
-        return parent::execute($input, $output);
+        return 0;
+    }
+
+    protected function checkVersion(): int
+    {
+        if ($this->minimumVersion === null) {
+            return 0;
+        }
+
+        if (version_compare(PHP_VERSION, $this->minimumVersion, '<')) {
+            $this->components->error(
+                sprintf(
+                    'Your version %s does not match the required version %s of this command.',
+                    PHP_VERSION,
+                    $this->minimumVersion
+                )
+            );
+
+            return 1;
+        }
+
+        return 0;
     }
 
     protected function getMissingPackages(): array
