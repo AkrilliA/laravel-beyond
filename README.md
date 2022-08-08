@@ -211,6 +211,7 @@ php artisan beyond:make:model Users/User
 
 | Name                | Description                            |
 |---------------------|----------------------------------------|
+| `-f`, `--factory`   | Will create a factory for this model   |
 | `-m`, `--migration` | Will create a migration for this model |
 | `--overwrite`       | Will overwrite the file if it exists   |
 

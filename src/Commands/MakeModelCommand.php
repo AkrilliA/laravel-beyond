@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:model {name?} {-m|--migration} {--overwrite}';
+    protected $signature = 'beyond:make:model {name?} {-f|--factory} {-m|--migration} {--overwrite}';
 
     protected $description = 'Make a new model';
 
@@ -29,13 +29,26 @@ class MakeModelCommand extends BaseCommand
                 $overwrite
             );
 
+            if ($this->option('factory')) {
+                $fileName = $schema->className() . 'Factory';
+                beyond_copy_stub(
+                    'factory.stub',
+                    base_path() . '/database/factories/' . $fileName . '.php',
+                    [
+                        '{{ namespace }}' => $schema->namespace(),
+                        '{{ model }}' => $schema->className()
+                    ],
+                    $overwrite
+                );
+            }
+
             if ($this->option('migration')) {
                 $tableName = Str::snake(Str::pluralStudly($schema->className()));
                 $fileName = now()->format('Y_m_d_his') . '_create_' . $tableName . '_table';
 
                 beyond_copy_stub(
                     'migration.stub',
-                    base_path() . '/database/migrations' . $fileName . '.php',
+                    base_path() . '/database/migrations/' . $fileName . '.php',
                     [
                         '{{ tableName }}' => $tableName,
                     ],
