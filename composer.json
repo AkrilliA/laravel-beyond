@@ -34,7 +34,7 @@
         }
     ],
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.0",
         "illuminate/support": "^9.0",
         "illuminate/console": "^9.0",
         "illuminate/filesystem": "^9.0"
@@ -56,5 +56,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest"
     }
 }
