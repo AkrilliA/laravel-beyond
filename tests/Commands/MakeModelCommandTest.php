@@ -24,7 +24,8 @@ test('can make model, factory and migration are created', function () {
     $date = Carbon::parse()->format('Y_m_d_his');
 
     expect(base_path() . "/database/migrations/{$date}_create_users_table.php")
-        ->toBeFile();
+        ->toBeFile()
+        ->toPlaceholdersBeReplaced();
 
     expect(base_path() . '/database/factories/UserFactory.php')
         ->toBeFile()
