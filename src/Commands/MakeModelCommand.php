@@ -31,6 +31,7 @@ class MakeModelCommand extends BaseCommand
 
             if ($this->option('factory')) {
                 $fileName = $schema->className() . 'Factory';
+
                 beyond_copy_stub(
                     'factory.stub',
                     base_path() . '/database/factories/' . $fileName . '.php',
