@@ -11,11 +11,13 @@ abstract class BaseCommand extends Command
 {
     protected array $requiredPackages = [];
 
-    protected ?string $minimumVersion = null;
+    public ?string $minimumVersion = null;
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->before();
+        if ($code = $this->before()) {
+            return $code;
+        }
 
         return parent::execute($input, $output);
     }
