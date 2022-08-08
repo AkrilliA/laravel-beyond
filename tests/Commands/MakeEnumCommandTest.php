@@ -2,9 +2,11 @@
 
 namespace Tests\Commands;
 
+use Illuminate\Testing\PendingCommand;
+
 test('cannot make enum on php 8.0', function () {
     $this->artisan('beyond:make:enum')
-        ->expectsOutput(
+        ->expectsOutputToContain(
             sprintf(
                 'Your version %s does not match the required version 8.1 of this command.',
                 PHP_VERSION
