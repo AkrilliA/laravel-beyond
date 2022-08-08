@@ -13,8 +13,8 @@ test('can make model', function () {
         ->toPlaceholdersBeReplaced();
 });
 
-test('can make model and migration is created', function () {
-    $this->artisan('beyond:make:model User/User --migration --overwrite');
+test('can make model, factory and migration are created', function () {
+    $this->artisan('beyond:make:model User/User --factory --migration --overwrite');
 
     expect(base_path() . '/src/Domain/User/Models/User.php')
         ->toBeFile()
@@ -25,4 +25,8 @@ test('can make model and migration is created', function () {
 
     expect(base_path() . "/database/migrations/{$date}_create_users_table.php")
         ->toBeFile();
+
+    expect(base_path() . '/database/factories/UserFactory.php')
+        ->toBeFile()
+        ->toPlaceholdersBeReplaced();
 });

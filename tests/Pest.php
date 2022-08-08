@@ -33,7 +33,7 @@ uses()
 */
 
 expect()->extend('toMatchNamespaceAndClassName', function () {
-    require $this->value;
+    require_once $this->value;
 
     $namespacedClassName = str_replace(
         '/',
