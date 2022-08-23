@@ -41,7 +41,6 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeCommandCommand::class,
                 MakeControllerCommand::class,
                 MakeDataTransferObjectCommand::class,
-                MakeViewModelCommand::class,
                 MakeEnumCommand::class,
                 MakeEventCommand::class,
                 MakeJobCommand::class,
@@ -56,6 +55,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeRouteCommand::class,
                 MakeRuleCommand::class,
                 MakeServiceProviderCommand::class,
+                MakeViewModelCommand::class,
                 SetupCommand::class,
             ]);
         }
