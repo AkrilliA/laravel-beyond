@@ -150,6 +150,22 @@ php artisan beyond:make:dto Users/UserData
 
 ---
 
+#### `beyond:make:vm`
+
+This command will create a new view model class inside your domain.
+
+```bash
+php artisan beyond:make:vm Users/UserViewModel
+```
+
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
 #### `beyond:make:job`
 
 This command will create a new job class inside your application.
@@ -309,10 +325,10 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 
 **Options**
 
-| Name          | Description                                   |
-|---------------|-----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists          |
-| `--support`   | Will create a middleware in Support namespace |
+| Name          | Description                             |
+|---------------|-----------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists    |
+| `--support`   | Will create a rule in Support namespace |
 
 ---
 

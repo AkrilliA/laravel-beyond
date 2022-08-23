@@ -1,0 +1,13 @@
+<?php
+
+namespace App\{{ namespace }}\ViewModels;
+
+use Spatie\ViewModels\ViewModel;
+
+class {{ className }} extends ViewModel
+{
+    public function __construct()
+    {
+
+    }
+}
