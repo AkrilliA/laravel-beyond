@@ -70,10 +70,10 @@ php artisan beyond:make:collection Users/UserCollection
 
 #### `beyond:make:command`
 
-This command will create a new command class inside your console application.
+This command will create a new action class inside your console application.
 
 ```bash
-php artisan beyond:make:command SyncUsersCommand
+php artisan beyond:make:controller SyncUsersCommand
 ```
 
 **Options**
@@ -140,6 +140,22 @@ This command will create a new data transfer object class inside your domain.
 
 ```bash
 php artisan beyond:make:dto Users/UserData
+```
+
+**Options**
+
+| Name          | Description                           |
+|---------------|---------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists  |
+
+---
+
+#### `beyond:make:vm`
+
+This command will create a new view model class inside your domain.
+
+```bash
+php artisan beyond:make:vm Users/UserViewModel
 ```
 
 **Options**
@@ -309,10 +325,10 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 
 **Options**
 
-| Name          | Description                                   |
-|---------------|-----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists          |
-| `--support`   | Will create a middleware in Support namespace |
+| Name          | Description                             |
+|---------------|-----------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists    |
+| `--support`   | Will create a rule in Support namespace |
 
 ---
 
