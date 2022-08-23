@@ -10,6 +10,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCommandCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeViewModelCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeEnumCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeEventCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
@@ -54,6 +55,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeRouteCommand::class,
                 MakeRuleCommand::class,
                 MakeServiceProviderCommand::class,
+                MakeViewModelCommand::class,
                 SetupCommand::class,
             ]);
         }
