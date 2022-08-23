@@ -70,10 +70,10 @@ php artisan beyond:make:collection Users/UserCollection
 
 #### `beyond:make:command`
 
-This command will create a new action class inside your console application.
+This command will create a new command class inside your console application.
 
 ```bash
-php artisan beyond:make:controller SyncUsersCommand
+php artisan beyond:make:command SyncUsersCommand
 ```
 
 **Options**
