@@ -16,3 +16,17 @@ test('can make dto', function () {
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });
+
+test('can make dto with factory', function () {
+    $composer = $this->app->make(ComposerContract::class);
+
+    $composer->setPackages(['spatie/data-transfer-object']);
+
+    $this->artisan('beyond:make:dto User/UserData --factory')
+        ->expectsQuestion('Please enter the app name', 'Web');
+
+    expect(base_path() . '/src/App/Web/User/DataFactories/UserDataFactory.php')
+        ->toBeFile()
+        ->toMatchNamespaceAndClassName()
+        ->toPlaceholdersBeReplaced();
+});

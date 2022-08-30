@@ -1,0 +1,15 @@
+<?php
+
+namespace App\{{ namespace }}\DataFactories;
+
+use Illuminate\Http\Request;
+
+use Domain\{{ domainNamespace }}\DataTransferObjects\{{ className }};
+
+class {{ className }}Factory
+{
+    public static function fromRequest(Request $request): {{ className }}
+    {
+        return new {{ className }}($request->all());
+    }
+}
