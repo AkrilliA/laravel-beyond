@@ -24,13 +24,6 @@
         {
             "name": "Alexander Gaal",
             "email": "alexander.gaal@gipfel.dev"
-        },
-        {
-            "name": "Nils Vennemann",
-            "email": "nilsvennemann95@gmail.com"
-        },
-        {
-            "name": "Mathis Haane"
         }
     ],
     "require": {
@@ -51,7 +44,7 @@
         "orchestra/testbench": "^7.6",
         "spatie/data-transfer-object": "^3.8",
         "spatie/laravel-query-builder": "^5.0",
-        "spatie/laravel-queueable-action": "^2.14.7"
+        "spatie/laravel-queueable-action": "^2.14"
     },
     "config": {
         "allow-plugins": {

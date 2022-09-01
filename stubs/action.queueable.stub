@@ -1,0 +1,15 @@
+<?php
+
+namespace Domain\{{ namespace }}\Actions;
+
+use Spatie\QueueableAction\QueueableAction;
+
+class {{ className }}
+{
+    use QueueableAction;
+
+    public function execute()
+    {
+        //
+    }
+}

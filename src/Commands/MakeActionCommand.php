@@ -22,7 +22,7 @@ class MakeActionCommand extends BaseCommand
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
-                $queueable ? 'action-queueable.stub' : 'action.stub',
+                $queueable ? 'action.queueable.stub' : 'action.stub',
                 $schema->path('Actions'),
                 [
                     '{{ namespace }}' => $schema->namespace(),
