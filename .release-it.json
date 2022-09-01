@@ -22,10 +22,6 @@
         "@release-it/bumper": {
             "in": "composer.json",
             "out": "composer.json"
-        },
-        "@release-it/conventional-changelog": {
-            "preset": "angular",
-            "infile": "CHANGELOG.md"
         }
     }
 }
