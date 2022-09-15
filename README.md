@@ -365,6 +365,7 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 - [@nilsvennemann](https://github.com/nilsvennemann)
 - [@Enaah](https://github.com/Enaah)
 - [@thewebartisan7](https://github.com/thewebartisan7)
+- [@Wulfheart](https://github.com/Wulfheart)
 
 ## License
 
