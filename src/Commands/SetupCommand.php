@@ -103,9 +103,9 @@ class SetupCommand extends BaseCommand
             $this->components->info('Setup completed.');
             $this->components->info(
                 'Do not forget to add following code into the boot() function of your AppServiceProvider:' . PHP_EOL . PHP_EOL .
-
-                'Factory::guessFactoryNamesUsing(function (string $modelName) {' . PHP_EOL .
-                "\t" . 'return \'Database\\Factories\\\' . class_basename($modelName) . \'Factory\';' . PHP_EOL .
+                
+                'Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {' . PHP_EOL .
+                "\t" . 'return \'Database\\\Factories\\\' . class_basename($modelName) . \'Factory\';' . PHP_EOL .
                 '});' . PHP_EOL
             );
         } catch (\Exception $exception) {
