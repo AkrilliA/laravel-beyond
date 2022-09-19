@@ -15,6 +15,23 @@ Install laravel-beyond with composer
 composer require --dev regnerisch/laravel-beyond
 ```
 
+After this you can setup it by running
+
+```bash
+php artisan beyond:setup
+```
+
+This moves everything to the correct place and deletes the `app` folder afterwards. You can also choose to skip this 
+by adding the `--skip-delete` flag.
+
+Please ensure that you add the following into one of your service providers (e.g. `AppServiceProvider`):
+
+```php
+Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
+    return '\Database\Factories\' . class_basename($modelName) . 'Factory';
+}); 
+```
+
 ## Usage
 
 ### Commands
