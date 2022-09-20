@@ -18,13 +18,12 @@ class MakeMiddlewareCommand extends BaseCommand
             $overwrite = $this->option('overwrite');
 
             $stub = $support ? 'middleware.support.stub' : 'middleware.stub';
-            $directory = $support ? 'Packages/Laravel/Middleware' : 'Middleware';
 
             $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
 
             beyond_copy_stub(
                 $stub,
-                $schema->path($directory),
+                $schema->path('Middlewares'),
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),

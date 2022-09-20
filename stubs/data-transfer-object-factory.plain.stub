@@ -1,0 +1,13 @@
+<?php
+
+namespace App\{{ namespace }}\Factories;
+
+use Illuminate\Http\Request;
+
+class {{ className }}
+{
+    public static function fromRequest(Request $request)
+    {
+        //
+    }
+}

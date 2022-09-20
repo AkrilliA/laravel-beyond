@@ -13,7 +13,7 @@ test('can make rule', function () {
 test('can make support rule', function () {
     $this->artisan('beyond:make:rule UserRule --support');
 
-    expect(base_path() . '/src/Support/Packages/Laravel/Rules/UserRule.php')
+    expect(base_path() . '/src/Support/Rules/UserRule.php')
         ->toBeFile()
         ->toPlaceholdersBeReplaced();
 });
@@ -29,7 +29,7 @@ test('namespace is correct', function () {
 test('support namespace is correct', function () {
     $this->artisan('beyond:make:rule UserRule --support');
 
-    $file = base_path() . '/src/Support/Packages/Laravel/Rules/UserRule.php';
+    $file = base_path() . '/src/Support/Rules/UserRule.php';
     $content = file_get_contents($file);
-    expect($content)->toContain('namespace Support\Packages\Laravel\Rules;');
+    expect($content)->toContain('namespace Support\Rules;');
 });

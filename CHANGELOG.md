@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added `MakeDataTransferObjectFactoryCommand` by [@regnerisch](https://github.com/regnerisch) inspired by [#58](https://github.com/regnerisch/laravel-beyond/issues/58)
+
+### Changed
+- Reset folder structure by [@regnerisch](https://github.com/regnerisch) inspired by [#56](https://github.com/regnerisch/laravel-beyond/issues/56)
+- Use `regnerisch/laravel-command-hooks` instead of custom `BaseCommand` by [@regnerisch](https://github.com/regnerisch)
 
 ## [3.1.1] - 2022-09-15
 ### Changed

@@ -2,25 +2,14 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Regnerisch\LaravelCommandHooks\Command;
 
 abstract class BaseCommand extends Command
 {
     protected array $requiredPackages = [];
 
     public ?string $minimumVersion = null;
-
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        if ($code = $this->before()) {
-            return $code;
-        }
-
-        return parent::execute($input, $output);
-    }
 
     protected function before(): int
     {

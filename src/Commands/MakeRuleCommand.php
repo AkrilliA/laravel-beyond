@@ -18,13 +18,12 @@ class MakeRuleCommand extends BaseCommand
             $overwrite = $this->option('overwrite');
 
             $stub = $support ? 'rule.support.stub' : 'rule.stub';
-            $directory = $support ? 'Packages/Laravel/Rules' : 'Rules';
 
             $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
 
             beyond_copy_stub(
                 $stub,
-                $schema->path($directory),
+                $schema->path('Rules'),
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
