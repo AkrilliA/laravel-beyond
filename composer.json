@@ -31,7 +31,7 @@
         "illuminate/support": "^9.0",
         "illuminate/console": "^9.0",
         "illuminate/filesystem": "^9.0",
-        "regnerisch/laravel-command-hooks": "^1.0"
+        "regnerisch/laravel-command-hooks": "^2.0"
     },
     "extra": {
         "laravel": {
