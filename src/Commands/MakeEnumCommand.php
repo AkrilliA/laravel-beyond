@@ -10,7 +10,7 @@ class MakeEnumCommand extends BaseCommand
 
     protected $description = 'Make a new enum type';
 
-    public ?string $minimumVersion = '8.1';
+    public ?int $minimumVersion = 80100;
 
     public function handle()
     {

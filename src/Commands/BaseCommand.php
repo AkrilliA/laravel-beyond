@@ -9,11 +9,11 @@ abstract class BaseCommand extends Command
 {
     protected array $requiredPackages = [];
 
-    public ?string $minimumVersion = null;
+    public ?int $minimumVersion = null;
 
     protected function before(): int
     {
-        if ($code = $this->checkVersion()) {
+        if ($code = $this->checkVersionId()) {
             return $code;
         }
 
@@ -44,13 +44,13 @@ abstract class BaseCommand extends Command
         return 1;
     }
 
-    protected function checkVersion(): int
+    protected function checkVersionId(): int
     {
-        if (null === $this->minimumVersion) {
+        if (!$this->minimumVersion) {
             return 0;
         }
 
-        if (version_compare(PHP_VERSION, $this->minimumVersion, '<')) {
+        if (version_compare(PHP_VERSION_ID, $this->minimumVersion, '<')) {
             $this->components->error(
                 sprintf(
                     'Your version %s does not match the required version %s of this command.',
