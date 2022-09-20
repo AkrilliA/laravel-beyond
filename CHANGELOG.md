@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reset folder structure by [@regnerisch](https://github.com/regnerisch) inspired by [#56](https://github.com/regnerisch/laravel-beyond/issues/56)
 - Use `regnerisch/laravel-command-hooks` instead of custom `BaseCommand` by [@regnerisch](https://github.com/regnerisch)
 
+### Fixed
+- Fix commands not autoloaded by [@regnerisch](https://github.com/regnerisch) reported by [@dimzeta](https://github.com/dimzeta) in [#66](https://github.com/regnerisch/laravel-beyond/issues/66)
+
 ## [3.1.1] - 2022-09-15
 ### Changed
 - Use FQN instead of classname in `SetupCommand` output by [@Wulfheart](https://github.com/Wulfheart) in [#70](https://github.com/regnerisch/laravel-beyond/pull/64)
