@@ -28,6 +28,12 @@ class MakeControllerCommand extends BaseCommand
                 $stub = 'controller.stub';
             }
 
+            $stub = match(true) {
+                $api && !$invokable => 'controller.api.stub',
+                $invokable && !$api => 'controller.invokable.stub',
+                default => 'controller.stub'
+            };
+
             $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
             beyond_copy_stub(
