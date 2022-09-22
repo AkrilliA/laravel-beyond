@@ -2,7 +2,9 @@
 
 namespace Regnerisch\LaravelBeyond;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Regnerisch\LaravelBeyond\Commands\BaseCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
@@ -26,6 +28,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeRuleCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeServiceProviderCommand;
 use Regnerisch\LaravelBeyond\Commands\SetupCommand;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use Symfony\Component\Finder\SplFileInfo;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {
@@ -34,30 +37,29 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->app->singleton(ComposerContract::class, Composer::class);
 
-            $this->commands([
-                MakeCommand::class,
-                MakeActionCommand::class,
-                MakeCollectionCommand::class,
-                MakeCommandCommand::class,
-                MakeControllerCommand::class,
-                MakeDataTransferObjectCommand::class,
-                MakeDataTransferObjectFactoryCommand::class,
-                MakeEnumCommand::class,
-                MakeEventCommand::class,
-                MakeJobCommand::class,
-                MakeListenerCommand::class,
-                MakeMiddlewareCommand::class,
-                MakeModelCommand::class,
-                MakePolicyCommand::class,
-                MakeBuilderCommand::class,
-                MakeQueryCommand::class,
-                MakeRequestCommand::class,
-                MakeResourceCommand::class,
-                MakeRouteCommand::class,
-                MakeRuleCommand::class,
-                MakeServiceProviderCommand::class,
-                SetupCommand::class,
-            ]);
+            $this->commands(...$this->beyondCommands());
         }
+    }
+
+    public function beyondCommands(): array
+    {
+        $exclude = [
+            'BaseCommand',
+        ];
+
+        $fs = new Filesystem();
+        $files = $fs->files(__DIR__ . '/Commands');
+
+        $files = array_filter($files, function (SplFileInfo $file) use ($exclude) {
+            if (in_array($file->getBasename('.php'), $exclude, true)) {
+                return false;
+            }
+
+            return true;
+        });
+
+        return array_map(function ($file) {
+            return 'Regnerisch\\LaravelBeyond\\Commands\\' . $file->getBasename('.php');
+        }, $files);
     }
 }
