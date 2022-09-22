@@ -28,7 +28,7 @@ class MakeControllerCommand extends BaseCommand
                 $stub = 'controller.stub';
             }
 
-            $stub = match(true) {
+            $stub = match (true) {
                 $api && !$invokable => 'controller.api.stub',
                 $invokable && !$api => 'controller.invokable.stub',
                 default => 'controller.stub'
