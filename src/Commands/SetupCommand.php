@@ -45,6 +45,16 @@ class SetupCommand extends BaseCommand
                 overwrite: $overwrite
             );
 
+            // Controller
+            $this->copyAndRefactorFileAction->execute(
+                base_path() . '/app/Http/Controllers/Controller.php',
+                base_path() . '/src/Support/Controllers/Controller.php',
+                [
+                    'namespace App\Http\Controllers;' => 'namespace Support\Controllers;',
+                ],
+                $overwrite
+            );
+
             // Middlewares
             $this->moveMiddlewares($overwrite);
 
