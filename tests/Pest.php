@@ -70,6 +70,15 @@ expect()->extend('toPlaceholdersBeReplaced', function () {
         ->and($this->value);
 });
 
+expect()->extend('toFileContains', function ($string) {
+    $content = (new Filesystem())->get($this->value);
+
+    return $this
+        ->and($content)
+        ->toContain($string)
+        ->and($this->value);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Functions

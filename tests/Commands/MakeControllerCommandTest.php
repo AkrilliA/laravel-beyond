@@ -10,3 +10,13 @@ test('can make controller', function () {
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
 });
+
+test('can make invokable controller', function () {
+    $this->artisan('beyond:make:controller Admin/User/UserInvokableController --invokable');
+
+    expect(base_path() . '/src/App/Admin/User/Controllers/UserInvokableController.php')
+        ->toBeFile()
+        ->toMatchNamespaceAndClassName()
+        ->toPlaceholdersBeReplaced()
+        ->toFileContains('public function __invoke');
+});
