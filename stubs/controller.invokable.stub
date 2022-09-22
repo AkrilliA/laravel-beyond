@@ -1,0 +1,19 @@
+<?php
+
+namespace App\{{ namespace }}\Controllers;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
+class {{ className }} extends Controller
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function __invoke(Request $request)
+    {
+        //
+    }
+}

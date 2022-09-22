@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeControllerCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:controller {name?} {--api} {--overwrite}';
+    protected $signature = 'beyond:make:controller {name?} {--api} {--overwrite} {--invokable}';
 
     protected $description = 'Make a new controller';
 
@@ -16,8 +16,23 @@ class MakeControllerCommand extends BaseCommand
             $name = $this->argument('name');
             $api = $this->option('api');
             $overwrite = $this->option('overwrite');
+            $invokable = $this->option('invokable');
 
-            $stub = $api ? 'controller.api.stub' : 'controller.stub';
+            $stub = null;
+
+            if ($api) {
+                $stub = 'controller.api.stub';
+            } elseif ($invokable) {
+                $stub = 'controller.invokable.stub';
+            } else {
+                $stub = 'controller.stub';
+            }
+
+            $stub = match(true) {
+                $api && !$invokable => 'controller.api.stub',
+                $invokable && !$api => 'controller.invokable.stub',
+                default => 'controller.stub'
+            };
 
             $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
