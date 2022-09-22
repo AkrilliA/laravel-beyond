@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix commands not autoloaded by [@regnerisch](https://github.com/regnerisch) reported by [@dimzeta](https://github.com/dimzeta) in [#66](https://github.com/regnerisch/laravel-beyond/issues/66)
 
+## [3.2.1] - 2022-09-22
+### Added
+- Missing contributor by [@regnerisch](https://github.com/regnerisch)
+
 ## [3.2.0] - 2022-09-22
 ### Added
 - `invokable` flag on `MakeControllerCommand` by [@dimzeta](https://github.com/dimzeta) in [#67](https://github.com/regnerisch/laravel-beyond/pull/67)
@@ -40,7 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v3.2.0...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v3.2.1...HEAD
+[3.2.1]: https://github.com/regnerisch/laravel-beyond/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/regnerisch/laravel-beyond/compare/v3.1.1...v3.2.0
 [3.1.1]: https://github.com/regnerisch/laravel-beyond/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/regnerisch/laravel-beyond/compare/v3.0.0...v3.1.0
