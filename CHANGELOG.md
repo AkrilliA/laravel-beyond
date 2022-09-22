@@ -6,9 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0] - 2022-09-22
+### Added
+- `invokable` flag on `MakeControllerCommand` by [@dimzeta](https://github.com/dimzeta) in [#67](https://github.com/regnerisch/laravel-beyond/pull/67)
+
+### Fixed
+- Fix some CHANGELOG typos and links by [@regnerisch](https://github.com/regnerisch)
+
 ## [3.1.1] - 2022-09-15
 ### Changed
-- Use FQN instead of classname in `SetupCommand` output by [@Wulfheart](https://github.com/Wulfheart) in [#70](https://github.com/regnerisch/laravel-beyond/pull/64)
+- Use FQN instead of classname in `SetupCommand` output by [@Wulfheart](https://github.com/Wulfheart) in [#70](https://github.com/regnerisch/laravel-beyond/pull/70)
 
 ## [3.1.0] - 2022-09-01
 ### Added
@@ -17,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Change changelog schema from "Conventional changelog" to "Keep a changelog" by [@regnerisch](https://github.com/regnerisch)
 
-### Fix
+### Fixed
 - Drop table in `down` method by [@thewebartisan7](https://github.com/thewebartisan7) in [#55](https://github.com/regnerisch/laravel-beyond/pull/55)
 
 ### Removed

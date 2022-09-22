@@ -95,11 +95,11 @@ php artisan beyond:make:controller Admin/Users/UserController
 
 **Options**
 
-| Name          | Description                                           |
-|---------------|-------------------------------------------------------|
-| `--api`       | Will overwrite an API controller                      |
-| `--overwrite` | Will overwrite the file if it exists                  |
-| `--invokable` | Generate a single method, invokable controller class. |
+| Name              | Description                                           |
+|-------------------|-------------------------------------------------------|
+| `--api`           | Will overwrite an API controller                      |
+| `--invokable, -i` | Generate a single method, invokable controller class. |
+| `--overwrite`     | Will overwrite the file if it exists                  |
 
 ---
 

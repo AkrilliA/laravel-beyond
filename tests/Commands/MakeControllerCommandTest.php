@@ -11,7 +11,7 @@ test('can make controller', function () {
         ->toPlaceholdersBeReplaced();
 });
 
-test('can make controller invokable', function () {
+test('can make invokable controller', function () {
     $this->artisan('beyond:make:controller Admin/User/UserInvokableController --invokable');
 
     expect(base_path() . '/src/App/Admin/User/Controllers/UserInvokableController.php')

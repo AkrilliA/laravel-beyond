@@ -75,7 +75,8 @@ expect()->extend('toFileContains', function ($string) {
 
     return $this
         ->and($content)
-        ->toContain($string);
+        ->toContain($string)
+        ->and($this->value);
 });
 
 /*
