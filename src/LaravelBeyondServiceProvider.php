@@ -5,7 +5,6 @@ namespace Regnerisch\LaravelBeyond;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Symfony\Component\Finder\SplFileInfo;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {
@@ -27,16 +26,12 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         $fs = new Filesystem();
         $files = $fs->files(__DIR__ . '/Commands');
 
-        $files = array_filter($files, function (SplFileInfo $file) use ($exclude) {
-            if (in_array($file->getBasename('.php'), $exclude, true)) {
-                return false;
-            }
-
-            return true;
-        });
-
-        return array_map(function ($file) {
-            return 'Regnerisch\\LaravelBeyond\\Commands\\' . $file->getBasename('.php');
-        }, $files);
+        return array_map(
+            fn ($file) => 'Regnerisch\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
+            array_filter(
+                $files,
+                fn ($file) => !in_array($file->getBasename('.php'), $exclude, true),
+            )
+        );
     }
 }
