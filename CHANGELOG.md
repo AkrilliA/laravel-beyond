@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.1] - 2022-09-22
+### Added
+- Missing contributor by [@regnerisch](https://github.com/regnerisch)
+
 ## [3.2.0] - 2022-09-22
 ### Added
 - `invokable` flag on `MakeControllerCommand` by [@dimzeta](https://github.com/dimzeta) in [#67](https://github.com/regnerisch/laravel-beyond/pull/67)
