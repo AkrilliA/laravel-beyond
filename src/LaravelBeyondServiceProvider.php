@@ -6,6 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
@@ -18,6 +19,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
             $this->commands([
                 MakeActionCommand::class,
                 MakeBuilderCommand::class,
+                MakeCollectionCommand::class,
             ]);
 
             // $this->commands(...$this->beyondCommands());
