@@ -2,8 +2,6 @@
 
 namespace Tests\Commands;
 
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
-
 test('can make dto factory', function () {
     $this->artisan('beyond:make:dto-factory Admin/User/UserDataFactory');
 
