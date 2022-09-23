@@ -2,7 +2,7 @@
 
 namespace App\{{ namespace }}\Factories;
 
-use Domain\{{ dtoNamespace }}\{{ dtoClassName }};
+use Domain\{{ dtoNamespace }}\DataTransferObjects\{{ dtoClassName }};
 use Illuminate\Http\Request;
 
 class {{ className }}
