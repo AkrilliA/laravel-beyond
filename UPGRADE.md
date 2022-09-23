@@ -1,11 +1,11 @@
 # Upgrade Guide
 
-- [Upgrade To 4.0 from 3.x](#upgrade-to-40-from-3x)
+- [Upgrade to 4.0 from 3.x](#upgrade-to-40-from-3x)
 
 ## Upgrade to 4.0 from 3.x
 
 ### Controller moved to Support/Controllers
-We moved the controller to the Support/Controllers folder to imrpove compatibility with other packages and decrease boilerplate.
+We moved the controller to the `Support/Controllers` folder to imrpove compatibility with other packages and decrease boilerplate.
 
 Create a new `Controller.php` in `/src/Support/Controllers`with following content:
 
@@ -25,4 +25,4 @@ class Controller extends BaseController
 }
 ```
 
-Change the namespace of your Controller from `Illuminate\Routing\Controller` to `Support\Controllers\Controller`.
+Change the namespace of your controller from `Illuminate\Routing\Controller` to `Support\Controllers\Controller`.
