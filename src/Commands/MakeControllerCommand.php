@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeControllerCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:controller {name?} {--api} {--i|invokable} {--overwrite}';
+    protected $signature = 'beyond:make:controller {name?} {--api} {--i|invokable} {--force}';
 
     protected $description = 'Make a new controller';
 
@@ -15,7 +15,7 @@ class MakeControllerCommand extends BaseCommand
         try {
             $name = $this->argument('name');
             $api = $this->option('api');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
             $invokable = $this->option('invokable');
 
             $stub = null;
@@ -43,7 +43,7 @@ class MakeControllerCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Controller created.');

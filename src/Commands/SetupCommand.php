@@ -11,7 +11,7 @@ use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends BaseCommand
 {
-    protected $signature = 'beyond:setup {--skip-delete} {--overwrite}';
+    protected $signature = 'beyond:setup {--skip-delete} {--force}';
 
     protected $description = '';
 
@@ -29,20 +29,20 @@ class SetupCommand extends BaseCommand
     {
         try {
             $skipDelete = $this->option('skip-delete');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             // Console
             $this->copyAndRefactorFileAction->execute(
                 base_path() . '/app/Console/Kernel.php',
                 base_path() . '/src/App/Console/Kernel.php',
-                overwrite: $overwrite
+                force: $force
             );
 
             // Exceptions
             $this->copyAndRefactorFileAction->execute(
                 base_path() . '/app/Exceptions/Handler.php',
                 base_path() . '/src/App/Exceptions/Handler.php',
-                overwrite: $overwrite
+                force: $force
             );
 
             // Controller
@@ -52,11 +52,11 @@ class SetupCommand extends BaseCommand
                 [
                     'namespace App\Http\Controllers;' => 'namespace Support\Controllers;',
                 ],
-                $overwrite
+                $force
             );
 
             // Middlewares
-            $this->moveMiddlewares($overwrite);
+            $this->moveMiddlewares($force);
 
             // Http Kernel
             $this->copyAndRefactorFileAction->execute(
@@ -68,14 +68,14 @@ class SetupCommand extends BaseCommand
                     'class Kernel extends HttpKernel' => 'class HttpKernel extends Kernel',
                     '\App\Http\Middleware\\' => '\Support\Middlewares\\',
                 ],
-                $overwrite
+                $force
             );
 
             // Application
             beyond_copy_stub(
                 'application.stub',
                 base_path() . '/src/App/Application.php',
-                overwrite: $overwrite
+                force: $force
             );
 
             // Models
@@ -85,11 +85,11 @@ class SetupCommand extends BaseCommand
                 [
                     'namespace App\Models;' => 'namespace Domain\Users\Models;',
                 ],
-                $overwrite
+                $force
             );
 
             // Providers
-            $this->moveProviders($overwrite);
+            $this->moveProviders($force);
 
             // Bootstrap
             $this->prepareBootstrap();
@@ -123,7 +123,7 @@ class SetupCommand extends BaseCommand
         }
     }
 
-    protected function moveMiddlewares(bool $overwrite = false): void
+    protected function moveMiddlewares(bool $force = false): void
     {
         $this->copyAndRefactorDirectoryAction->execute(
             base_path() . '/app/Http/Middleware',
@@ -131,11 +131,11 @@ class SetupCommand extends BaseCommand
             [
                 'namespace App\Http\Middleware;' => 'namespace Support\Middlewares;',
             ],
-            $overwrite
+            $force
         );
     }
 
-    protected function moveProviders(bool $overwrite = false): void
+    protected function moveProviders(bool $force = false): void
     {
         $fs = new Filesystem();
         $providers = $fs->files(base_path() . '/app/Providers');
@@ -144,7 +144,7 @@ class SetupCommand extends BaseCommand
             $this->copyAndRefactorFileAction->execute(
                 base_path() . '/app/Providers/' . $provider->getFilename(),
                 base_path() . '/src/App/Providers/' . $provider->getFilename(),
-                overwrite: $overwrite
+                force: $force
             );
         }
     }

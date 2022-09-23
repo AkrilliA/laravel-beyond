@@ -29,9 +29,9 @@ php artisan beyond:make:action Users/CreateUserAction
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                          |
+|-----------|--------------------------------------|
+| `--force` | Will overwrite the file if it exists |
 
 ---
 
@@ -47,7 +47,7 @@ php artisan beyond:make:builder Users/UserBuilder
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -64,7 +64,7 @@ php artisan beyond:make:collection Users/UserCollection
 | Name          | Description                            |
 |---------------|----------------------------------------|
 | `--model=`    | Will create a model related collection |
-| `--overwrite` | Will overwrite the file if it exists   |
+| `--force` | Will overwrite the file if it exists   |
 
 ---
 
@@ -81,7 +81,7 @@ php artisan beyond:make:command SyncUsersCommand
 | Name          | Description                                          |
 |---------------|------------------------------------------------------|
 | `--command=`  | Will use given `command:name` schema for new command |
-| `--overwrite` | Will overwrite the file if it exists                 |
+| `--force` | Will overwrite the file if it exists                 |
 
 ---
 
@@ -99,7 +99,7 @@ php artisan beyond:make:controller Admin/Users/UserController
 |-------------------|-------------------------------------------------------|
 | `--api`           | Will overwrite an API controller                      |
 | `--invokable, -i` | Generate a single method, invokable controller class. |
-| `--overwrite`     | Will overwrite the file if it exists                  |
+| `--force`     | Will overwrite the file if it exists                  |
 
 ---
 
@@ -115,7 +115,7 @@ php artisan beyond:make:enum Users/UserStatusEnum
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -131,7 +131,7 @@ php artisan beyond:make:event Users/UserCreatedEvent
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -147,7 +147,7 @@ php artisan beyond:make:dto Users/UserData
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -163,7 +163,7 @@ php artisan beyond:make:job Admin/Users/SyncUsersJob
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -179,7 +179,7 @@ php artisan beyond:make:listener Users/UserCreatedListener
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -195,7 +195,7 @@ php artisan beyond:make:middleware Admin/Users/IdentifyUserMiddleware
 
 | Name          | Description                                   |
 |---------------|-----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists          |
+| `--force` | Will overwrite the file if it exists          |
 | `--support`   | Will create a middleware in Support namespace |
 
 ---
@@ -214,7 +214,7 @@ php artisan beyond:make:model Users/User
 |---------------------|----------------------------------------|
 | `-f`, `--factory`   | Will create a factory for this model   |
 | `-m`, `--migration` | Will create a migration for this model |
-| `--overwrite`       | Will overwrite the file if it exists   |
+| `--force`       | Will overwrite the file if it exists   |
 
 ---
 
@@ -231,7 +231,7 @@ php artisan beyond:make:policy Users/UserPolicy
 | Name          | Description                              |
 |---------------|------------------------------------------|
 | `--model=`    | Will create a policy for the given model |
-| `--overwrite` | Will overwrite the file if it exists     |
+| `--force` | Will overwrite the file if it exists     |
 
 ---
 
@@ -247,7 +247,7 @@ php artisan beyond:make:query Admin/Users/UserIndexQuery
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -263,7 +263,7 @@ php artisan beyond:make:request Admin/Users/CreateUserRequest
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -280,7 +280,7 @@ php artisan beyond:make:resource Admin/Users/UserResource
 | Name           | Description                          |
 |----------------|--------------------------------------|
 | `--collection` | Will create a collection             |
-| `--overwrite`  | Will overwrite the file if it exists |
+| `--force`  | Will overwrite the file if it exists |
 
 ---
 
@@ -296,7 +296,7 @@ php artisan beyond:make:route Users
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -312,7 +312,7 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 
 | Name          | Description                                   |
 |---------------|-----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists          |
+| `--force` | Will overwrite the file if it exists          |
 | `--support`   | Will create a middleware in Support namespace |
 
 ---
@@ -329,7 +329,7 @@ php artisan beyond:make:provider UserServiceProvider
 
 | Name          | Description                           |
 |---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| `--force` | Will overwrite the file if it exists  |
 
 ---
 
@@ -345,7 +345,7 @@ php artisan beyond:setup
 
 | Name            | Description                             |
 |-----------------|-----------------------------------------|
-| `--overwrite`   | Will overwrite the file if it exists    |
+| `--force`   | Will overwrite the file if it exists    |
 | `--skip-delete` | Will skip the deletion of app directory |
 
 ---

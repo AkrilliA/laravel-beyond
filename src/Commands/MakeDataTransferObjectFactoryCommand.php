@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeDataTransferObjectFactoryCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:dto-factory {name?} {--overwrite} {--dto=}';
+    protected $signature = 'beyond:make:dto-factory {name?} {--force} {--dto=}';
 
     protected $description = 'Make a new data transfer object factory';
 
@@ -15,7 +15,7 @@ class MakeDataTransferObjectFactoryCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
             $dto = $this->option('dto');
 
             $stub = $dto ? 'data-transfer-object-factory.stub' : 'data-transfer-object-factory.plain.stub';
@@ -32,7 +32,7 @@ class MakeDataTransferObjectFactoryCommand extends BaseCommand
                     '{{ dtoNamespace }}' => $dtoSchema?->namespace(),
                     '{{ dtoClassName }}' => $dtoSchema?->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('DTO Factory created.');

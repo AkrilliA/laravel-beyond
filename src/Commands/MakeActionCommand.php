@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class MakeActionCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:action {name?} {--overwrite} {--queueable}';
+    protected $signature = 'beyond:make:action {name?} {--force} {--queueable}';
 
     protected $description = 'Make a new action';
 
@@ -16,7 +16,7 @@ class MakeActionCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
             $queueable = $this->option('queueable');
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
@@ -28,7 +28,7 @@ class MakeActionCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Action created.');

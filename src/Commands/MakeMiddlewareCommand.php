@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeMiddlewareCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:middleware {name?} {--support} {--overwrite}';
+    protected $signature = 'beyond:make:middleware {name?} {--support} {--force}';
 
     protected $description = 'Make a new middleware';
 
@@ -15,7 +15,7 @@ class MakeMiddlewareCommand extends BaseCommand
         try {
             $name = $this->argument('name');
             $support = $this->option('support');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $stub = $support ? 'middleware.support.stub' : 'middleware.stub';
 
@@ -28,7 +28,7 @@ class MakeMiddlewareCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Middleware created.');

@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 class MakeRouteCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:route {routeName?} {--overwrite}';
+    protected $signature = 'beyond:make:route {routeName?} {--force}';
 
     protected $description = 'Make a new file for routes';
 
@@ -18,7 +18,7 @@ class MakeRouteCommand extends BaseCommand
             }
 
             $routeNameLowerCase = mb_strtolower($routeName);
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             beyond_copy_stub(
                 'routes.stub',
@@ -26,7 +26,7 @@ class MakeRouteCommand extends BaseCommand
                 [
                     '{{ application }}' => $routeNameLowerCase,
                 ],
-                $overwrite
+                $force
             );
 
             $this->info(

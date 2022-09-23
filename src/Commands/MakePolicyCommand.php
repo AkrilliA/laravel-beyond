@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakePolicyCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:policy {name?} {--model=} {--overwrite}';
+    protected $signature = 'beyond:make:policy {name?} {--model=} {--force}';
 
     protected $description = 'Make a new policy';
 
@@ -15,7 +15,7 @@ class MakePolicyCommand extends BaseCommand
         try {
             $name = $this->argument('name');
             $model = $this->option('model');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $stub = $model ? 'policy.stub' : 'policy.plain.stub';
 
@@ -30,7 +30,7 @@ class MakePolicyCommand extends BaseCommand
                     '{{ modelName }}' => $model,
                     '{{ modelVariable }}' => 'User' === $model ? 'object' : mb_strtolower($model),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Policy created.');

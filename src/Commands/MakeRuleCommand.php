@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeRuleCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:rule {name?} {--support} {--overwrite}';
+    protected $signature = 'beyond:make:rule {name?} {--support} {--force}';
 
     protected $description = 'Make a new rule';
 
@@ -15,7 +15,7 @@ class MakeRuleCommand extends BaseCommand
         try {
             $name = $this->argument('name');
             $support = $this->option('support');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $stub = $support ? 'rule.support.stub' : 'rule.stub';
 
@@ -28,7 +28,7 @@ class MakeRuleCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Rule created.');
