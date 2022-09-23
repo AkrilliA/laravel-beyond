@@ -1,0 +1,14 @@
+<?php
+
+namespace App\{{ namespace }}\Factories;
+
+use Domain\{{ dtoNamespace }}\DataTransferObjects\{{ dtoClassName }};
+use Illuminate\Http\Request;
+
+class {{ className }}
+{
+    public static function fromRequest(Request $request): {{ dtoClassName }}
+    {
+        return new {{ dtoClassName }}($request->all());
+    }
+}

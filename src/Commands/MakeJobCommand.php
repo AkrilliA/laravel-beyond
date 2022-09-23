@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeJobCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:job {name?} {--overwrite}';
+    protected $signature = 'beyond:make:job {name?} {--force}';
 
     protected $description = 'Make a new job';
 
@@ -14,7 +14,7 @@ class MakeJobCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
@@ -25,7 +25,7 @@ class MakeJobCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Job created.');

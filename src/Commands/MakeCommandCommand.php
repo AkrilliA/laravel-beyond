@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeCommandCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:command {name?} {appName?} {moduleName?} {--command=command:name} {--overwrite}';
+    protected $signature = 'beyond:make:command {name?} {appName?} {moduleName?} {--command=command:name} {--force}';
 
     protected $description = 'Make a new command';
 
@@ -15,7 +15,7 @@ class MakeCommandCommand extends BaseCommand
         try {
             $name = $this->argument('name');
             $command = $this->option('command');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $schema = (new AppNameSchemaResolver($this, $name, 'Commands', 'Console'))->handle();
 
@@ -27,7 +27,7 @@ class MakeCommandCommand extends BaseCommand
                     '{{ command }}' => $command,
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Command created.');

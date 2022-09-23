@@ -13,7 +13,7 @@ if (!function_exists('beyond_path')) {
 }
 
 if (!function_exists('beyond_copy_stub')) {
-    function beyond_copy_stub(string $stub, string $path, array $refactor = [], bool $overwrite = false): void
+    function beyond_copy_stub(string $stub, string $path, array $refactor = [], bool $force = false): void
     {
         $action = new CopyAndRefactorFileAction(
             new CopyFileAction(),
@@ -24,7 +24,7 @@ if (!function_exists('beyond_copy_stub')) {
             beyond_path() . "/stubs/{$stub}",
             $path,
             $refactor,
-            $overwrite
+            $force
         );
     }
 }

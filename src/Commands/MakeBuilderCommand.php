@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeBuilderCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:builder {name?} {--overwrite}';
+    protected $signature = 'beyond:make:builder {name?} {--force}';
 
     protected $description = 'Make a new eloquent builder';
 
@@ -14,7 +14,7 @@ class MakeBuilderCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
@@ -25,7 +25,7 @@ class MakeBuilderCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->info(

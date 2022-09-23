@@ -2,29 +2,18 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Regnerisch\LaravelCommandHooks\Command;
 
 abstract class BaseCommand extends Command
 {
     protected array $requiredPackages = [];
 
-    public ?string $minimumVersion = null;
-
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        if ($code = $this->before()) {
-            return $code;
-        }
-
-        return parent::execute($input, $output);
-    }
+    public ?int $minimumVersionId = null;
 
     protected function before(): int
     {
-        if ($code = $this->checkVersion()) {
+        if ($code = $this->checkVersionId()) {
             return $code;
         }
 
@@ -55,18 +44,18 @@ abstract class BaseCommand extends Command
         return 1;
     }
 
-    protected function checkVersion(): int
+    protected function checkVersionId(): int
     {
-        if (null === $this->minimumVersion) {
+        if (!$this->minimumVersionId) {
             return 0;
         }
 
-        if (version_compare(PHP_VERSION, $this->minimumVersion, '<')) {
+        if (PHP_VERSION_ID < $this->minimumVersionId) {
             $this->components->error(
                 sprintf(
-                    'Your version %s does not match the required version %s of this command.',
-                    PHP_VERSION,
-                    $this->minimumVersion
+                    'Your version id %s does not match the required version id %s of this command.',
+                    PHP_VERSION_ID,
+                    $this->minimumVersionId
                 )
             );
 

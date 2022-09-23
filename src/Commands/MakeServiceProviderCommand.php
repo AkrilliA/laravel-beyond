@@ -4,7 +4,7 @@ namespace Regnerisch\LaravelBeyond\Commands;
 
 class MakeServiceProviderCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:provider {name} {--overwrite}';
+    protected $signature = 'beyond:make:provider {name} {--force}';
 
     protected $description = 'Create a new service provider';
 
@@ -12,7 +12,7 @@ class MakeServiceProviderCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             beyond_copy_stub(
                 'service.provider.stub',
@@ -20,7 +20,7 @@ class MakeServiceProviderCommand extends BaseCommand
                 [
                     '{{ className }}' => $name,
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Service provider created.');

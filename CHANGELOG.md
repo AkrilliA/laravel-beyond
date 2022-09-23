@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `MakeDataTransferObjectFactoryCommand` by [@regnerisch](https://github.com/regnerisch) reported by [@dimzeta](https://github.com/dimzeta) in [#66](https://github.com/regnerisch/laravel-beyond/issues/66)
+- Extend the default `Controller` of Laravel by [@regnerisch](https://github.com/regnerisch) reported by [@thewebartisan7](https://github.com/thewebartisan7) in [#63](https://github.com/regnerisch/laravel-beyond/issues/63)
+
+### Changed
+- Reset folder structure by [@regnerisch](https://github.com/regnerisch) inspired by [#56](https://github.com/regnerisch/laravel-beyond/issues/56)
+- Use `regnerisch/laravel-command-hooks` instead of custom `BaseCommand` by [@regnerisch](https://github.com/regnerisch)
+- Rename `--overwrite` to `--force` to be more Laravel compatible by [@regnerisch](https://github.com/regnerisch)
+
+### Fixed
+- Fix commands not autoloaded by [@regnerisch](https://github.com/regnerisch) reported by [@dimzeta](https://github.com/dimzeta) in [#66](https://github.com/regnerisch/laravel-beyond/issues/66)
 
 ## [3.2.1] - 2022-09-22
 ### Added

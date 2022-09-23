@@ -33,7 +33,13 @@ uses()
 */
 
 expect()->extend('toMatchNamespaceAndClassName', function () {
-    require_once $this->value;
+    spl_autoload_register(function ($className) {
+        $path = base_path() . '/src/' . str_replace('\\', '/', $className) . '.php';
+        $fs = new Filesystem();
+        if ($fs->exists($path)) {
+            require_once $path;
+        }
+    });
 
     $namespacedClassName = str_replace(
         '/',
@@ -89,3 +95,15 @@ expect()->extend('toFileContains', function ($string) {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
+function createFakeClass(string $fqn): void
+{
+    $fs = new Filesystem();
+
+    $parts = explode('\\', $fqn);
+    $className = array_pop($parts);
+
+    $path = base_path() . '/src/' . implode('/', $parts);
+
+    $fs->ensureDirectoryExists($path);
+    $fs->put($path . '/' . $className . '.php', '<?php namespace ' . implode('\\', $parts) . "; class {$className} {}");
+}
