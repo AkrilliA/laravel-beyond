@@ -6,8 +6,8 @@ test('cannot make enum on php 8.0', function () {
     $this->artisan('beyond:make:enum')
         ->expectsOutputToContain(
             sprintf(
-                'Your version %s does not match the required version 8.1 of this command.',
-                PHP_VERSION
+                'Your version id %s does not match the required version id 80100 of this command.',
+                PHP_VERSION_ID
             )
         )
         ->assertExitCode(1);

@@ -29,9 +29,9 @@ php artisan beyond:make:action Users/CreateUserAction
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name       | Description                                        |
+|------------|----------------------------------------------------|
+| `--force`  | Create the class even if the action already exists |
 
 ---
 
@@ -45,9 +45,9 @@ php artisan beyond:make:builder Users/UserBuilder
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name       | Description                                                  |
+|------------|--------------------------------------------------------------|
+| `--force`  | Create the class even if the eloquent builder already exists |
 
 ---
 
@@ -61,10 +61,10 @@ php artisan beyond:make:collection Users/UserCollection
 
 **Options**
 
-| Name          | Description                            |
-|---------------|----------------------------------------|
-| `--model=`    | Will create a model related collection |
-| `--overwrite` | Will overwrite the file if it exists   |
+| Name       | Description                                            |
+|------------|--------------------------------------------------------|
+| `--model=` | Will create a model related collection                 |
+| `--force`  | Create the class even if the collection already exists |
 
 ---
 
@@ -78,10 +78,10 @@ php artisan beyond:make:command SyncUsersCommand
 
 **Options**
 
-| Name          | Description                                          |
-|---------------|------------------------------------------------------|
-| `--command=`  | Will use given `command:name` schema for new command |
-| `--overwrite` | Will overwrite the file if it exists                 |
+| Name         | Description                                          |
+|--------------|------------------------------------------------------|
+| `--command=` | Will use given `command:name` schema for new command |
+| `--force`    | Create the class even if the command already exists  |
 
 ---
 
@@ -95,11 +95,11 @@ php artisan beyond:make:controller Admin/Users/UserController
 
 **Options**
 
-| Name              | Description                                           |
-|-------------------|-------------------------------------------------------|
-| `--api`           | Will overwrite an API controller                      |
-| `--invokable, -i` | Generate a single method, invokable controller class. |
-| `--overwrite`     | Will overwrite the file if it exists                  |
+| Name                | Description                                            |
+|---------------------|--------------------------------------------------------|
+| `--api`             | Will overwrite an API controller                       |
+| `-i`, `--invokable` | Generate a single method, invokable controller class.  |
+| `--force`           | Create the class even if the controller already exists |
 
 ---
 
@@ -113,9 +113,9 @@ php artisan beyond:make:enum Users/UserStatusEnum
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                      |
+|-----------|--------------------------------------------------|
+| `--force` | Create the class even if the enum already exists |
 
 ---
 
@@ -129,9 +129,9 @@ php artisan beyond:make:event Users/UserCreatedEvent
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name       | Description                                       |
+|------------|---------------------------------------------------|
+| `--force`  | Create the class even if the event already exists |
 
 ---
 
@@ -145,9 +145,26 @@ php artisan beyond:make:dto Users/UserData
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                                      |
+|-----------|------------------------------------------------------------------|
+| `--force` | Create the class even if the data transfer object already exists |
+
+---
+
+#### `beyond:make:dto-factory Admin/User/UserDataFactory`
+
+This command will create a new data transfer object factory class inside your application.
+
+```bash
+php artisan beyond:make:dto-factory Admin/User/UserDataFactory
+```
+
+**Options**
+
+| Name      | Description                                             |
+|-----------|---------------------------------------------------------|
+| `--dto`   | Generate a DTO factory for the given DTO                |
+| `--force` | Create the class even if the DTO factory already exists |
 
 ---
 
@@ -161,9 +178,9 @@ php artisan beyond:make:job Admin/Users/SyncUsersJob
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                     |
+|-----------|-------------------------------------------------|
+| `--force` | Create the class even if the job already exists |
 
 ---
 
@@ -177,9 +194,9 @@ php artisan beyond:make:listener Users/UserCreatedListener
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                          |
+|-----------|------------------------------------------------------|
+| `--force` | Create the class even if the listener already exists |
 
 ---
 
@@ -193,10 +210,10 @@ php artisan beyond:make:middleware Admin/Users/IdentifyUserMiddleware
 
 **Options**
 
-| Name          | Description                                   |
-|---------------|-----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists          |
-| `--support`   | Will create a middleware in Support namespace |
+| Name        | Description                                            |
+|-------------|--------------------------------------------------------|
+| `--force`   | Create the class even if the middleware already exists |
+| `--support` | Will create a middleware in Support namespace          |
 
 ---
 
@@ -210,11 +227,11 @@ php artisan beyond:make:model Users/User
 
 **Options**
 
-| Name                | Description                            |
-|---------------------|----------------------------------------|
-| `-f`, `--factory`   | Will create a factory for this model   |
-| `-m`, `--migration` | Will create a migration for this model |
-| `--overwrite`       | Will overwrite the file if it exists   |
+| Name                | Description                                       |
+|---------------------|---------------------------------------------------|
+| `-f`, `--factory`   | Will create a factory for this model              |
+| `-m`, `--migration` | Will create a migration for this model            |
+| `--force`           | Create the class even if the model already exists |
 
 ---
 
@@ -228,10 +245,10 @@ php artisan beyond:make:policy Users/UserPolicy
 
 **Options**
 
-| Name          | Description                              |
-|---------------|------------------------------------------|
-| `--model=`    | Will create a policy for the given model |
-| `--overwrite` | Will overwrite the file if it exists     |
+| Name       | Description                                        |
+|------------|----------------------------------------------------|
+| `--model=` | Will create a policy for the given model           |
+| `--force`  | Create the class even if the policy already exists |
 
 ---
 
@@ -245,9 +262,9 @@ php artisan beyond:make:query Admin/Users/UserIndexQuery
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                               |
+|-----------|-----------------------------------------------------------|
+| `--force` | Create the class even if the query builder already exists |
 
 ---
 
@@ -261,9 +278,9 @@ php artisan beyond:make:request Admin/Users/CreateUserRequest
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                         |
+|-----------|-----------------------------------------------------|
+| `--force` | Create the class even if the request already exists |
 
 ---
 
@@ -277,10 +294,10 @@ php artisan beyond:make:resource Admin/Users/UserResource
 
 **Options**
 
-| Name           | Description                          |
-|----------------|--------------------------------------|
-| `--collection` | Will create a collection             |
-| `--overwrite`  | Will overwrite the file if it exists |
+| Name           | Description                                          |
+|----------------|------------------------------------------------------|
+| `--collection` | Will create a collection                             |
+| `--force`      | Create the class even if the resource already exists |
 
 ---
 
@@ -294,9 +311,9 @@ php artisan beyond:make:route Users
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                       |
+|-----------|---------------------------------------------------|
+| `--force` | Create the class even if the route already exists |
 
 ---
 
@@ -310,10 +327,10 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 
 **Options**
 
-| Name          | Description                                   |
-|---------------|-----------------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists          |
-| `--support`   | Will create a middleware in Support namespace |
+| Name        | Description                                      |
+|-------------|--------------------------------------------------|
+| `--force`   | Create the class even if the rule already exists |
+| `--support` | Will create a middleware in Support namespace    |
 
 ---
 
@@ -327,9 +344,9 @@ php artisan beyond:make:provider UserServiceProvider
 
 **Options**
 
-| Name          | Description                           |
-|---------------|---------------------------------------|
-| `--overwrite` | Will overwrite the file if it exists  |
+| Name      | Description                                                  |
+|-----------|--------------------------------------------------------------|
+| `--force` | Create the class even if the service provider already exists |
 
 ---
 
@@ -343,10 +360,10 @@ php artisan beyond:setup
 
 **Options**
 
-| Name            | Description                             |
-|-----------------|-----------------------------------------|
-| `--overwrite`   | Will overwrite the file if it exists    |
-| `--skip-delete` | Will skip the deletion of app directory |
+| Name            | Description                                       |
+|-----------------|---------------------------------------------------|
+| `--force`       | Create the class even if the class already exists |
+| `--skip-delete` | Will skip the deletion of app directory           |
 
 ---
 
