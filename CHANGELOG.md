@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `MakeDataTransferObjectFactoryCommand` by [@regnerisch](https://github.com/regnerisch) reported by [@thewebartisan7](https://github.com/thewebartisan7) in [#58](https://github.com/regnerisch/laravel-beyond/pull/58)
 - Extend the default `Controller` of Laravel by [@regnerisch](https://github.com/regnerisch) reported by [@thewebartisan7](https://github.com/thewebartisan7) in [#63](https://github.com/regnerisch/laravel-beyond/issues/63)
+- UPGRADE.md by [@alexgaal](https://github.com/alexgaal)
 
 ### Changed
 - Reset folder structure by [@regnerisch](https://github.com/regnerisch) reported by [@thewebartisan7](https://github.com/thewebartisan7) in [#56](https://github.com/regnerisch/laravel-beyond/issues/56)
