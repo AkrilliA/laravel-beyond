@@ -36,10 +36,6 @@ class MakeDataTransferObjectFactoryCommand extends BaseCommand
             );
 
             $this->components->info('DTO Factory created.');
-
-            if ($dto) {
-                $this->call(MakeDataTransferObjectCommand::class, ['name' => $dto]);
-            }
         } catch (\Exception $exception) {
             $this->components->error($exception->getMessage());
         }

@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Exceptions\AlreadyExistsException;
 
 class CopyFileAction
 {
-    public function execute(string $srcPath, string $targetPath, bool $overwrite = false)
+    public function execute(string $srcPath, string $targetPath, bool $force = false)
     {
         $fs = new Filesystem();
 
@@ -15,7 +15,7 @@ class CopyFileAction
             dirname($targetPath),
         );
 
-        if (!$overwrite && $fs->exists($targetPath)) {
+        if (!$force && $fs->exists($targetPath)) {
             throw new AlreadyExistsException('File already exists. You could use --overwrite to create a new file.');
         }
 
