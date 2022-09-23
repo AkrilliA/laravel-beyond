@@ -7,6 +7,9 @@ This package will help you with `beyond:make` commands to easily create classes 
 inspired application.
 We try to implement commands as near as possible on their original `make` counterparts.
 
+## Upgrade Guide
+Please read our [Upgrade Guide](UPGRADE.md) in case you are using version 3.x. 
+
 ## Installation
 
 Install laravel-beyond with composer
