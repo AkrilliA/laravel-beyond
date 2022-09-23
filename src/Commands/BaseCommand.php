@@ -7,57 +7,39 @@ use Regnerisch\LaravelCommandHooks\Command;
 
 abstract class BaseCommand extends Command
 {
+    protected ?int $minimumPHPVersionId = null;
+
     protected array $requiredPackages = [];
 
-    public ?int $minimumVersionId = null;
+    abstract protected function getDirectoryName(): string;
+
+    abstract protected function getStub(): string;
+
+    abstract protected function getType(): string;
 
     protected function before(): int
     {
-        if ($code = $this->checkVersionId()) {
-            return $code;
+        if (!$this->matchesMinimumPHPVersionId()) {
+            $this->components->error('Requires at least PHP version ' . $this->minimumPHPVersionId);
+
+            return 1;
         }
 
-        if ($code = $this->checkDependencies()) {
-            return $code;
-        }
-
-        return 0;
-    }
-
-    protected function checkDependencies(): int
-    {
-        if ([] === $missingPackages = $this->getMissingPackages()) {
-            return 0;
-        }
-
-        $this->components->error(
-            sprintf(
-                'There are missing packages. Run composer require %s to install them.',
+        if ([] !== $missingPackages = $this->getMissingRequiredPackages()) {
+            $this->components->error(sprintf(
+                'There are missing composer packages. Run `composer require %s` to install them.',
                 implode(' ', $missingPackages)
-            )
-        );
+            ));
 
-        foreach ($missingPackages as $missingPackage) {
-            $this->components->twoColumnDetail($missingPackage, 'MISSING');
+            foreach ($missingPackages as $missingPackage) {
+                $this->components->twoColumnDetail($missingPackage, 'MISSING');
+            }
+
+            return 1;
         }
 
-        return 1;
-    }
-
-    protected function checkVersionId(): int
-    {
-        if (!$this->minimumVersionId) {
-            return 0;
-        }
-
-        if (PHP_VERSION_ID < $this->minimumVersionId) {
-            $this->components->error(
-                sprintf(
-                    'Your version id %s does not match the required version id %s of this command.',
-                    PHP_VERSION_ID,
-                    $this->minimumVersionId
-                )
-            );
+        if (!$this->option('force') && $this->alreadyExists('')) {
+            $this->components->error($this->getType() . ' already exists.');
 
             return 1;
         }
@@ -65,10 +47,50 @@ abstract class BaseCommand extends Command
         return 0;
     }
 
-    protected function getMissingPackages(): array
+    protected function resolveStubPath(string $stub): string
     {
-        $composer = $this->getLaravel()->get(ComposerContract::class);
+        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
+            ? $customPath
+            : __DIR__ . '/../../' . $stub;
+    }
+
+    protected function getReplacements(): array
+    {
+        return [];
+    }
+
+    protected function resolvePathFromNamespace(string $namespace): string
+    {
+        return $this->laravel->basePath() . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . str_replace('\\', '/', $namespace) . '.php';
+    }
+
+    protected function getNameInput(): string
+    {
+        return $this->argument('name');
+    }
+
+    protected function matchesMinimumPHPVersionId(): bool
+    {
+        if (!$this->minimumPHPVersionId) {
+            return true;
+        }
+
+        return PHP_VERSION_ID >= $this->minimumPHPVersionId;
+    }
+
+    protected function getMissingRequiredPackages(): array
+    {
+        if (!$this->requiredPackages) {
+            return [];
+        }
+
+        $composer = $this->laravel->get(ComposerContract::class);
 
         return array_diff($this->requiredPackages, $composer->getPackages()['require']);
+    }
+
+    protected function alreadyExists(string $path): bool
+    {
+        return file_exists($path);
     }
 }

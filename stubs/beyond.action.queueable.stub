@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\Actions;
+namespace {{ namespace }};
 
 use Spatie\QueueableAction\QueueableAction;
 

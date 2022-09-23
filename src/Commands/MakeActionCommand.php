@@ -2,42 +2,49 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeActionCommand extends BaseCommand
+class MakeActionCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:action {name?} {--force} {--queueable}';
 
     protected $description = 'Make a new action';
 
-    public function handle(): void
+    protected function getDirectoryName(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
-            $queueable = $this->option('queueable');
-
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
-
-            beyond_copy_stub(
-                $queueable ? 'action.queueable.stub' : 'action.stub',
-                $schema->path('Actions'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Action created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+        return 'Actions';
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function getType(): string
+    {
+        return 'Action';
+    }
+
+    public function getStub(): string
+    {
+        if ($this->option('queueable')) {
+            return 'stubs/beyond.action.queueable.stub';
+        }
+
+        return 'stubs/beyond.action.stub';
+    }
+
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
+    }
+
+    protected function before(): int
     {
         if ($this->option('queueable')) {
             $this->requiredPackages = [
@@ -45,6 +52,6 @@ class MakeActionCommand extends BaseCommand
             ];
         }
 
-        return parent::execute($input, $output);
+        return parent::before();
     }
 }

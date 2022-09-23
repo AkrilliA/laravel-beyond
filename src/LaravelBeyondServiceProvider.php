@@ -4,6 +4,7 @@ namespace Regnerisch\LaravelBeyond;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
@@ -13,14 +14,20 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->app->singleton(ComposerContract::class, Composer::class);
 
-            $this->commands(...$this->beyondCommands());
+            $this->commands([
+                MakeActionCommand::class,
+            ]);
+
+            // $this->commands(...$this->beyondCommands());
         }
     }
 
     public function beyondCommands(): array
     {
         $exclude = [
+            'ApplicationGeneratorCommand',
             'BaseCommand',
+            'DomainGeneratorCommand',
         ];
 
         $fs = new Filesystem();
