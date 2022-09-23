@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:model {name?} {-f|--factory} {-m|--migration} {--overwrite}';
+    protected $signature = 'beyond:make:model {name?} {-f|--factory} {-m|--migration} {--force}';
 
     protected $description = 'Make a new model';
 
@@ -15,7 +15,7 @@ class MakeModelCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $schema = (new DomainNameSchemaResolver($this, $name))->handle();
 
@@ -26,7 +26,7 @@ class MakeModelCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             if ($this->option('factory')) {
@@ -39,7 +39,7 @@ class MakeModelCommand extends BaseCommand
                         '{{ namespace }}' => $schema->namespace(),
                         '{{ model }}' => $schema->className(),
                     ],
-                    $overwrite
+                    $force
                 );
             }
 
@@ -53,7 +53,7 @@ class MakeModelCommand extends BaseCommand
                     [
                         '{{ tableName }}' => $tableName,
                     ],
-                    $overwrite
+                    $force
                 );
             }
 

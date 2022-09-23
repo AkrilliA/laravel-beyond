@@ -23,9 +23,8 @@ test('can make dto factory with dto', function () {
     expect(base_path() . '/src/App/Admin/User/Factories/UserDataFactory.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
-        ->toPlaceholdersBeReplaced();
-
-    expect(base_path() . '/src/Domain/User/DataTransferObjects/UserData.php')
+        ->toPlaceholdersBeReplaced()
+        ->and(base_path() . '/src/Domain/User/DataTransferObjects/UserData.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();

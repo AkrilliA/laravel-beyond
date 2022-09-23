@@ -2,6 +2,6 @@
 
 namespace Regnerisch\LaravelBeyond\Exceptions;
 
-class FileAlreadyExistsException extends \Exception
+class AlreadyExistsException extends \Exception
 {
 }

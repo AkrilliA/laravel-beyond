@@ -14,7 +14,7 @@ test('can make model', function () {
 });
 
 test('can make model, factory and migration are created', function () {
-    $this->artisan('beyond:make:model User/User --factory --migration --overwrite');
+    $this->artisan('beyond:make:model User/User --factory --migration --force');
 
     expect(base_path() . '/src/Domain/User/Models/User.php')
         ->toBeFile()

@@ -6,7 +6,7 @@ use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeQueryCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:query {name?} {--overwrite}';
+    protected $signature = 'beyond:make:query {name?} {--force}';
 
     protected $description = 'Make a new query';
 
@@ -18,7 +18,7 @@ class MakeQueryCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $schema = (new AppNameSchemaResolver($this, $name))->handle();
 
@@ -29,7 +29,7 @@ class MakeQueryCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Query created.');
