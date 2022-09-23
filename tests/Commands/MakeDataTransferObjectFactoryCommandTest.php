@@ -14,18 +14,9 @@ test('can make dto factory', function () {
 });
 
 test('can make dto factory with dto', function () {
-    $composer = $this->app->make(ComposerContract::class);
-
-    $composer->setPackages(['spatie/data-transfer-object']);
-
     $this->artisan('beyond:make:dto-factory Admin/User/UserDataFactory --dto=User/UserData');
 
     expect(base_path() . '/src/App/Admin/User/Factories/UserDataFactory.php')
-        ->toBeFile()
-        ->toMatchNamespaceAndClassName()
-        ->toPlaceholdersBeReplaced();
-
-    expect(base_path() . '/src/Domain/User/DataTransferObjects/UserData.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
