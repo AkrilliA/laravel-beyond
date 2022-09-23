@@ -5,7 +5,7 @@
 ## Upgrade to 4.0 from 3.x
 
 ### Controller moved to Support/Controllers
-We moved the controller to the `Support/Controllers` folder to imrpove compatibility with other packages and decrease boilerplate.
+We moved the controller to the `Support/Controllers` folder to improve compatibility with other packages and decrease boilerplate.
 
 Create a new `Controller.php` in `/src/Support/Controllers`with following content:
 
