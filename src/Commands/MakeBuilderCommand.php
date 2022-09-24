@@ -2,44 +2,33 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeBuilderCommand extends BaseCommand
+class MakeBuilderCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:builder {name?} {--force}';
 
     protected $description = 'Make a new eloquent builder';
 
-    public function handle(): void
+    protected function getDirectoryName(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Builders';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    protected function getStub(): string
+    {
+        return 'stubs/beyond.builder.stub';
+    }
 
-            beyond_copy_stub(
-                'builder.stub',
-                $schema->path('Builders'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
+    protected function getType(): string
+    {
+        return 'Builder';
+    }
 
-            $this->info(
-                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
-
-                'public function newEloquentBuilder($query)' . PHP_EOL .
-                '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->className() . '($query); ' . PHP_EOL .
-                '}'
-            );
-
-            $this->components->info('Builder created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

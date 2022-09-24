@@ -7,7 +7,7 @@ use Regnerisch\LaravelCommandHooks\Command;
 
 abstract class BaseCommand extends Command
 {
-    protected ?int $minimumPHPVersionId = null;
+    protected string $namespace;
 
     protected array $requiredPackages = [];
 
@@ -19,8 +19,8 @@ abstract class BaseCommand extends Command
 
     protected function before(): int
     {
-        if (!$this->matchesMinimumPHPVersionId()) {
-            $this->components->error('Requires at least PHP version ' . $this->minimumPHPVersionId);
+        if (PHP_VERSION_ID < $this->getMinimumPHPVersionId()) {
+            $this->components->error('Requires at least PHP version ' . $this->getMinimumPHPVersionId());
 
             return 1;
         }
@@ -47,16 +47,59 @@ abstract class BaseCommand extends Command
         return 0;
     }
 
-    protected function resolveStubPath(string $stub): string
+    public function handle(): ?bool
     {
-        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
-            ? $customPath
-            : __DIR__ . '/../../' . $stub;
+        $stub = $this->resolveStubPath($this->getStub());
+
+        $name = $this->getNameInput();
+        $classNamespace = $this->getClassNamespace($name);
+        $className = $this->getClassName($name);
+
+        $path = $this->resolvePathFromNamespace($classNamespace . '\\' . $className);
+
+        if (!$this->option('force') && $this->alreadyExists($path)) {
+            $this->components->error($this->getType() . ' [' . $path . '] already exists.');
+
+            return false;
+        }
+
+        beyond_copy_stub(
+            $stub,
+            $path,
+            array_merge(
+                [
+                    '{{ namespace }}' => $classNamespace,
+                    '{{ className }}' => $className,
+                ],
+                $this->getReplacements(),
+            )
+        );
+
+        $this->components->info($className . ' [' . $path . '] created successfully.');
+
+        return null;
+    }
+
+    protected function getMinimumPHPVersionId(): int
+    {
+        return 0;
+    }
+
+    protected function getRequiredPackages(): array
+    {
+        return [];
     }
 
     protected function getReplacements(): array
     {
         return [];
+    }
+
+    protected function resolveStubPath(string $stub): string
+    {
+        return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
+            ? $customPath
+            : __DIR__ . '/../../' . $stub;
     }
 
     protected function resolvePathFromNamespace(string $namespace): string
@@ -69,24 +112,34 @@ abstract class BaseCommand extends Command
         return $this->argument('name');
     }
 
-    protected function matchesMinimumPHPVersionId(): bool
+    protected function getClassNamespace(string $name, ?string $directoryName = null): string
     {
-        if (!$this->minimumPHPVersionId) {
-            return true;
-        }
+        $module = substr($name, 0, strrpos($name, '/'));
 
-        return PHP_VERSION_ID >= $this->minimumPHPVersionId;
+        return $this->namespace . str_replace('/', '\\', $module) . '\\' . ($directoryName ?? $this->getDirectoryName());
+    }
+
+    protected function getClassName(string $name): string
+    {
+        return substr($name, strrpos($name, '/') + 1);
     }
 
     protected function getMissingRequiredPackages(): array
     {
-        if (!$this->requiredPackages) {
-            return [];
+        $packages = $this->getRequiredPackages();
+
+        $requiredPackages = [];
+        foreach ($packages as $key => $value) {
+            if (is_string($value) && is_int($key)) {
+                $requiredPackages[] = $value;
+            } elseif (is_string($key) && $value) {
+                $requiredPackages[] = $key;
+            }
         }
 
         $composer = $this->laravel->get(ComposerContract::class);
 
-        return array_diff($this->requiredPackages, $composer->getPackages()['require']);
+        return array_diff($requiredPackages, $composer->getPackages()['require']);
     }
 
     protected function alreadyExists(string $path): bool

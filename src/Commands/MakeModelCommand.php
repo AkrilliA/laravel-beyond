@@ -2,64 +2,24 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Illuminate\Support\Str;
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
-
-class MakeModelCommand extends BaseCommand
+class MakeModelCommand extends DomainGeneratorCommand
 {
-    protected $signature = 'beyond:make:model {name?} {-f|--factory} {-m|--migration} {--force}';
+    protected $signature = 'beyond:make:model {name?} {--f|factory} {--m|migration} {--force}';
 
     protected $description = 'Make a new model';
 
-    public function handle(): void
+    protected function getDirectoryName(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Models';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    protected function getStub(): string
+    {
+        return 'stubs/beyond.model.stub';
+    }
 
-            beyond_copy_stub(
-                'model.stub',
-                $schema->path('Models'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            if ($this->option('factory')) {
-                $fileName = $schema->className() . 'Factory';
-
-                beyond_copy_stub(
-                    'factory.stub',
-                    base_path() . '/database/factories/' . $fileName . '.php',
-                    [
-                        '{{ namespace }}' => $schema->namespace(),
-                        '{{ model }}' => $schema->className(),
-                    ],
-                    $force
-                );
-            }
-
-            if ($this->option('migration')) {
-                $tableName = Str::snake(Str::pluralStudly($schema->className()));
-                $fileName = now()->format('Y_m_d_his') . '_create_' . $tableName . '_table';
-
-                beyond_copy_stub(
-                    'migration.stub',
-                    base_path() . '/database/migrations/' . $fileName . '.php',
-                    [
-                        '{{ tableName }}' => $tableName,
-                    ],
-                    $force
-                );
-            }
-
-            $this->components->info('Model created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getType(): string
+    {
+        return 'Model';
     }
 }

@@ -21,13 +21,20 @@ class MakeActionCommand extends DomainGeneratorCommand
         return 'Action';
     }
 
-    public function getStub(): string
+    protected function getStub(): string
     {
         if ($this->option('queueable')) {
             return 'stubs/beyond.action.queueable.stub';
         }
 
         return 'stubs/beyond.action.stub';
+    }
+
+    protected function getRequiredPackages(): array
+    {
+        return [
+            'spatie/laravel-queueable-action' => $this->option('queueable'),
+        ];
     }
 
     protected function getArguments(): array
@@ -42,16 +49,5 @@ class MakeActionCommand extends DomainGeneratorCommand
         return [
             ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
         ];
-    }
-
-    protected function before(): int
-    {
-        if ($this->option('queueable')) {
-            $this->requiredPackages = [
-                'spatie/laravel-queueable-action',
-            ];
-        }
-
-        return parent::before();
     }
 }

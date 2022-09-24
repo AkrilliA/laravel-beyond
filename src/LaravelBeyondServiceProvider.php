@@ -5,6 +5,10 @@ namespace Regnerisch\LaravelBeyond;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
@@ -16,6 +20,10 @@ class LaravelBeyondServiceProvider extends ServiceProvider
 
             $this->commands([
                 MakeActionCommand::class,
+                MakeBuilderCommand::class,
+                MakeCollectionCommand::class,
+                MakeModelCommand::class,
+                MakeControllerCommand::class,
             ]);
 
             // $this->commands(...$this->beyondCommands());

@@ -2,47 +2,57 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeCollectionCommand extends BaseCommand
+class MakeCollectionCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:collection {name?} {--model=} {--force}';
 
     protected $description = 'Make a new collection';
 
-    public function handle(): void
+    protected function getDirectoryName(): string
     {
-        try {
-            $name = $this->argument('name');
-            $model = $this->option('model');
-            $force = $this->option('force');
+        return 'Collections';
+    }
 
-            $stub = $model ? 'collection.stub' : 'collection.plain.stub';
+    protected function getStub(): string
+    {
+        if ($this->option('model')) {
+            return 'stubs/beyond.collection.stub';
+        }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+        return 'stubs/beyond.collection.plain.stub';
+    }
 
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Collections'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
+    protected function getType(): string
+    {
+        return 'Collection';
+    }
 
-            $this->components->info(
-                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
+    protected function getReplacements(): array
+    {
+        if ($model = $this->option('model')) {
+            $modelNamespace = $this->getClassNamespace($model, 'Models');
+            $modelClassName = $this->getClassName($model);
+        }
 
-                'public function newCollection(array $models = [])' . PHP_EOL .
-                '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->className() . '($models); ' . PHP_EOL .
-                '}'
-            );
+        return [
+            '{{ modelNamespace }}' => $modelNamespace ?? null,
+            '{{ modelClassName }}' => $modelClassName ?? null,
+        ];
+    }
 
-            $this->components->info('Collection created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
+    }
+
+    protected function after($code)
+    {
+        if ($model = $this->option('model')) {
+            $this->call('beyond:make:model', ['name' => $model]);
         }
     }
 }
