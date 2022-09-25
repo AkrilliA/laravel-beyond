@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:model {name?} {-f|--factory} {-m|--migration} {--force}';
+    protected $signature = 'beyond:make:model {name?} {--f|factory} {--m|migration} {--force}';
 
     protected $description = 'Make a new model';
 
