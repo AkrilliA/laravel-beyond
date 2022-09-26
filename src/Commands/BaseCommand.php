@@ -32,7 +32,6 @@ abstract class BaseCommand extends Command
             return 1;
         }
 
-
         if ([] !== $missingPackages = $this->getMissingRequiredPackages()) {
             $this->components->error(sprintf(
                 'There are missing composer packages. Run `composer require %s` to install them.',
@@ -70,7 +69,6 @@ abstract class BaseCommand extends Command
 
             return false;
         }
-
 
         beyond_copy_stub(
             $stub,
