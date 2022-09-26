@@ -14,7 +14,7 @@ class CopyFileAction
             dirname($targetPath),
         );
 
-        if (!$force && $fs->exists($targetPath)) {
+        if (! $force && $fs->exists($targetPath)) {
             return;
         }
 

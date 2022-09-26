@@ -2,39 +2,21 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeQueryCommand extends BaseCommand
+class MakeQueryCommand extends ApplicationGeneratorCommand
 {
     protected $signature = 'beyond:make:query {name?} {--force}';
 
     protected $description = 'Make a new query';
 
-    protected array $requiredPackages = [
-        'spatie/laravel-query-builder',
-    ];
-
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Query';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
-
-            beyond_copy_stub(
-                'query.stub',
-                $schema->path('Queries'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Query created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getRequiredPackages(): array
+    {
+        return [
+            'spatie/laravel-query-builder',
+        ];
     }
 }

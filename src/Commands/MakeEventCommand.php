@@ -2,35 +2,31 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeEventCommand extends BaseCommand
+class MakeEventCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:event {name?} {--force}';
 
     protected $description = 'Make a new event';
 
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Event';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
 
-            beyond_copy_stub(
-                'event.stub',
-                $schema->path('Events'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Event created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

@@ -11,11 +11,6 @@ class MakeActionCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new action';
 
-    protected function getDirectoryName(): string
-    {
-        return 'Actions';
-    }
-
     protected function getType(): string
     {
         return 'Action';
@@ -47,7 +42,7 @@ class MakeActionCommand extends DomainGeneratorCommand
     protected function getOptions(): array
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
         ];
     }
 }

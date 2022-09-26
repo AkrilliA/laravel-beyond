@@ -31,11 +31,11 @@ class Composer implements ComposerContract
 
     public function getPackages(): array
     {
-        if (!empty($this->packages)) {
+        if (! empty($this->packages)) {
             return $this->packages;
         }
 
-        $content = (new Filesystem())->get(base_path() . '/composer.json');
+        $content = (new Filesystem())->get(base_path().'/composer.json');
         $json = json_decode($content, true);
 
         return $this->packages = [

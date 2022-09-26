@@ -2,37 +2,36 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeEnumCommand extends BaseCommand
+class MakeEnumCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:enum {name?} {--force}';
 
     protected $description = 'Make a new enum type';
 
-    public ?int $minimumVersionId = 80100;
-
-    public function handle()
+    protected function getMinimumPHPVersionId(): int
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 80100;
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    protected function getType(): string
+    {
+        return 'Enum';
+    }
 
-            beyond_copy_stub(
-                'enum.stub',
-                $schema->path('Enums'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
 
-            $this->components->info('Enum created.');
-        } catch (\Exception $e) {
-            $this->components->error($e->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

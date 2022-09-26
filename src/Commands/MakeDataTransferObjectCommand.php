@@ -2,39 +2,38 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeDataTransferObjectCommand extends BaseCommand
+class MakeDataTransferObjectCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:dto {name?} {--force}';
 
     protected $description = 'Make a new data transfer object';
 
-    protected array $requiredPackages = [
-        'spatie/data-transfer-object',
-    ];
-
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'DataTransferObject';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    protected function getRequiredPackages(): array
+    {
+        return [
+            'spatie/data-transfer-object',
+        ];
+    }
 
-            beyond_copy_stub(
-                'data-transfer-object.stub',
-                $schema->path('DataTransferObjects'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
 
-            $this->components->info('DataTransferObject created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

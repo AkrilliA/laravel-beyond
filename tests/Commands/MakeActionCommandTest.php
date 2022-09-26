@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 test('can make action', function () {
     $this->artisan('beyond:make:action User/CreateUserAction');
 
-    expect(base_path() . '/src/Domain/User/Actions/CreateUserAction.php')
+    expect(base_path().'/src/Domain/User/Actions/CreateUserAction.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
@@ -20,7 +20,7 @@ test('can make action queueable', function () {
 
     $this->artisan('beyond:make:action User/CreateUserQueueableAction --queueable');
 
-    expect(base_path() . '/src/Domain/User/Actions/CreateUserQueueableAction.php')
+    expect(base_path().'/src/Domain/User/Actions/CreateUserQueueableAction.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();

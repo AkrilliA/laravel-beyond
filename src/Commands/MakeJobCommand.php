@@ -2,35 +2,31 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeJobCommand extends BaseCommand
+class MakeJobCommand extends ApplicationGeneratorCommand
 {
     protected $signature = 'beyond:make:job {name?} {--force}';
 
     protected $description = 'Make a new job';
 
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Job';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
 
-            beyond_copy_stub(
-                'job.stub',
-                $schema->path('Jobs'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Job created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

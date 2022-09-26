@@ -2,6 +2,7 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class MakeCollectionCommand extends DomainGeneratorCommand
@@ -9,11 +10,6 @@ class MakeCollectionCommand extends DomainGeneratorCommand
     protected $signature = 'beyond:make:collection {name?} {--model=} {--force}';
 
     protected $description = 'Make a new collection';
-
-    protected function getDirectoryName(): string
-    {
-        return 'Collections';
-    }
 
     protected function getStub(): string
     {
@@ -42,10 +38,18 @@ class MakeCollectionCommand extends DomainGeneratorCommand
         ];
     }
 
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
+
     protected function getOptions(): array
     {
         return [
-            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+            ['model', 'm', InputOption::VALUE_OPTIONAL, 'The model that the collection is for'],
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\DataTransferObjects;
+namespace {{ namespace }};
 
 use Spatie\DataTransferObject\DataTransferObject;
 

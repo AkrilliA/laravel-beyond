@@ -2,6 +2,7 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
+use Illuminate\Support\Str;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 use Regnerisch\LaravelCommandHooks\Command;
 
@@ -11,16 +12,22 @@ abstract class BaseCommand extends Command
 
     protected array $requiredPackages = [];
 
-    abstract protected function getDirectoryName(): string;
+    protected function getDirectoryName(): string
+    {
+        return Str::plural($this->getType());
+    }
 
-    abstract protected function getStub(): string;
+    protected function getStub(): string
+    {
+        return 'stubs/beyond.'.Str::lower(Str::kebab($this->getType())).'.stub';
+    }
 
     abstract protected function getType(): string;
 
     protected function before(): int
     {
         if (PHP_VERSION_ID < $this->getMinimumPHPVersionId()) {
-            $this->components->error('Requires at least PHP version ' . $this->getMinimumPHPVersionId());
+            $this->components->error('Requires at least PHP version '.$this->getMinimumPHPVersionId());
 
             return 1;
         }
@@ -38,8 +45,8 @@ abstract class BaseCommand extends Command
             return 1;
         }
 
-        if (!$this->option('force') && $this->alreadyExists('')) {
-            $this->components->error($this->getType() . ' already exists.');
+        if (! $this->option('force') && $this->alreadyExists('')) {
+            $this->components->error($this->getType().' already exists.');
 
             return 1;
         }
@@ -55,10 +62,10 @@ abstract class BaseCommand extends Command
         $classNamespace = $this->getClassNamespace($name);
         $className = $this->getClassName($name);
 
-        $path = $this->resolvePathFromNamespace($classNamespace . '\\' . $className);
+        $path = $this->resolvePathFromNamespace($classNamespace.'\\'.$className);
 
-        if (!$this->option('force') && $this->alreadyExists($path)) {
-            $this->components->error($this->getType() . ' [' . $path . '] already exists.');
+        if (! $this->option('force') && $this->alreadyExists($path)) {
+            $this->components->error($this->getType().' ['.$path.'] already exists.');
 
             return false;
         }
@@ -75,7 +82,7 @@ abstract class BaseCommand extends Command
             )
         );
 
-        $this->components->info($className . ' [' . $path . '] created successfully.');
+        $this->components->info($className.' ['.$path.'] created successfully.');
 
         return null;
     }
@@ -99,12 +106,12 @@ abstract class BaseCommand extends Command
     {
         return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
             ? $customPath
-            : __DIR__ . '/../../' . $stub;
+            : __DIR__.'/../../'.$stub;
     }
 
     protected function resolvePathFromNamespace(string $namespace): string
     {
-        return $this->laravel->basePath() . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . str_replace('\\', '/', $namespace) . '.php';
+        return $this->laravel->basePath().DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.str_replace('\\', '/', $namespace).'.php';
     }
 
     protected function getNameInput(): string
@@ -116,7 +123,7 @@ abstract class BaseCommand extends Command
     {
         $module = substr($name, 0, strrpos($name, '/'));
 
-        return $this->namespace . str_replace('/', '\\', $module) . '\\' . ($directoryName ?? $this->getDirectoryName());
+        return $this->namespace.str_replace('/', '\\', $module).'\\'.($directoryName ?? $this->getDirectoryName());
     }
 
     protected function getClassName(string $name): string

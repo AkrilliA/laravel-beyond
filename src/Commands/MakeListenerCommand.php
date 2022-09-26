@@ -2,35 +2,31 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeListenerCommand extends BaseCommand
+class MakeListenerCommand extends DomainGeneratorCommand
 {
     protected $signature = 'beyond:make:listener {name?} {--force}';
 
     protected $description = 'Make a new listener';
 
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Listener';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
 
-            beyond_copy_stub(
-                'listener.stub',
-                $schema->path('Listeners'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Listener created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

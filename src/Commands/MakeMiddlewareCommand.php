@@ -2,38 +2,46 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeMiddlewareCommand extends BaseCommand
+class MakeMiddlewareCommand extends ApplicationGeneratorCommand
 {
     protected $signature = 'beyond:make:middleware {name?} {--support} {--force}';
 
     protected $description = 'Make a new middleware';
 
-    public function handle(): void
+    protected function getDirectoryName(): string
     {
-        try {
-            $name = $this->argument('name');
-            $support = $this->option('support');
-            $force = $this->option('force');
+        return 'Middlewares';
+    }
 
-            $stub = $support ? 'middleware.support.stub' : 'middleware.stub';
+    protected function getType(): string
+    {
+        return 'Middleware';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
-
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Middlewares'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Middleware created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+    protected function getStub(): string
+    {
+        if ($this->option('support')) {
+            return 'stubs/beyond.middleware.support.stub';
         }
+
+        return 'stubs/beyond.middleware.stub';
+    }
+
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+            ['support', null, InputOption::VALUE_NONE, 'Create a support middleware'],
+        ];
     }
 }

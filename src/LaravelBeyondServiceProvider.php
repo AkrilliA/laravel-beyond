@@ -8,7 +8,15 @@ use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeEnumCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeEventCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeListenerCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeMiddlewareCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
+use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
@@ -22,8 +30,16 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeActionCommand::class,
                 MakeBuilderCommand::class,
                 MakeCollectionCommand::class,
-                MakeModelCommand::class,
                 MakeControllerCommand::class,
+                MakeDataTransferObjectCommand::class,
+                MakeEnumCommand::class,
+                MakeEventCommand::class,
+                MakeJobCommand::class,
+                MakeListenerCommand::class,
+                MakeMiddlewareCommand::class,
+                MakeModelCommand::class,
+                MakePolicyCommand::class,
+                MakeQueryCommand::class,
             ]);
 
             // $this->commands(...$this->beyondCommands());
@@ -39,13 +55,13 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         ];
 
         $fs = new Filesystem();
-        $files = $fs->files(__DIR__ . '/Commands');
+        $files = $fs->files(__DIR__.'/Commands');
 
         return array_map(
-            fn ($file) => 'Regnerisch\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
+            fn ($file) => 'Regnerisch\\LaravelBeyond\\Commands\\'.$file->getBasename('.php'),
             array_filter(
                 $files,
-                fn ($file) => !in_array($file->getBasename('.php'), $exclude, true),
+                fn ($file) => ! in_array($file->getBasename('.php'), $exclude, true),
             )
         );
     }

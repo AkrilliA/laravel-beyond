@@ -11,7 +11,7 @@ class SupportSchema extends BaseSchema
         return sprintf(
             '%s/src/Support%s/%s.php',
             base_path(),
-            $directory ? '/' . $directory : '',
+            $directory ? '/'.$directory : '',
             $this->className
         );
     }

@@ -10,19 +10,19 @@ class ChangeComposerAutoloaderAction
 {
     public function execute()
     {
-        $path = base_path() . '/composer.json';
+        $path = base_path().'/composer.json';
 
         $fs = new Filesystem();
 
-        if (!$fs->exists($path)) {
+        if (! $fs->exists($path)) {
             throw new FileNotFoundException('composer.json not found.');
         }
 
-        if (!$fs->isReadable($path)) {
+        if (! $fs->isReadable($path)) {
             throw new IOException('composer.json is not readable.');
         }
 
-        if (!$fs->isWritable($path)) {
+        if (! $fs->isWritable($path)) {
             throw new IOException('composer.json is not writable');
         }
 
