@@ -36,7 +36,6 @@ test('can make model, factory and migration are created', function () {
         ->toPlaceholdersBeReplaced();
 });
 
-
 test('can make model, factory and migration are created using shortcuts', function () {
     $this->artisan('beyond:make:model User/User -mf');
 
