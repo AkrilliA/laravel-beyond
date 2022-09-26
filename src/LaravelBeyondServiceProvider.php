@@ -19,6 +19,7 @@ use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeRequestCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeResourceCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeRuleCommand;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
@@ -44,6 +45,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
                 MakeQueryCommand::class,
                 MakeRequestCommand::class,
                 MakeResourceCommand::class,
+                MakeRuleCommand::class,
             ]);
 
             // $this->commands(...$this->beyondCommands());

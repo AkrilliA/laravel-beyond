@@ -2,6 +2,8 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
+trigger_deprecation('regnerisch/laravel-beyond', '4.1', '[%s] will be deprecated by version 5.0.', self::class);
+
 class MakeRouteCommand extends BaseCommand
 {
     protected $signature = 'beyond:make:route {routeName?} {--force}';

@@ -2,38 +2,41 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeRuleCommand extends BaseCommand
+class MakeRuleCommand extends ApplicationGeneratorCommand
 {
     protected $signature = 'beyond:make:rule {name?} {--support} {--force}';
 
     protected $description = 'Make a new rule';
 
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $support = $this->option('support');
-            $force = $this->option('force');
+        return 'Rule';
+    }
 
-            $stub = $support ? 'rule.support.stub' : 'rule.stub';
-
-            $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
-
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Rules'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Rule created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+    protected function getStub(): string
+    {
+        if ($this->option('support')) {
+            return 'stubs/beyond.rule.support.stub';
         }
+
+        return 'stubs/beyond.rule.stub';
+    }
+
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+            ['support', null, InputOption::VALUE_NONE, 'Create a support rule'],
+        ];
     }
 }
