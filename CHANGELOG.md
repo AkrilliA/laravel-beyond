@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.1] - 2022-09-26
+### Fixed
+- Fix `migration` and `factory` shortcut flags by [@krishnahimself](https://github.com/krishnahimself) in [#73](https://github.com/regnerisch/laravel-beyond/pull/73)
+
 ## [4.0.0] - 2022-09-23
 ### Added
 - `MakeDataTransferObjectFactoryCommand` by [@regnerisch](https://github.com/regnerisch) reported by [@thewebartisan7](https://github.com/thewebartisan7) in [#58](https://github.com/regnerisch/laravel-beyond/pull/58)

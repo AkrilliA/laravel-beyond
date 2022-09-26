@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Illuminate\Support\Facades\File;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
 use Regnerisch\LaravelBeyond\LaravelBeyondServiceProvider;
