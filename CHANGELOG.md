@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Fix missing links in CHANGELOG.md by [@regnerisch](https://github.com/regnerisch)
+
+## [4.0.1] - 2022-09-26
+### Fixed
+- Fix `migration` and `factory` shortcut flags by [@krishnahimself](https://github.com/krishnahimself) in [#73](https://github.com/regnerisch/laravel-beyond/pull/73)
 
 ## [4.0.0] - 2022-09-23
 ### Added
@@ -48,7 +54,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v4.0.1...HEAD
+[4.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v3.2.1...v4.0.0
 [3.2.1]: https://github.com/regnerisch/laravel-beyond/compare/v3.2.0...v3.2.1
 [3.2.0]: https://github.com/regnerisch/laravel-beyond/compare/v3.1.1...v3.2.0
