@@ -3,34 +3,31 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeRequestCommand extends BaseCommand
+class MakeRequestCommand extends ApplicationGeneratorCommand
 {
     protected $signature = 'beyond:make:request {name?} {--force}';
 
     protected $description = 'Make a new request';
 
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Request';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
 
-            beyond_copy_stub(
-                'request.stub',
-                $schema->path('Requests'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Request created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getOptions(): array
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+        ];
     }
 }

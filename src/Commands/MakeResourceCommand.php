@@ -2,40 +2,42 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
-class MakeResourceCommand extends BaseCommand
+class MakeResourceCommand extends ApplicationGeneratorCommand
 {
     protected $signature = 'beyond:make:resource {name?} {--collection} {--force}';
 
     protected $description = 'Make a new resource';
 
-    public function handle(): void
+    protected function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $collection = $this->option('collection');
-            $force = $this->option('force');
+        return 'Resource';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
-
-            $stub = (str_contains($schema->className(), 'Collection') || $collection) ?
-                'resource.collection.stub' :
-                'resource.stub';
-
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Resources'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Resource created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+    protected function getStub(): string
+    {
+        if (Str::of($this->argument('name'))->contains('Collection') || $this->option('collection')) {
+            return 'stubs/beyond.resource.collection.stub';
         }
+
+        return 'stubs/beyond.resource.stub';
+    }
+
+    protected function getArguments(): array
+    {
+        return [
+            ['name', InputArgument::REQUIRED, 'The name of the class'],
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
+            ['collection', null, InputOption::VALUE_NONE, 'Create a collection'],
+        ];
     }
 }
