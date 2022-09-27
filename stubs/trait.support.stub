@@ -1,6 +1,6 @@
 <?php
 
-namespace Support\Packages\Laravel\Traits;
+namespace Support\Traits;
 
 trait {{ className }}
 {

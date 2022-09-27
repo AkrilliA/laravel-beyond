@@ -19,8 +19,6 @@ class MakeTraitCommand extends BaseCommand
             $force = $this->option('force');
 
             $stub = $support ? 'trait.support.stub' : 'trait.stub';
-            $directory = $support ? 'Packages/Laravel/Traits' : 'Traits';
-
             $schema = $support ?
                 (new AppNameSchemaResolver($this, $name, support: $support))->handle() :
                 (new DomainNameSchemaResolver($this, $name))->handle()
@@ -28,7 +26,7 @@ class MakeTraitCommand extends BaseCommand
 
             beyond_copy_stub(
                 $stub,
-                $schema->path($directory),
+                $schema->path('Traits'),
                 [
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
