@@ -347,10 +347,10 @@ php artisan beyond:make:trait Users/HasActivationCodeTrait
 
 **Options**
 
-| Name        | Description                                      |
-|-------------|--------------------------------------------------|
-| `--force`   | Create the trait even if the rule already exists |
-| `--support` | Will create a trait in Support namespace         |
+| Name        | Description                                       |
+|-------------|---------------------------------------------------|
+| `--force`   | Create the trait even if the trait already exists |
+| `--support` | Will create a trait in Support namespace          |
 
 ---
 
