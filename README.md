@@ -337,6 +337,23 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 
 ---
 
+#### `beyond:make:trait`
+
+This command will create a new trait class inside your application.
+
+```bash
+php artisan beyond:make:trait Users/HasActivationCodeTrait
+```
+
+**Options**
+
+| Name          | Description                              |
+|---------------|------------------------------------------|
+| `--overwrite` | Will overwrite the file if it exists     |
+| `--support`   | Will create a trait in Support namespace |
+
+---
+
 #### `beyond:make:provider`
 
 This command will create a new service provider class.
