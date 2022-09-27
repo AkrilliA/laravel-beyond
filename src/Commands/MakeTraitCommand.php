@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeTraitCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:trait {name?} {--support} {--overwrite}';
+    protected $signature = 'beyond:make:trait {name?} {--support} {--force}';
 
     protected $description = 'Make a new trait';
 
@@ -16,7 +16,7 @@ class MakeTraitCommand extends BaseCommand
         try {
             $name = $this->argument('name');
             $support = $this->option('support');
-            $overwrite = $this->option('overwrite');
+            $force = $this->option('force');
 
             $stub = $support ? 'trait.support.stub' : 'trait.stub';
             $directory = $support ? 'Packages/Laravel/Traits' : 'Traits';
@@ -33,7 +33,7 @@ class MakeTraitCommand extends BaseCommand
                     '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
-                $overwrite
+                $force
             );
 
             $this->components->info('Trait created.');
