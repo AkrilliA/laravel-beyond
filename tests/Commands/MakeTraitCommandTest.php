@@ -5,7 +5,7 @@ namespace Tests\Commands;
 test('can make trait', function () {
     $this->artisan('beyond:make:trait Users/HasActivationCodeTrait');
 
-    expect(base_path() . '/src/App/Users/Traits/HasActivationCodeTrait.php')
+    expect(base_path() . '/src/Domain/Users/Traits/HasActivationCodeTrait.php')
         ->toBeFile()
         ->toPlaceholdersBeReplaced();
 });
@@ -21,9 +21,9 @@ test('can make support trait', function () {
 test('namespace is correct', function () {
     $this->artisan('beyond:make:trait Users/HasActivationCodeTrait');
 
-    $file = base_path() . '/src/App/Users/Traits/HasActivationCodeTrait.php';
+    $file = base_path() . '/src/Domain/Users/Traits/HasActivationCodeTrait.php';
     $content = file_get_contents($file);
-    expect($content)->toContain('namespace App\Users\Traits;');
+    expect($content)->toContain('namespace Domain\Users\Traits;');
 });
 
 test('support namespace is correct', function () {
@@ -37,7 +37,7 @@ test('support namespace is correct', function () {
 test('starts with trait', function () {
     $this->artisan('beyond:make:trait Users/HasActivationCodeTrait');
 
-    $file = base_path() . '/src/App/Users/Traits/HasActivationCodeTrait.php';
+    $file = base_path() . '/src/Domain/Users/Traits/HasActivationCodeTrait.php';
     $content = file_get_contents($file);
     expect($content)->toContain('trait HasActivationCodeTrait');
 });

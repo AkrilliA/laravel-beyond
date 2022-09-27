@@ -3,6 +3,7 @@
 namespace Regnerisch\LaravelBeyond\Commands;
 
 use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeTraitCommand extends BaseCommand
 {
@@ -20,7 +21,10 @@ class MakeTraitCommand extends BaseCommand
             $stub = $support ? 'trait.support.stub' : 'trait.stub';
             $directory = $support ? 'Packages/Laravel/Traits' : 'Traits';
 
-            $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
+            $schema = $support ?
+                (new AppNameSchemaResolver($this, $name, support: $support))->handle() :
+                (new DomainNameSchemaResolver($this, $name))->handle()
+            ;
 
             beyond_copy_stub(
                 $stub,
