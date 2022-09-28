@@ -2,8 +2,7 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
+use Regnerisch\LaravelBeyond\Console\DomainGeneratorCommand;
 
 class MakeActionCommand extends DomainGeneratorCommand
 {
@@ -11,10 +10,7 @@ class MakeActionCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new action';
 
-    protected function getType(): string
-    {
-        return 'Action';
-    }
+    protected string $type = 'Action';
 
     protected function getStub(): string
     {
@@ -29,20 +25,6 @@ class MakeActionCommand extends DomainGeneratorCommand
     {
         return [
             'spatie/laravel-queueable-action' => $this->option('queueable'),
-        ];
-    }
-
-    protected function getArguments(): array
-    {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
-        ];
-    }
-
-    protected function getOptions(): array
-    {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
         ];
     }
 }

@@ -9,6 +9,7 @@ use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
+use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectFactoryCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeEnumCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeEventCommand;
 use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
@@ -31,21 +32,22 @@ class LaravelBeyondServiceProvider extends ServiceProvider
 
             $this->commands([
                 MakeActionCommand::class,
-                MakeBuilderCommand::class,
-                MakeCollectionCommand::class,
-                MakeControllerCommand::class,
+//                MakeBuilderCommand::class,
+//                MakeCollectionCommand::class,
+//                MakeControllerCommand::class,
                 MakeDataTransferObjectCommand::class,
-                MakeEnumCommand::class,
-                MakeEventCommand::class,
-                MakeJobCommand::class,
-                MakeListenerCommand::class,
-                MakeMiddlewareCommand::class,
-                MakeModelCommand::class,
-                MakePolicyCommand::class,
-                MakeQueryCommand::class,
-                MakeRequestCommand::class,
-                MakeResourceCommand::class,
-                MakeRuleCommand::class,
+                MakeDataTransferObjectFactoryCommand::class,
+//                MakeEnumCommand::class,
+//                MakeEventCommand::class,
+//                MakeJobCommand::class,
+//                MakeListenerCommand::class,
+//                MakeMiddlewareCommand::class,
+//                MakeModelCommand::class,
+//                MakePolicyCommand::class,
+//                MakeQueryCommand::class,
+//                MakeRequestCommand::class,
+//                MakeResourceCommand::class,
+//                MakeRuleCommand::class,
             ]);
 
             // $this->commands(...$this->beyondCommands());
@@ -61,13 +63,13 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         ];
 
         $fs = new Filesystem();
-        $files = $fs->files(__DIR__.'/Commands');
+        $files = $fs->files(__DIR__ . '/Commands');
 
         return array_map(
-            fn ($file) => 'Regnerisch\\LaravelBeyond\\Commands\\'.$file->getBasename('.php'),
+            fn ($file) => 'Regnerisch\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
             array_filter(
                 $files,
-                fn ($file) => ! in_array($file->getBasename('.php'), $exclude, true),
+                fn ($file) => !in_array($file->getBasename('.php'), $exclude, true),
             )
         );
     }

@@ -8,7 +8,7 @@ class MakeModelCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new model';
 
-    protected function getDirectoryName(): string
+    protected function directoryName(): string
     {
         return 'Models';
     }

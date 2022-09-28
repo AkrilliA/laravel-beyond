@@ -12,7 +12,7 @@ class AppSchema extends BaseSchema
             '%s/src/App/%s%s/%s.php',
             base_path(),
             $this->namespacePath(),
-            $directory ? '/'.$directory : '',
+            $directory ? '/' . $directory : '',
             $this->className
         );
     }

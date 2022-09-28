@@ -11,7 +11,7 @@ class MakeMiddlewareCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new middleware';
 
-    protected function getDirectoryName(): string
+    protected function directoryName(): string
     {
         return 'Middlewares';
     }

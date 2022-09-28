@@ -26,7 +26,7 @@ class MakePolicyCommand extends DomainGeneratorCommand
         if ($model = $this->option('model')) {
             $modelName = $model;
             $modelNamespace = Str::plural($model);
-            $modelVariable = $model === 'User' ? 'object' : Str::lower($model);
+            $modelVariable = 'User' === $model ? 'object' : Str::lower($model);
         }
 
         return [

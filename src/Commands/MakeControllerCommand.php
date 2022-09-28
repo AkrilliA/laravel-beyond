@@ -8,7 +8,7 @@ class MakeControllerCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new controller';
 
-    protected function getDirectoryName(): string
+    protected function directoryName(): string
     {
         return 'Controllers';
     }

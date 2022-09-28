@@ -1,35 +1,27 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace Regnerisch\LaravelBeyond\Console;
 
 use Illuminate\Support\Str;
 use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Regnerisch\LaravelCommandHooks\Command;
+use Regnerisch\LaravelBeyond\Exceptions\AbortCommandException;
 
-abstract class BaseCommand extends Command
+abstract class GeneratorCommand extends Command
 {
     protected string $namespace;
 
-    protected array $requiredPackages = [];
+    protected string $type;
 
-    protected function getDirectoryName(): string
-    {
-        return Str::plural($this->getType());
-    }
+    abstract protected function getSchema(?string $name, string $type): string;
 
-    protected function getStub(): string
-    {
-        return 'stubs/beyond.'.Str::lower(Str::kebab($this->getType())).'.stub';
-    }
+    abstract protected function getNamespaceFromSchema(string $schema, string $directoryName): string;
 
-    abstract protected function getType(): string;
+    abstract protected function getStub(): string;
 
     protected function before(): int
     {
         if (PHP_VERSION_ID < $this->getMinimumPHPVersionId()) {
-            $this->components->error('Requires at least PHP version '.$this->getMinimumPHPVersionId());
-
-            return 1;
+            throw new AbortCommandException('Requires at least PHP version ' . $this->getMinimumPHPVersionId());
         }
 
         if ([] !== $missingPackages = $this->getMissingRequiredPackages()) {
@@ -42,13 +34,7 @@ abstract class BaseCommand extends Command
                 $this->components->twoColumnDetail($missingPackage, 'MISSING');
             }
 
-            return 1;
-        }
-
-        if (! $this->option('force') && $this->alreadyExists('')) {
-            $this->components->error($this->getType().' already exists.');
-
-            return 1;
+            throw new AbortCommandException();
         }
 
         return 0;
@@ -58,14 +44,14 @@ abstract class BaseCommand extends Command
     {
         $stub = $this->resolveStubPath($this->getStub());
 
-        $name = $this->getNameInput();
-        $classNamespace = $this->getClassNamespace($name);
-        $className = $this->getClassName($name);
+        $schema = $this->getSchema($this->getNameInput(), $this->type);
+        $classNamespace = $this->getNamespaceFromSchema($schema, $this->directoryName());
+        $className = $this->getClassNameFromSchema($schema);
 
-        $path = $this->resolvePathFromNamespace($classNamespace.'\\'.$className);
+        $path = $this->resolvePathFromFQN($classNamespace . '\\' . $className);
 
-        if (! $this->option('force') && $this->alreadyExists($path)) {
-            $this->components->error($this->getType().' ['.$path.'] already exists.');
+        if (!$this->option('force') && $this->alreadyExists($path)) {
+            $this->components->error($this->type . ' [' . $path . '] already exists.');
 
             return false;
         }
@@ -82,7 +68,7 @@ abstract class BaseCommand extends Command
             )
         );
 
-        $this->components->info($className.' ['.$path.'] created successfully.');
+        $this->components->info($className . ' [' . $path . '] created successfully.');
 
         return null;
     }
@@ -102,33 +88,31 @@ abstract class BaseCommand extends Command
         return [];
     }
 
+    protected function directoryName(): string
+    {
+        return Str::plural($this->type);
+    }
+
     protected function resolveStubPath(string $stub): string
     {
         return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
             ? $customPath
-            : __DIR__.'/../../'.$stub;
+            : __DIR__ . '/../../' . $stub;
     }
 
-    protected function resolvePathFromNamespace(string $namespace): string
+    protected function resolvePathFromFQN(string $namespace): string
     {
-        return $this->laravel->basePath().DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR.str_replace('\\', '/', $namespace).'.php';
+        return $this->laravel->basePath() . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . str_replace('\\', '/', $namespace) . '.php';
     }
 
-    protected function getNameInput(): string
+    protected function getNameInput(): ?string
     {
         return $this->argument('name');
     }
 
-    protected function getClassNamespace(string $name, ?string $directoryName = null): string
+    protected function getClassNameFromSchema(string $schema): string
     {
-        $module = substr($name, 0, strrpos($name, '/'));
-
-        return $this->namespace.str_replace('/', '\\', $module).'\\'.($directoryName ?? $this->getDirectoryName());
-    }
-
-    protected function getClassName(string $name): string
-    {
-        return substr($name, strrpos($name, '/') + 1);
+        return last(explode('/', $schema));
     }
 
     protected function getMissingRequiredPackages(): array

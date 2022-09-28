@@ -2,8 +2,7 @@
 
 namespace Regnerisch\LaravelBeyond\Commands;
 
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
+use Regnerisch\LaravelBeyond\Console\DomainGeneratorCommand;
 
 class MakeDataTransferObjectCommand extends DomainGeneratorCommand
 {
@@ -11,29 +10,17 @@ class MakeDataTransferObjectCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new data transfer object';
 
-    protected function getType(): string
+    protected string $type = 'DataTransferObject';
+
+    protected function getStub(): string
     {
-        return 'DataTransferObject';
+        return '/stubs/beyond.data-transfer-objects.stub';
     }
 
     protected function getRequiredPackages(): array
     {
         return [
             'spatie/data-transfer-object',
-        ];
-    }
-
-    protected function getArguments(): array
-    {
-        return [
-            ['name', InputArgument::REQUIRED, 'The name of the class'],
-        ];
-    }
-
-    protected function getOptions(): array
-    {
-        return [
-            ['force', 'f', InputOption::VALUE_NONE, 'Create the class even if the action already exists'],
         ];
     }
 }
