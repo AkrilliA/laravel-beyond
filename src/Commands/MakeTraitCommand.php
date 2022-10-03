@@ -7,7 +7,7 @@ use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeTraitCommand extends BaseCommand
 {
-    protected $signature = 'beyond:make:trait {name?} {--support} {--force}';
+    protected $signature = 'beyond:make:trait {name?} {--force}';
 
     protected $description = 'Make a new trait';
 
@@ -15,20 +15,14 @@ class MakeTraitCommand extends BaseCommand
     {
         try {
             $name = $this->argument('name');
-            $support = $this->option('support');
             $force = $this->option('force');
 
-            $stub = $support ? 'trait.support.stub' : 'trait.stub';
-            $schema = $support ?
-                (new AppNameSchemaResolver($this, $name, support: $support))->handle() :
-                (new DomainNameSchemaResolver($this, $name))->handle()
-            ;
+            $schema = (new AppNameSchemaResolver($this, $name, support: true))->handle();
 
             beyond_copy_stub(
-                $stub,
+                'trait.stub',
                 $schema->path('Traits'),
                 [
-                    '{{ namespace }}' => $schema->namespace(),
                     '{{ className }}' => $schema->className(),
                 ],
                 $force
