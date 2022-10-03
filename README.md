@@ -342,7 +342,7 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 This command will create a new trait class inside your application.
 
 ```bash
-php artisan beyond:make:trait Users/HasActivationCodeTrait
+php artisan beyond:make:trait HasActivationCodeTrait
 ```
 
 **Options**
@@ -350,7 +350,6 @@ php artisan beyond:make:trait Users/HasActivationCodeTrait
 | Name        | Description                                       |
 |-------------|---------------------------------------------------|
 | `--force`   | Create the trait even if the trait already exists |
-| `--support` | Will create a trait in Support namespace          |
 
 ---
 
