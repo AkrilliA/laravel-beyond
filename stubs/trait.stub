@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\Traits;
+namespace Support\Traits;
 
 trait {{ className }}
 {
