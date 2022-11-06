@@ -32,6 +32,9 @@ Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function 
 }); 
 ```
 
+Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
+
+
 ## Usage
 
 ### Commands
@@ -365,15 +368,6 @@ php artisan beyond:setup
 | `--skip-delete` | Will skip the deletion of app directory |
 
 ---
-
-### Set up a domain-driven application
-
-After installing `laravel-beyond` you can easily set up a domain-driven application.
-You just need to run `php artisan beyond:setup` on a fresh Laravel application or
-`php artisan beyond:setup --skip-delete` to keep you `app` directory with your existing
-code.
-
-Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
 
 ## Contributors
 
