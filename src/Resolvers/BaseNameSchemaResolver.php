@@ -1,10 +1,10 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Resolvers;
+namespace AkrilliA\LaravelBeyond\Resolvers;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Contracts\NameSchemaResolver;
-use Regnerisch\LaravelBeyond\Contracts\Schema;
+use AkrilliA\LaravelBeyond\Contracts\NameSchemaResolver;
+use AkrilliA\LaravelBeyond\Contracts\Schema;
 
 abstract class BaseNameSchemaResolver implements NameSchemaResolver
 {

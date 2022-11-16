@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Schema;
+namespace AkrilliA\LaravelBeyond\Schema;
 
 class DomainSchema extends BaseSchema
 {

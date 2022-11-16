@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Schema;
+namespace AkrilliA\LaravelBeyond\Schema;
 
-use Regnerisch\LaravelBeyond\Contracts\Schema;
+use AkrilliA\LaravelBeyond\Contracts\Schema;
 
 abstract class BaseSchema implements Schema
 {

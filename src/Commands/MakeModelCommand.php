@@ -1,9 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
 use Illuminate\Support\Str;
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeModelCommand extends BaseCommand
 {

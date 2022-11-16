@@ -1,13 +1,13 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
 use Illuminate\Filesystem\Filesystem;
-use Regnerisch\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
-use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
-use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
-use Regnerisch\LaravelBeyond\Actions\DeleteAction;
-use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
+use AkrilliA\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
+use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
+use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
+use AkrilliA\LaravelBeyond\Actions\DeleteAction;
+use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 
 class SetupCommand extends BaseCommand
 {

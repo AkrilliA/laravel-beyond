@@ -1,9 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond;
+namespace AkrilliA\LaravelBeyond;
 
 use Illuminate\Filesystem\Filesystem;
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class Composer implements ComposerContract
 {

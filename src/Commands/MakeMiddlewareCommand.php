@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeMiddlewareCommand extends BaseCommand
 {

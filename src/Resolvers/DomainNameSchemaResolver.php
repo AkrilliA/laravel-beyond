@@ -1,11 +1,11 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Resolvers;
+namespace AkrilliA\LaravelBeyond\Resolvers;
 
-use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
-use Regnerisch\LaravelBeyond\Contracts\Schema;
-use Regnerisch\LaravelBeyond\Schema\DomainSchema;
-use Regnerisch\LaravelBeyond\Schema\SupportSchema;
+use AkrilliA\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use AkrilliA\LaravelBeyond\Contracts\Schema;
+use AkrilliA\LaravelBeyond\Schema\DomainSchema;
+use AkrilliA\LaravelBeyond\Schema\SupportSchema;
 
 class DomainNameSchemaResolver extends BaseNameSchemaResolver
 {

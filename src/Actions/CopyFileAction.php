@@ -1,9 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Actions;
+namespace AkrilliA\LaravelBeyond\Actions;
 
 use Illuminate\Filesystem\Filesystem;
-use Regnerisch\LaravelBeyond\Exceptions\AlreadyExistsException;
+use AkrilliA\LaravelBeyond\Exceptions\AlreadyExistsException;
 
 class CopyFileAction
 {

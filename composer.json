@@ -1,11 +1,11 @@
 {
-    "name": "regnerisch/laravel-beyond",
+    "name": "akrillia/laravel-beyond",
     "type": "library",
     "license": "ISC",
     "version": "4.0.1",
     "autoload": {
         "psr-4": {
-            "Regnerisch\\LaravelBeyond\\": "src/"
+            "AkrilliA\\LaravelBeyond\\": "src/"
         },
         "files": [
             "src/helper.php"
@@ -36,7 +36,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Regnerisch\\LaravelBeyond\\LaravelBeyondServiceProvider"
+                "AkrilliA\\LaravelBeyond\\LaravelBeyondServiceProvider"
             ]
         }
     },

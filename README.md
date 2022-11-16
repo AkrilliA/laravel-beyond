@@ -8,14 +8,14 @@ inspired application.
 We try to implement commands as near as possible on their original `make` counterparts.
 
 ## Upgrade Guide
-Please read our [Upgrade Guide](UPGRADE.md) in case you are using version 3.x. 
+Please read our [Upgrade Guide](UPGRADE.md) in case you are using an older version or `regnerisch/laravel-beyond`.
 
 ## Installation
 
 Install laravel-beyond with composer
 
 ```bash
-composer require --dev regnerisch/laravel-beyond
+composer require --dev akrillia/laravel-beyond
 ```
 
 ## Usage

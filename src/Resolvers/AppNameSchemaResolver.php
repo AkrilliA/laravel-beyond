@@ -1,12 +1,12 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Resolvers;
+namespace AkrilliA\LaravelBeyond\Resolvers;
 
 use Illuminate\Console\Command;
-use Regnerisch\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
-use Regnerisch\LaravelBeyond\Contracts\Schema;
-use Regnerisch\LaravelBeyond\Schema\AppSchema;
-use Regnerisch\LaravelBeyond\Schema\SupportSchema;
+use AkrilliA\LaravelBeyond\Actions\FetchDirectoryNamesFromPathAction;
+use AkrilliA\LaravelBeyond\Contracts\Schema;
+use AkrilliA\LaravelBeyond\Schema\AppSchema;
+use AkrilliA\LaravelBeyond\Schema\SupportSchema;
 
 class AppNameSchemaResolver extends BaseNameSchemaResolver
 {

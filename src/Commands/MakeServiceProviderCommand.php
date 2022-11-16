@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
 class MakeServiceProviderCommand extends BaseCommand
 {

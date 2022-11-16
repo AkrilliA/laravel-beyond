@@ -1,10 +1,10 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond;
+namespace AkrilliA\LaravelBeyond;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         $files = $fs->files(__DIR__ . '/Commands');
 
         return array_map(
-            fn ($file) => 'Regnerisch\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
+            fn ($file) => 'AkrilliA\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
             array_filter(
                 $files,
                 fn ($file) => !in_array($file->getBasename('.php'), $exclude, true),
