@@ -2,9 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond\Resolvers;
 
-use Illuminate\Console\Command;
 use AkrilliA\LaravelBeyond\Contracts\NameSchemaResolver;
 use AkrilliA\LaravelBeyond\Contracts\Schema;
+use Illuminate\Console\Command;
 
 abstract class BaseNameSchemaResolver implements NameSchemaResolver
 {

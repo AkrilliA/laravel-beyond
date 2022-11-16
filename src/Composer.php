@@ -2,8 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond;
 
-use Illuminate\Filesystem\Filesystem;
 use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
+use Illuminate\Filesystem\Filesystem;
 
 class Composer implements ComposerContract
 {

@@ -2,9 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond;
 
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {

@@ -2,12 +2,12 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use AkrilliA\LaravelBeyond\Actions\ChangeComposerAutoloaderAction;
 use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
 use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use AkrilliA\LaravelBeyond\Actions\DeleteAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
+use Illuminate\Filesystem\Filesystem;
 
 class SetupCommand extends BaseCommand
 {

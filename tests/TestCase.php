@@ -2,10 +2,10 @@
 
 namespace Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 use AkrilliA\LaravelBeyond\LaravelBeyondServiceProvider;
 use AkrilliA\LaravelBeyond\Testing\Fakes\ComposerFake;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
