@@ -18,6 +18,26 @@ Install laravel-beyond with composer
 composer require --dev akrillia/laravel-beyond
 ```
 
+After this you can setup it by running
+
+```bash
+php artisan beyond:setup
+```
+
+This moves everything to the correct place and deletes the `app` folder afterwards. You can also choose to skip this 
+by adding the `--skip-delete` flag.
+
+Please ensure that you add the following into one of your service providers (e.g. `AppServiceProvider`):
+
+```php
+Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
+    return '\Database\Factories\' . class_basename($modelName) . 'Factory';
+}); 
+```
+
+Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
+
+
 ## Usage
 
 ### Commands
@@ -385,15 +405,6 @@ php artisan beyond:setup
 | `--skip-delete` | Will skip the deletion of app directory           |
 
 ---
-
-### Set up a domain-driven application
-
-After installing `laravel-beyond` you can easily set up a domain-driven application.
-You just need to run `php artisan beyond:setup` on a fresh Laravel application or
-`php artisan beyond:setup --skip-delete` to keep you `app` directory with your existing
-code.
-
-Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
 
 ## Contributors
 
