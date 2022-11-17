@@ -2,7 +2,7 @@
 
 namespace Tests\Commands;
 
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 test('can make action', function () {
     $this->artisan('beyond:make:action User/CreateUserAction');

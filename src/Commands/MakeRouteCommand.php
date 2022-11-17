@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
 trigger_deprecation('regnerisch/laravel-beyond', '4.1', '[%s] will be deprecated by version 5.0.', self::class);
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Console\ApplicationGeneratorCommand;
-use Regnerisch\LaravelBeyond\WithDomainResolver;
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
+use AkrilliA\LaravelBeyond\WithDomainResolver;
 
 class MakeDataTransferObjectFactoryCommand extends ApplicationGeneratorCommand
 {

@@ -1,7 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

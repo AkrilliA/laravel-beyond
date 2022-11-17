@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Actions;
+namespace AkrilliA\LaravelBeyond\Actions;
 
 class RefactorFileAction
 {

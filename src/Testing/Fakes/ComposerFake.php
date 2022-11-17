@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Testing\Fakes;
+namespace AkrilliA\LaravelBeyond\Testing\Fakes;
 
-use Regnerisch\LaravelBeyond\Composer;
+use AkrilliA\LaravelBeyond\Composer;
 
 class ComposerFake extends Composer
 {

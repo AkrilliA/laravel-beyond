@@ -8,14 +8,14 @@ inspired application.
 We try to implement commands as near as possible on their original `make` counterparts.
 
 ## Upgrade Guide
-Please read our [Upgrade Guide](UPGRADE.md) in case you are using version 3.x. 
+Please read our [Upgrade Guide](UPGRADE.md) in case you are using an older version or `regnerisch/laravel-beyond`.
 
 ## Installation
 
 Install laravel-beyond with composer
 
 ```bash
-composer require --dev regnerisch/laravel-beyond
+composer require --dev akrillia/laravel-beyond
 ```
 
 ## Usage
@@ -334,6 +334,22 @@ php artisan beyond:make:rule Admin/Users/IsAdminRule
 |-------------|--------------------------------------------------|
 | `--force`   | Create the class even if the rule already exists |
 | `--support` | Will create a middleware in Support namespace    |
+
+---
+
+#### `beyond:make:trait`
+
+This command will create a new trait class inside your application.
+
+```bash
+php artisan beyond:make:trait HasActivationCodeTrait
+```
+
+**Options**
+
+| Name        | Description                                       |
+|-------------|---------------------------------------------------|
+| `--force`   | Create the trait even if the trait already exists |
 
 ---
 

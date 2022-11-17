@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Contracts;
+namespace AkrilliA\LaravelBeyond\Contracts;
 
 interface Composer
 {

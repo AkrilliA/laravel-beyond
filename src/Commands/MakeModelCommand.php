@@ -1,6 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
+
+use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use Illuminate\Support\Str;
 
 class MakeModelCommand extends DomainGeneratorCommand
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Console\DomainGeneratorCommand;
+use AkrilliA\LaravelBeyond\Console\DomainGeneratorCommand;
 
 class MakeActionCommand extends DomainGeneratorCommand
 {

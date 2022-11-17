@@ -1,9 +1,10 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeJobCommand extends ApplicationGeneratorCommand
 {
