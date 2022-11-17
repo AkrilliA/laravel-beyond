@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond;
 
+use AkrilliA\LaravelBeyond\Commands\MakeTraitCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use AkrilliA\LaravelBeyond\Commands\MakeActionCommand;
@@ -48,6 +49,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
 //                MakeRequestCommand::class,
 //                MakeResourceCommand::class,
 //                MakeRuleCommand::class,
+                MakeTraitCommand::class,
             ]);
 
             // $this->commands(...$this->beyondCommands());

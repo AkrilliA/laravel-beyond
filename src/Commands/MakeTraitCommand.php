@@ -2,34 +2,20 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\SupportGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use AkrilliA\LaravelBeyond\WithSupportResolver;
 
-class MakeTraitCommand extends BaseCommand
+class MakeTraitCommand extends SupportGeneratorCommand
 {
     protected $signature = 'beyond:make:trait {name?} {--force}';
 
     protected $description = 'Make a new trait';
 
-    public function handle(): void
+    protected string $type = 'Trait';
+
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
-
-            $schema = (new AppNameSchemaResolver($this, $name, support: true))->handle();
-
-            beyond_copy_stub(
-                'trait.stub',
-                $schema->path('Traits'),
-                [
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Trait created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+        return 'stubs/beyond.trait.stub';
     }
 }
