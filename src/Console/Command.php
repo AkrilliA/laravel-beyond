@@ -1,9 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Console;
+namespace AkrilliA\LaravelBeyond\Console;
 
 use Illuminate\Console\Command as LaravelCommand;
-use Regnerisch\LaravelBeyond\Exceptions\AbortCommandException;
+use AkrilliA\LaravelBeyond\Exceptions\AbortCommandException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 

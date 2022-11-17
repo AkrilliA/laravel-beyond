@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Console;
+namespace AkrilliA\LaravelBeyond\Console;
 
-use Regnerisch\LaravelBeyond\WithDomainResolver;
+use AkrilliA\LaravelBeyond\WithDomainResolver;
 
 abstract class DomainGeneratorCommand extends GeneratorCommand
 {

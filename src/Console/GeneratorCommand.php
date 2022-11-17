@@ -1,10 +1,10 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Console;
+namespace AkrilliA\LaravelBeyond\Console;
 
 use Illuminate\Support\Str;
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Regnerisch\LaravelBeyond\Exceptions\AbortCommandException;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Exceptions\AbortCommandException;
 
 abstract class GeneratorCommand extends Command
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond;
+namespace AkrilliA\LaravelBeyond;
 
-use Regnerisch\LaravelBeyond\Exceptions\AbortCommandException;
-use Regnerisch\LaravelBeyond\Exceptions\InvalidNameSchemaException;
+use AkrilliA\LaravelBeyond\Exceptions\AbortCommandException;
+use AkrilliA\LaravelBeyond\Exceptions\InvalidNameSchemaException;
 
 trait WithDomainResolver
 {

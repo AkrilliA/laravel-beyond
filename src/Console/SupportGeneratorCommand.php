@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Console;
+namespace AkrilliA\LaravelBeyond\Console;
 
-use Regnerisch\LaravelBeyond\WithSupportResolver;
+use AkrilliA\LaravelBeyond\WithSupportResolver;
 
 abstract class SupportGeneratorCommand extends GeneratorCommand
 {

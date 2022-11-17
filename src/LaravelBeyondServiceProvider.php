@@ -2,27 +2,26 @@
 
 namespace AkrilliA\LaravelBeyond;
 
-use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Regnerisch\LaravelBeyond\Commands\MakeActionCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeBuilderCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeCollectionCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeControllerCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeDataTransferObjectFactoryCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeEnumCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeEventCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeJobCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeListenerCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeMiddlewareCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeModelCommand;
-use Regnerisch\LaravelBeyond\Commands\MakePolicyCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeQueryCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeRequestCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeResourceCommand;
-use Regnerisch\LaravelBeyond\Commands\MakeRuleCommand;
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Commands\MakeActionCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeBuilderCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeCollectionCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeControllerCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeDataTransferObjectCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeDataTransferObjectFactoryCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeEnumCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeEventCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeJobCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeListenerCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeMiddlewareCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeModelCommand;
+use AkrilliA\LaravelBeyond\Commands\MakePolicyCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeQueryCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeRequestCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeResourceCommand;
+use AkrilliA\LaravelBeyond\Commands\MakeRuleCommand;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {

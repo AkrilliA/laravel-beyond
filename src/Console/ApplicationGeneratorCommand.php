@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Console;
+namespace AkrilliA\LaravelBeyond\Console;
 
-use Regnerisch\LaravelBeyond\WithApplicationResolver;
+use AkrilliA\LaravelBeyond\WithApplicationResolver;
 
 abstract class ApplicationGeneratorCommand extends GeneratorCommand
 {

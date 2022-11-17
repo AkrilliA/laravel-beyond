@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Exceptions;
+namespace AkrilliA\LaravelBeyond\Exceptions;
 
 class AbortCommandException extends \Exception
 {

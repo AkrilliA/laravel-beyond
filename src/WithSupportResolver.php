@@ -1,6 +1,6 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond;
+namespace AkrilliA\LaravelBeyond;
 
 trait WithSupportResolver
 {
