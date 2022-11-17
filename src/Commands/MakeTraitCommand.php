@@ -1,9 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-use Regnerisch\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeTraitCommand extends BaseCommand
 {
