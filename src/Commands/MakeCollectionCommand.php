@@ -10,6 +10,8 @@ class MakeCollectionCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new collection';
 
+    protected string $type = 'Collection';
+
     protected function getStub(): string
     {
         if ($this->option('model')) {

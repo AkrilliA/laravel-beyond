@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,10 +13,7 @@ class MakeRequestCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new request';
 
-    protected function getType(): string
-    {
-        return 'Request';
-    }
+    protected string $type = 'Request';
 
     protected function getArguments(): array
     {

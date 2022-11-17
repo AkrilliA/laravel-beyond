@@ -2,9 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
 class MakeJobCommand extends ApplicationGeneratorCommand
 {
@@ -12,10 +12,7 @@ class MakeJobCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new job';
 
-    protected function getType(): string
-    {
-        return 'Job';
-    }
+    protected string $type = 'Job';
 
     protected function getArguments(): array
     {

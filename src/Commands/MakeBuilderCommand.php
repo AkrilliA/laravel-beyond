@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\DomainGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,9 +13,11 @@ class MakeBuilderCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new eloquent builder';
 
-    protected function getType(): string
+    protected string $type = 'Builder';
+
+    protected function getStub(): string
     {
-        return 'Builder';
+        return 'stubs/beyond.builder.stub';
     }
 
     protected function getArguments(): array

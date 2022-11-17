@@ -7,9 +7,10 @@ use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorDirectoryAction;
 use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use AkrilliA\LaravelBeyond\Actions\DeleteAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
+use AkrilliA\LaravelBeyond\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
-class SetupCommand extends BaseCommand
+class SetupCommand extends Command
 {
     protected $signature = 'beyond:setup {--skip-delete} {--force}';
 
@@ -75,7 +76,6 @@ class SetupCommand extends BaseCommand
             beyond_copy_stub(
                 'application.stub',
                 base_path() . '/src/App/Application.php',
-                force: $force
             );
 
             // Models

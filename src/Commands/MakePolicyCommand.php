@@ -2,7 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use AkrilliA\LaravelBeyond\Console\DomainGeneratorCommand;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,6 +12,8 @@ class MakePolicyCommand extends DomainGeneratorCommand
     protected $signature = 'beyond:make:policy {name?} {--model=} {--force}';
 
     protected $description = 'Make a new policy';
+
+    protected string $type = 'Policy';
 
     protected function getStub(): string
     {
@@ -35,11 +37,6 @@ class MakePolicyCommand extends DomainGeneratorCommand
             '{{ modelName }}' => $modelName ?? null,
             '{{ modelVariable }}' => $modelVariable ?? null,
         ];
-    }
-
-    protected function getType(): string
-    {
-        return 'Policy';
     }
 
     protected function getArguments(): array

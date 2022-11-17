@@ -2,7 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 
 class MakeControllerCommand extends ApplicationGeneratorCommand
 {
@@ -10,10 +10,7 @@ class MakeControllerCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new controller';
 
-    protected function directoryName(): string
-    {
-        return 'Controllers';
-    }
+    protected string $type = 'Controller';
 
     protected function getStub(): string
     {

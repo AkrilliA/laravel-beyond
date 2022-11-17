@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,10 +13,7 @@ class MakeRuleCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new rule';
 
-    protected function getType(): string
-    {
-        return 'Rule';
-    }
+    protected string $type = 'Rule';
 
     protected function getStub(): string
     {

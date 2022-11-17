@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\DomainGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,10 +13,7 @@ class MakeListenerCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new listener';
 
-    protected function getType(): string
-    {
-        return 'Listener';
-    }
+    protected string $type = 'Listener';
 
     protected function getArguments(): array
     {

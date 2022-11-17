@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond;
 
+use AkrilliA\LaravelBeyond\Commands\MakeCommandCommand;
 use AkrilliA\LaravelBeyond\Commands\MakeTraitCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
@@ -31,28 +32,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->app->singleton(ComposerContract::class, Composer::class);
 
-            $this->commands([
-                MakeActionCommand::class,
-//                MakeBuilderCommand::class,
-//                MakeCollectionCommand::class,
-//                MakeControllerCommand::class,
-                MakeDataTransferObjectCommand::class,
-                MakeDataTransferObjectFactoryCommand::class,
-//                MakeEnumCommand::class,
-//                MakeEventCommand::class,
-//                MakeJobCommand::class,
-//                MakeListenerCommand::class,
-//                MakeMiddlewareCommand::class,
-//                MakeModelCommand::class,
-//                MakePolicyCommand::class,
-//                MakeQueryCommand::class,
-//                MakeRequestCommand::class,
-//                MakeResourceCommand::class,
-//                MakeRuleCommand::class,
-                MakeTraitCommand::class,
-            ]);
-
-            // $this->commands(...$this->beyondCommands());
+            $this->commands(...$this->beyondCommands());
         }
     }
 
@@ -68,10 +48,10 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         $files = $fs->files(__DIR__ . '/Commands');
 
         return array_map(
-            fn ($file) => 'AkrilliA\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
+            fn($file) => 'AkrilliA\\LaravelBeyond\\Commands\\' . $file->getBasename('.php'),
             array_filter(
                 $files,
-                fn ($file) => !in_array($file->getBasename('.php'), $exclude, true),
+                fn($file) => !in_array($file->getBasename('.php'), $exclude, true),
             )
         );
     }

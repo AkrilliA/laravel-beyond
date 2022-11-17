@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,10 +14,7 @@ class MakeResourceCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new resource';
 
-    protected function getType(): string
-    {
-        return 'Resource';
-    }
+    protected string $type = 'Resource';
 
     protected function getStub(): string
     {

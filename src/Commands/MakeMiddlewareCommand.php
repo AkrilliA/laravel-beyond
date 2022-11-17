@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,15 +13,7 @@ class MakeMiddlewareCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new middleware';
 
-    protected function directoryName(): string
-    {
-        return 'Middlewares';
-    }
-
-    protected function getType(): string
-    {
-        return 'Middleware';
-    }
+    protected string $type = 'Middleware';
 
     protected function getStub(): string
     {

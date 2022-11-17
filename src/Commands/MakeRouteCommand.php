@@ -2,9 +2,11 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\Command;
+
 trigger_deprecation('regnerisch/laravel-beyond', '4.1', '[%s] will be deprecated by version 5.0.', self::class);
 
-class MakeRouteCommand extends BaseCommand
+class MakeRouteCommand extends Command
 {
     protected $signature = 'beyond:make:route {routeName?} {--force}';
 

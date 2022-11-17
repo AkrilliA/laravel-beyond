@@ -2,9 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\DomainGeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 
 class MakeEventCommand extends DomainGeneratorCommand
 {
@@ -12,10 +12,7 @@ class MakeEventCommand extends DomainGeneratorCommand
 
     protected $description = 'Make a new event';
 
-    protected function getType(): string
-    {
-        return 'Event';
-    }
+    protected string $type = 'Event';
 
     protected function getArguments(): array
     {

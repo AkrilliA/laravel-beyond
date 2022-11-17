@@ -16,7 +16,12 @@ abstract class GeneratorCommand extends Command
 
     abstract protected function getNamespaceFromSchema(string $schema, string $directoryName): string;
 
-    abstract protected function getStub(): string;
+    protected function getStub(): string
+    {
+        $type = strtolower($this->type);
+
+        return "stubs/beyond.$type.stub";
+    }
 
     protected function before(): int
     {

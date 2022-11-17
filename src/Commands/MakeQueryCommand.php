@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\ApplicationGeneratorCommand;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,10 +13,7 @@ class MakeQueryCommand extends ApplicationGeneratorCommand
 
     protected $description = 'Make a new query';
 
-    protected function getType(): string
-    {
-        return 'Query';
-    }
+    protected string $type = 'Query';
 
     protected function getRequiredPackages(): array
     {

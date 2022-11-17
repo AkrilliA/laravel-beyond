@@ -2,7 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-class MakeCommand extends BaseCommand
+use AkrilliA\LaravelBeyond\Console\Command;
+
+class MakeCommand extends Command
 {
     protected $signature = 'beyond:make';
 

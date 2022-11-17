@@ -2,7 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-class MakeServiceProviderCommand extends BaseCommand
+use AkrilliA\LaravelBeyond\Console\Command;
+
+class MakeServiceProviderCommand extends Command
 {
     protected $signature = 'beyond:make:provider {name} {--force}';
 

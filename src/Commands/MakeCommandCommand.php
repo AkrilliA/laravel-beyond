@@ -2,9 +2,10 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Console\Command;
 use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
 
-class MakeCommandCommand extends BaseCommand
+class MakeCommandCommand extends Command
 {
     protected $signature = 'beyond:make:command {name?} {appName?} {moduleName?} {--command=command:name} {--force}';
 
