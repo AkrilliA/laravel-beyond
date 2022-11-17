@@ -1,9 +1,9 @@
 <?php
 
+use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
+use AkrilliA\LaravelBeyond\Actions\CopyFileAction;
+use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 use Illuminate\Support\Facades\Artisan;
-use Regnerisch\LaravelBeyond\Actions\CopyAndRefactorFileAction;
-use Regnerisch\LaravelBeyond\Actions\CopyFileAction;
-use Regnerisch\LaravelBeyond\Actions\RefactorFileAction;
 
 if (!function_exists('beyond_path')) {
     function beyond_path(): string

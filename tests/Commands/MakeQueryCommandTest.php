@@ -2,7 +2,7 @@
 
 namespace Tests\Commands;
 
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 
 test('can make query', function () {
     $composer = $this->app->make(ComposerContract::class);

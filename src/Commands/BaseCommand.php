@@ -1,8 +1,8 @@
 <?php
 
-namespace Regnerisch\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands;
 
-use Regnerisch\LaravelBeyond\Contracts\Composer as ComposerContract;
+use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 use Regnerisch\LaravelCommandHooks\Command;
 
 abstract class BaseCommand extends Command

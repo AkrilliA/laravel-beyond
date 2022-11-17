@@ -8,11 +8,11 @@
     },
     "hooks": {
         "before:init": [
-            "docker run --rm -v $PWD:/app -w /app -u $(id -u):$(id -g) php:cli php vendor/bin/pest"
+            "php vendor/bin/pest"
         ],
         "after:bump": [
-            "docker run --rm -v $PWD:/app -w /app -u $(id -u):$(id -g) php:cli php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix",
-            "docker run --rm -v $PWD:/app -u $(id -u):$(id -g) composer update --lock"
+            "php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix",
+            "composer update --lock"
         ]
     },
     "npm": {
