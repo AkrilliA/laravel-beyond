@@ -7,7 +7,7 @@ use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
 test('can make dto', function () {
     $composer = $this->app->make(ComposerContract::class);
 
-    $composer->setPackages(['spatie/data-transfer-object']);
+    $composer->setPackages(['spatie/laravel-data']);
 
     $this->artisan('beyond:make:dto User/UserData');
 

@@ -11,7 +11,7 @@ class MakeDataTransferObjectCommand extends BaseCommand
     protected $description = 'Make a new data transfer object';
 
     protected array $requiredPackages = [
-        'spatie/data-transfer-object',
+        'spatie/laravel-data',
     ];
 
     public function handle(): void

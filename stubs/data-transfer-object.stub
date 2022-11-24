@@ -2,9 +2,11 @@
 
 namespace Domain\{{ namespace }}\DataTransferObjects;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\LaravelData\Data;
 
-class {{ className }} extends DataTransferObject
+class {{ className }} extends Data
 {
-    //
+    public function __construct(
+    ) {
+    }
 }
