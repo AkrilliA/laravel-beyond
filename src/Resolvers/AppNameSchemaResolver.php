@@ -40,29 +40,29 @@ class AppNameSchemaResolver extends BaseNameSchemaResolver
         $fetchDirectoryNamesFromPathAction = new FetchDirectoryNamesFromPathAction();
 
         $appName = $this->appName;
-        if (!$appName) {
-            $apps = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/App');
+        if (! $appName) {
+            $apps = $fetchDirectoryNamesFromPathAction->execute(base_path().'/src/App');
             do {
                 $appName = $this->command->anticipate('Please enter the app name', $apps);
-            } while (!$appName);
+            } while (! $appName);
         }
 
         $moduleName = $this->moduleName;
-        if (!$moduleName) {
-            $modules = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/App/' . $appName);
+        if (! $moduleName) {
+            $modules = $fetchDirectoryNamesFromPathAction->execute(base_path().'/src/App/'.$appName);
             do {
-                $moduleName = $this->command->anticipate('Please enter the module name (in App/' . $appName . ')', $modules);
-            } while (!$moduleName);
+                $moduleName = $this->command->anticipate('Please enter the module name (in App/'.$appName.')', $modules);
+            } while (! $moduleName);
         }
 
-        return $appName . '/' . $moduleName;
+        return $appName.'/'.$moduleName;
     }
 
     protected function askClassName(): string
     {
         do {
             $className = $this->className ?? $this->command->ask('Please enter the class name');
-        } while (!$className);
+        } while (! $className);
 
         return $className;
     }

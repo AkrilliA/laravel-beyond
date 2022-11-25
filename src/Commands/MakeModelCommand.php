@@ -30,11 +30,11 @@ class MakeModelCommand extends BaseCommand
             );
 
             if ($this->option('factory')) {
-                $fileName = $schema->className() . 'Factory';
+                $fileName = $schema->className().'Factory';
 
                 beyond_copy_stub(
                     'factory.stub',
-                    base_path() . '/database/factories/' . $fileName . '.php',
+                    base_path().'/database/factories/'.$fileName.'.php',
                     [
                         '{{ namespace }}' => $schema->namespace(),
                         '{{ model }}' => $schema->className(),
@@ -45,11 +45,11 @@ class MakeModelCommand extends BaseCommand
 
             if ($this->option('migration')) {
                 $tableName = Str::snake(Str::pluralStudly($schema->className()));
-                $fileName = now()->format('Y_m_d_his') . '_create_' . $tableName . '_table';
+                $fileName = now()->format('Y_m_d_his').'_create_'.$tableName.'_table';
 
                 beyond_copy_stub(
                     'migration.stub',
-                    base_path() . '/database/migrations/' . $fileName . '.php',
+                    base_path().'/database/migrations/'.$fileName.'.php',
                     [
                         '{{ tableName }}' => $tableName,
                     ],

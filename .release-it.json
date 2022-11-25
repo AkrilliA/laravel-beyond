@@ -11,7 +11,7 @@
             "php vendor/bin/pest"
         ],
         "after:bump": [
-            "php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix",
+            "php vendor/bin/pint",
             "composer update --lock"
         ]
     },

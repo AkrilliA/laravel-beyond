@@ -16,7 +16,7 @@ class MakeServiceProviderCommand extends BaseCommand
 
             beyond_copy_stub(
                 'service.provider.stub',
-                base_path() . "/src/App/Providers/{$name}.php",
+                base_path()."/src/App/Providers/{$name}.php",
                 [
                     '{{ className }}' => $name,
                 ],

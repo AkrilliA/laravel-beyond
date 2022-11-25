@@ -27,11 +27,11 @@ class DomainNameSchemaResolver extends BaseNameSchemaResolver
     protected function askNamespace(): string
     {
         $fetchDirectoryNamesFromPathAction = new FetchDirectoryNamesFromPathAction();
-        $domains = $fetchDirectoryNamesFromPathAction->execute(base_path() . '/src/Domain');
+        $domains = $fetchDirectoryNamesFromPathAction->execute(base_path().'/src/Domain');
 
         do {
             $domainName = $this->command->anticipate('Please enter the domain name', $domains);
-        } while (!$domainName);
+        } while (! $domainName);
 
         return $domainName;
     }

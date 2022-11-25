@@ -46,7 +46,7 @@ abstract class BaseCommand extends Command
 
     protected function checkVersionId(): int
     {
-        if (!$this->minimumVersionId) {
+        if (! $this->minimumVersionId) {
             return 0;
         }
 

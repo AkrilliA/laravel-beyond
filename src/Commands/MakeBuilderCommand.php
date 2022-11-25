@@ -29,11 +29,11 @@ class MakeBuilderCommand extends BaseCommand
             );
 
             $this->info(
-                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
+                'Please add following code to your related model'.PHP_EOL.PHP_EOL.
 
-                'public function newEloquentBuilder($query)' . PHP_EOL .
-                '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->className() . '($query); ' . PHP_EOL .
+                'public function newEloquentBuilder($query)'.PHP_EOL.
+                '{'.PHP_EOL.
+                "\t".'return new '.$schema->className().'($query); '.PHP_EOL.
                 '}'
             );
 

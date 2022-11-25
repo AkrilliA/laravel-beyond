@@ -12,7 +12,7 @@ class DomainSchema extends BaseSchema
             '%s/src/Domain/%s%s/%s.php',
             base_path(),
             $this->namespacePath(),
-            $directory ? '/' . $directory : '',
+            $directory ? '/'.$directory : '',
             $this->className
         );
     }

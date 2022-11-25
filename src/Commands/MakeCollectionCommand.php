@@ -32,11 +32,11 @@ class MakeCollectionCommand extends BaseCommand
             );
 
             $this->components->info(
-                'Please add following code to your related model' . PHP_EOL . PHP_EOL .
+                'Please add following code to your related model'.PHP_EOL.PHP_EOL.
 
-                'public function newCollection(array $models = [])' . PHP_EOL .
-                '{' . PHP_EOL .
-                "\t" . 'return new ' . $schema->className() . '($models); ' . PHP_EOL .
+                'public function newCollection(array $models = [])'.PHP_EOL.
+                '{'.PHP_EOL.
+                "\t".'return new '.$schema->className().'($models); '.PHP_EOL.
                 '}'
             );
 

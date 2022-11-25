@@ -15,7 +15,7 @@ class CopyFileAction
             dirname($targetPath),
         );
 
-        if (!$force && $fs->exists($targetPath)) {
+        if (! $force && $fs->exists($targetPath)) {
             throw new AlreadyExistsException('File already exists. You could use --force to create a new file.');
         }
 

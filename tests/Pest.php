@@ -17,9 +17,9 @@ uses(Tests\TestCase::class)->in(__DIR__);
 
 uses()
     ->afterEach(function () {
-        (new Filesystem())->deleteDirectories(base_path() . '/src');
+        (new Filesystem())->deleteDirectories(base_path().'/src');
     })
-    ->in(__DIR__ . '/Commands');
+    ->in(__DIR__.'/Commands');
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ uses()
 
 expect()->extend('toMatchNamespaceAndClassName', function () {
     spl_autoload_register(function ($className) {
-        $path = base_path() . '/src/' . str_replace('\\', '/', $className) . '.php';
+        $path = base_path().'/src/'.str_replace('\\', '/', $className).'.php';
         $fs = new Filesystem();
         if ($fs->exists($path)) {
             require_once $path;
@@ -47,7 +47,8 @@ expect()->extend('toMatchNamespaceAndClassName', function () {
         substr($this->value, strpos($this->value, 'src') + 4, -4)
     );
 
-    $class = new class() {
+    $class = new class()
+    {
         public function getName()
         {
             return null;
@@ -102,8 +103,8 @@ function createFakeClass(string $fqn): void
     $parts = explode('\\', $fqn);
     $className = array_pop($parts);
 
-    $path = base_path() . '/src/' . implode('/', $parts);
+    $path = base_path().'/src/'.implode('/', $parts);
 
     $fs->ensureDirectoryExists($path);
-    $fs->put($path . '/' . $className . '.php', '<?php namespace ' . implode('\\', $parts) . "; class {$className} {}");
+    $fs->put($path.'/'.$className.'.php', '<?php namespace '.implode('\\', $parts)."; class {$className} {}");
 }

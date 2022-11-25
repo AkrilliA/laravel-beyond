@@ -26,7 +26,7 @@ abstract class BaseNameSchemaResolver implements NameSchemaResolver
 
     protected function namespaceAndClassName(): array
     {
-        if (!$this->className) {
+        if (! $this->className) {
             return [null, null];
         }
 
