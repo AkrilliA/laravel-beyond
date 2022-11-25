@@ -30,8 +30,8 @@ by adding the `--skip-delete` flag.
 Please ensure that you add the following into one of your service providers (e.g. `AppServiceProvider`):
 
 ```php
-Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
-    return '\Database\Factories\' . class_basename($modelName) . 'Factory';
+\Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
+    return '\Database\Factories\\' . class_basename($modelName) . 'Factory';
 }); 
 ```
 
