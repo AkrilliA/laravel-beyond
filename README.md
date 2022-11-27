@@ -260,7 +260,7 @@ php artisan beyond:make:model Users/User
 
 #### `beyond:make:observer`
 
-This command will create a new observer class inside your application.
+This command will create a new observer class inside your domain.
 
 ```bash
 php artisan beyond:make:observer Users/UserObserver
