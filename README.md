@@ -24,7 +24,7 @@ After this you can setup it by running
 php artisan beyond:setup
 ```
 
-This moves everything to the correct place and deletes the `app` folder afterwards. You can also choose to skip this 
+This moves everything to the correct place and deletes the `app` folder afterwards. You can also choose to skip this
 by adding the `--skip-delete` flag.
 
 Please ensure that you add the following into one of your service providers (e.g. `AppServiceProvider`):
@@ -32,7 +32,7 @@ Please ensure that you add the following into one of your service providers (e.g
 ```php
 \Illuminate\Database\Eloquent\Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
     return '\Database\Factories\\' . class_basename($modelName) . 'Factory';
-}); 
+});
 ```
 
 Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
@@ -255,6 +255,22 @@ php artisan beyond:make:model Users/User
 | `-f`, `--factory`   | Will create a factory for this model              |
 | `-m`, `--migration` | Will create a migration for this model            |
 | `--force`           | Create the class even if the model already exists |
+
+---
+
+#### `beyond:make:observer`
+
+This command will create a new observer class inside your domain.
+
+```bash
+php artisan beyond:make:observer Users/UserObserver
+```
+
+**Options**
+
+| Name       | Description                                          |
+|------------|------------------------------------------------------|
+| `--force`  | Create the class even if the observer already exists |
 
 ---
 
