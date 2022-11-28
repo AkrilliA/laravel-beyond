@@ -2,7 +2,7 @@
     "name": "akrillia/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "5.1.0",
+    "version": "5.2.0",
     "autoload": {
         "psr-4": {
             "AkrilliA\\LaravelBeyond\\": "src/"
