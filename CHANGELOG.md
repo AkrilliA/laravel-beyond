@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [5.2.0] - 2022-11-28
+### Added
+- Observer Command by [@krishnahimself](https://github.com/krishnahimself)
 
 ## [5.1.0] - 2022-11-25
 ### Added
@@ -68,7 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v5.1.0...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v5.2.0...HEAD
+[5.2.0]: https://github.com/regnerisch/laravel-beyond/compare/v5.1.0...v5.2.0
 [5.1.0]: https://github.com/regnerisch/laravel-beyond/compare/v5.0.0...v5.1.0
 [5.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v4.0.1...v5.0.0
 [4.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v4.0.0...v4.0.1
