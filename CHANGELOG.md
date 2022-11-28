@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [5.2.0] - 2022-11-28
 ### Added
 - Observer Command by [@krishnahimself](https://github.com/krishnahimself)
+- Notification Command by [@alexgaal](https://github.com/alexgaal)
 
 ## [5.1.0] - 2022-11-25
 ### Added
