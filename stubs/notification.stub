@@ -1,0 +1,11 @@
+<?php
+
+namespace Domain\{{ namespace }}\Notifications;
+
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+
+class {{ className }} extends Notification
+{
+    //
+}
