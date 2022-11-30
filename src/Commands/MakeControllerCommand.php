@@ -17,17 +17,6 @@ class MakeControllerCommand extends BaseCommand
             $api = $this->option('api');
             $force = $this->option('force');
             $invokable = $this->option('invokable');
-
-            $stub = null;
-
-            if ($api) {
-                $stub = 'controller.api.stub';
-            } elseif ($invokable) {
-                $stub = 'controller.invokable.stub';
-            } else {
-                $stub = 'controller.stub';
-            }
-
             $stub = match (true) {
                 $api && ! $invokable => 'controller.api.stub',
                 $invokable && ! $api => 'controller.invokable.stub',
