@@ -28,9 +28,9 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^9.0",
-        "illuminate/console": "^9.0",
-        "illuminate/filesystem": "^9.0",
+        "illuminate/support": "^9.0|^10.0",
+        "illuminate/console": "^9.0|^10.0",
+        "illuminate/filesystem": "^9.0|^10.0",
         "regnerisch/laravel-command-hooks": "^2.0"
     },
     "extra": {
@@ -42,7 +42,7 @@
     },
     "require-dev": {
         "pestphp/pest": "^1.21",
-        "orchestra/testbench": "^7.6",
+        "orchestra/testbench": "^7.6|^8.0",
         "spatie/data-transfer-object": "^3.8",
         "spatie/laravel-query-builder": "^5.0",
         "spatie/laravel-queueable-action": "^2.14",
