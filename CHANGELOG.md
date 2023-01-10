@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.4.1] - 2023-01-10
+### Added
+- Preparation for Laravel 10 by [@alexgaal](https://github.com/alexgaal)
+
 ## [5.3.2] - 2023-01-10
 ### Fixed
 - Wrong namespace in UPGRADE.md by [@alexgaal](https://github.com/alexgaal)
@@ -86,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.2...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v5.4.1...HEAD
+[5.4.1]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.2...v5.4.1
 [5.3.2]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.1...v5.3.2
 [5.3.1]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.0...v5.3.1
 [5.3.0]: https://github.com/regnerisch/laravel-beyond/compare/v5.2.1...v5.3.0
