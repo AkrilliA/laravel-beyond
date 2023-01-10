@@ -48,10 +48,10 @@ class MakeModelCommand extends BaseCommand
                 $fileName = now()->format('Y_m_d_his').'_create_'.$tableName.'_table';
 
                 beyond_copy_stub(
-                    'migration.stub',
+                    'migration.create.stub',
                     base_path().'/database/migrations/'.$fileName.'.php',
                     [
-                        '{{ tableName }}' => $tableName,
+                        '{{ table }}' => $tableName,
                     ],
                     $force
                 );

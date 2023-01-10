@@ -25,7 +25,7 @@ Create a new `Controller.php` in `/src/Support/Controllers`with following conten
 ```php
 <?php
 
-namespace App\Http\Controllers;
+namespace Support\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
