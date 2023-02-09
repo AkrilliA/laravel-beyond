@@ -37,6 +37,56 @@ Please ensure that you add the following into one of your service providers (e.g
 
 Do not forget to run `composer dump-autoload` after. So the new namespaces can be found properly.
 
+## Structure
+```
+|- src
+|  |- Payment
+|  |  |- App
+|  |  |  |- Controllers
+|  |  |  |  |- PaymentController.php
+|  |  |  |- Filters
+|  |  |  |  |- PaymentStatusFilter.php
+|  |  |  |- Jobs
+|  |  |  |  |- PaymentSyncronisationJob.php
+|  |  |  |- Middlewares
+|  |  |  |  |- PaymentVerificationMiddleware.php
+|  |  |  |- Queries
+|  |  |  |  |- PaymentIndexQuery.php
+|  |  |  |- Requests
+|  |  |  |  |- PaymentStoreRequest.php
+|  |  |  |- Resources
+|  |  |  |  |- PaymentResource.php
+|  |  |- Domain
+|  |  |  |- Actions
+|  |  |  |  |- PaymentStoreAction.php
+|  |  |  |- Collections
+|  |  |  |  |- PaymentCollection.php
+|  |  |  |- DataTransferObjects
+|  |  |  |  |- PaymentData.php
+|  |  |  |- Events
+|  |  |  |  |- PaymentSucceededEvent.php
+|  |  |  |- Exceptions
+|  |  |  |  |- PaymentFailedException.php
+|  |  |  |- Listeners
+|  |  |  |  |- PaymentSucceededListener.php
+|  |  |  |- Models
+|  |  |  |  |- Payment.php
+|  |  |  |- Policies
+|  |  |  |  |- PaymentPolicy.php
+|  |  |  |- Rules
+|  |  |  |  |- PaymentRule.php
+|  |  |  |- States
+|  |  |  |  |- PaymentState.php
+|  |  |  |- ValueObjects
+|  |  |  |  |- Price.php
+|  |  |- Infrastructure
+|  |  |  |- migrations
+|  |  |  |  |- create_payments_table.php
+|  |  |  |- routes.php
+|  |  |- PaymentEventServiceProvider.php 
+|  |  |- PaymentRouteServiceProvider.php
+|  |  |- PaymentServiceProvider.php
+```
 
 ## Usage
 
