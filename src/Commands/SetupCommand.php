@@ -28,6 +28,8 @@ class SetupCommand extends BaseCommand
     public function handle(): void
     {
         try {
+            $this->alert("This will delete the app folder when the answer is no.");
+
             $skipDelete = $this->confirm('skip deleting the app folder', true);
 
             $force = $this->option('force');
