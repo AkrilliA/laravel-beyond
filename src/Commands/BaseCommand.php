@@ -3,7 +3,10 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Regnerisch\LaravelCommandHooks\Command;
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\Isolatable;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class BaseCommand extends Command
 {
@@ -63,6 +66,46 @@ abstract class BaseCommand extends Command
         }
 
         return 0;
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        if ($this instanceof Isolatable && $this->option('isolated') !== false &&
+            ! $this->commandIsolationMutex()->create($this)) {
+            $this->comment(sprintf(
+                'The [%s] command is already running.', $this->getName()
+            ));
+
+            return (int) (is_numeric($this->option('isolated'))
+                ? $this->option('isolated')
+                : self::SUCCESS);
+        }
+
+        $code = null;
+
+        if (method_exists($this, 'before')) {
+            $code = $this->before();
+
+            if ($code) {
+                return (int) $code;
+            }
+        }
+
+        $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
+
+        try {
+            $originalCode = (int) $this->laravel->call([$this, $method]);
+
+            if (method_exists($this, 'after')) {
+                $code = $this->after($originalCode);
+            }
+
+            return is_null($code) ? $originalCode : (int) $code;
+        } finally {
+            if ($this instanceof Isolatable && $this->option('isolated') !== false) {
+                $this->commandIsolationMutex()->forget($this);
+            }
+        }
     }
 
     protected function getMissingPackages(): array
