@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [6.0.0] - 2023-02-22
 ### Added
-- Introduce Laravel 1 support by [@regnerisch](https://github.com/regnerisch)
+- Introduce Laravel 10 support by [@regnerisch](https://github.com/regnerisch)
 
 ### Removed
 - Laravel-Command-Hooks Dependency by [@regnerisch](https://github.com/regnerisch)
