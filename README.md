@@ -56,6 +56,7 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 |  |  |  |  |- PaymentStoreRequest.php
 |  |  |  |- Resources
 |  |  |  |  |- PaymentResource.php
+|  |  |  |- routes.php
 |  |  |- Domain
 |  |  |  |- Actions
 |  |  |  |  |- PaymentStoreAction.php
@@ -80,9 +81,15 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 |  |  |  |- ValueObjects
 |  |  |  |  |- Price.php
 |  |  |- Infrastructure
+|  |  |  |- factories
+|  |  |  |  |- PaymentFactory.php
 |  |  |  |- migrations
 |  |  |  |  |- create_payments_table.php
-|  |  |  |- routes.php
+|  |  |  |- seeders
+|  |  |  |  |- PaymentSeeder.php
+|  |  |- Tests
+|  |  |  |- Feature
+|  |  |  |- Unit
 |  |  |- PaymentEventServiceProvider.php 
 |  |  |- PaymentRouteServiceProvider.php
 |  |  |- PaymentServiceProvider.php
