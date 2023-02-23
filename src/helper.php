@@ -3,6 +3,7 @@
 use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use AkrilliA\LaravelBeyond\Actions\CopyFileAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
 
 if (! function_exists('beyond_path')) {
@@ -15,17 +16,39 @@ if (! function_exists('beyond_path')) {
 if (! function_exists('beyond_copy_stub')) {
     function beyond_copy_stub(string $stub, string $path, array $refactor = [], bool $force = false): void
     {
+        $stub = file_exists($stubPath = base_path('stubs/beyond.'.$stub))
+            ? $stubPath
+            : beyond_path().'/stubs/'.$stub;
+
         $action = new CopyAndRefactorFileAction(
             new CopyFileAction(),
             new RefactorFileAction()
         );
 
         $action->execute(
-            beyond_path()."/stubs/{$stub}",
+            $stub,
             $path,
             $refactor,
             $force
         );
+    }
+}
+
+if (! function_exists('beyond_get_choices')) {
+    function beyond_get_choices(string $path): array
+    {
+        $fs = new Filesystem();
+
+        $fs->ensureDirectoryExists($path);
+
+        $directories = array_map(
+            function ($directory) {
+                return last(explode('/', $directory));
+            },
+            $fs->directories($path)
+        );
+
+        return $directories;
     }
 }
 

@@ -2,38 +2,24 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeMiddlewareCommand extends BaseCommand
+class MakeMiddlewareCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:middleware {name?} {--support} {--force}';
+    protected $signature = 'beyond:make:middleware {name} {--force}';
 
     protected $description = 'Make a new middleware';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $support = $this->option('support');
-            $force = $this->option('force');
+        return 'middleware.stub';
+    }
 
-            $stub = $support ? 'middleware.support.stub' : 'middleware.stub';
+    public function getType(): string
+    {
+        return 'Middleware';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
-
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Middlewares'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Middleware created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    public function getPluralizedType(): string
+    {
+        return 'Middlewares';
     }
 }

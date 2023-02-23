@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\Notifications;
+namespace {{ namespace }};
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\Observers;
+namespace {{ namespace }};
 
 class {{ className }}
 {

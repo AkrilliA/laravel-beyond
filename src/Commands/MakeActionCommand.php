@@ -2,49 +2,19 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-
-class MakeActionCommand extends BaseCommand
+class MakeActionCommand extends DomainCommand
 {
-    protected $signature = 'beyond:make:action {name?} {--force} {--queueable}';
+    protected $signature = 'beyond:make:action {name} {--force}';
 
     protected $description = 'Make a new action';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
-            $queueable = $this->option('queueable');
-
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
-
-            beyond_copy_stub(
-                $queueable ? 'action.queueable.stub' : 'action.stub',
-                $schema->path('Actions'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Action created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+        return 'action.stub';
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    public function getType(): string
     {
-        if ($this->option('queueable')) {
-            $this->requiredPackages = [
-                'spatie/laravel-queueable-action',
-            ];
-        }
-
-        return parent::execute($input, $output);
+        return 'Action';
     }
 }

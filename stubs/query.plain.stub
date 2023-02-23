@@ -2,16 +2,14 @@
 
 namespace {{ namespace }};
 
-use {{ modelNamespace}}\{{ modelClassName }};
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class {{ className }} extends QueryBuilder
 {
-    public function __construct(Request $request)
+    public function __construct(Model $subject, Request $request)
     {
-        $subject = {{ modelClassName }}::query();
-
         parent::__construct($subject, $request);
     }
 }

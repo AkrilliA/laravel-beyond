@@ -2,37 +2,21 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use function Orchestra\Testbench\phpunit_version_compare;
 
-class MakeEnumCommand extends BaseCommand
+class MakeEnumCommand extends DomainCommand
 {
-    protected $signature = 'beyond:make:enum {name?} {--force}';
+    protected $signature = 'beyond:make:enum {name} {--force}';
 
     protected $description = 'Make a new enum type';
 
-    public ?int $minimumVersionId = 80100;
-
-    public function handle()
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'enum.stub';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
-
-            beyond_copy_stub(
-                'enum.stub',
-                $schema->path('Enums'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Enum created.');
-        } catch (\Exception $e) {
-            $this->components->error($e->getMessage());
-        }
+    public function getType(): string
+    {
+        return 'Enum';
     }
 }

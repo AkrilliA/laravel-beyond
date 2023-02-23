@@ -3,9 +3,9 @@
 namespace Tests\Commands;
 
 test('can make observer', function () {
-    $this->artisan('beyond:make:observer Users/UserObserver');
+    $this->artisan('beyond:make:observer User/UserObserver');
 
-    expect(base_path().'/src/Domain/Users/Observers/UserObserver.php')
+    expect(base_path().'/modules/User/Domain/Observers/UserObserver.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();

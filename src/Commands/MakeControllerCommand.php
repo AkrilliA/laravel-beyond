@@ -2,42 +2,26 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeControllerCommand extends BaseCommand
+class MakeControllerCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:controller {name?} {--api} {--i|invokable} {--force}';
+    protected $signature = 'beyond:make:controller {name} {--api} {--i|invokable} {--force}';
 
     protected $description = 'Make a new controller';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $api = $this->option('api');
-            $force = $this->option('force');
-            $invokable = $this->option('invokable');
-            $stub = match (true) {
-                $api && ! $invokable => 'controller.api.stub',
-                $invokable && ! $api => 'controller.invokable.stub',
-                default => 'controller.stub'
-            };
+        $api = $this->option('api');
+        $invokable = $this->option('invokable');
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
+        return match (true) {
+            $api && ! $invokable => 'controller.api.stub',
+            $invokable && ! $api => 'controller.invokable.stub',
+            default => 'controller.stub'
+        };
+    }
 
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Controllers'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Controller created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    public function getType(): string
+    {
+        return 'Controller';
     }
 }

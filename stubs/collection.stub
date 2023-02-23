@@ -1,8 +1,7 @@
 <?php
 
-namespace Domain\{{ namespace }}\Collections;
+namespace {{ namespace }};
 
-use Domain\{{ namespace }}\Models\{{ model }};
 use Illuminate\Database\Eloquent\Collection;
 
 class {{ className }} extends Collection

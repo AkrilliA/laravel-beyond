@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\Notifications;
+namespace {{ namespace }};
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,5 +10,5 @@ class {{ className }} extends Notification
 {
     use Queueable;
 
-    // 
+    //
 }

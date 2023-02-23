@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\{{ namespace }}\Enums;
+namespace {{ namespace }};
 
 enum {{ className }}
 {

@@ -2,16 +2,24 @@
 
 namespace Tests\Commands;
 
-use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
-
 test('can make query', function () {
-    $composer = $this->app->make(ComposerContract::class);
+    $this->artisan('beyond:make:query User/IndexUserQuery');
 
-    $composer->setPackages(['spatie/laravel-query-builder']);
+    expect(base_path().'/modules/User/App/Queries/IndexUserQuery.php')
+        ->toBeFile()
+        ->toMatchNamespaceAndClassName()
+        ->toPlaceholdersBeReplaced();
+});
 
-    $this->artisan('beyond:make:query Admin/User/IndexUserQuery');
+test('can make query and model', function () {
+    $this->artisan('beyond:make:query User/IndexUserQuery --model=User/User');
 
-    expect(base_path().'/src/App/Admin/User/Queries/IndexUserQuery.php')
+    expect(base_path().'/modules/User/App/Queries/IndexUserQuery.php')
+        ->toBeFile()
+        ->toMatchNamespaceAndClassName()
+        ->toPlaceholdersBeReplaced();
+
+    expect(base_path().'/modules/User/Domain/Models/User.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();

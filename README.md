@@ -39,11 +39,13 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 
 ## Structure
 ```
-|- src
+|- modules
 |  |- Payment
 |  |  |- App
 |  |  |  |- Controllers
 |  |  |  |  |- PaymentController.php
+|  |  |  |- Commands
+|  |  |  |  |- GroupPaymentsCommand.php
 |  |  |  |- Filters
 |  |  |  |  |- PaymentStatusFilter.php
 |  |  |  |- Jobs
@@ -72,6 +74,8 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 |  |  |  |  |- PaymentSucceededListener.php
 |  |  |  |- Models
 |  |  |  |  |- Payment.php
+|  |  |  | - Observers
+|  |  |  |  |- PaymentObserver.php
 |  |  |  |- Policies
 |  |  |  |  |- PaymentPolicy.php
 |  |  |  |- Rules

@@ -2,40 +2,21 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeResourceCommand extends BaseCommand
+class MakeResourceCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:resource {name?} {--collection} {--force}';
 
     protected $description = 'Make a new resource';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $collection = $this->option('collection');
-            $force = $this->option('force');
+        return $this->option('collection')
+            ? 'resoource.collection.stub'
+            : 'resource.stub';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
-
-            $stub = (str_contains($schema->className(), 'Collection') || $collection) ?
-                'resource.collection.stub' :
-                'resource.stub';
-
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Resources'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Resource created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    public function getType(): string
+    {
+        return 'Resource';
     }
 }

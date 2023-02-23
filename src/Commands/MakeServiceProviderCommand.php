@@ -2,7 +2,9 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-class MakeServiceProviderCommand extends BaseCommand
+use Illuminate\Console\Command;
+
+class MakeServiceProviderCommand extends Command
 {
     protected $signature = 'beyond:make:provider {name} {--force}';
 
@@ -16,7 +18,7 @@ class MakeServiceProviderCommand extends BaseCommand
 
             beyond_copy_stub(
                 'service.provider.stub',
-                base_path()."/src/App/Providers/{$name}.php",
+                base_path()."/modules/{$module}/App/{$name}.php",
                 [
                     '{{ className }}' => $name,
                 ],

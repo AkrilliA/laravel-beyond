@@ -2,38 +2,19 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeRuleCommand extends BaseCommand
+class MakeRuleCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:rule {name?} {--support} {--force}';
+    protected $signature = 'beyond:make:rule {name?} {--force}';
 
     protected $description = 'Make a new rule';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $support = $this->option('support');
-            $force = $this->option('force');
+        return 'rule.stub';
+    }
 
-            $stub = $support ? 'rule.support.stub' : 'rule.stub';
-
-            $schema = (new AppNameSchemaResolver($this, $name, support: $support))->handle();
-
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Rules'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Rule created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    public function getType(): string
+    {
+        return 'Rule';
     }
 }

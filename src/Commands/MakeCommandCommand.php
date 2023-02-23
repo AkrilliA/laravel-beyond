@@ -2,37 +2,26 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeCommandCommand extends BaseCommand
+class MakeCommandCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:command {name?} {appName?} {moduleName?} {--command=command:name} {--force}';
+    protected $signature = 'beyond:make:command {name} {--command=command:name} {--force}';
 
     protected $description = 'Make a new command';
 
-    public function handle()
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $command = $this->option('command');
-            $force = $this->option('force');
+        return 'command.stub';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name, 'Commands', 'Console'))->handle();
+    public function getType(): string
+    {
+        return 'Commands';
+    }
 
-            beyond_copy_stub(
-                'command.stub',
-                $schema->path(),
-                [
-                    '{{ namespace }}' => $name,
-                    '{{ command }}' => $command,
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Command created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getRefactoringParameters(): array
+    {
+        return [
+            '{{ command }}' => $this->option('command'),
+        ];
     }
 }

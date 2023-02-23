@@ -2,35 +2,19 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
-
-class MakeListenerCommand extends BaseCommand
+class MakeListenerCommand extends DomainCommand
 {
-    protected $signature = 'beyond:make:listener {name?} {--force}';
+    protected $signature = 'beyond:make:listener {name} {--force}';
 
     protected $description = 'Make a new listener';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'listener.stub';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
-
-            beyond_copy_stub(
-                'listener.stub',
-                $schema->path('Listeners'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Listener created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    public function getType(): string
+    {
+        return 'Listener';
     }
 }

@@ -2,42 +2,54 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
+use AkrilliA\LaravelBeyond\FQN;
 
-class MakeDataTransferObjectFactoryCommand extends BaseCommand
+class MakeDataTransferObjectFactoryCommand extends ApplicationCommand
 {
+    private FQN $dtoFQN;
+
     protected $signature = 'beyond:make:dto-factory {name?} {--force} {--dto=}';
 
     protected $description = 'Make a new data transfer object factory';
 
-    public function handle(): void
+    public function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
-            $dto = $this->option('dto');
+        return 'Factory';
+    }
 
-            $stub = $dto ? 'data-transfer-object-factory.stub' : 'data-transfer-object-factory.plain.stub';
+    protected function getStub(): string
+    {
+        return $this->option('dto')
+            ? 'data-transfer-object-factory.stub'
+            : 'data-transfer-object-factory.plain.stub';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
-            $dtoSchema = $dto ? (new DomainNameSchemaResolver($this, $dto))->handle() : null;
+    protected function getRefactoringParameters(): array
+    {
+        if ($this->option('dto')) {
+            return [
+                '{{ dtoNamespace }}' => $this->dtoFQN->getNamespace(),
+                '{{ dtoClassName }}' => $this->dtoFQN->getClassName(),
+            ];
+        }
 
-            beyond_copy_stub(
-                $stub,
-                $schema->path('Factories'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                    '{{ dtoNamespace }}' => $dtoSchema?->namespace(),
-                    '{{ dtoClassName }}' => $dtoSchema?->className(),
-                ],
-                $force
-            );
+        return [];
+    }
 
-            $this->components->info('DTO Factory created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+    public function prepare()
+    {
+        if ($dto = $this->option('dto')) {
+            $command = new MakeDataTransferObjectCommand();
+            $this->dtoFQN = $command->getFQN($dto);
+        }
+    }
+
+    public function onSuccess(string $namespace, string $className)
+    {
+        if ($this->option('dto')) {
+            $this->call(MakeDataTransferObjectCommand::class, [
+                'name' => $this->dtoFQN->getCommandNameArgument(),
+            ]);
         }
     }
 }

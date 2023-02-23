@@ -1,8 +1,8 @@
 <?php
 
-namespace App\{{ namespace }}\Controllers;
+namespace {{ namespace }};
 
-use Support\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class {{ className }} extends Controller
 {

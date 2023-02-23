@@ -2,35 +2,19 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
-
-class MakeRequestCommand extends BaseCommand
+class MakeRequestCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:request {name?} {--force}';
+    protected $signature = 'beyond:make:request {name} {--force}';
 
     protected $description = 'Make a new request';
 
-    public function handle(): void
+    public function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Request';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
-
-            beyond_copy_stub(
-                'request.stub',
-                $schema->path('Requests'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
-
-            $this->components->info('Request created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
-        }
+    protected function getStub(): string
+    {
+        return 'request.stub';
     }
 }

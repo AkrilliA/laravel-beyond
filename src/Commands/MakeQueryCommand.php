@@ -2,39 +2,54 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\AppNameSchemaResolver;
+use AkrilliA\LaravelBeyond\FQN;
 
-class MakeQueryCommand extends BaseCommand
+class MakeQueryCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:query {name?} {--force}';
+    private FQN $modelFQN;
+
+    protected $signature = 'beyond:make:query {name} {--model=} {--force}';
 
     protected $description = 'Make a new query';
 
-    protected array $requiredPackages = [
-        'spatie/laravel-query-builder',
-    ];
-
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return $this->option('model')
+            ? 'query.stub'
+            : 'query.plain.stub';
+    }
 
-            $schema = (new AppNameSchemaResolver($this, $name))->handle();
+    public function getType(): string
+    {
+        return 'Query';
+    }
 
-            beyond_copy_stub(
-                'query.stub',
-                $schema->path('Queries'),
-                [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
-                ],
-                $force
-            );
+    protected function getRefactoringParameters(): array
+    {
+        if ($this->option('model')) {
+            return [
+                '{{ modelNamespace }}' => $this->modelFQN->getNamespace(),
+                '{{ modelClassName }}' => $this->modelFQN->getClassName(),
+            ];
+        }
 
-            $this->components->info('Query created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+        return [];
+    }
+
+    public function prepare()
+    {
+        if ($model = $this->option('model')) {
+            $command = new MakeModelCommand();
+            $this->modelFQN = $command->getFQN($model);
+        }
+    }
+
+    public function onSuccess(string $namespace, string $className)
+    {
+        if ($this->option('model')) {
+            $this->call(MakeModelCommand::class, [
+                'name' => $this->modelFQN->getCommandNameArgument(),
+            ]);
         }
     }
 }

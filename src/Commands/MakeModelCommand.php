@@ -2,64 +2,57 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Resolvers\DomainNameSchemaResolver;
 use Illuminate\Support\Str;
 
-class MakeModelCommand extends BaseCommand
+class MakeModelCommand extends DomainCommand
 {
-    protected $signature = 'beyond:make:model {name?} {--f|factory} {--m|migration} {--force}';
+    protected $signature = 'beyond:make:model {name} {--f|factory} {--m|migration} {--force}';
 
     protected $description = 'Make a new model';
 
-    public function handle(): void
+    protected function getStub(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'model.stub';
+    }
 
-            $schema = (new DomainNameSchemaResolver($this, $name))->handle();
+    public function getType(): string
+    {
+        return 'Model';
+    }
+
+    public function onSuccess(string $namespace, string $className)
+    {
+        $name = $this->argument('name');
+        $force = $this->option('force');
+
+        $module = $this->getFQN()->getModule();
+
+        if ($this->option('migration')) {
+            $tableName = Str::snake(Str::pluralStudly($className));
+            $fileName = now()->format('Y_m_d_His').'_create_'.$tableName.'_table';
 
             beyond_copy_stub(
-                'model.stub',
-                $schema->path('Models'),
+                'migration.create.stub',
+                base_path()."/modules/$module/Infrastructure/migrations/$fileName.php",
                 [
-                    '{{ namespace }}' => $schema->namespace(),
-                    '{{ className }}' => $schema->className(),
+                    '{{ table }}' => $tableName,
                 ],
                 $force
             );
+        }
 
-            if ($this->option('factory')) {
-                $fileName = $schema->className().'Factory';
+        if ($this->option('factory')) {
+            $fileName = $className.'Factory';
 
-                beyond_copy_stub(
-                    'factory.stub',
-                    base_path().'/database/factories/'.$fileName.'.php',
-                    [
-                        '{{ namespace }}' => $schema->namespace(),
-                        '{{ model }}' => $schema->className(),
-                    ],
-                    $force
-                );
-            }
-
-            if ($this->option('migration')) {
-                $tableName = Str::snake(Str::pluralStudly($schema->className()));
-                $fileName = now()->format('Y_m_d_his').'_create_'.$tableName.'_table';
-
-                beyond_copy_stub(
-                    'migration.create.stub',
-                    base_path().'/database/migrations/'.$fileName.'.php',
-                    [
-                        '{{ table }}' => $tableName,
-                    ],
-                    $force
-                );
-            }
-
-            $this->components->info('Model created.');
-        } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+            beyond_copy_stub(
+                'factory.stub',
+                base_path()."/modules/$module/Infrastructure/factories/$fileName.php",
+                [
+                    '{{ namespace }}' => $namespace,
+                    '{{ model }}' => $fileName,
+                ],
+                $force
+            );
         }
     }
 }

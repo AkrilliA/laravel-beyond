@@ -1,7 +1,23 @@
 # Upgrade Guide
 
+- [Upgrade to 7.x from 6.x](#upgrade-to-7x-from-6x)
 - [Upgrade to 5.x from 4.x](#upgrade-to-5x-from-4x)
 - [Upgrade to 4.x from 3.x](#upgrade-to-4x-from-3x)
+
+## Upgrade to 7.x from 6.x
+### Directory Structure
+### Dropped Commands
+We decided to drop following Commands:
+
+- `beyond:make:command`
+- `beyond:make:route`
+- `beyond:make:trait`
+- `beyond:setup`
+
+### New Command
+As we changed the structure we had to introduce a new command:
+
+- `beyond:make:module`
 
 ## Upgrade to 5.x from 4.x
 

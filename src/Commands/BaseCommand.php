@@ -2,73 +2,70 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Contracts\Composer as ComposerContract;
-use Regnerisch\LaravelCommandHooks\Command;
+use AkrilliA\LaravelBeyond\FQN;
+use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 abstract class BaseCommand extends Command
 {
-    protected array $requiredPackages = [];
+    abstract public function getNamespaceTemplate(): string;
 
-    public ?int $minimumVersionId = null;
+    abstract protected function getStub(): string;
 
-    protected function before(): int
+    abstract public function getType(): string;
+
+    // TODO: Find a more suitable name.
+    public function getPluralizedType(): string
     {
-        if ($code = $this->checkVersionId()) {
-            return $code;
-        }
-
-        if ($code = $this->checkDependencies()) {
-            return $code;
-        }
-
-        return 0;
+        return Str::pluralStudly($this->getType());
     }
 
-    protected function checkDependencies(): int
+    protected function getRefactoringParameters(): array
     {
-        if ([] === $missingPackages = $this->getMissingPackages()) {
-            return 0;
-        }
-
-        $this->components->error(
-            sprintf(
-                'There are missing packages. Run composer require %s to install them.',
-                implode(' ', $missingPackages)
-            )
-        );
-
-        foreach ($missingPackages as $missingPackage) {
-            $this->components->twoColumnDetail($missingPackage, 'MISSING');
-        }
-
-        return 1;
+        return [];
     }
 
-    protected function checkVersionId(): int
+    protected function getNameArgument(): string
     {
-        if (! $this->minimumVersionId) {
-            return 0;
+        return $this->argument('name');
+    }
+
+    public function getFQN(string $name = null): FQN
+    {
+        return new FQN($this, $name ?: $this->getNameArgument());
+    }
+
+    public function handle(): void
+    {
+        if (method_exists($this, 'prepare')) {
+            $this->prepare();
         }
 
-        if (PHP_VERSION_ID < $this->minimumVersionId) {
-            $this->components->error(
-                sprintf(
-                    'Your version id %s does not match the required version id %s of this command.',
-                    PHP_VERSION_ID,
-                    $this->minimumVersionId
-                )
+        try {
+            $fqn = $this->getFQN();
+
+            $refactor = array_merge(
+                [
+                    '{{ namespace }}' => $fqn->getNamespace(),
+                    '{{ className }}' => $fqn->getClassName(),
+                ],
+                $this->getRefactoringParameters()
             );
 
-            return 1;
+            beyond_copy_stub(
+                $this->getStub(),
+                base_path($fqn->getPath()),
+                $refactor,
+                $this->option('force')
+            );
+
+            $this->components->info(Str::studly($this->getType())."[{$fqn->getPath()}] created successfully.");
+
+            if (method_exists($this, 'onSuccess')) {
+                $this->onSuccess($fqn->getNamespace(), $fqn->getClassName());
+            }
+        } catch (\Exception $exception) {
+            $this->components->error($exception->getMessage());
         }
-
-        return 0;
-    }
-
-    protected function getMissingPackages(): array
-    {
-        $composer = $this->getLaravel()->get(ComposerContract::class);
-
-        return array_diff($this->requiredPackages, $composer->getPackages()['require']);
     }
 }

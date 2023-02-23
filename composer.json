@@ -2,7 +2,7 @@
     "name": "akrillia/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "5.4.1",
+    "version": "7.0.0",
     "autoload": {
         "psr-4": {
             "AkrilliA\\LaravelBeyond\\": "src/"
@@ -27,11 +27,10 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/support": "^9.0|^10.0",
-        "illuminate/console": "^9.0|^10.0",
-        "illuminate/filesystem": "^9.0|^10.0",
-        "regnerisch/laravel-command-hooks": "^2.0"
+        "php": "^8.1",
+        "illuminate/support": "^10.0",
+        "illuminate/console": "^10.0",
+        "illuminate/filesystem": "^10.0"
     },
     "extra": {
         "laravel": {
@@ -41,12 +40,17 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^1.21",
-        "orchestra/testbench": "^7.6|^8.0",
-        "spatie/data-transfer-object": "^3.8",
-        "spatie/laravel-query-builder": "^5.0",
-        "spatie/laravel-queueable-action": "^2.14",
-        "laravel/pint": "^1.2"
+        "pestphp/pest": "^1.22",
+        "orchestra/testbench": "^8.0",
+        "laravel/pint": "^1.6",
+        "spatie/laravel-query-builder": "^5.1",
+        "spatie/laravel-data":"^3.1",
+        "spatie/laravel-queueable-action": "^2.14"
+    },
+    "suggest": {
+        "spatie/laravel-query-builder": "This package is required for Queries.",
+        "spatie/laravel-data": "This package is required for DataTransferObjects.",
+        "spatie/laravel-queueable-action": "This package is required for queueable Actions."
     },
     "config": {
         "allow-plugins": {
