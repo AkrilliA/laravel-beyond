@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\NameResolver;
 use Illuminate\Support\Str;
 
 class MakeModelCommand extends DomainCommand
@@ -20,39 +22,40 @@ class MakeModelCommand extends DomainCommand
         return 'Model';
     }
 
-    public function onSuccess(string $namespace, string $className)
+    public function setup(NameResolver $nameResolver): void
     {
-        $name = $this->argument('name');
-        $force = $this->option('force');
+        $this->addOnSuccess(function (string $namespace, string $className) use ($nameResolver) {
+            $force = $this->option('force');
 
-        $module = $this->getFQN()->getModule();
+            $module = $nameResolver->getModule();
 
-        if ($this->option('migration')) {
-            $tableName = Str::snake(Str::pluralStudly($className));
-            $fileName = now()->format('Y_m_d_His').'_create_'.$tableName.'_table';
+            if ($this->option('migration')) {
+                $tableName = Str::snake(Str::pluralStudly($className));
+                $fileName = now()->format('Y_m_d_His').'_create_'.$tableName.'_table';
 
-            beyond_copy_stub(
-                'migration.create.stub',
-                base_path()."/modules/$module/Infrastructure/migrations/$fileName.php",
-                [
-                    '{{ table }}' => $tableName,
-                ],
-                $force
-            );
-        }
+                beyond_copy_stub(
+                    'migration.create.stub',
+                    base_path()."/modules/$module/Infrastructure/migrations/$fileName.php",
+                    [
+                        '{{ table }}' => $tableName,
+                    ],
+                    $force
+                );
+            }
 
-        if ($this->option('factory')) {
-            $fileName = $className.'Factory';
+            if ($this->option('factory')) {
+                $fileName = $className.'Factory';
 
-            beyond_copy_stub(
-                'factory.stub',
-                base_path()."/modules/$module/Infrastructure/factories/$fileName.php",
-                [
-                    '{{ namespace }}' => $namespace,
-                    '{{ model }}' => $fileName,
-                ],
-                $force
-            );
-        }
+                beyond_copy_stub(
+                    'factory.stub',
+                    base_path()."/modules/$module/Infrastructure/factories/$fileName.php",
+                    [
+                        '{{ namespace }}' => $namespace,
+                        '{{ model }}'     => $fileName,
+                    ],
+                    $force
+                );
+            }
+        });
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Tests\Commands;
 
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
+
 test('can make enum', function () {
     $this->artisan('beyond:make:enum User/UserStatusEnum');
 

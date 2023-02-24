@@ -2,11 +2,13 @@
 
 namespace Tests\Commands;
 
-test('can make service provider', function () {
-    $this->artisan('beyond:make:provider User/UserServiceProvider');
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
 
-    expect(base_path().'/modules/User/Providers/UserServiceProvider.php')
+test('can make service provider', function () {
+    $this->artisan('beyond:make:provider User/UserAdditionalServiceProvider');
+
+    expect(base_path().'/modules/User/UserAdditionalServiceProvider.php')
         ->toBeFile()
         ->toMatchNamespaceAndClassName()
         ->toPlaceholdersBeReplaced();
-})->skip('TODO');
+});

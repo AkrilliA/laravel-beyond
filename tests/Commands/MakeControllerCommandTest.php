@@ -2,7 +2,10 @@
 
 namespace Tests\Commands;
 
-beforeEach(fn () => createFakeClass('App\\Http\\Controllers\\Controller'));
+beforeEach(function () {
+    createFakeClass('App\\Http\\Controllers\\Controller');
+    $this->artisan('beyond:make:module User');
+});
 
 test('can make controller', function () {
     $this->artisan('beyond:make:controller User/UserController');

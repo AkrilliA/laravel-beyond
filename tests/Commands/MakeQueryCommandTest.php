@@ -2,6 +2,8 @@
 
 namespace Tests\Commands;
 
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
+
 test('can make query', function () {
     $this->artisan('beyond:make:query User/IndexUserQuery');
 
@@ -12,7 +14,7 @@ test('can make query', function () {
 });
 
 test('can make query and model', function () {
-    $this->artisan('beyond:make:query User/IndexUserQuery --model=User/User');
+    $this->artisan('beyond:make:query User/IndexUserQuery --model=User');
 
     expect(base_path().'/modules/User/App/Queries/IndexUserQuery.php')
         ->toBeFile()

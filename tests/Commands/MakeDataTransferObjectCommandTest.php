@@ -2,6 +2,8 @@
 
 namespace Tests\Commands;
 
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
+
 test('can make dto', function () {
     $this->artisan('beyond:make:dto User/UserData');
 

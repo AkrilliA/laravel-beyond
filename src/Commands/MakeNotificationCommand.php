@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+
 class MakeNotificationCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:notification {name} {--force}';

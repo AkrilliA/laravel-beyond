@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+
 class MakeMiddlewareCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:middleware {name} {--force}';
@@ -16,10 +18,5 @@ class MakeMiddlewareCommand extends ApplicationCommand
     public function getType(): string
     {
         return 'Middleware';
-    }
-
-    public function getPluralizedType(): string
-    {
-        return 'Middlewares';
     }
 }

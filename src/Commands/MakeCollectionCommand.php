@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+
 class MakeCollectionCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:collection {name} {--model=} {--force}';

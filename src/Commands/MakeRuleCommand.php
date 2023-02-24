@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+
 class MakeRuleCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:rule {name?} {--force}';

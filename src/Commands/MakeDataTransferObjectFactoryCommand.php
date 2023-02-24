@@ -2,11 +2,12 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\FQN;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\NameResolver;
 
 class MakeDataTransferObjectFactoryCommand extends ApplicationCommand
 {
-    private FQN $dtoFQN;
+    private NameResolver $dtoFQN;
 
     protected $signature = 'beyond:make:dto-factory {name?} {--force} {--dto=}';
 
@@ -24,32 +25,22 @@ class MakeDataTransferObjectFactoryCommand extends ApplicationCommand
             : 'data-transfer-object-factory.plain.stub';
     }
 
-    protected function getRefactoringParameters(): array
-    {
-        if ($this->option('dto')) {
-            return [
-                '{{ dtoNamespace }}' => $this->dtoFQN->getNamespace(),
-                '{{ dtoClassName }}' => $this->dtoFQN->getClassName(),
-            ];
-        }
-
-        return [];
-    }
-
-    public function prepare()
+    public function setup(NameResolver $nameResolver): void
     {
         if ($dto = $this->option('dto')) {
             $command = new MakeDataTransferObjectCommand();
-            $this->dtoFQN = $command->getFQN($dto);
-        }
-    }
+            $fqn = $command->getNameResolver($nameResolver->getModule().'/'.$dto);
 
-    public function onSuccess(string $namespace, string $className)
-    {
-        if ($this->option('dto')) {
-            $this->call(MakeDataTransferObjectCommand::class, [
-                'name' => $this->dtoFQN->getCommandNameArgument(),
+            $this->mergePlaceholders([
+                '{{ dtoNamespace }}' => $fqn->getNamespace(),
+                '{{ dtoClassName }}' => $fqn->getClassName(),
             ]);
+
+            $this->addOnSuccess(function (string $namespace, string $className) use ($fqn) {
+                $this->call(MakeDataTransferObjectCommand::class, [
+                    'name' => $fqn->getCommandNameArgument(),
+                ]);
+            });
         }
     }
 }

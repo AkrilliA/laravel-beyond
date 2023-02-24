@@ -2,16 +2,18 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+
 class MakePolicyCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:policy {name} {--model=} {--force}';
 
     protected $description = 'Make a new policy';
 
-    protected function getRefactoringParameters(): array
+    protected function getAdditionReplacements(): array
     {
         return [
-            '{{ modelName }}' => $model = $this->option('model'),
+            '{{ modelName }}'     => $model = $this->option('model'),
             '{{ modelVariable }}' => 'User' === $model ? 'object' : mb_strtolower($model),
         ];
     }

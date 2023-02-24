@@ -2,6 +2,8 @@
 
 namespace Tests\Commands;
 
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
+
 test('can make policy', function () {
     $this->artisan('beyond:make:policy User/UserPolicy');
 

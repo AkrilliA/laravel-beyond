@@ -1,28 +1,34 @@
 <?php
 
-namespace AkrilliA\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 
-use AkrilliA\LaravelBeyond\FQN;
+use AkrilliA\LaravelBeyond\NameResolver;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
 abstract class BaseCommand extends Command
 {
-    abstract public function getNamespaceTemplate(): string;
+    private array $placeholders = [];
+
+    private array $onSuccess = [];
 
     abstract protected function getStub(): string;
 
+    abstract public function getNamespaceTemplate(): string;
+
     abstract public function getType(): string;
 
-    // TODO: Find a more suitable name.
-    public function getPluralizedType(): string
+    protected function addOnSuccess(callable $callback): void
     {
-        return Str::pluralStudly($this->getType());
+        $this->onSuccess[] = $callback;
     }
 
-    protected function getRefactoringParameters(): array
+    protected function mergePlaceholders(array $array): void
     {
-        return [];
+        $this->placeholders = array_merge(
+            $this->placeholders,
+            $array
+        );
     }
 
     protected function getNameArgument(): string
@@ -30,26 +36,26 @@ abstract class BaseCommand extends Command
         return $this->argument('name');
     }
 
-    public function getFQN(string $name = null): FQN
+    public function getNameResolver(string $name = null): NameResolver
     {
-        return new FQN($this, $name ?: $this->getNameArgument());
+        return new NameResolver($this, $name ?: $this->getNameArgument());
     }
 
     public function handle(): void
     {
-        if (method_exists($this, 'prepare')) {
-            $this->prepare();
-        }
-
         try {
-            $fqn = $this->getFQN();
+            $fqn = $this->getNameResolver();
+
+            if (method_exists($this, 'setup')) {
+                $this->setup($fqn);
+            }
 
             $refactor = array_merge(
                 [
                     '{{ namespace }}' => $fqn->getNamespace(),
                     '{{ className }}' => $fqn->getClassName(),
                 ],
-                $this->getRefactoringParameters()
+                $this->placeholders
             );
 
             beyond_copy_stub(
@@ -61,8 +67,8 @@ abstract class BaseCommand extends Command
 
             $this->components->info(Str::studly($this->getType())."[{$fqn->getPath()}] created successfully.");
 
-            if (method_exists($this, 'onSuccess')) {
-                $this->onSuccess($fqn->getNamespace(), $fqn->getClassName());
+            foreach ($this->onSuccess as $callback) {
+                $callback($fqn->getNamespace(), $fqn->getClassName());
             }
         } catch (\Exception $exception) {
             $this->components->error($exception->getMessage());

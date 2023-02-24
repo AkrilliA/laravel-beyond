@@ -1,6 +1,6 @@
 <?php
 
-namespace AkrilliA\LaravelBeyond\Commands;
+namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 
 abstract class ApplicationCommand extends BaseCommand
 {

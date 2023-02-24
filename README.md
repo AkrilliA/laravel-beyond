@@ -50,7 +50,7 @@ Do not forget to run `composer dump-autoload` after. So the new namespaces can b
 |  |  |  |  |- PaymentStatusFilter.php
 |  |  |  |- Jobs
 |  |  |  |  |- PaymentSyncronisationJob.php
-|  |  |  |- Middlewares
+|  |  |  |- Middleware
 |  |  |  |  |- PaymentVerificationMiddleware.php
 |  |  |  |- Queries
 |  |  |  |  |- PaymentIndexQuery.php

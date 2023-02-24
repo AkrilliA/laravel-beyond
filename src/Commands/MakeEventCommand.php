@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+
 class MakeEventCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:event {name} {--force}';

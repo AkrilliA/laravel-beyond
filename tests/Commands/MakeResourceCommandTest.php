@@ -2,6 +2,8 @@
 
 namespace Tests\Commands;
 
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
+
 test('can make resource', function () {
     $this->artisan('beyond:make:resource User/UserResource');
 

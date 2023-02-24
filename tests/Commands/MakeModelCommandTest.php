@@ -5,6 +5,8 @@ namespace Tests\Commands;
 use Carbon\Carbon;
 use Illuminate\Filesystem\Filesystem;
 
+beforeEach(fn () => $this->artisan('beyond:make:module User'));
+
 afterEach(function () {
     (new Filesystem())->cleanDirectory(base_path().'/database');
 });

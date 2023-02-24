@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+
 class MakeControllerCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:controller {name} {--api} {--i|invokable} {--force}';
@@ -16,7 +18,7 @@ class MakeControllerCommand extends ApplicationCommand
         return match (true) {
             $api && ! $invokable => 'controller.api.stub',
             $invokable && ! $api => 'controller.invokable.stub',
-            default => 'controller.stub'
+            default              => 'controller.stub'
         };
     }
 

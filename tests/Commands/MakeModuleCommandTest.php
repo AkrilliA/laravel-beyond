@@ -5,7 +5,7 @@ namespace Tests\Commands;
 use Illuminate\Filesystem\Filesystem;
 
 test('can make a module', function () {
-    $this->artisan('beyond:make:module User --force');
+    $this->artisan('beyond:make:module User');
 
     expect(base_path().'/modules/User/UserServiceProvider.php')
         ->toBeFile()

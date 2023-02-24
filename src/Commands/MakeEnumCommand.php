@@ -2,7 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use function Orchestra\Testbench\phpunit_version_compare;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 
 class MakeEnumCommand extends DomainCommand
 {

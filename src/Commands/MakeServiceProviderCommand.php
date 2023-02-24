@@ -2,32 +2,21 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use Illuminate\Console\Command;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ModuleCommand;
 
-class MakeServiceProviderCommand extends Command
+class MakeServiceProviderCommand extends ModuleCommand
 {
     protected $signature = 'beyond:make:provider {name} {--force}';
 
     protected $description = 'Create a new service provider';
 
-    public function handle(): void
+    public function getType(): string
     {
-        try {
-            $name = $this->argument('name');
-            $force = $this->option('force');
+        return 'Service Provider';
+    }
 
-            beyond_copy_stub(
-                'service.provider.stub',
-                base_path()."/modules/{$module}/App/{$name}.php",
-                [
-                    '{{ className }}' => $name,
-                ],
-                $force
-            );
-
-            $this->components->info('Service provider created.');
-        } catch (\Exception $e) {
-            $this->components->error($e->getMessage());
-        }
+    protected function getStub(): string
+    {
+        return 'service.provider.stub';
     }
 }

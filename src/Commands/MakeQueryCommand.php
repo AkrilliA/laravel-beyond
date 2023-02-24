@@ -2,11 +2,12 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\FQN;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\NameResolver;
 
 class MakeQueryCommand extends ApplicationCommand
 {
-    private FQN $modelFQN;
+    private NameResolver $modelFQN;
 
     protected $signature = 'beyond:make:query {name} {--model=} {--force}';
 
@@ -24,32 +25,22 @@ class MakeQueryCommand extends ApplicationCommand
         return 'Query';
     }
 
-    protected function getRefactoringParameters(): array
-    {
-        if ($this->option('model')) {
-            return [
-                '{{ modelNamespace }}' => $this->modelFQN->getNamespace(),
-                '{{ modelClassName }}' => $this->modelFQN->getClassName(),
-            ];
-        }
-
-        return [];
-    }
-
-    public function prepare()
+    public function setup(NameResolver $nameResolver): void
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $this->modelFQN = $command->getFQN($model);
-        }
-    }
+            $fqn = $command->getNameResolver($nameResolver->getModule().'/'.$model);
 
-    public function onSuccess(string $namespace, string $className)
-    {
-        if ($this->option('model')) {
-            $this->call(MakeModelCommand::class, [
-                'name' => $this->modelFQN->getCommandNameArgument(),
+            $this->mergePlaceholders([
+                '{{ modelNamespace }}' => $fqn->getNamespace(),
+                '{{ modelClassName }}' => $fqn->getClassName(),
             ]);
+
+            $this->addOnSuccess(function (string $namespace, string $className) use ($fqn) {
+                $this->call(MakeModelCommand::class, [
+                    'name' => $fqn->getCommandNameArgument(),
+                ]);
+            });
         }
     }
 }

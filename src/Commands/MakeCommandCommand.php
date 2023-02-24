@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+
 class MakeCommandCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:command {name} {--command=command:name} {--force}';
@@ -18,10 +20,10 @@ class MakeCommandCommand extends ApplicationCommand
         return 'Commands';
     }
 
-    protected function getRefactoringParameters(): array
+    public function setup()
     {
-        return [
+        $this->mergePlaceholders([
             '{{ command }}' => $this->option('command'),
-        ];
+        ]);
     }
 }

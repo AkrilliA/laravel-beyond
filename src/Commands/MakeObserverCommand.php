@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+
 class MakeObserverCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:observer {name} {--force}';

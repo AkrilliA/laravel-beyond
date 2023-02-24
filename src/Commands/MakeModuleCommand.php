@@ -44,7 +44,7 @@ class MakeModuleCommand extends Command
         foreach ($classNames as $className) {
             beyond_copy_stub(
                 'service.provider.stub',
-                base_path()."/modules/$name/".$name.$className.'.php',
+                base_path("modules/{$name}/{$name}{$className}.php"),
                 [
                     '{{ namespace }}' => $namespace,
                     '{{ className }}' => $name.$className,

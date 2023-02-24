@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+
 class MakeDataTransferObjectCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:dto {name} {--force}';

@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+
 class MakeResourceCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:resource {name?} {--collection} {--force}';
