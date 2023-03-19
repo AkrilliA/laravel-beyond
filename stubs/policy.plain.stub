@@ -5,7 +5,7 @@ namespace {{ namespace }};
 use Domain\Users\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class {{ className }}
+final class {{ className }}
 {
     use HandlesAuthorization;
 

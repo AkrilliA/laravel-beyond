@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 use Spatie\LaravelData\Data;
 
-class {{ className }} extends Data
+final class {{ className }} extends Data
 {
     public function __construct() {}
 }

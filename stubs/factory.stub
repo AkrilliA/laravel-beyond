@@ -8,7 +8,7 @@ use Domain\{{ namespace }}\Models\{{ model }};
 /**
  * @extends Factory<{{ model }}>
  */
-class {{ model }}Factory extends Factory
+final class {{ model }}Factory extends Factory
 {
 
     protected $model = {{ model }}::class;

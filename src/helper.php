@@ -5,11 +5,26 @@ use AkrilliA\LaravelBeyond\Actions\CopyFileAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 
 if (! function_exists('beyond_path')) {
     function beyond_path(): string
     {
         return dirname(__DIR__);
+    }
+}
+
+if (! function_exists('beyond_modules_path')) {
+    function beyond_modules_path(string $path = ''): string
+    {
+        return base_path("modules/$path");
+    }
+}
+
+if (! function_exists('beyond_module_name')) {
+    function beyond_module_name(string $name): string
+    {
+        return Str::of($name)->studly()->ucfirst()->value();
     }
 }
 

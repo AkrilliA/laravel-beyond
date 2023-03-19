@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class {{ className }} extends FormRequest
+final class {{ className }} extends FormRequest
 {
     public function rules(): array
     {

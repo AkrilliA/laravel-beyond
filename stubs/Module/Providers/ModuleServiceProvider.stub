@@ -1,0 +1,27 @@
+<?php
+
+namespace Modules\{{ module }}\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+final class {{ module }}ServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        $this->app->register({{ module }}AuthServiceProvider::class);
+        $this->app->register({{ module }}EventServiceProvider::class);
+        $this->app->register({{ module }}RouteServiceProvider::class);
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        $this->loadRoutesFrom(__DIR__ . '/../App/routes.php');
+        $this->loadMigrationsFrom(__DIR__ . '/../Infrastructure/Database/Migrations');
+    }
+}

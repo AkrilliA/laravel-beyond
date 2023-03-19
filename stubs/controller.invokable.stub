@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 use App\Http\Controllers\Controller;
 
-class {{ className }} extends Controller
+final class {{ className }} extends Controller
 {
     public function __invoke()
     {

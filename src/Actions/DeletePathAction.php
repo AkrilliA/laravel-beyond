@@ -4,16 +4,16 @@ namespace AkrilliA\LaravelBeyond\Actions;
 
 use Illuminate\Filesystem\Filesystem;
 
-class DeleteAction
+class DeletePathAction
 {
-    public function execute(string $path)
+    public function execute(string $path): void
     {
         $fs = new Filesystem();
 
-        if ($fs->isFile($path)) {
-            $fs->delete($path);
-        } else {
+        if ($fs->isDirectory($path)) {
             $fs->deleteDirectory($path);
+        } else {
+            $fs->delete($path);
         }
     }
 }
