@@ -2,8 +2,6 @@
 
 namespace Tests\Commands;
 
-use Illuminate\Filesystem\Filesystem;
-
 test('can make a module', function () {
     $this->artisan('beyond:make:module User');
 

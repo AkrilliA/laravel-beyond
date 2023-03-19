@@ -2,7 +2,7 @@
     "name": "akrillia/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "7.0.0",
+    "version": "7.0.0-beta.1",
     "autoload": {
         "psr-4": {
             "AkrilliA\\LaravelBeyond\\": "src/"
@@ -44,7 +44,7 @@
         "orchestra/testbench": "^8.0",
         "laravel/pint": "^1.6",
         "spatie/laravel-query-builder": "^5.1",
-        "spatie/laravel-data":"^3.1",
+        "spatie/laravel-data": "^3.1",
         "spatie/laravel-queueable-action": "^2.14"
     },
     "suggest": {
