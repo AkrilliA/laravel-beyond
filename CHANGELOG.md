@@ -5,6 +5,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [7.0.0-beta.2]
+### Added
+- Add alias for `beyond:make:dto` by [@regnerisch](https://github.com/regnerisch)
+
+### Fixed
+- Fixed some messages by [@regnerisch](https://github.com/regnerisch)
+
+### Changed
+- Swap deprecated rule interface by [@regnerisch](https://github.com/regnerisch)
+- Swap default behaviour on `beyond:make:module` by [@regnerisch](https://github.com/regnerisch)
+
+## [7.0.0-beta.1]
+
+## [6.0.1] - 2023-02-22
+
+## [6.0.0] - 2023-02-22
+### Added
+- Laravel 10.x support by [@regnerisch](https://github.com/regnerisch)
+
+### Removed
+- Laravel-Command-Hooks Dependency by [@regnerisch](https://github.com/regnerisch)
 
 ## [5.4.1] - 2023-01-10
 ### Added
@@ -90,7 +111,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v5.4.1...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.2...HEAD
+[7.0.0-beta.2]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.1...v7.0.0-beta.2
+[7.0.0-beta.1]: https://github.com/regnerisch/laravel-beyond/compare/v6.0.1...v7.0.0-beta.1
+[6.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v6.0.0...v6.0.1
+[6.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v5.4.1...v6.0.0
 [5.4.1]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.2...v5.4.1
 [5.3.2]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.1...v5.3.2
 [5.3.1]: https://github.com/regnerisch/laravel-beyond/compare/v5.3.0...v5.3.1
