@@ -6,7 +6,11 @@ use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 
 class MakeDataTransferObjectCommand extends DomainCommand
 {
-    protected $signature = 'beyond:make:dto {name} {--force}';
+    protected $signature = 'beyond:make:data {name} {--force}';
+
+    protected $aliases = [
+        'beyond:make:dto'
+    ];
 
     protected $description = 'Make a new data transfer object';
 

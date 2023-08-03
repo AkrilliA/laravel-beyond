@@ -2,7 +2,7 @@
 
 namespace Tests\Commands;
 
-test('can make a module', function () {
+test('can make a minimal module', function () {
     $this->artisan('beyond:make:module User');
 
     expect(base_path().'/modules/User/App/routes.php')
@@ -24,8 +24,8 @@ test('can make a module', function () {
         ->toPlaceholdersBeReplaced();
 });
 
-test('can make a minimal module', function () {
-    $this->artisan('beyond:make:module User --minimal');
+test('can make a module --full', function () {
+    $this->artisan('beyond:make:module User');
 
     expect(base_path().'/modules/User/App/routes.php')
         ->toBeFile();

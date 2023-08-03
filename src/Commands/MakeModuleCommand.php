@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
 
 class MakeModuleCommand extends Command
 {
-    protected $signature = 'beyond:make:module {name} {--m|minimal} {--force}';
+    protected $signature = 'beyond:make:module {name} {--full} {--force}';
 
     protected $description = 'Make a new module';
 
@@ -26,7 +26,7 @@ class MakeModuleCommand extends Command
     {
         $module = beyond_module_name($this->argument('name'));
         $force = $this->option('force') ?: false;
-        $minimal = $this->option('minimal') ?: false;
+        $full = $this->option('full') ?: false;
 
         $this->copyDirectoryAction->execute(
             __DIR__.'/../../stubs/Module',
@@ -52,7 +52,7 @@ class MakeModuleCommand extends Command
             force: $force
         );
 
-        $this->deleteGitKeep($module, $minimal);
+        $this->deleteGitKeep($module, ! $full);
 
         $this->components->info("{$module} module created successfully.");
     }

@@ -65,7 +65,7 @@ abstract class BaseCommand extends Command
                 $this->option('force')
             );
 
-            $this->components->info(Str::studly($this->getType())."[{$fqn->getPath()}] created successfully.");
+            $this->components->info(Str::studly($this->getType())." [{$fqn->getPath()}] created successfully.");
 
             foreach ($this->onSuccess as $callback) {
                 $callback($fqn->getNamespace(), $fqn->getClassName());
