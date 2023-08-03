@@ -9,7 +9,7 @@ class MakeDataTransferObjectCommand extends DomainCommand
     protected $signature = 'beyond:make:data {name} {--force}';
 
     protected $aliases = [
-        'beyond:make:dto'
+        'beyond:make:dto',
     ];
 
     protected $description = 'Make a new data transfer object';
