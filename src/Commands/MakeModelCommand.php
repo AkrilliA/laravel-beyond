@@ -25,7 +25,7 @@ class MakeModelCommand extends DomainCommand
     public function setup(NameResolver $nameResolver): void
     {
         $this->addOnSuccess(function (string $namespace, string $className) use ($nameResolver) {
-            $force = $this->option('force');
+            $force = (bool) $this->option('force');
 
             $module = $nameResolver->getModule();
 

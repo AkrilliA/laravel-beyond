@@ -2,8 +2,8 @@
 
 namespace {{ namespace }};
 
-use Domain\{{ namespace }}\Models\{{ modelName }};
-use Domain\Users\Models\User;
+use {{ modelNamespace }}\{{ modelClassName }};
+use Modules\User\Domain\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class {{ className }}
@@ -18,7 +18,7 @@ final class {{ className }}
     {
     }
 
-    public function view(User $user, {{ modelName }} ${{ modelVariable }})
+    public function view(User $user, {{ modelClassName }} ${{ modelVariable }})
     {
     }
 
@@ -26,19 +26,19 @@ final class {{ className }}
     {
     }
 
-    public function update(User $user, {{ modelName }} ${{ modelVariable }})
+    public function update(User $user, {{ modelClassName }} ${{ modelVariable }})
     {
     }
 
-    public function delete(User $user, {{ modelName }} ${{ modelVariable }})
+    public function delete(User $user, {{ modelClassName }} ${{ modelVariable }})
     {
     }
 
-    public function restore(User $user, {{ modelName }} ${{ modelVariable }})
+    public function restore(User $user, {{ modelClassName }} ${{ modelVariable }})
     {
     }
 
-    public function forceDelete(User $user, {{ modelName }} ${{ modelVariable }})
+    public function forceDelete(User $user, {{ modelClassName }} ${{ modelVariable }})
     {
     }
 }

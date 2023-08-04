@@ -4,7 +4,6 @@ use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use AkrilliA\LaravelBeyond\Actions\CopyFileAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
 if (! function_exists('beyond_path')) {
@@ -29,6 +28,9 @@ if (! function_exists('beyond_module_name')) {
 }
 
 if (! function_exists('beyond_copy_stub')) {
+    /**
+     * @param  array<string, string>  $refactor
+     */
     function beyond_copy_stub(string $stub, string $path, array $refactor = [], bool $force = false): void
     {
         $stub = file_exists($stubPath = base_path('stubs/beyond.'.$stub))
@@ -50,6 +52,9 @@ if (! function_exists('beyond_copy_stub')) {
 }
 
 if (! function_exists('beyond_get_choices')) {
+    /**
+     * @return array<string>
+     */
     function beyond_get_choices(string $path): array
     {
         $fs = new Filesystem();
@@ -64,18 +69,5 @@ if (! function_exists('beyond_get_choices')) {
         );
 
         return $directories;
-    }
-}
-
-if (! function_exists('beyond_commands')) {
-    function beyond_commands(array $except = [])
-    {
-        return array_filter(
-            Artisan::all(),
-            function ($command, $key) use ($except) {
-                return str_starts_with($key, 'beyond:') && ! in_array($key, $except, true);
-            },
-            ARRAY_FILTER_USE_BOTH
-        );
     }
 }

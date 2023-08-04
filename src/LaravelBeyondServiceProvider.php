@@ -7,13 +7,16 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelBeyondServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands(...$this->beyondCommands());
         }
     }
 
+    /**
+     * @return array<string>
+     */
     public function beyondCommands(): array
     {
         $exclude = [];
@@ -25,7 +28,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
             fn ($file) => 'AkrilliA\\LaravelBeyond\\Commands\\'.$file->getBasename('.php'),
             array_filter(
                 $files,
-                fn ($file) => ! in_array($file->getBasename('.php'), $exclude, true),
+                fn ($file) => ! in_array($file->getBasename('.php'), $exclude, true) // @phpstan-ignore-line
             )
         );
     }

@@ -8,8 +8,10 @@ use Illuminate\Support\Str;
 
 abstract class BaseCommand extends Command
 {
+    /** @var array<string, string> */
     private array $placeholders = [];
 
+    /** @var array<callable> */
     private array $onSuccess = [];
 
     abstract protected function getStub(): string;
@@ -18,11 +20,19 @@ abstract class BaseCommand extends Command
 
     abstract public function getType(): string;
 
+    public function getFileNameTemplate(): string
+    {
+        return '%s.php';
+    }
+
     protected function addOnSuccess(callable $callback): void
     {
         $this->onSuccess[] = $callback;
     }
 
+    /**
+     * @param  array<string, string>  $array
+     */
     protected function mergePlaceholders(array $array): void
     {
         $this->placeholders = array_merge(
@@ -33,7 +43,7 @@ abstract class BaseCommand extends Command
 
     protected function getNameArgument(): string
     {
-        return $this->argument('name');
+        return trim($this->argument('name'));
     }
 
     public function getNameResolver(string $name = null): NameResolver
@@ -62,10 +72,10 @@ abstract class BaseCommand extends Command
                 $this->getStub(),
                 base_path($fqn->getPath()),
                 $refactor,
-                $this->option('force')
+                (bool) $this->option('force')
             );
 
-            $this->components->info(Str::studly($this->getType())." [{$fqn->getPath()}] created successfully.");
+            $this->components->info(Str::studly($this->getTypeName())." [{$fqn->getPath()}] created successfully.");
 
             foreach ($this->onSuccess as $callback) {
                 $callback($fqn->getNamespace(), $fqn->getClassName());
@@ -73,5 +83,10 @@ abstract class BaseCommand extends Command
         } catch (\Exception $exception) {
             $this->components->error($exception->getMessage());
         }
+    }
+
+    public function getTypeName(): string
+    {
+        return Str::afterLast($this->getType(), '/');
     }
 }

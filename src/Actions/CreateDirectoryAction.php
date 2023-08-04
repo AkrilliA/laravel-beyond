@@ -6,6 +6,9 @@ use Illuminate\Filesystem\Filesystem;
 
 class CreateDirectoryAction
 {
+    /**
+     * @param  string|array<string>  $directory
+     */
     public function execute(string|array $directory): void
     {
         if (is_array($directory)) {

@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 
 class CopyFileAction
 {
-    public function execute(string $srcPath, string $targetPath, bool $force = false)
+    public function execute(string $srcPath, string $targetPath, bool $force = false): void
     {
         $fs = new Filesystem();
 

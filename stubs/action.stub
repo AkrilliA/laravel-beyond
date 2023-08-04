@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 final class {{ className }}
 {
-    public function execute()
+    public function execute(): mixed
     {
         //
     }

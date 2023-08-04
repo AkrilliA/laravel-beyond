@@ -11,6 +11,9 @@ class CopyAndRefactorDirectoryAction
     ) {
     }
 
+    /**
+     * @param  array<string, string>  $refactor
+     */
     public function execute(string $sourcePath, string $targetPath, array $refactor = [], bool $force = false): void
     {
         $fs = new Filesystem();

@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\NameResolver;
 
 class MakeCollectionCommand extends DomainCommand
 {
@@ -13,12 +14,31 @@ class MakeCollectionCommand extends DomainCommand
     protected function getStub(): string
     {
         return $this->hasOption('model')
-            ? 'collection.stub' :
-            'collection.plain.stub';
+            ? 'collection.stub'
+            : 'collection.plain.stub';
     }
 
     public function getType(): string
     {
         return 'Collection';
+    }
+
+    public function setup(NameResolver $fqn): void
+    {
+        if ($model = $this->option('model')) {
+            $command = new MakeModelCommand();
+            $fqn = $command->getNameResolver($fqn->getModule().'/'.$model);
+
+            $this->mergePlaceholders([
+                '{{ modelNamespace }}' => $fqn->getNamespace(),
+                '{{ modelClassName }}' => $fqn->getClassName(),
+            ]);
+
+            $this->addOnSuccess(function (string $namespace, string $className) use ($fqn) {
+                $this->call(MakeModelCommand::class, [
+                    'name' => $fqn->getCommandNameArgument(),
+                ]);
+            });
+        }
     }
 }

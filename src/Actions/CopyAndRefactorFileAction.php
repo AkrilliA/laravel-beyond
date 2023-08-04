@@ -2,6 +2,8 @@
 
 namespace AkrilliA\LaravelBeyond\Actions;
 
+use AkrilliA\LaravelBeyond\Exceptions\AlreadyExistsException;
+
 class CopyAndRefactorFileAction
 {
     public function __construct(
@@ -10,6 +12,11 @@ class CopyAndRefactorFileAction
     ) {
     }
 
+    /**
+     * @param  array<string, string>  $refactor
+     *
+     * @throws AlreadyExistsException
+     */
     public function execute(string $sourcePath, string $targetPath, array $refactor = [], bool $force = false): void
     {
         $this->copyFileAction->execute($sourcePath, $targetPath, $force);

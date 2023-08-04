@@ -13,7 +13,7 @@ class MoveFileAction
         $fs->ensureDirectoryExists(dirname($targetPath));
 
         if (! $force && $fs->exists($targetPath)) {
-            throw new \Exception('File alreasy exists');
+            throw new \Exception('File already exists'); // TODO: Custom Exception
         }
 
         $fs->move(

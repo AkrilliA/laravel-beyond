@@ -24,49 +24,39 @@ class MakeModuleCommand extends Command
 
     public function handle(): void
     {
-        $module = beyond_module_name($this->argument('name'));
-        $force = $this->option('force') ?: false;
-        $full = $this->option('full') ?: false;
+        $module = beyond_module_name(trim($this->argument('name')));
+        $force = (bool) $this->option('force');
+        $full = (bool) $this->option('full');
 
         $this->copyDirectoryAction->execute(
             __DIR__.'/../../stubs/Module',
             beyond_modules_path($module)
         );
 
-        $this->moveAndRefactorModuleFiles(
-            $module,
-            [
-                'Providers/ModuleAuthServiceProvider.stub',
-                'Providers/ModuleEventServiceProvider.stub',
-                'Providers/ModuleRouteServiceProvider.stub',
-                'Providers/ModuleServiceProvider.stub',
-                'App/routes.stub',
-            ],
-            [
-                "Providers/{$module}AuthServiceProvider.php",
-                "Providers/{$module}EventServiceProvider.php",
-                "Providers/{$module}RouteServiceProvider.php",
-                "Providers/{$module}ServiceProvider.php",
-                'App/routes.php',
-            ],
-            force: $force
-        );
+        $this->moveAndRefactorModuleFiles($module, $force);
 
         $this->deleteGitKeep($module, ! $full);
 
         $this->components->info("{$module} module created successfully.");
     }
 
-    private function moveAndRefactorModuleFiles(string $module, array $from, array $to, array $refactor = [], bool $force = false): void
+    private function moveAndRefactorModuleFiles(string $module, bool $force = false): void
     {
-        foreach ($from as $key => $source) {
+        $files = [
+            'Providers/ModuleAuthServiceProvider.stub'  => "Providers/{$module}AuthServiceProvider.php",
+            'Providers/ModuleEventServiceProvider.stub' => "Providers/{$module}EventServiceProvider.php",
+            'Providers/ModuleRouteServiceProvider.stub' => "Providers/{$module}RouteServiceProvider.php",
+            'Providers/ModuleServiceProvider.stub'      => "Providers/{$module}ServiceProvider.php",
+            'App/routes.stub'                           => 'App/routes.php',
+        ];
+
+        foreach ($files as $from => $to) {
             $this->moveAndRefactorFileAction->execute(
-                beyond_modules_path("{$module}/{$source}"),
-                beyond_modules_path("{$module}/{$to[$key]}"),
-                array_merge(
-                    ['{{ module }}' => $module],
-                    ! empty($refactor[$key]) ? $refactor[$key] : [],
-                ),
+                beyond_modules_path("{$module}/{$from}"),
+                beyond_modules_path("{$module}/{$to}"),
+                [
+                    '{{ module }}' => $module,
+                ],
                 $force
             );
         }

@@ -7,8 +7,6 @@ use AkrilliA\LaravelBeyond\NameResolver;
 
 class MakeQueryCommand extends ApplicationCommand
 {
-    private NameResolver $modelFQN;
-
     protected $signature = 'beyond:make:query {name} {--model=} {--force}';
 
     protected $description = 'Make a new query';

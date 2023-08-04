@@ -7,10 +7,13 @@ use Illuminate\Support\Arr;
 
 class CreateFileAction
 {
-    public function execute(string|array $file): void
+    /**
+     * @param  string|array<int, string>|array<string, string>  $files
+     */
+    public function execute(string|array $files): void
     {
         $fs = new Filesystem();
-        $files = Arr::wrap($file);
+        $files = Arr::wrap($files);
 
         foreach ($files as $file => $contents) {
             if (is_int($file)) {

@@ -40,12 +40,13 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^2.12",
+        "phpunit/phpunit": "^10.3",
         "orchestra/testbench": "^8.5",
         "laravel/pint": "^1.10",
         "spatie/laravel-query-builder": "^5.2",
         "spatie/laravel-data": "^3.7",
-        "spatie/laravel-queueable-action": "^2.14"
+        "spatie/laravel-queueable-action": "^2.14",
+        "phpstan/phpstan": "^1.10"
     },
     "suggest": {
         "spatie/laravel-query-builder": "This package is required for Queries.",
@@ -59,6 +60,7 @@
     },
     "scripts": {
         "pint": "vendor/bin/pint",
-        "test": "vendor/bin/pest"
+        "test": "vendor/bin/phpunit",
+        "lint": "vendor/bin/phpstan"
     }
 }

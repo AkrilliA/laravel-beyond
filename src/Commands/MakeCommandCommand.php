@@ -20,7 +20,7 @@ class MakeCommandCommand extends ApplicationCommand
         return 'Commands';
     }
 
-    public function setup()
+    public function setup(): void
     {
         $this->mergePlaceholders([
             '{{ command }}' => $this->option('command'),

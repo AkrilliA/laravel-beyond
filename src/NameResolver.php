@@ -49,7 +49,7 @@ class NameResolver
         return $this->module.'/'.$this->className;
     }
 
-    private function init()
+    private function init(): void
     {
         $parts = explode('/', $this->name);
         $numParts = count($parts);
@@ -57,14 +57,14 @@ class NameResolver
 
         if (1 === $numParts) {
             $this->module = $this->command->choice(
-                'On which module should we create your '.Str::studly($this->command->getType()).'?',
+                'On which module should we create your '.Str::studly($this->command->getTypeName()).'?',
                 $modules,
-                3
+                attempts: 2
             );
             $this->className = $parts[0];
         } elseif (2 === $numParts) {
             $module = Str::of($parts[0])->ucfirst()->value();
-            if (! in_array($module, $modules)) {
+            if (! in_array($module, $modules, true)) {
                 throw new ModuleDoesNotExistsException($module);
             }
 
@@ -80,6 +80,10 @@ class NameResolver
             Str::pluralStudly($this->command->getType()),
         );
 
-        $this->path = Str::lcfirst(Str::replace('\\', '/', $this->namespace))."/{$this->className}.php";
+        $this->path = sprintf(
+            '%s/'.$this->command->getFileNameTemplate(),
+            Str::lcfirst(Str::replace('\\', '/', $this->namespace)),
+            $this->className,
+        );
     }
 }
