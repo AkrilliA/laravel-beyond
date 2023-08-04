@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [7.0.0-beta.3]
+### Changed
+- Update dependencies by [@regnerisch](https://github.com/regnerisch)
+
 ## [7.0.0-beta.2]
 ### Added
 - Add alias for `beyond:make:dto` by [@regnerisch](https://github.com/regnerisch)
@@ -111,7 +116,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.2...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.3...HEAD
+[7.0.0-beta.3]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.2...v7.0.0-beta.3
 [7.0.0-beta.2]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.1...v7.0.0-beta.2
 [7.0.0-beta.1]: https://github.com/regnerisch/laravel-beyond/compare/v6.0.1...v7.0.0-beta.1
 [6.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v6.0.0...v6.0.1
