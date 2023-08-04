@@ -40,11 +40,11 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^1.22",
-        "orchestra/testbench": "^8.0",
-        "laravel/pint": "^1.6",
-        "spatie/laravel-query-builder": "^5.1",
-        "spatie/laravel-data": "^3.1",
+        "pestphp/pest": "^2.12",
+        "orchestra/testbench": "^8.5",
+        "laravel/pint": "^1.10",
+        "spatie/laravel-query-builder": "^5.2",
+        "spatie/laravel-data": "^3.7",
         "spatie/laravel-queueable-action": "^2.14"
     },
     "suggest": {
