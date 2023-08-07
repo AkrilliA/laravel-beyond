@@ -8,7 +8,7 @@
     },
     "hooks": {
         "before:init": [
-            "php vendor/bin/pest"
+            "php vendor/bin/phpunit"
         ],
         "after:bump": [
             "php vendor/bin/pint",
