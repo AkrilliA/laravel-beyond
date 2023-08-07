@@ -27,7 +27,7 @@ class MakeQueryCommand extends ApplicationCommand
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($nameResolver->getModule().'/'.$model);
+            $fqn = $command->getNameResolver($nameResolver->getModule().'.'.$model);
 
             $this->mergePlaceholders([
                 '{{ modelNamespace }}' => $fqn->getNamespace(),

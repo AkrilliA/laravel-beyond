@@ -5,15 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [7.0.0-beta.4]
 ### Added
 - Add `beyond:make:migration` command by [@regnerisch](https://github.com/regnerisch)
 - Add [phpstan](https://github.com/phpstan/phpstan) and fix errors by [@regnerisch](https://github.com/regnerisch)
+- Add support for additional directories `beyond:make:controller User.Admin/UserController` by [@regnerisch](https://github.com/regnerisch)
 
 ### Fixed
 - Fix module choice attempts by [@regnerisch](https://github.com/regnerisch)
 
 ### Changed
 - Replace `pest` with `phpunit` by [@regnerisch](https://github.com/regnerisch)
+- Changed `beyond:make:{command} Module/ClassName` to `beyond:make:{command} Module.ClassName` to support directories by [@regnerisch](https://github.com/regnerisch)
 
 ## [7.0.0-beta.3]
 ### Changed
@@ -125,7 +129,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.3...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.4...HEAD
+[7.0.0-beta.4]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.3...v7.0.0-beta.4
 [7.0.0-beta.3]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.2...v7.0.0-beta.3
 [7.0.0-beta.2]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.1...v7.0.0-beta.2
 [7.0.0-beta.1]: https://github.com/regnerisch/laravel-beyond/compare/v6.0.1...v7.0.0-beta.1

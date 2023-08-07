@@ -15,7 +15,7 @@ class MakeBuilderCommandTest extends TestCase
 
     public function testCanMakeAction(): void
     {
-        $this->artisan('beyond:make:builder User/UserBuilder');
+        $this->artisan('beyond:make:builder User.UserBuilder');
 
         $file = beyond_modules_path('User/Domain/Builders/UserBuilder.php');
         $contents = file_get_contents($file);

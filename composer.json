@@ -61,6 +61,6 @@
     "scripts": {
         "pint": "vendor/bin/pint",
         "test": "vendor/bin/phpunit",
-        "lint": "vendor/bin/phpstan"
+        "phpstan": "vendor/bin/phpstan"
     }
 }

@@ -114,7 +114,7 @@ Now you still have to run `composer dump-autoload` and everything is set up for 
 This command will create a new action class inside your domain.
 
 ```bash
-php artisan beyond:make:action Users/CreateUserAction
+php artisan beyond:make:action Users.CreateUserAction
 ```
 
 **Options**
@@ -130,7 +130,7 @@ php artisan beyond:make:action Users/CreateUserAction
 This command will create a new eloquent builder class inside your domain.
 
 ```bash
-php artisan beyond:make:builder Users/UserBuilder
+php artisan beyond:make:builder Users.UserBuilder
 ```
 
 **Options**
@@ -146,7 +146,7 @@ php artisan beyond:make:builder Users/UserBuilder
 This command will create a new collection class inside your domain.
 
 ```bash
-php artisan beyond:make:collection Users/UserCollection
+php artisan beyond:make:collection Users.UserCollection
 ```
 
 **Options**
@@ -180,7 +180,7 @@ php artisan beyond:make:command SyncUsersCommand
 This command will create a new action class inside your application.
 
 ```bash
-php artisan beyond:make:controller Admin/Users/UserController
+php artisan beyond:make:controller User.Admin/UserController
 ```
 
 **Options**

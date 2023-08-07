@@ -15,7 +15,7 @@ class MakeActionCommandTest extends TestCase
 
     public function testCanMakeAction(): void
     {
-        $this->artisan('beyond:make:action User/UserStoreAction');
+        $this->artisan('beyond:make:action User.UserStoreAction');
 
         $file = beyond_modules_path('User/Domain/Actions/UserStoreAction.php');
         $contents = file_get_contents($file);

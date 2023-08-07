@@ -28,12 +28,12 @@ class MakePolicyCommand extends DomainCommand
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($fqn->getModule().'/'.$model);
+            $fqn = $command->getNameResolver($fqn->getModule().'.'.$model);
 
             $this->mergePlaceholders([
                 '{{ modelNamespace }}' => $fqn->getNamespace(),
                 '{{ modelClassName }}' => $fqn->getClassName(),
-                '{{ modelVariable }}' => Str::camel($fqn->getClassName())
+                '{{ modelVariable }}'  => Str::camel($fqn->getClassName()),
             ]);
         }
     }

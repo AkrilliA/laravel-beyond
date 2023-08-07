@@ -15,7 +15,7 @@ class MakeMigrationCommandTest extends TestCase
 
     public function testCanMakeMigration(): void
     {
-        $this->artisan('beyond:make:migration User/SimpleMigration');
+        $this->artisan('beyond:make:migration User.SimpleMigration');
 
         $now = new \DateTime();
 
@@ -29,7 +29,7 @@ class MakeMigrationCommandTest extends TestCase
 
     public function testCanMakeCreateMigration(): void
     {
-        $this->artisan('beyond:make:migration User/CreateUsersTable');
+        $this->artisan('beyond:make:migration User.CreateUsersTable');
 
         $now = new \DateTime();
 
@@ -42,7 +42,7 @@ class MakeMigrationCommandTest extends TestCase
 
     public function testCanMakeUpdateMigration(): void
     {
-        $this->artisan('beyond:make:migration User/AddStatusToUsersTable');
+        $this->artisan('beyond:make:migration User.AddStatusToUsersTable');
 
         $now = new \DateTime();
 

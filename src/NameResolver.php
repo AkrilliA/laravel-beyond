@@ -13,6 +13,8 @@ class NameResolver
 
     private string $namespace;
 
+    private string $directory;
+
     private string $className;
 
     private string $path;
@@ -46,12 +48,12 @@ class NameResolver
 
     public function getCommandNameArgument(): string
     {
-        return $this->module.'/'.$this->className;
+        return $this->module.'.'.$this->className;
     }
 
     private function init(): void
     {
-        $parts = explode('/', $this->name);
+        $parts = explode('.', $this->name);
         $numParts = count($parts);
         $modules = beyond_get_choices(base_path('modules'));
 
@@ -61,7 +63,8 @@ class NameResolver
                 $modules,
                 attempts: 2
             );
-            $this->className = $parts[0];
+
+            $this->setDirectoryAndClassName($parts[0]);
         } elseif (2 === $numParts) {
             $module = Str::of($parts[0])->ucfirst()->value();
             if (! in_array($module, $modules, true)) {
@@ -69,15 +72,16 @@ class NameResolver
             }
 
             $this->module = $module;
-            $this->className = $parts[1];
+            $this->setDirectoryAndClassName($parts[1]);
         } else {
             throw new InvalidNameException($this->name);
         }
 
         $this->namespace = sprintf(
-            $this->command->getNamespaceTemplate(),
+            $this->command->getNamespaceTemplate().'%s',
             $this->module,
             Str::pluralStudly($this->command->getType()),
+            $this->directory ? '\\'.$this->directory : '',
         );
 
         $this->path = sprintf(
@@ -85,5 +89,14 @@ class NameResolver
             Str::lcfirst(Str::replace('\\', '/', $this->namespace)),
             $this->className,
         );
+    }
+
+    private function setDirectoryAndClassName(string $name): void
+    {
+        $parts = explode('/', $name);
+
+        $this->className = array_pop($parts);
+
+        $this->directory = implode('/', $parts);
     }
 }

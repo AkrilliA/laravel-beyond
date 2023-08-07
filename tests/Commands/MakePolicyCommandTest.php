@@ -15,7 +15,7 @@ class MakePolicyCommandTest extends TestCase
 
     public function testCanMakePolicy(): void
     {
-        $this->artisan('beyond:make:policy User/UserPolicy');
+        $this->artisan('beyond:make:policy User.UserPolicy');
 
         $file = beyond_modules_path('User/Domain/Policies/UserPolicy.php');
         $contents = file_get_contents($file);
@@ -27,7 +27,7 @@ class MakePolicyCommandTest extends TestCase
 
     public function testCanMakePolicyWithModel(): void
     {
-        $this->artisan('beyond:make:policy User/UserPolicy --model=User');
+        $this->artisan('beyond:make:policy User.UserPolicy --model=User');
 
         $file = beyond_modules_path('User/Domain/Policies/UserPolicy.php');
         $contents = file_get_contents($file);

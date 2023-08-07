@@ -27,7 +27,7 @@ class MakeCollectionCommand extends DomainCommand
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($fqn->getModule().'/'.$model);
+            $fqn = $command->getNameResolver($fqn->getModule().'.'.$model);
 
             $this->mergePlaceholders([
                 '{{ modelNamespace }}' => $fqn->getNamespace(),
