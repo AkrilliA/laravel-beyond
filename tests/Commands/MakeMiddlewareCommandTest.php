@@ -4,7 +4,7 @@ namespace Tests\Commands;
 
 use Tests\TestCase;
 
-class MakeBuilderCommandTest extends TestCase
+class MakeMiddlewareCommandTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -13,11 +13,11 @@ class MakeBuilderCommandTest extends TestCase
         $this->artisan('beyond:make:module User');
     }
 
-    public function testCanMakeBuilder(): void
+    public function testCanMakeMiddleware(): void
     {
-        $this->artisan('beyond:make:builder User.UserBuilder');
+        $this->artisan('beyond:make:middleware User.SetLocale');
 
-        $file = beyond_modules_path('User/Domain/Builders/UserBuilder.php');
+        $file = beyond_modules_path('User/App/Middleware/SetLocale.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

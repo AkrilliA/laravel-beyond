@@ -4,7 +4,7 @@ namespace Tests\Commands;
 
 use Tests\TestCase;
 
-class MakeBuilderCommandTest extends TestCase
+class MakeEnumCommandTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -13,11 +13,11 @@ class MakeBuilderCommandTest extends TestCase
         $this->artisan('beyond:make:module User');
     }
 
-    public function testCanMakeBuilder(): void
+    public function testCanMakeEnum(): void
     {
-        $this->artisan('beyond:make:builder User.UserBuilder');
+        $this->artisan('beyond:make:enum User.UserType');
 
-        $file = beyond_modules_path('User/Domain/Builders/UserBuilder.php');
+        $file = beyond_modules_path('User/Domain/Enums/UserType.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
