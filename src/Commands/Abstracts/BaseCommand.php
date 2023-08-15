@@ -14,6 +14,8 @@ abstract class BaseCommand extends Command
     /** @var array<callable> */
     private array $onSuccess = [];
 
+    protected array $aliases = [];
+
     abstract protected function getStub(): string;
 
     abstract public function getNamespaceTemplate(): string;
@@ -49,6 +51,13 @@ abstract class BaseCommand extends Command
     public function getNameResolver(string $name = null): NameResolver
     {
         return new NameResolver($this, $name ?: $this->getNameArgument());
+    }
+
+    protected function configure()
+    {
+        $this->setAliases($this->aliases);
+
+        parent::configure();
     }
 
     public function handle(): void

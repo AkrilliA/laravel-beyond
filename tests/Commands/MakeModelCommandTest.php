@@ -2,6 +2,8 @@
 
 namespace Tests\Commands;
 
+use Carbon\Carbon;
+use Illuminate\Filesystem\Filesystem;
 use Tests\TestCase;
 
 class MakeModelCommandTest extends TestCase
@@ -57,11 +59,10 @@ class MakeModelCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
 
-        $file = beyond_modules_path('User/Infrastructure/Database/migrations/'.$now->format('Y_m_d_His').'_create_users_table.php');
+        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_create_users_table.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ table }}', $contents);
-        $this->assertStringNotContainsString('Schema::', $contents);
+        $this->assertStringContainsString('Schema::create', $contents);
     }
 }

@@ -6,9 +6,16 @@ use Tests\TestCase;
 
 class MakeServiceProviderCommandTest extends TestCase
 {
-    public function testCanMakeResource(): void
+    protected function setUp(): void
     {
-        $this->artisan('beyond:make:provider UserServiceProvider');
+        parent::setUp();
+
+        $this->artisan('beyond:make:module User');
+    }
+
+    public function testCanMakeProvider(): void
+    {
+        $this->artisan('beyond:make:provider User.UserServiceProvider');
 
         $file = beyond_modules_path('User/Providers/UserServiceProvider.php');
         $contents = file_get_contents($file);
