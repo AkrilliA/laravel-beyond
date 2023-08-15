@@ -2,8 +2,6 @@
 
 namespace Tests\Commands;
 
-use Carbon\Carbon;
-use Illuminate\Filesystem\Filesystem;
 use Tests\TestCase;
 
 class MakeModelCommandTest extends TestCase
@@ -27,6 +25,22 @@ class MakeModelCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
+    public function testCanMakeModelUsingForce(): void
+    {
+        $this->artisan('beyond:make:model User.User');
+
+        $file = beyond_modules_path('User/Domain/Models/User.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:model User.User --force');
+
+        $code->assertOk();
+    }
+
     public function testCanMakeModelWithFactory(): void
     {
         $this->artisan('beyond:make:model User.User --factory');
@@ -44,6 +58,29 @@ class MakeModelCommandTest extends TestCase
         $this->assertFileExists($file);
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ model }}', $contents);
+    }
+
+    public function testCanMakeModelWithFactoryUsingForce(): void
+    {
+        $this->artisan('beyond:make:model User.User --factory');
+
+        $file = beyond_modules_path('User/Domain/Models/User.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $file = beyond_modules_path('User/Infrastructure/factories/UserFactory.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ model }}', $contents);
+
+        $code = $this->artisan('beyond:make:model User.User --factory --force');
+
+        $code->assertOk();
     }
 
     public function testCanMakeModelWithMigration(): void
@@ -64,5 +101,29 @@ class MakeModelCommandTest extends TestCase
 
         $this->assertFileExists($file);
         $this->assertStringContainsString('Schema::create', $contents);
+    }
+
+    public function testCanMakeModelWithMigrationUsingForce(): void
+    {
+        $this->artisan('beyond:make:model User.User --migration');
+
+        $now = new \DateTime();
+
+        $file = beyond_modules_path('User/Domain/Models/User.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_create_users_table.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringContainsString('Schema::create', $contents);
+
+        $code = $this->artisan('beyond:make:model User.User --migration --force');
+
+        $code->assertOk();
     }
 }

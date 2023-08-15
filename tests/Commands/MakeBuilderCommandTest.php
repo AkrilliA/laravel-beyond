@@ -24,4 +24,20 @@ class MakeBuilderCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
+
+    public function testCanMakeBuilderUsingForce(): void
+    {
+        $this->artisan('beyond:make:builder User.UserBuilder');
+
+        $file = beyond_modules_path('User/Domain/Builders/UserBuilder.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:builder User.UserBuilder --force');
+
+        $code->assertOk();
+    }
 }

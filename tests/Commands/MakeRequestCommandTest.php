@@ -24,4 +24,20 @@ class MakeRequestCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
+
+    public function testCanMakeRequestUsingForce(): void
+    {
+        $this->artisan('beyond:make:request User.StoreUserRequest');
+
+        $file = beyond_modules_path('User/App/Requests/StoreUserRequest.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:request User.StoreUserRequest --force');
+
+        $code->assertOk();
+    }
 }

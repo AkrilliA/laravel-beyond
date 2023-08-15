@@ -30,7 +30,8 @@ class MakeModuleCommand extends Command
 
         $this->copyDirectoryAction->execute(
             __DIR__.'/../../stubs/Module',
-            beyond_modules_path($module)
+            beyond_modules_path($module),
+            $force,
         );
 
         $this->moveAndRefactorModuleFiles($module, $force);

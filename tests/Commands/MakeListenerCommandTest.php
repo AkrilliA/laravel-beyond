@@ -24,4 +24,20 @@ class MakeListenerCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
+
+    public function testCanMakeListenerUsingForce(): void
+    {
+        $this->artisan('beyond:make:listener User.SendShipmentNotification');
+
+        $file = beyond_modules_path('User/Domain/Listeners/SendShipmentNotification.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:listener User.SendShipmentNotification --force');
+
+        $code->assertOk();
+    }
 }

@@ -13,7 +13,7 @@ class MakeRuleCommandTest extends TestCase
         $this->artisan('beyond:make:module User');
     }
 
-    public function testCanMakeResource(): void
+    public function testCanMakeRule(): void
     {
         $this->artisan('beyond:make:rule User.UniqueUser');
 
@@ -23,5 +23,21 @@ class MakeRuleCommandTest extends TestCase
         $this->assertFileExists($file);
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
+    }
+
+    public function testCanMakeRuleUsingForce(): void
+    {
+        $this->artisan('beyond:make:rule User.UniqueUser');
+
+        $file = beyond_modules_path('User/App/Rules/UniqueUser.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:rule User.UniqueUser --force');
+
+        $code->assertOk();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Tests\Commands;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -19,11 +18,56 @@ class MakeModuleCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ module }}', $contents);
     }
 
+    public function testCanMakeModuleUsingForce(): void
+    {
+        $this->artisan('beyond:make:module User');
+
+        $file = beyond_modules_path('User/Providers/UserServiceProvider.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ module }}', $contents);
+
+        $code = $this->artisan('beyond:make:module User --force');
+
+        $code->assertOk();
+    }
+
     public function testCanMakeFullModule(): void
     {
         $this->artisan('beyond:make:module User --full');
 
-        $files = [
+        $files = $this->getPaths();
+
+        foreach ($files as $file) {
+            match (Str::contains($file, '.')) {
+                true => $this->assertFileExists($file),
+                false => $this->assertDirectoryExists($file),
+            };
+        }
+    }
+
+    public function testCanMakeFullModuleUsingForce(): void
+    {
+        $this->artisan('beyond:make:module User --full');
+
+        $files = $this->getPaths();
+
+        foreach ($files as $file) {
+            match (Str::contains($file, '.')) {
+                true => $this->assertFileExists($file),
+                false => $this->assertDirectoryExists($file),
+            };
+        }
+
+        $code = $this->artisan('beyond:make:module User --full --force');
+
+        $code->assertOk();
+    }
+
+    protected function getPaths(): array
+    {
+        return [
             beyond_modules_path('User/App/Commands'),
             beyond_modules_path('User/App/Controllers'),
             beyond_modules_path('User/App/Filters'),
@@ -55,12 +99,5 @@ class MakeModuleCommandTest extends TestCase
             beyond_modules_path('User/Tests/Feature'),
             beyond_modules_path('User/Tests/Unit'),
         ];
-
-        foreach ($files as $file) {
-            match (Str::contains($file, '.')) {
-                true => $this->assertFileExists($file),
-                false => $this->assertDirectoryExists($file),
-            };
-        }
     }
 }

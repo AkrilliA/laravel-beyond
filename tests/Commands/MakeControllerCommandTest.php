@@ -25,6 +25,21 @@ class MakeControllerCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
+    public function testCanMakeControllerUsingForce(): void
+    {
+        $this->artisan('beyond:make:controller User.UserController');
+
+        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:controller User.UserController');
+        $code->assertOk();
+    }
+
     public function testCanMakeApiController(): void
     {
         $this->artisan('beyond:make:controller User.UserController --api');
@@ -43,6 +58,28 @@ class MakeControllerCommandTest extends TestCase
         }
     }
 
+    public function testCanMakeApiControllerUsingForce(): void
+    {
+        $this->artisan('beyond:make:controller User.UserController --api');
+
+        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $methods = ['index()', 'show()', 'store()', 'update()', 'destroy()'];
+
+        foreach ($methods as $method) {
+            $this->assertStringContainsString($method, $contents);
+        }
+
+        $code = $this->artisan('beyond:make:controller User.UserController --api --force');
+
+        $code->assertOk();
+    }
+
     public function testCanMakeInvokableController(): void
     {
         $this->artisan('beyond:make:controller User.UserController --invokable');
@@ -54,5 +91,22 @@ class MakeControllerCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
         $this->assertStringContainsString('__invoke()', $contents);
+    }
+
+    public function testCanMakeInvokableControllerUsingForce(): void
+    {
+        $this->artisan('beyond:make:controller User.UserController --invokable');
+
+        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+        $this->assertStringContainsString('__invoke()', $contents);
+
+        $code = $this->artisan('beyond:make:controller User.UserController --invokable --force');
+
+        $code->assertOk();
     }
 }
