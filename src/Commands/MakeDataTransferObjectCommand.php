@@ -9,7 +9,7 @@ class MakeDataTransferObjectCommand extends DomainCommand
     protected $signature = 'beyond:make:data {name} {--force}';
 
     /** @var array<string> */
-    protected array $aliases = [
+    protected $aliases = [
         'beyond:make:dto',
     ];
 

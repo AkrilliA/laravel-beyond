@@ -14,7 +14,8 @@ abstract class BaseCommand extends Command
     /** @var array<callable> */
     private array $onSuccess = [];
 
-    protected array $aliases = [];
+    /** @var array<string> */
+    protected $aliases = [];
 
     abstract protected function getStub(): string;
 
