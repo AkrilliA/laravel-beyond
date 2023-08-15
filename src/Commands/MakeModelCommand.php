@@ -35,7 +35,7 @@ class MakeModelCommand extends DomainCommand
 
                 beyond_copy_stub(
                     'migration.create.stub',
-                    base_path()."/modules/$module/Infrastructure/Database/Migrationsx/$fileName.php",
+                    base_path()."/modules/$module/Infrastructure/Database/Migrations/$fileName.php",
                     [
                         '{{ table }}' => $tableName,
                     ],
