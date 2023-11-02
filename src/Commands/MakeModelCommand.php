@@ -35,7 +35,7 @@ class MakeModelCommand extends DomainCommand
 
                 beyond_copy_stub(
                     'migration.create.stub',
-                    base_path()."/modules/$module/Infrastructure/Database/Migrations/$fileName.php",
+                    beyond_os_aware_path(base_path()."/modules/$module/Infrastructure/Database/Migrations/$fileName.php"),
                     [
                         '{{ table }}' => $tableName,
                     ],
@@ -48,7 +48,7 @@ class MakeModelCommand extends DomainCommand
 
                 beyond_copy_stub(
                     'factory.stub',
-                    base_path()."/modules/$module/Infrastructure/factories/$fileName.php",
+                    beyond_os_aware_path(base_path()."/modules/$module/Infrastructure/factories/$fileName.php"),
                     [
                         '{{ namespace }}' => $namespace,
                         '{{ model }}'     => $fileName,

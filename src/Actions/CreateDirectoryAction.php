@@ -19,6 +19,6 @@ class CreateDirectoryAction
             return;
         }
 
-        (new Filesystem())->ensureDirectoryExists(base_path()."/modules/$directory");
+        (new Filesystem())->ensureDirectoryExists(beyond_os_aware_path(base_path()."/modules/$directory"));
     }
 }
