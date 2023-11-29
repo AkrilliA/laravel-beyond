@@ -97,6 +97,6 @@ abstract class BaseCommand extends Command
 
     public function getTypeName(): string
     {
-        return Str::afterLast($this->getType(), '/');
+        return Str::afterLast($this->getType(), DIRECTORY_SEPARATOR);
     }
 }

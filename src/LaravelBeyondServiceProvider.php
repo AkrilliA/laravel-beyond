@@ -22,7 +22,7 @@ class LaravelBeyondServiceProvider extends ServiceProvider
         $exclude = [];
 
         $fs = new Filesystem();
-        $files = $fs->files(__DIR__.'/Commands');
+        $files = $fs->files(beyond_os_aware_path(__DIR__.'/Commands'));
 
         return array_map(
             fn ($file) => 'AkrilliA\\LaravelBeyond\\Commands\\'.$file->getBasename('.php'),

@@ -22,7 +22,7 @@ class MakeMigrationCommand extends InfrastructureCommand
 
     public function getType(): string
     {
-        return 'Database/Migration';
+        return beyond_os_aware_path('Database/Migration');
     }
 
     public function getFileNameTemplate(): string
