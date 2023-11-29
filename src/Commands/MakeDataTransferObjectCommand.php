@@ -22,6 +22,6 @@ class MakeDataTransferObjectCommand extends DomainCommand
 
     public function getType(): string
     {
-        return 'DataTransferObject';
+        return 'DataObject';
     }
 }

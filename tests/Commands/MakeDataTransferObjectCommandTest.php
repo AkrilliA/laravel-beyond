@@ -17,7 +17,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
     {
         $this->artisan('beyond:make:data User.UserData');
 
-        $file = beyond_modules_path('User/Domain/DataTransferObjects/UserData.php');
+        $file = beyond_modules_path('User/Domain/DataObjects/UserData.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
     {
         $this->artisan('beyond:make:data User.UserData');
 
-        $file = beyond_modules_path('User/Domain/DataTransferObjects/UserData.php');
+        $file = beyond_modules_path('User/Domain/DataObjects/UserData.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -45,7 +45,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
     {
         $this->artisan('beyond:make:dto User.UserData');
 
-        $file = beyond_modules_path('User/Domain/DataTransferObjects/UserData.php');
+        $file = beyond_modules_path('User/Domain/DataObjects/UserData.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -57,7 +57,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
     {
         $this->artisan('beyond:make:dto User.UserData');
 
-        $file = beyond_modules_path('User/Domain/DataTransferObjects/UserData.php');
+        $file = beyond_modules_path('User/Domain/DataObjects/UserData.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

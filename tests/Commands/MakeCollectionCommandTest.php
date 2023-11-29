@@ -25,8 +25,6 @@ class MakeCollectionCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-
-
     public function testCanMakeCollectionUsingForce(): void
     {
         $this->artisan('beyond:make:collection User.UserCollection');

@@ -41,7 +41,7 @@ class MakeModuleCommandTest extends TestCase
 
         foreach ($files as $file) {
             match (Str::contains($file, '.')) {
-                true => $this->assertFileExists($file),
+                true  => $this->assertFileExists($file),
                 false => $this->assertDirectoryExists($file),
             };
         }
@@ -55,7 +55,7 @@ class MakeModuleCommandTest extends TestCase
 
         foreach ($files as $file) {
             match (Str::contains($file, '.')) {
-                true => $this->assertFileExists($file),
+                true  => $this->assertFileExists($file),
                 false => $this->assertDirectoryExists($file),
             };
         }

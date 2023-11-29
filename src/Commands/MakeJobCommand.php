@@ -14,7 +14,7 @@ class MakeJobCommand extends ApplicationCommand
     {
         return match (true) {
             $this->option('sync') => 'job.sync.stub',
-            default => 'job.stub'
+            default               => 'job.stub'
         };
     }
 
