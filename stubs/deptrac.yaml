@@ -35,6 +35,12 @@ deptrac:
           type: className
           value: .*\\App\\Controllers\\.*
     -
+      name: Job
+      collectors:
+        -
+          type: className
+          value: .*\\App\\Jobs\\.*
+    -
       name: Model
       collectors:
         -
@@ -46,9 +52,17 @@ deptrac:
         -
           type: className
           value: .*\\App\\Processes\\.*
+    -
+      name: Query
+      collectors:
+        -
+          type: className
+          value: .*\\App\\Queries\\.*
   ruleset:
     Controller:
+      - Job
       - Process
+      - Query
     Process:
       - Action
       - DataObject
@@ -60,3 +74,5 @@ deptrac:
       - Builder
       - Collection
     Builder: ~
+    Query:
+      - Model

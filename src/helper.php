@@ -17,7 +17,7 @@ if (! function_exists('beyond_path')) {
 if (! function_exists('beyond_modules_path')) {
     function beyond_modules_path(string $path = ''): string
     {
-        return base_path('modules'.DIRECTORY_SEPARATOR.$path);
+        return base_path('modules/'.$path);
     }
 }
 
@@ -62,13 +62,11 @@ if (! function_exists('beyond_get_choices')) {
 
         $fs->ensureDirectoryExists($path);
 
-        $directories = array_map(
+        return array_map(
             function ($directory) {
                 return last(explode(DIRECTORY_SEPARATOR, $directory));
             },
             $fs->directories($path)
         );
-
-        return $directories;
     }
 }

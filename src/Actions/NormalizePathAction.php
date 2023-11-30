@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class NormalizePathAction
 {
     /**
-     * @param array<string>|string $path
+     * @param  array<string>|string  $path
      * @return array<string>|string
      */
     public function execute(array|string $path): array|string

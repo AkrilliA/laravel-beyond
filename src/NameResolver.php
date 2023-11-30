@@ -85,8 +85,8 @@ class NameResolver
         );
 
         $this->path = sprintf(
-            '%s'.DIRECTORY_SEPARATOR.$this->command->getFileNameTemplate(),
-            Str::lcfirst(Str::replace('\\', DIRECTORY_SEPARATOR, $this->namespace)),
+            '%s/'.$this->command->getFileNameTemplate(),
+            Str::lcfirst(Str::replace('\\', '/', $this->namespace)),
             $this->className,
         );
     }
