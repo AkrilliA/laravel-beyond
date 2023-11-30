@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+final class {{ className }}
+{
+    public function execute(): mixed
+    {
+        //
+    }
+}

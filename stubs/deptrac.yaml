@@ -1,0 +1,62 @@
+deptrac:
+  paths:
+    - ./modules
+  exclude_files:
+    - '#*Test\.php#'
+  layers:
+    -
+      name: Action
+      collectors:
+        -
+          type: className
+          value: .*\\Domain\\Actions\\.*
+    -
+      name: Builder
+      collectors:
+        -
+          type: className
+          value: .*\\Domain\\Builders\\.*
+    -
+      name: Collection
+      collectors:
+        -
+          type: className
+          value: .*\\Domain\\Collections\\.*
+    -
+      name: DataObject
+      collectors:
+        -
+          type: className
+          value: .*\\Domain\\DataObjects\\.*
+    -
+      name: Controller
+      collectors:
+        -
+          type: className
+          value: .*\\App\\Controllers\\.*
+    -
+      name: Model
+      collectors:
+        -
+          type: className
+          value: .*\\Domain\\Models\\.*
+    -
+      name: Process
+      collectors:
+        -
+          type: className
+          value: .*\\App\\Processes\\.*
+  ruleset:
+    Controller:
+      - Process
+    Process:
+      - Action
+      - DataObject
+    Action:
+      - DataObject
+      - Model
+    DataObject: ~
+    Model:
+      - Builder
+      - Collection
+    Builder: ~

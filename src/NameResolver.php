@@ -48,7 +48,7 @@ class NameResolver
 
     public function getCommandNameArgument(): string
     {
-        return $this->module . '.' . $this->className;
+        return $this->module.'.'.$this->className;
     }
 
     private function init(): void
@@ -59,7 +59,7 @@ class NameResolver
 
         if (1 === $numParts) {
             $this->module = $this->command->choice(
-                'On which module should we create your ' . Str::studly($this->command->getTypeName()) . '?',
+                'On which module should we create your '.Str::studly($this->command->getTypeName()).'?',
                 $modules,
                 attempts: 2
             );
@@ -67,7 +67,7 @@ class NameResolver
             $this->setDirectoryAndClassName($parts[0]);
         } elseif (2 === $numParts) {
             $module = Str::of($parts[0])->ucfirst()->value();
-            if (!in_array($module, $modules, true)) {
+            if (! in_array($module, $modules, true)) {
                 throw new ModuleDoesNotExistsException($module);
             }
 
@@ -78,15 +78,15 @@ class NameResolver
         }
 
         $this->namespace = sprintf(
-            $this->command->getNamespaceTemplate() . '%s',
+            $this->command->getNamespaceTemplate().'%s',
             $this->module,
             Str::pluralStudly($this->command->getType()),
-            $this->directory ? '\\' . $this->directory : '',
+            $this->directory ? '\\'.$this->directory : '',
         );
 
         $this->path = beyond_os_aware_path(
             sprintf(
-                '%s/' . $this->command->getFileNameTemplate(),
+                '%s/'.$this->command->getFileNameTemplate(),
                 Str::lcfirst(Str::replace('\\', '/', $this->namespace)),
                 $this->className,
             )

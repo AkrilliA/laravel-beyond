@@ -73,9 +73,7 @@ if (! function_exists('beyond_get_choices')) {
 }
 
 if (! function_exists('beyond_os_aware_path')) {
-    /**
-     * @return string
-     */
+
     function beyond_os_aware_path(string $path): string
     {
         return Str::of($path)->replace('/', DIRECTORY_SEPARATOR)->value();

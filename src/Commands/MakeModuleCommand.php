@@ -47,7 +47,7 @@ class MakeModuleCommand extends Command
             beyond_os_aware_path('Providers/ModuleAuthServiceProvider.stub')  => beyond_os_aware_path("Providers/{$module}AuthServiceProvider.php"),
             beyond_os_aware_path('Providers/ModuleEventServiceProvider.stub') => beyond_os_aware_path("Providers/{$module}EventServiceProvider.php"),
             beyond_os_aware_path('Providers/ModuleRouteServiceProvider.stub') => beyond_os_aware_path("Providers/{$module}RouteServiceProvider.php"),
-            beyond_os_aware_path('Providers/ModuleServiceProvider.stub' )     => beyond_os_aware_path("Providers/{$module}ServiceProvider.php"),
+            beyond_os_aware_path('Providers/ModuleServiceProvider.stub')      => beyond_os_aware_path("Providers/{$module}ServiceProvider.php"),
             beyond_os_aware_path('App/routes.stub')                           => beyond_os_aware_path('App/routes.php'),
         ];
 
