@@ -13,7 +13,7 @@ final class {{ module }}AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'Modules\{{ module }}\Models\{{ module }}' => 'Modules\{{ module }}\Policies\{{ module }}Policy',
+        // Modules\{{ module }}\Domain\Models\{{ module }}::class => Modules\{{ module }}\Domain\Policies\{{ module }}Policy::class,
     ];
 
     /**
