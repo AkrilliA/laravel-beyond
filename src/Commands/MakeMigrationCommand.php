@@ -4,6 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\InfrastructureCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Str;
 
@@ -20,9 +21,9 @@ class MakeMigrationCommand extends InfrastructureCommand
         return $this->stub;
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return beyond_os_aware_path('Database/Migration');
+        return new Type('Database/Migration');
     }
 
     public function getFileNameTemplate(): string

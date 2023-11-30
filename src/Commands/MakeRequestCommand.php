@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeRequestCommand extends ApplicationCommand
 {
@@ -10,9 +11,9 @@ class MakeRequestCommand extends ApplicationCommand
 
     protected $description = 'Make a new request';
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Request';
+        return new Type('Request');
     }
 
     protected function getStub(): string

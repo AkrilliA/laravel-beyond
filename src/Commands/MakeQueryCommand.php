@@ -4,6 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeQueryCommand extends ApplicationCommand
 {
@@ -18,9 +19,9 @@ class MakeQueryCommand extends ApplicationCommand
             : 'query.plain.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Query';
+        return new Type('Query');
     }
 
     public function setup(NameResolver $nameResolver): void

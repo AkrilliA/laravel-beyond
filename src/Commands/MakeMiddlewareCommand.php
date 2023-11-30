@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeMiddlewareCommand extends ApplicationCommand
 {
@@ -15,8 +16,8 @@ class MakeMiddlewareCommand extends ApplicationCommand
         return 'middleware.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Middleware';
+        return new Type('Middleware');
     }
 }

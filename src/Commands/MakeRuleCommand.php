@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeRuleCommand extends ApplicationCommand
 {
@@ -15,8 +16,8 @@ class MakeRuleCommand extends ApplicationCommand
         return 'rule.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Rule';
+        return new Type('Rule');
     }
 }

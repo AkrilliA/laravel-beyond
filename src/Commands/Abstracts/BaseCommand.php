@@ -3,8 +3,8 @@
 namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
 abstract class BaseCommand extends Command
 {
@@ -21,7 +21,7 @@ abstract class BaseCommand extends Command
 
     abstract public function getNamespaceTemplate(): string;
 
-    abstract public function getType(): string;
+    abstract public function getType(): Type;
 
     public function getFileNameTemplate(): string
     {
@@ -54,7 +54,7 @@ abstract class BaseCommand extends Command
         return new NameResolver($this, $name ?: $this->getNameArgument());
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases($this->aliases);
 
@@ -85,7 +85,7 @@ abstract class BaseCommand extends Command
                 (bool) $this->option('force')
             );
 
-            $this->components->info(Str::studly($this->getTypeName())." [{$fqn->getPath()}] created successfully.");
+            $this->components->info($this->getType()->getName()." [{$fqn->getPath()}] created successfully.");
 
             foreach ($this->onSuccess as $callback) {
                 $callback($fqn->getNamespace(), $fqn->getClassName());
@@ -93,10 +93,5 @@ abstract class BaseCommand extends Command
         } catch (\Exception $exception) {
             $this->components->error($exception->getMessage());
         }
-    }
-
-    public function getTypeName(): string
-    {
-        return Str::afterLast($this->getType(), DIRECTORY_SEPARATOR);
     }
 }

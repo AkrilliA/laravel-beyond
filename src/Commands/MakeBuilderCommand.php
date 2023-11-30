@@ -4,6 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeBuilderCommand extends DomainCommand
 {
@@ -16,9 +17,9 @@ class MakeBuilderCommand extends DomainCommand
         return 'builder.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Builder';
+        return new Type('Builder');
     }
 
     public function setup(NameResolver $fqn): void

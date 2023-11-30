@@ -4,6 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeCollectionCommand extends DomainCommand
 {
@@ -18,9 +19,9 @@ class MakeCollectionCommand extends DomainCommand
             : 'collection.plain.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Collection';
+        return new Type('Collection');
     }
 
     public function setup(NameResolver $fqn): void

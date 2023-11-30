@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeJobCommand extends ApplicationCommand
 {
@@ -18,8 +19,8 @@ class MakeJobCommand extends ApplicationCommand
         };
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Job';
+        return new Type('Job');
     }
 }

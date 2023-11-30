@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeCommandCommand extends ApplicationCommand
 {
@@ -15,9 +16,9 @@ class MakeCommandCommand extends ApplicationCommand
         return 'command.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Commands';
+        return new Type('Command', 'Command', 'Commands');
     }
 
     public function setup(): void

@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeListenerCommand extends DomainCommand
 {
@@ -15,8 +16,8 @@ class MakeListenerCommand extends DomainCommand
         return 'listener.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Listener';
+        return new Type('Listener');
     }
 }

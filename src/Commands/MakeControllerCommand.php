@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeControllerCommand extends ApplicationCommand
 {
@@ -22,8 +23,8 @@ class MakeControllerCommand extends ApplicationCommand
         };
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Controller';
+        return new Type('Controller');
     }
 }

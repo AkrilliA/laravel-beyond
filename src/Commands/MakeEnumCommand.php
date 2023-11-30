@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeEnumCommand extends DomainCommand
 {
@@ -15,8 +16,8 @@ class MakeEnumCommand extends DomainCommand
         return 'enum.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Enum';
+        return new Type('Enum');
     }
 }

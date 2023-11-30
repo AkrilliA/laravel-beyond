@@ -4,6 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Support\Str;
 
 class MakePolicyCommand extends DomainCommand
@@ -19,9 +20,9 @@ class MakePolicyCommand extends DomainCommand
             : 'policy.plain.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Policy';
+        return new Type('Policy');
     }
 
     public function setup(NameResolver $fqn): void

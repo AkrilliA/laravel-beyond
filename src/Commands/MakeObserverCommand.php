@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeObserverCommand extends DomainCommand
 {
@@ -15,8 +16,8 @@ class MakeObserverCommand extends DomainCommand
         return 'observer.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Observer';
+        return new Type('Observer');
     }
 }

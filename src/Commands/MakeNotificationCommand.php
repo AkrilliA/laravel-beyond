@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeNotificationCommand extends DomainCommand
 {
@@ -15,8 +16,8 @@ class MakeNotificationCommand extends DomainCommand
         return 'notification.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Notification';
+        return new Type('Notification');
     }
 }

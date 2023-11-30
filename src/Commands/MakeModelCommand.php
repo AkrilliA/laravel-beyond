@@ -4,6 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Support\Str;
 
 class MakeModelCommand extends DomainCommand
@@ -17,9 +18,9 @@ class MakeModelCommand extends DomainCommand
         return 'model.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Model';
+        return new Type('Model');
     }
 
     public function setup(NameResolver $nameResolver): void

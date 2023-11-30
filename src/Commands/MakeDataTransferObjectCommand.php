@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeDataTransferObjectCommand extends DomainCommand
 {
@@ -20,8 +21,8 @@ class MakeDataTransferObjectCommand extends DomainCommand
         return 'data-transfer-object.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'DataObject';
+        return new Type('DataObject');
     }
 }

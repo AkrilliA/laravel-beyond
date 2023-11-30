@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeEventCommand extends DomainCommand
 {
@@ -15,8 +16,8 @@ class MakeEventCommand extends DomainCommand
         return 'event.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Event';
+        return new Type('Event');
     }
 }

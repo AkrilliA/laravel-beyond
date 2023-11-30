@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeActionCommand extends DomainCommand
 {
@@ -15,8 +16,8 @@ class MakeActionCommand extends DomainCommand
         return 'action.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Action';
+        return new Type('Action');
     }
 }

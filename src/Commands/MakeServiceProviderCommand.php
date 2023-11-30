@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ModuleCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeServiceProviderCommand extends ModuleCommand
 {
@@ -10,9 +11,9 @@ class MakeServiceProviderCommand extends ModuleCommand
 
     protected $description = 'Create a new service provider';
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Service Provider';
+        return new Type('Service Provider');
     }
 
     protected function getStub(): string

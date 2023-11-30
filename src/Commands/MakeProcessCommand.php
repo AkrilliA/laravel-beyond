@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeProcessCommand extends ApplicationCommand
 {
@@ -15,8 +16,8 @@ class MakeProcessCommand extends ApplicationCommand
         return 'process.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Process';
+        return new Type('Process');
     }
 }

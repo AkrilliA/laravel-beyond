@@ -3,6 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Type;
 
 class MakeResourceCommand extends ApplicationCommand
 {
@@ -17,8 +18,8 @@ class MakeResourceCommand extends ApplicationCommand
             : 'resource.stub';
     }
 
-    public function getType(): string
+    public function getType(): Type
     {
-        return 'Resource';
+        return new Type('Resource');
     }
 }

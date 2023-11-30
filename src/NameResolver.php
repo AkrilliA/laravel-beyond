@@ -57,15 +57,15 @@ class NameResolver
         $numParts = count($parts);
         $modules = beyond_get_choices(base_path('modules'));
 
-        if (1 === $numParts) {
+        if ($numParts === 1) {
             $this->module = $this->command->choice(
-                'On which module should we create your '.Str::studly($this->command->getTypeName()).'?',
+                'On which module should we create your '.$this->command->getType()->getName().'?',
                 $modules,
                 attempts: 2
             );
 
             $this->setDirectoryAndClassName($parts[0]);
-        } elseif (2 === $numParts) {
+        } elseif ($numParts === 2) {
             $module = Str::of($parts[0])->ucfirst()->value();
             if (! in_array($module, $modules, true)) {
                 throw new ModuleDoesNotExistsException($module);
@@ -80,7 +80,7 @@ class NameResolver
         $this->namespace = sprintf(
             $this->command->getNamespaceTemplate().'%s',
             $this->module,
-            Str::pluralStudly($this->command->getType()),
+            $this->command->getType()->getNamespace(),
             $this->directory ? '\\'.$this->directory : '',
         );
 
