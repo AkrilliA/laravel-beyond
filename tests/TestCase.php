@@ -41,7 +41,7 @@ class TestCase extends BaseTestCase
 
         while (false !== $file = readdir($handle)) {
             if (! in_array($file, ['.', '..'], true)) {
-                $path = $directory.'/'.$file;
+                $path = $directory.DIRECTORY_SEPARATOR.$file;
 
                 if (is_dir($path)) {
                     $this->removeDirectory($path);

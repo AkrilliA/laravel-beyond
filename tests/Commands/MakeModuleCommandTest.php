@@ -65,6 +65,9 @@ class MakeModuleCommandTest extends TestCase
         $code->assertOk();
     }
 
+    /**
+     * @return array<string>
+     */
     protected function getPaths(): array
     {
         return [

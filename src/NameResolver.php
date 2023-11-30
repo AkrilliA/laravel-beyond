@@ -84,12 +84,10 @@ class NameResolver
             $this->directory ? '\\'.$this->directory : '',
         );
 
-        $this->path = beyond_os_aware_path(
-            sprintf(
-                '%s/'.$this->command->getFileNameTemplate(),
-                Str::lcfirst(Str::replace('\\', '/', $this->namespace)),
-                $this->className,
-            )
+        $this->path = sprintf(
+            '%s'.DIRECTORY_SEPARATOR.$this->command->getFileNameTemplate(),
+            Str::lcfirst(Str::replace('\\', DIRECTORY_SEPARATOR, $this->namespace)),
+            $this->className,
         );
     }
 
@@ -99,6 +97,6 @@ class NameResolver
 
         $this->className = array_pop($parts);
 
-        $this->directory = beyond_os_aware_path(implode('/', $parts));
+        $this->directory = implode('\\', $parts);
     }
 }

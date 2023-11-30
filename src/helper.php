@@ -2,6 +2,7 @@
 
 use AkrilliA\LaravelBeyond\Actions\CopyAndRefactorFileAction;
 use AkrilliA\LaravelBeyond\Actions\CopyFileAction;
+use AkrilliA\LaravelBeyond\Actions\NormalizePathAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ if (! function_exists('beyond_path')) {
 if (! function_exists('beyond_modules_path')) {
     function beyond_modules_path(string $path = ''): string
     {
-        return base_path(beyond_os_aware_path("modules/$path"));
+        return base_path('modules'.DIRECTORY_SEPARATOR.$path);
     }
 }
 
@@ -33,12 +34,12 @@ if (! function_exists('beyond_copy_stub')) {
      */
     function beyond_copy_stub(string $stub, string $path, array $refactor = [], bool $force = false): void
     {
-        $stub = file_exists($stubPath = base_path(beyond_os_aware_path('stubs/beyond.'.$stub)))
+        $stub = file_exists($stubPath = base_path('stubs/beyond.'.$stub))
             ? $stubPath
-            : beyond_os_aware_path(beyond_path().'/stubs/'.$stub);
+            : beyond_path().'/stubs/'.$stub;
 
         $action = new CopyAndRefactorFileAction(
-            new CopyFileAction(),
+            new CopyFileAction(new NormalizePathAction()),
             new RefactorFileAction()
         );
 
@@ -69,13 +70,5 @@ if (! function_exists('beyond_get_choices')) {
         );
 
         return $directories;
-    }
-}
-
-if (! function_exists('beyond_os_aware_path')) {
-
-    function beyond_os_aware_path(string $path): string
-    {
-        return Str::of($path)->replace('/', DIRECTORY_SEPARATOR)->value();
     }
 }

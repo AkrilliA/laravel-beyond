@@ -7,6 +7,11 @@ use Illuminate\Support\Arr;
 
 class CreateFileAction
 {
+    public function __construct(
+        private readonly NormalizePathAction $normalizePathAction
+    ) {
+    }
+
     /**
      * @param  string|array<int, string>|array<string, string>  $files
      */
@@ -20,6 +25,8 @@ class CreateFileAction
                 $file = $contents;
                 $contents = '';
             }
+
+            $file = $this->normalizePathAction->execute($file);
 
             $fs->ensureDirectoryExists(dirname($file));
 

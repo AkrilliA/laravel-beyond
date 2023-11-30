@@ -29,7 +29,7 @@ class MakeModuleCommand extends Command
         $full = (bool) $this->option('full');
 
         $this->copyDirectoryAction->execute(
-            beyond_os_aware_path(__DIR__.'/../../stubs/Module'),
+            __DIR__.'/../../stubs/Module',
             beyond_modules_path($module),
             $force,
         );
@@ -44,11 +44,11 @@ class MakeModuleCommand extends Command
     private function moveAndRefactorModuleFiles(string $module, bool $force = false): void
     {
         $files = [
-            beyond_os_aware_path('Providers/ModuleAuthServiceProvider.stub')  => beyond_os_aware_path("Providers/{$module}AuthServiceProvider.php"),
-            beyond_os_aware_path('Providers/ModuleEventServiceProvider.stub') => beyond_os_aware_path("Providers/{$module}EventServiceProvider.php"),
-            beyond_os_aware_path('Providers/ModuleRouteServiceProvider.stub') => beyond_os_aware_path("Providers/{$module}RouteServiceProvider.php"),
-            beyond_os_aware_path('Providers/ModuleServiceProvider.stub')      => beyond_os_aware_path("Providers/{$module}ServiceProvider.php"),
-            beyond_os_aware_path('App/routes.stub')                           => beyond_os_aware_path('App/routes.php'),
+            'Providers/ModuleAuthServiceProvider.stub'  => "Providers/{$module}AuthServiceProvider.php",
+            'Providers/ModuleEventServiceProvider.stub' => "Providers/{$module}EventServiceProvider.php",
+            'Providers/ModuleRouteServiceProvider.stub' => "Providers/{$module}RouteServiceProvider.php",
+            'Providers/ModuleServiceProvider.stub'      => "Providers/{$module}ServiceProvider.php",
+            'App/routes.stub'                           => 'App/routes.php',
         ];
 
         foreach ($files as $from => $to) {

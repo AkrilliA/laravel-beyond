@@ -6,6 +6,11 @@ use Illuminate\Filesystem\Filesystem;
 
 class CreateDirectoryAction
 {
+    public function __construct(
+        private readonly NormalizePathAction $normalizePathAction
+    ) {
+    }
+
     /**
      * @param  string|array<string>  $directory
      */
@@ -19,6 +24,8 @@ class CreateDirectoryAction
             return;
         }
 
-        (new Filesystem())->ensureDirectoryExists(beyond_os_aware_path(base_path()."/modules/$directory"));
+        (new Filesystem())->ensureDirectoryExists(
+            $this->normalizePathAction->execute(base_path('modules/'.$directory))
+        );
     }
 }
