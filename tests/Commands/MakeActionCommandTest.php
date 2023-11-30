@@ -2,7 +2,6 @@
 
 namespace Tests\Commands;
 
-use Illuminate\Testing\PendingCommand;
 use Tests\TestCase;
 
 class MakeActionCommandTest extends TestCase

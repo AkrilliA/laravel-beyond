@@ -16,7 +16,7 @@ if (! function_exists('beyond_path')) {
 if (! function_exists('beyond_modules_path')) {
     function beyond_modules_path(string $path = ''): string
     {
-        return base_path("modules/$path");
+        return base_path(beyond_os_aware_path("modules/$path"));
     }
 }
 
@@ -33,9 +33,9 @@ if (! function_exists('beyond_copy_stub')) {
      */
     function beyond_copy_stub(string $stub, string $path, array $refactor = [], bool $force = false): void
     {
-        $stub = file_exists($stubPath = base_path('stubs/beyond.'.$stub))
+        $stub = file_exists($stubPath = base_path(beyond_os_aware_path('stubs/beyond.'.$stub)))
             ? $stubPath
-            : beyond_path().'/stubs/'.$stub;
+            : beyond_os_aware_path(beyond_path().'/stubs/'.$stub);
 
         $action = new CopyAndRefactorFileAction(
             new CopyFileAction(),
@@ -63,11 +63,21 @@ if (! function_exists('beyond_get_choices')) {
 
         $directories = array_map(
             function ($directory) {
-                return last(explode('/', $directory));
+                return last(explode(DIRECTORY_SEPARATOR, $directory));
             },
             $fs->directories($path)
         );
 
         return $directories;
+    }
+}
+
+if (! function_exists('beyond_os_aware_path')) {
+    /**
+     * @return string
+     */
+    function beyond_os_aware_path(string $path): string
+    {
+        return Str::of($path)->replace('/', DIRECTORY_SEPARATOR)->value();
     }
 }

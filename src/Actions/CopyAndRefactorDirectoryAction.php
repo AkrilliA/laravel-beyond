@@ -21,8 +21,8 @@ class CopyAndRefactorDirectoryAction
 
         foreach ($files as $file) {
             $this->copyAndRefactorFileAction->execute(
-                $sourcePath.'/'.$file->getFilename(),
-                $targetPath.'/'.$file->getFilename(),
+                beyond_os_aware_path($sourcePath.'/'.$file->getFilename()),
+                beyond_os_aware_path($targetPath.'/'.$file->getFilename()),
                 $refactor,
                 $force
             );
