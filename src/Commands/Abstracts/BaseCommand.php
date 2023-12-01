@@ -5,6 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Console\Command;
+
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
 

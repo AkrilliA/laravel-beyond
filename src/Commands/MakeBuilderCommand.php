@@ -5,6 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
+
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\note;
 

@@ -6,6 +6,7 @@ use AkrilliA\LaravelBeyond\Commands\Abstracts\BaseCommand;
 use AkrilliA\LaravelBeyond\Exceptions\InvalidNameException;
 use AkrilliA\LaravelBeyond\Exceptions\ModuleDoesNotExistsException;
 use Illuminate\Support\Str;
+
 use function Laravel\Prompts\select;
 
 class NameResolver
