@@ -28,11 +28,8 @@ class MakeBuilderCommand extends DomainCommand
     public function setup(NameResolver $fqn): void
     {
         $this->addOnSuccess(function (string $namespace, string $className) {
-            info('Please add following code to your related model');
-            note('public function newEloquentBuilder($query)');
-            note('{');
-            note("\t".'return new '.$className.'($query);');
-            note('}');
+            info('Please add following code to your related model:');
+            note('public function newEloquentBuilder($query)'.PHP_EOL.'{'.PHP_EOL."\t".'return new '.$className.'($query);'.PHP_EOL.'}');
         });
     }
 }

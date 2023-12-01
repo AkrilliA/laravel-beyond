@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add missing changes in CHANGELOG.md by [@regnerisch](https://github.com/regnerisch)
 
+### Changed
+- Change module selection by [@regnerisch](https://github.com/regnerisch)
+
 ## [7.0.0-beta.5]
 ### Added
 - Add tests by [@alexanderkroneis](https://github.com/alexanderkroneis)

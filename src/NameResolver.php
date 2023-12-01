@@ -7,7 +7,7 @@ use AkrilliA\LaravelBeyond\Exceptions\InvalidNameException;
 use AkrilliA\LaravelBeyond\Exceptions\ModuleDoesNotExistsException;
 use Illuminate\Support\Str;
 
-use function Laravel\Prompts\select;
+use function Laravel\Prompts\search;
 
 class NameResolver
 {
@@ -60,9 +60,25 @@ class NameResolver
         $modules = beyond_get_choices(base_path('modules'));
 
         if ($numParts === 1) {
-            $this->module = select(
-                'On which module should we create your '.$this->command->getType()->getName().'?',
-                $modules
+            $this->module = search(
+                'Please select a module for your '.$this->command->getType()->getName().'?',
+                function (string $value) use ($modules) {
+                    if ($value !== '') {
+                        return array_values(
+                            array_filter(
+                                $modules,
+                                static fn ($module) => Str::startsWith(Str::lower($module), Str::lower($value))
+                            )
+                        );
+                    }
+
+                    return $modules;
+                },
+                validate: function (string $value) use ($modules) {
+                    if (! in_array($value, $modules)) {
+                        return 'The given module does not exist.';
+                    }
+                }
             );
 
             $this->setDirectoryAndClassName($parts[0]);
