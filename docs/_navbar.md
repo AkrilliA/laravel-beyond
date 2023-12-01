@@ -1,0 +1,2 @@
+* Translations
+  * [:de: Deutsch](de/)
