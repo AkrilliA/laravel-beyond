@@ -5,6 +5,8 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\note;
 
 class MakeBuilderCommand extends DomainCommand
 {
@@ -25,12 +27,11 @@ class MakeBuilderCommand extends DomainCommand
     public function setup(NameResolver $fqn): void
     {
         $this->addOnSuccess(function (string $namespace, string $className) {
-            $this->info('Please add following code to your related model');
-            $this->newLine();
-            $this->info('public function newEloquentBuilder($query)');
-            $this->info('{');
-            $this->info("\t".'return new '.$className.'($query);');
-            $this->info('}');
+            info('Please add following code to your related model');
+            note('public function newEloquentBuilder($query)');
+            note('{');
+            note("\t".'return new '.$className.'($query);');
+            note('}');
         });
     }
 }

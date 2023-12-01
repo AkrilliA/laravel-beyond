@@ -6,6 +6,7 @@ use AkrilliA\LaravelBeyond\Commands\Abstracts\BaseCommand;
 use AkrilliA\LaravelBeyond\Exceptions\InvalidNameException;
 use AkrilliA\LaravelBeyond\Exceptions\ModuleDoesNotExistsException;
 use Illuminate\Support\Str;
+use function Laravel\Prompts\select;
 
 class NameResolver
 {
@@ -58,10 +59,9 @@ class NameResolver
         $modules = beyond_get_choices(base_path('modules'));
 
         if ($numParts === 1) {
-            $this->module = $this->command->choice(
+            $this->module = select(
                 'On which module should we create your '.$this->command->getType()->getName().'?',
-                $modules,
-                attempts: 2
+                $modules
             );
 
             $this->setDirectoryAndClassName($parts[0]);

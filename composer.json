@@ -31,7 +31,8 @@
         "ext-fileinfo": "^8.2",
         "illuminate/support": "^10.0",
         "illuminate/console": "^10.0",
-        "illuminate/filesystem": "^10.0"
+        "illuminate/filesystem": "^10.0",
+        "laravel/prompts": "^0.1.13"
     },
     "extra": {
         "laravel": {

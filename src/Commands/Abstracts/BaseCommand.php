@@ -5,6 +5,8 @@ namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Console\Command;
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\info;
 
 abstract class BaseCommand extends Command
 {
@@ -85,13 +87,13 @@ abstract class BaseCommand extends Command
                 (bool) $this->option('force')
             );
 
-            $this->components->info($this->getType()->getName()." [{$fqn->getPath()}] created successfully.");
+            info($this->getType()->getName()." [{$fqn->getPath()}] created successfully.");
 
             foreach ($this->onSuccess as $callback) {
                 $callback($fqn->getNamespace(), $fqn->getClassName());
             }
         } catch (\Exception $exception) {
-            $this->components->error($exception->getMessage());
+            error($exception->getMessage());
         }
     }
 }
