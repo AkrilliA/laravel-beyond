@@ -14,7 +14,7 @@ composer require --dev akrillia/laravel-beyond
 | Laravel | ^10.x   |
 
 ### v6.x
-| Package | Version |
-|---------|---------|
-| php     | ^8.1    |
-| Laravel | ^9.x    |
+| Package | Version     |
+|---------|-------------|
+| php     | ^8.1        |
+| Laravel | ^9.x\|^10.x |
