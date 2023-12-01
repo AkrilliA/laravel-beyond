@@ -5,6 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add missing changes in CHANGELOG.md by [@regnerisch](https://github.com/regnerisch)
+
+## [7.0.0-beta.5]
+### Added
+- Add tests by [@alexanderkroneis](https://github.com/alexanderkroneis)
+- Add windows tests by [@alexanderkroneis](https://github.com/alexanderkroneis) in [#98](https://github.com/regnerisch/laravel-beyond/pull/98)
+- Add deptrac config and publish command by [@regnerisch](https://github.com/regnerisch) [#38](https://github.com/regnerisch/laravel-beyond/issues/38)
+- Add `MakeTestCommand` by [@regnerisch](https://github.com/regnerisch) [#92](https://github.com/regnerisch/laravel-beyond/issues/92)
+- Add documentation to repository by [@regnerisch](https://github.com/regnerisch) [#34](https://github.com/regnerisch/laravel-beyond/issues/34)
+
+### Fixed
+- Fix wrong use statement by [@regnerisch](https://github.com/regnerisch) [#94](https://github.com/regnerisch/laravel-beyond/issues/94)
+
+### Changed
+- Rename `DataTransferObjects` to `DataObjects` by [@alexanderkroneis](https://github.com/alexanderkroneis) in [#97](https://github.com/regnerisch/laravel-beyond/pull/97)
+
+### Removed
+- Support for php8.1 by [@regnerisch](https://github.com/regnerisch)
 
 ## [7.0.0-beta.4]
 ### Added
@@ -129,7 +148,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.4...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.5...HEAD
+[7.0.0-beta.5]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.4...v7.0.0-beta.5
 [7.0.0-beta.4]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.3...v7.0.0-beta.4
 [7.0.0-beta.3]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.2...v7.0.0-beta.3
 [7.0.0-beta.2]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.1...v7.0.0-beta.2
