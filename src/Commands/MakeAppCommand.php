@@ -6,13 +6,14 @@ use AkrilliA\LaravelBeyond\Actions\CopyDirectoryAction;
 use AkrilliA\LaravelBeyond\Actions\DeletePathAction;
 use AkrilliA\LaravelBeyond\Actions\MoveAndRefactorFileAction;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 
-class MakeModuleCommand extends Command
+final class MakeAppCommand extends Command
 {
-    protected $signature = 'beyond:make:module {name} {--full} {--force}';
+    protected $signature = 'beyond:make:app {name} {--full} {--force}';
 
-    protected $description = 'Make a new module';
+    protected $description = 'Make a new app';
 
     public function __construct(
         private readonly CopyDirectoryAction $copyDirectoryAction,
@@ -24,52 +25,52 @@ class MakeModuleCommand extends Command
 
     public function handle(): void
     {
-        $module = beyond_module_name(trim($this->argument('name')));
+        $app = Str::of($this->argument('name'))->studly()->ucfirst()->value();
         $force = (bool) $this->option('force');
         $full = (bool) $this->option('full');
 
         $this->copyDirectoryAction->execute(
-            __DIR__.'/../../stubs/Module',
-            beyond_modules_path($module),
+            __DIR__.'/../../stubs/App',
+            beyond_app_path($app),
             $force,
         );
 
-        $this->moveAndRefactorModuleFiles($module, $force);
+        $this->moveAndRefactorAppFiles($app, $force);
 
-        $this->deleteGitKeep($module, ! $full);
+        $this->deleteGitKeep($app, ! $full);
 
-        $this->components->info("{$module} module created successfully.");
+        $this->components->info("{$app} app created successfully.");
     }
 
-    private function moveAndRefactorModuleFiles(string $module, bool $force = false): void
+    private function moveAndRefactorAppFiles(string $app, bool $force = false): void
     {
         $files = [
-            'Providers/ModuleAuthServiceProvider.stub'  => "Providers/{$module}AuthServiceProvider.php",
-            'Providers/ModuleEventServiceProvider.stub' => "Providers/{$module}EventServiceProvider.php",
-            'Providers/ModuleRouteServiceProvider.stub' => "Providers/{$module}RouteServiceProvider.php",
-            'Providers/ModuleServiceProvider.stub'      => "Providers/{$module}ServiceProvider.php",
-            'App/routes.stub'                           => 'App/routes.php',
+            'Providers/AppAuthServiceProvider.stub'  => "Providers/{$app}AuthServiceProvider.php",
+            'Providers/AppEventServiceProvider.stub' => "Providers/{$app}EventServiceProvider.php",
+            'Providers/AppRouteServiceProvider.stub' => "Providers/{$app}RouteServiceProvider.php",
+            'Providers/AppServiceProvider.stub'      => "Providers/{$app}ServiceProvider.php",
+            'routes.stub'                            => 'routes.php',
         ];
 
         foreach ($files as $from => $to) {
             $this->moveAndRefactorFileAction->execute(
-                beyond_modules_path("$module/$from"),
-                beyond_modules_path("$module/$to"),
+                beyond_app_path("$app/$from"),
+                beyond_app_path("$app/$to"),
                 [
-                    '{{ module }}' => $module,
+                    '{{ module }}' => $app,
                 ],
                 $force
             );
         }
     }
 
-    private function deleteGitKeep(string $module, bool $minimal = false): void
+    private function deleteGitKeep(string $app, bool $minimal = false): void
     {
         $files = Finder::create()
             ->files()
             ->ignoreDotFiles(false)
             ->name('.gitkeep')
-            ->in(beyond_modules_path($module));
+            ->in(beyond_app_path($app));
 
         foreach ($files as $file) {
             $this->deletePathAction->execute(

@@ -10,14 +10,14 @@ class MakeMiddlewareCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeMiddleware(): void
     {
         $this->artisan('beyond:make:middleware User.SetLocale');
 
-        $file = beyond_modules_path('User/App/Middleware/SetLocale.php');
+        $file = beyond_app_path('User/Middleware/SetLocale.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeMiddlewareCommandTest extends TestCase
     {
         $this->artisan('beyond:make:middleware User.SetLocale');
 
-        $file = beyond_modules_path('User/App/Middleware/SetLocale.php');
+        $file = beyond_app_path('User/Middleware/SetLocale.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

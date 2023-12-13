@@ -6,6 +6,11 @@ abstract class DomainCommand extends BaseCommand
 {
     public function getNamespaceTemplate(): string
     {
-        return 'Modules\\%s\\Domain\\%s';
+        return 'Domain\\%s\\%s';
+    }
+
+    public function getBaseCommandName(): string
+    {
+        return 'Domain';
     }
 }

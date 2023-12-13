@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeDataTransferObjectCommand extends DomainCommand
+final class MakeDataTransferObjectCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:data {name} {--force}';
 

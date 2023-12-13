@@ -10,14 +10,14 @@ class MakeCommandCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeCommand(): void
     {
         $this->artisan('beyond:make:command User.CreateUser');
 
-        $file = beyond_modules_path('User/App/Commands/CreateUser.php');
+        $file = beyond_app_path('User/Commands/CreateUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeCommandCommandTest extends TestCase
     {
         $this->artisan('beyond:make:command User.CreateUser');
 
-        $file = beyond_modules_path('User/App/Commands/CreateUser.php');
+        $file = beyond_app_path('User/Commands/CreateUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -44,7 +44,7 @@ class MakeCommandCommandTest extends TestCase
     {
         $this->artisan('beyond:make:command User.CreateUser --command=test:execute');
 
-        $file = beyond_modules_path('User/App/Commands/CreateUser.php');
+        $file = beyond_app_path('User/Commands/CreateUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -57,7 +57,7 @@ class MakeCommandCommandTest extends TestCase
     {
         $this->artisan('beyond:make:command User.CreateUser --command=test:execute');
 
-        $file = beyond_modules_path('User/App/Commands/CreateUser.php');
+        $file = beyond_app_path('User/Commands/CreateUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

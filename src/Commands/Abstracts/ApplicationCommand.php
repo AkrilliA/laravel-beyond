@@ -6,6 +6,11 @@ abstract class ApplicationCommand extends BaseCommand
 {
     public function getNamespaceTemplate(): string
     {
-        return 'Modules\\%s\\App\\%s';
+        return 'Application\\%s\\%s';
+    }
+
+    public function getBaseCommandName(): string
+    {
+        return 'App';
     }
 }

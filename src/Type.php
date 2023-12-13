@@ -4,12 +4,12 @@ namespace AkrilliA\LaravelBeyond;
 
 use Illuminate\Support\Str;
 
-class Type
+final readonly class Type
 {
     public function __construct(
-        private readonly string $type,
-        private readonly ?string $name = null,
-        private readonly ?string $namespace = null
+        private string $type,
+        private ?string $name = null,
+        private ?string $namespace = null
     ) {
     }
 

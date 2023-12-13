@@ -6,20 +6,13 @@ use Tests\TestCase;
 
 class MakeMigrationCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:module User');
-    }
-
     public function testCanMakeMigration(): void
     {
         $this->artisan('beyond:make:migration User.SimpleMigration');
 
         $now = new \DateTime();
 
-        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_SimpleMigration.php');
+        $file = beyond_infra_path('User/Database/Migrations/'.$now->format('Y_m_d_His').'_SimpleMigration.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -33,7 +26,7 @@ class MakeMigrationCommandTest extends TestCase
 
         $now = new \DateTime();
 
-        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_SimpleMigration.php');
+        $file = beyond_infra_path('User/Database/Migrations/'.$now->format('Y_m_d_His').'_SimpleMigration.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -51,7 +44,7 @@ class MakeMigrationCommandTest extends TestCase
 
         $now = new \DateTime();
 
-        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_CreateUsersTable.php');
+        $file = beyond_infra_path('User/Database/Migrations/'.$now->format('Y_m_d_His').'_CreateUsersTable.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -64,7 +57,7 @@ class MakeMigrationCommandTest extends TestCase
 
         $now = new \DateTime();
 
-        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_CreateUsersTable.php');
+        $file = beyond_infra_path('User/Database/Migrations/'.$now->format('Y_m_d_His').'_CreateUsersTable.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -81,7 +74,7 @@ class MakeMigrationCommandTest extends TestCase
 
         $now = new \DateTime();
 
-        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_AddStatusToUsersTable.php');
+        $file = beyond_infra_path('User/Database/Migrations/'.$now->format('Y_m_d_His').'_AddStatusToUsersTable.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -95,7 +88,7 @@ class MakeMigrationCommandTest extends TestCase
 
         $now = new \DateTime();
 
-        $file = beyond_modules_path('User/Infrastructure/Database/Migrations/'.$now->format('Y_m_d_His').'_AddStatusToUsersTable.php');
+        $file = beyond_infra_path('User/Database/Migrations/'.$now->format('Y_m_d_His').'_AddStatusToUsersTable.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

@@ -10,14 +10,14 @@ class MakeControllerCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeController(): void
     {
         $this->artisan('beyond:make:controller User.UserController');
 
-        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $file = beyond_app_path('User/Controllers/UserController.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeControllerCommandTest extends TestCase
     {
         $this->artisan('beyond:make:controller User.UserController');
 
-        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $file = beyond_app_path('User/Controllers/UserController.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -44,7 +44,7 @@ class MakeControllerCommandTest extends TestCase
     {
         $this->artisan('beyond:make:controller User.UserController --api');
 
-        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $file = beyond_app_path('User/Controllers/UserController.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -62,7 +62,7 @@ class MakeControllerCommandTest extends TestCase
     {
         $this->artisan('beyond:make:controller User.UserController --api');
 
-        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $file = beyond_app_path('User/Controllers/UserController.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -84,7 +84,7 @@ class MakeControllerCommandTest extends TestCase
     {
         $this->artisan('beyond:make:controller User.UserController --invokable');
 
-        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $file = beyond_app_path('User/Controllers/UserController.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -97,7 +97,7 @@ class MakeControllerCommandTest extends TestCase
     {
         $this->artisan('beyond:make:controller User.UserController --invokable');
 
-        $file = beyond_modules_path('User/App/Controllers/UserController.php');
+        $file = beyond_app_path('User/Controllers/UserController.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

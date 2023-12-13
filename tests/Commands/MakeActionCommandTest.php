@@ -6,18 +6,11 @@ use Tests\TestCase;
 
 class MakeActionCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:module User');
-    }
-
     public function testCanMakeAction(): void
     {
         $this->artisan('beyond:make:action User.UserStoreAction');
 
-        $file = beyond_modules_path('User/Domain/Actions/UserStoreAction.php');
+        $file = beyond_domain_path('User/Actions/UserStoreAction.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +22,7 @@ class MakeActionCommandTest extends TestCase
     {
         $this->artisan('beyond:make:action User.UserStoreAction');
 
-        $file = beyond_modules_path('User/Domain/Actions/UserStoreAction.php');
+        $file = beyond_domain_path('User/Actions/UserStoreAction.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeJobCommand extends ApplicationCommand
+final class MakeJobCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:job {name} {--sync} {--force}';
 

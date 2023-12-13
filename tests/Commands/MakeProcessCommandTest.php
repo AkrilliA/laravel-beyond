@@ -10,14 +10,14 @@ class MakeProcessCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeAction(): void
     {
         $this->artisan('beyond:make:process User.AdminStoreUserProcess');
 
-        $file = beyond_modules_path('User/App/Processes/AdminStoreUserProcess.php');
+        $file = beyond_app_path('User/Processes/AdminStoreUserProcess.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeProcessCommandTest extends TestCase
     {
         $this->artisan('beyond:make:process User.AdminStoreUserProcess');
 
-        $file = beyond_modules_path('User/App/Processes/AdminStoreUserProcess.php');
+        $file = beyond_app_path('User/Processes/AdminStoreUserProcess.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

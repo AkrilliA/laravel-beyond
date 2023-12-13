@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeProcessCommand extends ApplicationCommand
+final class MakeProcessCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:process {name} {--force}';
 

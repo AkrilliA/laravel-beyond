@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeControllerCommand extends ApplicationCommand
+final class MakeControllerCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:controller {name} {--api} {--i|invokable} {--force}';
 

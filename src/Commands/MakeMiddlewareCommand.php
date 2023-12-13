@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeMiddlewareCommand extends ApplicationCommand
+final class MakeMiddlewareCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:middleware {name} {--force}';
 

@@ -5,26 +5,32 @@ use AkrilliA\LaravelBeyond\Actions\CopyFileAction;
 use AkrilliA\LaravelBeyond\Actions\NormalizePathAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 
 if (! function_exists('beyond_path')) {
-    function beyond_path(): string
+    function beyond_path(string $path = ''): string
     {
-        return dirname(__DIR__);
+        return base_path('src/'.ltrim($path, '/'));
     }
 }
 
-if (! function_exists('beyond_modules_path')) {
-    function beyond_modules_path(string $path = ''): string
+if (! function_exists('beyond_app_path')) {
+    function beyond_app_path(string $path = ''): string
     {
-        return base_path('modules/'.$path);
+        return beyond_path('Application/'.ltrim($path, '/'));
     }
 }
 
-if (! function_exists('beyond_module_name')) {
-    function beyond_module_name(string $name): string
+if (! function_exists('beyond_domain_path')) {
+    function beyond_domain_path(string $path = ''): string
     {
-        return Str::of($name)->studly()->ucfirst()->value();
+        return beyond_path('Domain/'.ltrim($path, '/'));
+    }
+}
+
+if (! function_exists('beyond_infra_path')) {
+    function beyond_infra_path(string $path = ''): string
+    {
+        return beyond_path('Infrastructure/'.ltrim($path, '/'));
     }
 }
 
@@ -36,7 +42,7 @@ if (! function_exists('beyond_copy_stub')) {
     {
         $stub = file_exists($stubPath = base_path('stubs/beyond.'.$stub))
             ? $stubPath
-            : beyond_path().'/stubs/'.$stub;
+            : __DIR__.'/../stubs/'.$stub;
 
         $action = new CopyAndRefactorFileAction(
             new CopyFileAction(new NormalizePathAction()),

@@ -6,18 +6,11 @@ use Tests\TestCase;
 
 class MakeNotificationCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:module User');
-    }
-
     public function testCanMakeNotification(): void
     {
         $this->artisan('beyond:make:notification User.UserCreated');
 
-        $file = beyond_modules_path('User/Domain/Notifications/UserCreated.php');
+        $file = beyond_domain_path('User/Notifications/UserCreated.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +22,7 @@ class MakeNotificationCommandTest extends TestCase
     {
         $this->artisan('beyond:make:notification User.UserCreated');
 
-        $file = beyond_modules_path('User/Domain/Notifications/UserCreated.php');
+        $file = beyond_domain_path('User/Notifications/UserCreated.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

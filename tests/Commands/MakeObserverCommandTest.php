@@ -6,18 +6,11 @@ use Tests\TestCase;
 
 class MakeObserverCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:module User');
-    }
-
     public function testCanMakeObserver(): void
     {
         $this->artisan('beyond:make:observer User.UserObserver');
 
-        $file = beyond_modules_path('User/Domain/Observers/UserObserver.php');
+        $file = beyond_domain_path('User/Observers/UserObserver.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +22,7 @@ class MakeObserverCommandTest extends TestCase
     {
         $this->artisan('beyond:make:observer User.UserObserver');
 
-        $file = beyond_modules_path('User/Domain/Observers/UserObserver.php');
+        $file = beyond_domain_path('User/Observers/UserObserver.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

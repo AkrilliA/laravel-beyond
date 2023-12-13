@@ -9,7 +9,7 @@ use AkrilliA\LaravelBeyond\Type;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\note;
 
-class MakeBuilderCommand extends DomainCommand
+final class MakeBuilderCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:builder {name} {--force}';
 

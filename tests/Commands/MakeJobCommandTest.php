@@ -10,14 +10,14 @@ class MakeJobCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeJob(): void
     {
         $this->artisan('beyond:make:job User.CancelTrials');
 
-        $file = beyond_modules_path('User/App/Jobs/CancelTrials.php');
+        $file = beyond_app_path('User/Jobs/CancelTrials.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -30,7 +30,7 @@ class MakeJobCommandTest extends TestCase
     {
         $this->artisan('beyond:make:job User.CancelTrials');
 
-        $file = beyond_modules_path('User/App/Jobs/CancelTrials.php');
+        $file = beyond_app_path('User/Jobs/CancelTrials.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -47,7 +47,7 @@ class MakeJobCommandTest extends TestCase
     {
         $this->artisan('beyond:make:job User.CancelTrials --sync');
 
-        $file = beyond_modules_path('User/App/Jobs/CancelTrials.php');
+        $file = beyond_app_path('User/Jobs/CancelTrials.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -60,7 +60,7 @@ class MakeJobCommandTest extends TestCase
     {
         $this->artisan('beyond:make:job User.CancelTrials --sync');
 
-        $file = beyond_modules_path('User/App/Jobs/CancelTrials.php');
+        $file = beyond_app_path('User/Jobs/CancelTrials.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

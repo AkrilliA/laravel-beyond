@@ -4,7 +4,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 
 use Illuminate\Console\Command;
 
-class PublishDeptracCommand extends Command
+final class PublishDeptracCommand extends Command
 {
     protected $signature = 'beyond:publish:deptrac {--force}';
 

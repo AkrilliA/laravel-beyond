@@ -2,10 +2,10 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Commands\Abstracts\ModuleCommand;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeServiceProviderCommand extends ModuleCommand
+final class MakeServiceProviderCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:provider {name} {--force}';
 
@@ -13,7 +13,7 @@ class MakeServiceProviderCommand extends ModuleCommand
 
     public function getType(): Type
     {
-        return new Type('Service Provider');
+        return new Type('Providers', 'Service Provider');
     }
 
     protected function getStub(): string

@@ -2,16 +2,20 @@
 
 namespace AkrilliA\LaravelBeyond;
 
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\BaseCommand;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\InfrastructureCommand;
+use AkrilliA\LaravelBeyond\Exceptions\AppDoesNotExistsException;
 use AkrilliA\LaravelBeyond\Exceptions\InvalidNameException;
-use AkrilliA\LaravelBeyond\Exceptions\ModuleDoesNotExistsException;
 use Illuminate\Support\Str;
 
 use function Laravel\Prompts\search;
+use function Laravel\Prompts\suggest;
 
-class NameResolver
+final class NameResolver
 {
-    private string $module;
+    private string $appOrDomain;
 
     private string $namespace;
 
@@ -33,9 +37,9 @@ class NameResolver
         return $this->namespace;
     }
 
-    public function getModule(): string
+    public function getAppOrDomain(): string
     {
-        return $this->module;
+        return $this->appOrDomain;
     }
 
     public function getClassName(): string
@@ -50,45 +54,30 @@ class NameResolver
 
     public function getCommandNameArgument(): string
     {
-        return $this->module.'.'.$this->className;
+        return $this->appOrDomain.'.'.$this->className;
     }
 
     private function init(): void
     {
         $parts = explode('.', $this->name);
         $numParts = count($parts);
-        $modules = beyond_get_choices(base_path('modules'));
+        $commandType = match (true) {
+            $this->command instanceof ApplicationCommand    => 'APP',
+            $this->command instanceof DomainCommand         => 'DOMAIN',
+            $this->command instanceof InfrastructureCommand => 'INFRASTRUCTURE',
+            default                                         => 'UNKNOWN'
+        };
 
         if ($numParts === 1) {
-            $this->module = search(
-                'Please select a module for your '.$this->command->getType()->getName().'?',
-                function (string $value) use ($modules) {
-                    if ($value !== '') {
-                        return array_values(
-                            array_filter(
-                                $modules,
-                                static fn ($module) => Str::startsWith(Str::lower($module), Str::lower($value))
-                            )
-                        );
-                    }
-
-                    return $modules;
-                },
-                validate: function (string $value) use ($modules) {
-                    if (! in_array($value, $modules)) {
-                        return 'The given module does not exist.';
-                    }
-                }
-            );
-
-            $this->setDirectoryAndClassName($parts[0]);
+            $this->appOrDomain = $this->askForAppOrDomainName($commandType);
         } elseif ($numParts === 2) {
-            $module = Str::of($parts[0])->ucfirst()->value();
-            if (! in_array($module, $modules, true)) {
-                throw new ModuleDoesNotExistsException($module);
+            $appOrDomain = Str::of($parts[0])->lower()->ucfirst()->value();
+
+            if ($commandType === 'APP' && ! $this->isExistingApp($appOrDomain)) {
+                throw new AppDoesNotExistsException($parts[0]);
             }
 
-            $this->module = $module;
+            $this->appOrDomain = $appOrDomain;
             $this->setDirectoryAndClassName($parts[1]);
         } else {
             throw new InvalidNameException($this->name);
@@ -96,16 +85,72 @@ class NameResolver
 
         $this->namespace = sprintf(
             $this->command->getNamespaceTemplate().'%s',
-            $this->module,
+            $this->appOrDomain,
             $this->command->getType()->getNamespace(),
             $this->directory ? '\\'.$this->directory : '',
         );
 
         $this->path = sprintf(
             '%s/'.$this->command->getFileNameTemplate(),
-            Str::lcfirst(Str::replace('\\', '/', $this->namespace)),
+            Str::ucfirst(Str::replace('\\', '/', $this->namespace)),
             $this->className,
         );
+    }
+
+    private function askForAppOrDomainName(string $commandType): string
+    {
+        $cases = match ($commandType) {
+            'APP'            => ['app', beyond_get_choices(base_path('src/Application')), 'askForAppName'],
+            'DOMAIN'         => ['domain', beyond_get_choices(base_path('src/Domain')), 'askForDomainName'],
+            'INFRASTRUCTURE' => ['infrastructure', beyond_get_choices('src/Infrastructure'), 'askForDomainName'],
+            default          => []
+        };
+
+        $question = sprintf('On which %s do you want to add your %s', $cases[0], $this->command->getType()->getName());
+
+        return $this->{$cases[2]}($question, $cases[1]);
+    }
+
+    /**
+     * @param  array<string>  $options
+     */
+    private function askForAppName(string $question, array $options): string
+    {
+        return search(
+            $question,
+            function (string $value) use ($options) {
+                if ($value !== '') {
+                    return collect($options)->filter(fn ($o) => Str::contains($o, $value, true));
+                }
+
+                return $options;
+            },
+            validate: function (string $value) use ($options) {
+                if (! in_array($value, $options, true)) {
+                    return 'The given app does not exist.';
+                }
+            }
+        );
+    }
+
+    /**
+     * @param  array<int, string>  $options
+     */
+    private function askForDomainName(string $question, array $options): string
+    {
+        return suggest(
+            $question,
+            function (string $value) use ($options) {
+                return collect($options)->filter(fn ($o) => Str::contains($o, $value, true))->toArray();
+            }
+        );
+    }
+
+    private function isExistingApp(string $app): bool
+    {
+        $apps = beyond_get_choices(base_path('src/Application'));
+
+        return in_array($app, $apps, true);
     }
 
     private function setDirectoryAndClassName(string $name): void

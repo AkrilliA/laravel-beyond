@@ -7,7 +7,7 @@ use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Support\Str;
 
-class MakePolicyCommand extends DomainCommand
+final class MakePolicyCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:policy {name} {--model=} {--force}';
 
@@ -29,7 +29,7 @@ class MakePolicyCommand extends DomainCommand
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($fqn->getModule().'.'.$model);
+            $fqn = $command->getNameResolver($fqn->getAppOrDomain().'.'.$model);
 
             $this->mergePlaceholders([
                 '{{ modelNamespace }}' => $fqn->getNamespace(),

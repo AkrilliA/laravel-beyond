@@ -10,14 +10,14 @@ class MakeResourceCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeResource(): void
     {
         $this->artisan('beyond:make:resource User.UserResource');
 
-        $file = beyond_modules_path('User/App/Resources/UserResource.php');
+        $file = beyond_app_path('User/Resources/UserResource.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeResourceCommandTest extends TestCase
     {
         $this->artisan('beyond:make:resource User.UserResource');
 
-        $file = beyond_modules_path('User/App/Resources/UserResource.php');
+        $file = beyond_app_path('User/Resources/UserResource.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

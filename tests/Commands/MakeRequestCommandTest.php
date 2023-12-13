@@ -10,14 +10,14 @@ class MakeRequestCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeRequest(): void
     {
         $this->artisan('beyond:make:request User.StoreUserRequest');
 
-        $file = beyond_modules_path('User/App/Requests/StoreUserRequest.php');
+        $file = beyond_app_path('User/Requests/StoreUserRequest.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeRequestCommandTest extends TestCase
     {
         $this->artisan('beyond:make:request User.StoreUserRequest');
 
-        $file = beyond_modules_path('User/App/Requests/StoreUserRequest.php');
+        $file = beyond_app_path('User/Requests/StoreUserRequest.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

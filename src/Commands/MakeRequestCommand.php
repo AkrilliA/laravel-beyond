@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeRequestCommand extends ApplicationCommand
+final class MakeRequestCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:request {name} {--force}';
 

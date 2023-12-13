@@ -7,7 +7,7 @@ use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Support\Str;
 
-class MakeModelCommand extends DomainCommand
+final class MakeModelCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:model {name} {--f|factory} {--m|migration} {--force}';
 
@@ -25,38 +25,30 @@ class MakeModelCommand extends DomainCommand
 
     public function setup(NameResolver $nameResolver): void
     {
-        $this->addOnSuccess(function (string $namespace, string $className) use ($nameResolver) {
-            $force = (bool) $this->option('force');
+        if ($this->option('migration')) {
+            $command = new MakeMigrationCommand();
+            $fqn = $command->getNameResolver($nameResolver->getAppOrDomain().'.create_fake_table');
 
-            $module = $nameResolver->getModule();
+            $this->addOnSuccess(function (string $namespace, string $className) use ($fqn) {
+                $this->call(MakeMigrationCommand::class, [
+                    'name' => $fqn->getAppOrDomain().'.create_'.Str::of($className)->pluralStudly()->lower().'_table',
+                ]);
+            });
 
-            if ($this->option('migration')) {
-                $tableName = Str::snake(Str::pluralStudly($className));
-                $fileName = now()->format('Y_m_d_His').'_create_'.$tableName.'_table';
-
-                beyond_copy_stub(
-                    'migration.create.stub',
-                    base_path()."/modules/$module/Infrastructure/Database/Migrations/$fileName.php",
-                    [
-                        '{{ table }}' => $tableName,
-                    ],
-                    $force
-                );
-            }
-
-            if ($this->option('factory')) {
-                $fileName = $className.'Factory';
-
-                beyond_copy_stub(
-                    'factory.stub',
-                    base_path()."/modules/$module/Infrastructure/factories/$fileName.php",
-                    [
-                        '{{ namespace }}' => $namespace,
-                        '{{ model }}'     => $fileName,
-                    ],
-                    $force
-                );
-            }
-        });
+            // Add MakeFactoryCommand!
+            //            if ($this->option('factory')) {
+            //                $fileName = $className.'Factory';
+            //
+            //                beyond_copy_stub(
+            //                    'factory.stub',
+            //                    base_path()."/modules/$module/Infrastructure/factories/$fileName.php",
+            //                    [
+            //                        '{{ namespace }}' => $namespace,
+            //                        '{{ model }}'     => $fileName,
+            //                    ],
+            //                    $force
+            //                );
+            //            }
+        }
     }
 }

@@ -6,7 +6,7 @@ use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeQueryCommand extends ApplicationCommand
+final class MakeQueryCommand extends ApplicationCommand
 {
     protected $signature = 'beyond:make:query {name} {--model=} {--force}';
 
@@ -28,7 +28,7 @@ class MakeQueryCommand extends ApplicationCommand
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($nameResolver->getModule().'.'.$model);
+            $fqn = $command->getNameResolver($nameResolver->getAppOrDomain().'.'.$model);
 
             $this->mergePlaceholders([
                 '{{ modelNamespace }}' => $fqn->getNamespace(),

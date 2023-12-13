@@ -8,7 +8,7 @@ use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Database\Console\Migrations\TableGuesser;
 use Illuminate\Support\Str;
 
-class MakeMigrationCommand extends InfrastructureCommand
+final class MakeMigrationCommand extends InfrastructureCommand
 {
     protected $signature = 'beyond:make:migration {name} {--force}';
 
@@ -23,7 +23,7 @@ class MakeMigrationCommand extends InfrastructureCommand
 
     public function getType(): Type
     {
-        return new Type('Database/Migration');
+        return new Type('Database/Migration', 'Migration');
     }
 
     public function getFileNameTemplate(): string

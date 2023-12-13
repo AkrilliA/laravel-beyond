@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeEnumCommand extends DomainCommand
+final class MakeEnumCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:enum {name} {--force}';
 

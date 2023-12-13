@@ -6,7 +6,7 @@ use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 
-class MakeCollectionCommand extends DomainCommand
+final class MakeCollectionCommand extends DomainCommand
 {
     protected $signature = 'beyond:make:collection {name} {--model=} {--force}';
 
@@ -28,7 +28,7 @@ class MakeCollectionCommand extends DomainCommand
     {
         if ($model = $this->option('model')) {
             $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($fqn->getModule().'.'.$model);
+            $fqn = $command->getNameResolver($fqn->getAppOrDomain().'.'.$model);
 
             $this->mergePlaceholders([
                 '{{ modelNamespace }}' => $fqn->getNamespace(),

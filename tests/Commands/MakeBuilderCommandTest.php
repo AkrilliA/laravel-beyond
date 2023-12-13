@@ -6,18 +6,11 @@ use Tests\TestCase;
 
 class MakeBuilderCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:module User');
-    }
-
     public function testCanMakeBuilder(): void
     {
         $this->artisan('beyond:make:builder User.UserBuilder');
 
-        $file = beyond_modules_path('User/Domain/Builders/UserBuilder.php');
+        $file = beyond_domain_path('User/Builders/UserBuilder.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +22,7 @@ class MakeBuilderCommandTest extends TestCase
     {
         $this->artisan('beyond:make:builder User.UserBuilder');
 
-        $file = beyond_modules_path('User/Domain/Builders/UserBuilder.php');
+        $file = beyond_domain_path('User/Builders/UserBuilder.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

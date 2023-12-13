@@ -10,14 +10,14 @@ class MakeRuleCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeRule(): void
     {
         $this->artisan('beyond:make:rule User.UniqueUser');
 
-        $file = beyond_modules_path('User/App/Rules/UniqueUser.php');
+        $file = beyond_app_path('User/Rules/UniqueUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +29,7 @@ class MakeRuleCommandTest extends TestCase
     {
         $this->artisan('beyond:make:rule User.UniqueUser');
 
-        $file = beyond_modules_path('User/App/Rules/UniqueUser.php');
+        $file = beyond_app_path('User/Rules/UniqueUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

@@ -10,14 +10,14 @@ class MakeServiceProviderCommandTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('beyond:make:module User');
+        $this->artisan('beyond:make:app User');
     }
 
     public function testCanMakeProvider(): void
     {
         $this->artisan('beyond:make:provider User.UserServiceProvider');
 
-        $file = beyond_modules_path('User/Providers/UserServiceProvider.php');
+        $file = beyond_app_path('User/Providers/UserServiceProvider.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -28,7 +28,7 @@ class MakeServiceProviderCommandTest extends TestCase
     {
         $this->artisan('beyond:make:provider User.UserServiceProvider');
 
-        $file = beyond_modules_path('User/Providers/UserServiceProvider.php');
+        $file = beyond_app_path('User/Providers/UserServiceProvider.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);

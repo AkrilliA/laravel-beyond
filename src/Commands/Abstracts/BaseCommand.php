@@ -24,6 +24,8 @@ abstract class BaseCommand extends Command
 
     abstract public function getNamespaceTemplate(): string;
 
+    abstract public function getBaseCommandName(): string;
+
     abstract public function getType(): Type;
 
     public function getFileNameTemplate(): string
@@ -52,7 +54,7 @@ abstract class BaseCommand extends Command
         return trim($this->argument('name'));
     }
 
-    public function getNameResolver(string $name = null): NameResolver
+    public function getNameResolver(?string $name = null): NameResolver
     {
         return new NameResolver($this, $name ?: $this->getNameArgument());
     }
@@ -83,7 +85,7 @@ abstract class BaseCommand extends Command
 
             beyond_copy_stub(
                 $this->getStub(),
-                base_path($fqn->getPath()),
+                beyond_path($fqn->getPath()),
                 $refactor,
                 (bool) $this->option('force')
             );

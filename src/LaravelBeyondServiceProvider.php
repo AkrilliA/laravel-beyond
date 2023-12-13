@@ -5,7 +5,7 @@ namespace AkrilliA\LaravelBeyond;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelBeyondServiceProvider extends ServiceProvider
+final class LaravelBeyondServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {

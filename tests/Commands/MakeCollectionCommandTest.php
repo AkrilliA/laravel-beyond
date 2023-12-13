@@ -6,18 +6,11 @@ use Tests\TestCase;
 
 class MakeCollectionCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:module User');
-    }
-
     public function testCanMakeCollection(): void
     {
         $this->artisan('beyond:make:collection User.UserCollection');
 
-        $file = beyond_modules_path('User/Domain/Collections/UserCollection.php');
+        $file = beyond_domain_path('User/Collections/UserCollection.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -29,7 +22,7 @@ class MakeCollectionCommandTest extends TestCase
     {
         $this->artisan('beyond:make:collection User.UserCollection');
 
-        $file = beyond_modules_path('User/Domain/Collections/UserCollection.php');
+        $file = beyond_domain_path('User/Collections/UserCollection.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -45,14 +38,14 @@ class MakeCollectionCommandTest extends TestCase
     {
         $this->artisan('beyond:make:collection User.UserCollection --model=User');
 
-        $file = beyond_modules_path('User/Domain/Collections/UserCollection.php');
+        $file = beyond_domain_path('User/Collections/UserCollection.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
 
-        $file = beyond_modules_path('User/Domain/Models/User.php');
+        $file = beyond_domain_path('User/Models/User.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -64,14 +57,14 @@ class MakeCollectionCommandTest extends TestCase
     {
         $this->artisan('beyond:make:collection User.UserCollection --model=User');
 
-        $file = beyond_modules_path('User/Domain/Collections/UserCollection.php');
+        $file = beyond_domain_path('User/Collections/UserCollection.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
 
-        $file = beyond_modules_path('User/Domain/Models/User.php');
+        $file = beyond_domain_path('User/Models/User.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
