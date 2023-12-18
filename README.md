@@ -8,8 +8,8 @@ This package will help you with `beyond:make` commands to easily create classes 
 inspired application.
 We try to implement commands as near as possible on their original `make` counterparts.
 
-In version 7 we completely changed the way how Laravel Beyond works. We now do no longer change Laravels default
-directory structure, instead we place the DDD structure inside a separate `modules` directory. This ensures
+In version 7 we changed the way how Laravel Beyond works. We now do no longer change Laravels default
+directory structure, instead we place the DDD structure inside a separate `src` directory. This ensures
 compatibility with any other (Laravel related) package. 
 
 ## Upgrade Guide
@@ -23,7 +23,7 @@ Install laravel-beyond with composer
 composer require --dev akrillia/laravel-beyond
 ```
 
-After this you need to register the `Modules` namespace inside your `composer.json`.
+After this you need to register the namespaces inside your `composer.json`.
 ```json
 {
   // ...
@@ -32,7 +32,9 @@ After this you need to register the `Modules` namespace inside your `composer.js
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/",
-      "Modules\\": "modules/"
+      "Application\\": "src/Application",
+      "Domain\\": "src/Domain",
+      "Infrastructure\\": "src/Infrastructure"
     }
   },
   // ...
@@ -43,66 +45,38 @@ Now you still have to run `composer dump-autoload` and everything is set up for 
 
 ## Structure
 ```
-|- modules
-|  |- Payment
-|  |  |- App
+|- src
+|  |- Application
+|  |  |- Admin
 |  |  |  |- Controllers
-|  |  |  |  |- PaymentController.php
 |  |  |  |- Commands
-|  |  |  |  |- GroupPaymentsCommand.php
 |  |  |  |- Filters
-|  |  |  |  |- PaymentStatusFilter.php
 |  |  |  |- Jobs
-|  |  |  |  |- PaymentSyncronisationJob.php
 |  |  |  |- Middleware
-|  |  |  |  |- PaymentVerificationMiddleware.php
+|  |  |  |- Providers
 |  |  |  |- Queries
-|  |  |  |  |- PaymentIndexQuery.php
 |  |  |  |- Requests
-|  |  |  |  |- PaymentStoreRequest.php
 |  |  |  |- Resources
-|  |  |  |  |- PaymentResource.php
 |  |  |  |- routes.php
-|  |  |- Domain
+|  |- Domain
+|  |  |- User
 |  |  |  |- Actions
-|  |  |  |  |- PaymentStoreAction.php
 |  |  |  |- Collections
-|  |  |  |  |- PaymentCollection.php
 |  |  |  |- DataTransferObjects
-|  |  |  |  |- PaymentData.php
 |  |  |  |- Events
-|  |  |  |  |- PaymentSucceededEvent.php
 |  |  |  |- Exceptions
-|  |  |  |  |- PaymentFailedException.php
 |  |  |  |- Listeners
-|  |  |  |  |- PaymentSucceededListener.php
 |  |  |  |- Models
-|  |  |  |  |- Payment.php
 |  |  |  |- Observers
-|  |  |  |  |- PaymentObserver.php
 |  |  |  |- Policies
-|  |  |  |  |- PaymentPolicy.php
 |  |  |  |- Rules
-|  |  |  |  |- PaymentRule.php
 |  |  |  |- States
-|  |  |  |  |- PaymentState.php
 |  |  |  |- ValueObjects
-|  |  |  |  |- Price.php
-|  |  |- Infrastructure
+|  |- Infrastructure
+|  |  |- User
 |  |  |  |- Factories
-|  |  |  |  |- PaymentFactory.php
 |  |  |  |- Migrations
-|  |  |  |  |- create_payments_table.php
 |  |  |  |- Seeders
-|  |  |  |  |- PaymentSeeder.php
-|  |  |- Providers
-|  |  |  |- PaymentAuthServiceProvider.php
-|  |  |  |- PaymentEventServiceProvider.php 
-|  |  |  |- PaymentRouteServiceProvider.php
-|  |  |  |- PaymentServiceProvider.php
-|  |  |- Tests
-|  |  |  |- Feature
-|  |  |  |- Unit
 ```
 
 ## Usage

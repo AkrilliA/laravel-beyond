@@ -11,9 +11,7 @@ final class {{ module }}ServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->register({{ module }}AuthServiceProvider::class);
-        $this->app->register({{ module }}EventServiceProvider::class);
-        $this->app->register({{ module }}RouteServiceProvider::class);
+        //
     }
 
     /**
@@ -21,7 +19,6 @@ final class {{ module }}ServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/../App/routes.php');
-        $this->loadMigrationsFrom(__DIR__ . '/../Infrastructure/Database/Migrations');
+        $this->loadRoutesFrom(__DIR__ . '/../routes.php');
     }
 }
