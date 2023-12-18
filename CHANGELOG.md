@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [7.0.0-beta.7]
 ### Changed
 - Change directory structure back to v6, as it seems to be a better one by [@regnerisch](https://github.com/regnerisch)
 
@@ -155,7 +157,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.6...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.7...HEAD
+[7.0.0-beta.7]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.6...v7.0.0-beta.7
 [7.0.0-beta.6]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.5...v7.0.0-beta.6
 [7.0.0-beta.5]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.4...v7.0.0-beta.5
 [7.0.0-beta.4]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.3...v7.0.0-beta.4
