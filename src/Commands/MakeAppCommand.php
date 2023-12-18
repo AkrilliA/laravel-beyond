@@ -45,9 +45,6 @@ final class MakeAppCommand extends Command
     private function moveAndRefactorAppFiles(string $app, bool $force = false): void
     {
         $files = [
-            'Providers/AppAuthServiceProvider.stub'  => "Providers/{$app}AuthServiceProvider.php",
-            'Providers/AppEventServiceProvider.stub' => "Providers/{$app}EventServiceProvider.php",
-            'Providers/AppRouteServiceProvider.stub' => "Providers/{$app}RouteServiceProvider.php",
             'Providers/AppServiceProvider.stub'      => "Providers/{$app}ServiceProvider.php",
             'routes.stub'                            => 'routes.php',
         ];
