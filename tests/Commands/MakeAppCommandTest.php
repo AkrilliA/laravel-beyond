@@ -18,6 +18,17 @@ class MakeAppCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ module }}', $contents);
     }
 
+    public function testCanMakeSnakeCaseModule(): void
+    {
+        $this->artisan('beyond:make:app SuperAdmin');
+
+        $file = beyond_app_path('SuperAdmin/Providers/SuperAdminServiceProvider.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ module }}', $contents);
+    }
+
     public function testCanMakeModuleUsingForce(): void
     {
         $this->artisan('beyond:make:app Admin');

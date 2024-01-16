@@ -25,6 +25,18 @@ class MakeControllerCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
+    public function testCanMakeModuleController(): void
+    {
+        $this->artisan('beyond:make:controller User.User.UserController');
+
+        $file = beyond_app_path('User/User/Controllers/UserController.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+    }
+
     public function testCanMakeControllerUsingForce(): void
     {
         $this->artisan('beyond:make:controller User.UserController');

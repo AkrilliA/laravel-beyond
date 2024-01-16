@@ -25,6 +25,8 @@ final class NameResolver
 
     private string $path;
 
+    private ?string $module = null;
+
     public function __construct(
         private readonly BaseCommand $command,
         private readonly string $name
@@ -70,22 +72,29 @@ final class NameResolver
 
         if ($numParts === 1) {
             $this->appOrDomain = $this->askForAppOrDomainName($commandType);
-        } elseif ($numParts === 2) {
-            $appOrDomain = Str::of($parts[0])->lower()->ucfirst()->value();
+        } elseif ($numParts === 2 || ($numParts === 3 && $commandType === 'APP')) {
+            $appOrDomain = $parts[0];
 
             if ($commandType === 'APP' && ! $this->isExistingApp($appOrDomain)) {
                 throw new AppDoesNotExistsException($parts[0]);
             }
 
-            $this->appOrDomain = $appOrDomain;
-            $this->setDirectoryAndClassName($parts[1]);
+            if ($numParts === 3 && $commandType === 'APP') {
+                $this->appOrDomain = $appOrDomain;
+                $this->module = $parts[1];
+                $this->setDirectoryAndClassName($parts[2]);
+            } else {
+                $this->appOrDomain = $appOrDomain;
+                $this->setDirectoryAndClassName($parts[1]);
+            }
         } else {
             throw new InvalidNameException($this->name);
         }
 
         $this->namespace = sprintf(
-            $this->command->getNamespaceTemplate().'%s',
+            $this->command->getNamespaceTemplate().'%s%s',
             $this->appOrDomain,
+            $this->module ? '\\'.$this->module.'\\' : '',
             $this->command->getType()->getNamespace(),
             $this->directory ? '\\'.$this->directory : '',
         );
