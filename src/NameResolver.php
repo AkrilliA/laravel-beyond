@@ -19,7 +19,7 @@ final class NameResolver
 
     private string $namespace;
 
-    private string $directory;
+    private ?string $directory = null;
 
     private string $className;
 

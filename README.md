@@ -469,12 +469,11 @@ php artisan beyond:setup
 - `beyond:make:exception`
 - `beyond:make:state`
 - `beyond:make:value-object`
-- `beyond:make:factory`
-- `beyond:make:migration`
-- `beyond:make:seeder`
-- `beyond:make:test`
+- `beyond:make:factory` (?)
+- `beyond:make:migration` (?)
+- `beyond:make:seeder` (?)
+- `beyond:make:test` (?)
 ### Other
-- Auto register module service provider inside `app.php`
 - Update command documentation
 
 ## Contributors
