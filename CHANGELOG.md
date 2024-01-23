@@ -5,11 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
-## [7.0.0-beta.7]
 ### Fixed
 - Access before initialization by [@regnerisch](https://github.com/regnerisch) in [#100](https://github.com/akrillia/laravel-beyond/issues/100) reported by [@napruzzese](https://github.com/napruzzese)
 
+## [7.0.0-beta.7]
 ### Changed
 - Change directory structure back to v6, as it seems to be a better one by [@regnerisch](https://github.com/regnerisch)
 
