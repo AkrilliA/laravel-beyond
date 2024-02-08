@@ -39,8 +39,8 @@ class Composer implements ComposerContract
         $json = json_decode($content, true);
 
         return $this->packages = [
-            'require' => array_keys($json['require']),
-            'requireDev' => array_keys($json['require-dev']),
+            'require' => array_key_exists('require', $json) ? array_keys($json['require']) : [],
+            'requireDev' => array_key_exists('requireDev', $json) ? array_keys($json['require-dev']) : [],
         ];
     }
 }
