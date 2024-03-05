@@ -9,6 +9,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-14]
         php: ['8.2', '8.3']
+        laravel: [11.*, 10.*]
+        include:
+          - laravel: 11.*
+            testbench: 9.*
+          - laravel: 10.*
+            testbench: 8.*
 
     steps:
       - name: Checkout
@@ -22,8 +28,10 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Install PHP dependencies
-        run: composer update --prefer-stable --no-interaction --no-progress --ansi
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --prefer-dist --no-interaction
 
       - name: Unit Tests
         run: vendor/bin/phpunit --colors=always
