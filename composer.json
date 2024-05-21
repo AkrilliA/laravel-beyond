@@ -53,7 +53,7 @@
     "suggest": {
         "spatie/laravel-query-builder": "This package is required for Queries.",
         "spatie/laravel-data": "This package is required for DataTransferObjects.",
-        "spatie/laravel-queueable-action": "This package is required for queueable Actions.",
+        "spatie/laravel-queueable-action": "This package is required for queueable actions.",
         "qossmic/deptrac-shim": "This package can help you enforce architectural decisions by Laraval Beyond."
     },
     "config": {

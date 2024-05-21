@@ -3,17 +3,15 @@
 namespace {{ namespace }};
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Domain\{{ namespace }}\Models\{{ model }};
 
 /**
  * @extends Factory<{{ model }}>
  */
 final class {{ model }}Factory extends Factory
 {
+    // protected $model = Model::class;
 
-    protected $model = {{ model }}::class;
-
-    public function definition()
+    public function definition(): array
     {
         return [
             //

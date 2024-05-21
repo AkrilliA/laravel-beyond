@@ -2,43 +2,10 @@
 
 namespace {{ namespace }};
 
-use {{ modelNamespace }}\{{ modelClassName }};
-use Modules\User\Domain\Models\User;
+use Domain\User\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class {{ className }}
 {
-    use HandlesAuthorization;
-
-    public function before(User $user)
-    {
-    }
-
-    public function viewAny(User $user)
-    {
-    }
-
-    public function view(User $user, {{ modelClassName }} ${{ modelVariable }})
-    {
-    }
-
-    public function create(User $user)
-    {
-    }
-
-    public function update(User $user, {{ modelClassName }} ${{ modelVariable }})
-    {
-    }
-
-    public function delete(User $user, {{ modelClassName }} ${{ modelVariable }})
-    {
-    }
-
-    public function restore(User $user, {{ modelClassName }} ${{ modelVariable }})
-    {
-    }
-
-    public function forceDelete(User $user, {{ modelClassName }} ${{ modelVariable }})
-    {
-    }
+    //
 }

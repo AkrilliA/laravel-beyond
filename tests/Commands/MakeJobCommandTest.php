@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeJobCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeJob(): void
     {
         $this->artisan('beyond:make:job User.CancelTrials');

@@ -18,15 +18,7 @@ class TestCase extends BaseTestCase
     {
         parent::tearDown();
 
-        $this->removeFile(base_path('deptrac.yaml'));
         $this->removeDirectory(beyond_path());
-    }
-
-    private function removeFile(string $file): void
-    {
-        if (is_file($file)) {
-            unlink($file);
-        }
     }
 
     private function removeDirectory(string $directory): void

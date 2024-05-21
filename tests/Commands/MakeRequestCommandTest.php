@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeRequestCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeRequest(): void
     {
         $this->artisan('beyond:make:request User.StoreUserRequest');

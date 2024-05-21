@@ -2,40 +2,22 @@
 
 namespace AkrilliA\LaravelBeyond\Commands;
 
-use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
-use AkrilliA\LaravelBeyond\NameResolver;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Type;
-use Illuminate\Support\Str;
 
-final class MakePolicyCommand extends DomainCommand
+final class MakePolicyCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:policy {name} {--model=} {--force}';
+    protected $signature = 'beyond:make:policy {name} {--force}';
 
     protected $description = 'Make a new policy';
 
     protected function getStub(): string
     {
-        return $this->option('model')
-            ? 'policy.stub'
-            : 'policy.plain.stub';
+        return 'policy.stub';
     }
 
     public function getType(): Type
     {
         return new Type('Policy');
-    }
-
-    public function setup(NameResolver $fqn): void
-    {
-        if ($model = $this->option('model')) {
-            $command = new MakeModelCommand();
-            $fqn = $command->getNameResolver($fqn->getAppOrDomain().'.'.$model);
-
-            $this->mergePlaceholders([
-                '{{ modelNamespace }}' => $fqn->getNamespace(),
-                '{{ modelClassName }}' => $fqn->getClassName(),
-                '{{ modelVariable }}'  => Str::camel($fqn->getClassName()),
-            ]);
-        }
     }
 }

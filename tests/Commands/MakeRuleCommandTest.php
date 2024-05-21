@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeRuleCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeRule(): void
     {
         $this->artisan('beyond:make:rule User.UniqueUser');

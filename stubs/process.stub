@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-final class {{ className }}
+final readonly class {{ className }}
 {
     public function execute(): mixed
     {

@@ -27,13 +27,6 @@ if (! function_exists('beyond_domain_path')) {
     }
 }
 
-if (! function_exists('beyond_infra_path')) {
-    function beyond_infra_path(string $path = ''): string
-    {
-        return beyond_path('Infrastructure/'.ltrim($path, '/'));
-    }
-}
-
 if (! function_exists('beyond_copy_stub')) {
     /**
      * @param  array<string, string>  $refactor

@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeResourceCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeResource(): void
     {
         $this->artisan('beyond:make:resource User.UserResource');

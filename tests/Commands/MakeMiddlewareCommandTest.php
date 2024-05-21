@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeMiddlewareCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeMiddleware(): void
     {
         $this->artisan('beyond:make:middleware User.SetLocale');

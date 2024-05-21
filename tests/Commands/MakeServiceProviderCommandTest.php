@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeServiceProviderCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeProvider(): void
     {
         $this->artisan('beyond:make:provider User.UserServiceProvider');

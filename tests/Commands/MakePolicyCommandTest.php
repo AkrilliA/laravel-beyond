@@ -10,7 +10,7 @@ class MakePolicyCommandTest extends TestCase
     {
         $this->artisan('beyond:make:policy User.UserPolicy');
 
-        $file = beyond_domain_path('User/Policies/UserPolicy.php');
+        $file = beyond_app_path('User/Policies/UserPolicy.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -22,7 +22,7 @@ class MakePolicyCommandTest extends TestCase
     {
         $this->artisan('beyond:make:policy User.UserPolicy');
 
-        $file = beyond_domain_path('User/Policies/UserPolicy.php');
+        $file = beyond_app_path('User/Policies/UserPolicy.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -30,40 +30,6 @@ class MakePolicyCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
 
         $code = $this->artisan('beyond:make:policy User.UserPolicy --force');
-
-        $code->assertOk();
-    }
-
-    public function testCanMakePolicyWithModel(): void
-    {
-        $this->artisan('beyond:make:policy User.UserPolicy --model=User');
-
-        $file = beyond_domain_path('User/Policies/UserPolicy.php');
-        $contents = file_get_contents($file);
-
-        $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
-        $this->assertStringNotContainsString('{{ modelNamespace }}', $contents);
-        $this->assertStringNotContainsString('{{ modelClassName }}', $contents);
-        $this->assertStringNotContainsString('{{ modelVariable }}', $contents);
-    }
-
-    public function testCanMakePolicyWithModelUsingForce(): void
-    {
-        $this->artisan('beyond:make:policy User.UserPolicy --model=User');
-
-        $file = beyond_domain_path('User/Policies/UserPolicy.php');
-        $contents = file_get_contents($file);
-
-        $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
-        $this->assertStringNotContainsString('{{ modelNamespace }}', $contents);
-        $this->assertStringNotContainsString('{{ modelClassName }}', $contents);
-        $this->assertStringNotContainsString('{{ modelVariable }}', $contents);
-
-        $code = $this->artisan('beyond:make:policy User.UserPolicy --model=User --force');
 
         $code->assertOk();
     }

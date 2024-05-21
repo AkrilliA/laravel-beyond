@@ -5,12 +5,9 @@ namespace AkrilliA\LaravelBeyond;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\BaseCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
-use AkrilliA\LaravelBeyond\Commands\Abstracts\InfrastructureCommand;
-use AkrilliA\LaravelBeyond\Exceptions\AppDoesNotExistsException;
-use AkrilliA\LaravelBeyond\Exceptions\InvalidNameException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 
-use function Laravel\Prompts\search;
 use function Laravel\Prompts\suggest;
 
 final class NameResolver
@@ -24,8 +21,6 @@ final class NameResolver
     private string $className;
 
     private string $path;
-
-    private ?string $module = null;
 
     public function __construct(
         private readonly BaseCommand $command,
@@ -61,40 +56,19 @@ final class NameResolver
 
     private function init(): void
     {
-        $parts = explode('.', $this->name);
-        $numParts = count($parts);
-        $commandType = match (true) {
-            $this->command instanceof ApplicationCommand    => 'APP',
-            $this->command instanceof DomainCommand         => 'DOMAIN',
-            $this->command instanceof InfrastructureCommand => 'INFRASTRUCTURE',
-            default                                         => 'UNKNOWN'
-        };
+        $name = new Stringable($this->name);
+        $this->appOrDomain = $name->contains('.')
+            ? $name->before('.')->toString()
+            : null;
+        $this->setDirectoryAndClassName($name->after('.'));
 
-        if ($numParts === 1) {
-            $this->appOrDomain = $this->askForAppOrDomainName($commandType);
-        } elseif ($numParts === 2 || ($numParts === 3 && $commandType === 'APP')) {
-            $appOrDomain = $parts[0];
-
-            if ($commandType === 'APP' && ! $this->isExistingApp($appOrDomain)) {
-                throw new AppDoesNotExistsException($parts[0]);
-            }
-
-            if ($numParts === 3 && $commandType === 'APP') {
-                $this->appOrDomain = $appOrDomain;
-                $this->module = $parts[1];
-                $this->setDirectoryAndClassName($parts[2]);
-            } else {
-                $this->appOrDomain = $appOrDomain;
-                $this->setDirectoryAndClassName($parts[1]);
-            }
-        } else {
-            throw new InvalidNameException($this->name);
+        if (! $this->appOrDomain) {
+            $this->appOrDomain = $this->askForAppOrDomainName();
         }
 
         $this->namespace = sprintf(
-            $this->command->getNamespaceTemplate().'%s%s',
+            $this->command->getNamespaceTemplate().'%s',
             $this->appOrDomain,
-            $this->module ? '\\'.$this->module.'\\' : '',
             $this->command->getType()->getNamespace(),
             $this->directory ? '\\'.$this->directory : '',
         );
@@ -106,68 +80,26 @@ final class NameResolver
         );
     }
 
-    private function askForAppOrDomainName(string $commandType): string
+    private function askForAppOrDomainName(): string
     {
-        $cases = match ($commandType) {
-            'APP'            => ['app', beyond_get_choices(base_path('src/Application')), 'askForAppName'],
-            'DOMAIN'         => ['domain', beyond_get_choices(base_path('src/Domain')), 'askForDomainName'],
-            'INFRASTRUCTURE' => ['infrastructure', beyond_get_choices('src/Infrastructure'), 'askForDomainName'],
-            default          => []
+        $cases = match (true) {
+            $this->command instanceof ApplicationCommand => ['app', beyond_get_choices(base_path('src/Application'))],
+            $this->command instanceof DomainCommand      => ['domain', beyond_get_choices(base_path('src/Domain'))],
+            default                                      => []
         };
 
-        $question = sprintf('On which %s do you want to add your %s', $cases[0], $this->command->getType()->getName());
-
-        return $this->{$cases[2]}($question, $cases[1]);
-    }
-
-    /**
-     * @param  array<string>  $options
-     */
-    private function askForAppName(string $question, array $options): string
-    {
-        return search(
-            $question,
-            function (string $value) use ($options) {
-                if ($value !== '') {
-                    return collect($options)->filter(fn ($o) => Str::contains($o, $value, true));
-                }
-
-                return $options;
-            },
-            validate: function (string $value) use ($options) {
-                if (! in_array($value, $options, true)) {
-                    return 'The given app does not exist.';
-                }
-            }
-        );
-    }
-
-    /**
-     * @param  array<int, string>  $options
-     */
-    private function askForDomainName(string $question, array $options): string
-    {
         return suggest(
-            $question,
-            function (string $value) use ($options) {
-                return collect($options)->filter(fn ($o) => Str::contains($o, $value, true))->toArray();
-            }
-        );
+            sprintf('On which %s do you want to add your %s', $cases[0], $this->command->getType()->getName()),
+            function (string $value) use ($cases) {
+                return collect($cases[1])->filter(fn ($o) => Str::contains($o, $value, true))->toArray();
+            });
     }
 
-    private function isExistingApp(string $app): bool
+    private function setDirectoryAndClassName(Stringable $name): void
     {
-        $apps = beyond_get_choices(base_path('src/Application'));
-
-        return in_array($app, $apps, true);
-    }
-
-    private function setDirectoryAndClassName(string $name): void
-    {
-        $parts = explode('/', $name);
-
-        $this->className = array_pop($parts);
-
-        $this->directory = implode('\\', $parts);
+        $this->directory = $name->contains('/')
+            ? $name->beforeLast('/')->replace('/', '\\')->toString()
+            : '';
+        $this->className = $name->afterLast('/')->toString();
     }
 }

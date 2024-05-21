@@ -6,13 +6,6 @@ use Tests\TestCase;
 
 class MakeCommandCommandTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('beyond:make:app User');
-    }
-
     public function testCanMakeCommand(): void
     {
         $this->artisan('beyond:make:command User.CreateUser');
