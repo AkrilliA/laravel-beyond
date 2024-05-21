@@ -5,11 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- Hidden feature for additional directory separation by [@regnerisch](https://github.com/regnerisch)
-
 ### Fixed
 - Access before initialization by [@regnerisch](https://github.com/regnerisch) in [#100](https://github.com/akrillia/laravel-beyond/issues/100) reported by [@napruzzese](https://github.com/napruzzese)
+
+### Changed
+- Refactor directory structure, tests and much more by [@regnerisch](https://github.com/regnerisch)
+
+### Removed
+- Removed Commands: `beyond:make:app`, `beyond:make:middleware`, `beyond:make:migration`, `beyond:make:notification`, `beyond:publish:deptrac` by [@regnerisch](https://github.com/regnerisch)
 
 ## [7.0.0-beta.7]
 ### Changed
