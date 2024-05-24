@@ -78,8 +78,7 @@ or (maybe better) consider using a process.
 | Flags   | Description             |
 |---------|-------------------------|
 | --force | Overwrite existing file |
-
-
+---
 #### `beyond:make:builder`
 Creates a new Laravel Eloquent builder for a model.
 
@@ -111,7 +110,7 @@ Creates a new Laravel Eloquent builder for a model.
 | Flags   | Description             |
 |---------|-------------------------|
 | --force | Overwrite existing file |
-
+---
 
 
 ## Directory structure
