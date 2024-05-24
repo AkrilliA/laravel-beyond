@@ -41,7 +41,7 @@ Run `composer dump-autoload` and everything is set up for using Laravel Beyond c
 ## Commands
 ### Overview
 #### Application
-- `beyond:make:command`
+- [`beyond:make:command`](#beyondmakecommand)
 - `beyond:make:controller`
 - `beyond:make:policy`
 - `beyond:make:process`
@@ -51,9 +51,9 @@ Run `composer dump-autoload` and everything is set up for using Laravel Beyond c
 - `beyond:make:rule`
 
 #### Domain
-- `beyond:make:action`
-- `beyond:make:builder`
-- `beyond:make:collection`
+- [`beyond:make:action`](#beyondmakeaction)
+- [`beyond:make:builder`](#beyondmakebuilder)
+- [`beyond:make:collection`](#beyondmakecollection)
 - `beyond:make:data`
 - `beyond:make:enum`
 - `beyond:make:event`
@@ -110,6 +110,47 @@ Creates a new Laravel Eloquent builder for a model.
 | Flags   | Description             |
 |---------|-------------------------|
 | --force | Overwrite existing file |
+---
+#### `beyond:make:collection`
+Creates a new Laravel collection for a model.
+
+> [!NOTE]
+> You need to add the collection to your model
+> ```
+> public function newCollection($q): YourCollection
+> {
+>       return new YourCollection($q);
+> }
+> ```
+
+##### Signature
+`beyond:make:collection {name} {--force}`
+
+| Parameters | Description                |
+|------------|----------------------------|
+| name       | The name of you collection |
+
+| Flags   | Description             |
+|---------|-------------------------|
+| --force | Overwrite existing file |
+---
+#### `beyond:make:command`
+Creates a new Laravel command.
+
+> [!NOTE]
+> You need to add the command at `App\Console\Kernel`.
+
+##### Signature
+`beyond:make:command {name} {--command=command:name} {--force}`
+
+| Parameters | Description             |
+|------------|-------------------------|
+| name       | The name of you command |
+
+| Flags     | Description             |
+|-----------|-------------------------|
+| --command | Define the command name |
+| --force   | Overwrite existing file |
 ---
 
 
