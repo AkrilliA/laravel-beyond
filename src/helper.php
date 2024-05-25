@@ -6,31 +6,33 @@ use AkrilliA\LaravelBeyond\Actions\NormalizePathAction;
 use AkrilliA\LaravelBeyond\Actions\RefactorFileAction;
 use Illuminate\Filesystem\Filesystem;
 
+use function Illuminate\Filesystem\join_paths;
+
 if (! function_exists('beyond_path')) {
     function beyond_path(string $path = ''): string
     {
-        return base_path('src/'.ltrim($path, '/'));
+        return join_paths(base_path(), 'src', $path);
     }
 }
 
 if (! function_exists('beyond_app_path')) {
     function beyond_app_path(string $path = ''): string
     {
-        return beyond_path('Application/'.ltrim($path, '/'));
+        return join_paths(beyond_path(), 'Application', $path);
     }
 }
 
 if (! function_exists('beyond_domain_path')) {
     function beyond_domain_path(string $path = ''): string
     {
-        return beyond_path('Domain/'.ltrim($path, '/'));
+        return join_paths(beyond_path(), 'Domain', $path);
     }
 }
 
 if (! function_exists('beyond_support_path')) {
     function beyond_support_path(string $path = ''): string
     {
-        return beyond_path('Support/'.ltrim($path, '/'));
+        return join_paths(beyond_path(), 'Support', $path);
     }
 }
 

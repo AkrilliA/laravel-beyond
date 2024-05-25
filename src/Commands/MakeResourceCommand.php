@@ -7,7 +7,7 @@ use AkrilliA\LaravelBeyond\Type;
 
 final class MakeResourceCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:resource {name?} {--collection} {--force}';
+    protected $signature = 'beyond:make:resource {name} {--collection} {--force}';
 
     protected $description = 'Make a new resource';
 

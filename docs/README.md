@@ -1,5 +1,4 @@
 # Documentation
-
 ## Commands
 ### Application
 - [`beyond:make:command`](commands/make-command.md)
@@ -21,7 +20,9 @@
 - `beyond:make:listener`
 - `beyond:make:model`
 - `beyond:make:observer`
+- [`beyond:make:scope`](commands/make-scope.md)
 
 ### Support
+- [`beyond:make:cast`](commands/make-cast.md)
 - [`beyond:make:provider`](commands/make-provider.md)
 - [`beyond:make:rule`](commands/make-rule.md)

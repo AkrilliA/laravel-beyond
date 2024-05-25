@@ -4,6 +4,14 @@ namespace Tests;
 
 class BaseTest extends TestCase
 {
+    public function testPathHelpers(): void
+    {
+        $this->assertEquals(base_path('src'), beyond_path());
+        $this->assertEquals(beyond_path('Application'), beyond_app_path());
+        $this->assertEquals(beyond_path('Domain'), beyond_domain_path());
+        $this->assertEquals(beyond_path('Support'), beyond_support_path());
+    }
+
     public function testCanMakeClassWithDirectory(): void
     {
         $this->artisan('beyond:make:action User.Admin/UserStoreAction');
