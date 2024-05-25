@@ -4,9 +4,9 @@ Creates a new Laravel collection for a model.
 > [!NOTE]
 > You need to add the collection to your model
 > ```
-> public function newCollection($q): YourCollection
+> public function newCollection(array $models = []): Collection
 > {
->       return new YourCollection($q);
+>     return new UserCollection($models);
 > }
 > ```
 

@@ -4,9 +4,9 @@ Creates a new Laravel Eloquent builder for a model.
 > [!NOTE]
 > You need to add the builder to your model
 > ```
-> public function newEloquentBuilder($q): YourBuilder
+> public function newEloquentBuilder($query): Builder
 > {
->       return new YourBuilder($q);
+>     return new UserBuilder($query);
 > }
 > ```
 
@@ -14,7 +14,7 @@ Creates a new Laravel Eloquent builder for a model.
 > For proper IDE support add the following docblock to you model
 > ```
 > /**
->  * @method static YourBuilder query()
+>  * @method static UserBuilder query()
 >  */
 > class User extends Model
 > ```
