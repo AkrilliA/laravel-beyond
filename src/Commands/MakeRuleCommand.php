@@ -7,7 +7,7 @@ use AkrilliA\LaravelBeyond\Type;
 
 final class MakeRuleCommand extends ApplicationCommand
 {
-    protected $signature = 'beyond:make:rule {name?} {--force}';
+    protected $signature = 'beyond:make:rule {name?} {--g|global} {--force}';
 
     protected $description = 'Make a new rule';
 

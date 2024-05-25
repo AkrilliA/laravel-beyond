@@ -5,6 +5,7 @@ namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Console\Command;
+use Illuminate\Support\Stringable;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\info;
@@ -56,7 +57,7 @@ abstract class BaseCommand extends Command
 
     public function getNameResolver(?string $name = null): NameResolver
     {
-        return new NameResolver($this, $name ?: $this->getNameArgument());
+        return new NameResolver($this, new Stringable($name ?: $this->getNameArgument()));
     }
 
     protected function configure(): void

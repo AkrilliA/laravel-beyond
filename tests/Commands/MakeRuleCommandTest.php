@@ -33,4 +33,32 @@ class MakeRuleCommandTest extends TestCase
 
         $code->assertOk();
     }
+
+    public function testCanMakeGlobalRule(): void
+    {
+        $this->artisan('beyond:make:rule User.UniqueUser --global');
+
+        $file = beyond_support_path('Rules/UniqueUser.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+    }
+
+    public function testCanMakeGlobalRuleUsingForce(): void
+    {
+        $this->artisan('beyond:make:rule User.UniqueUser --global');
+
+        $file = beyond_support_path('Rules/UniqueUser.php');
+        $contents = file_get_contents($file);
+
+        $this->assertFileExists($file);
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+
+        $code = $this->artisan('beyond:make:rule User.UniqueUser --global --force');
+
+        $code->assertOk();
+    }
 }

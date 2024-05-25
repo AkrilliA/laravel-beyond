@@ -7,10 +7,10 @@
 - [`beyond:make:job`](commands/make-job.md)
 - [`beyond:make:policy`](commands/make-policy.md)
 - [`beyond:make:process`](commands/make-process.md)
-- `beyond:make:query`
-- `beyond:make:request`
-- `beyond:make:resource`
-- `beyond:make:rule`
+- [`beyond:make:query`](commands/make-query.md)
+- [`beyond:make:request`](commands/make-request.md)
+- [`beyond:make:resource`](commands/make-resource.md)
+- [`beyond:make:rule`](commands/make-rule.md)
 
 ### Domain
 - [`beyond:make:action`](commands/make-action.md)

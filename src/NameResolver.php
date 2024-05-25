@@ -24,19 +24,17 @@ final class NameResolver
 
     public function __construct(
         private readonly BaseCommand $command,
-        private readonly string $name
+        private readonly Stringable $name
     ) {
-        $this->init();
+        $this->setAppOrDomain($this->name);
+        $this->setDirectoryAndClassName($this->name->after('.'));
+        $this->setNamespace();
+        $this->setPath();
     }
 
     public function getNamespace(): string
     {
         return $this->namespace;
-    }
-
-    public function getAppOrDomain(): string
-    {
-        return $this->appOrDomain;
     }
 
     public function getClassName(): string
@@ -49,46 +47,28 @@ final class NameResolver
         return $this->path;
     }
 
-    public function getCommandNameArgument(): string
+    private function isGlobal(): bool
     {
-        return $this->appOrDomain.'.'.$this->className;
+        return $this->command->hasOption('global') && $this->command->option('global');
     }
 
-    private function init(): void
+    private function setAppOrDomain(Stringable $name): void
     {
-        $name = new Stringable($this->name);
         $this->appOrDomain = $name->contains('.')
             ? $name->before('.')->toString()
             : null;
-        $this->setDirectoryAndClassName($name->after('.'));
 
-        if (! $this->appOrDomain) {
-            $this->appOrDomain = $this->askForAppOrDomainName();
+        if ($this->appOrDomain || $this->isGlobal()) {
+            return;
         }
 
-        $this->namespace = sprintf(
-            $this->command->getNamespaceTemplate().'%s',
-            $this->appOrDomain,
-            $this->command->getType()->getNamespace(),
-            $this->directory ? '\\'.$this->directory : '',
-        );
-
-        $this->path = sprintf(
-            '%s/'.$this->command->getFileNameTemplate(),
-            Str::ucfirst(Str::replace('\\', '/', $this->namespace)),
-            $this->className,
-        );
-    }
-
-    private function askForAppOrDomainName(): string
-    {
         $cases = match (true) {
             $this->command instanceof ApplicationCommand => ['app', beyond_get_choices(base_path('src/Application'))],
             $this->command instanceof DomainCommand      => ['domain', beyond_get_choices(base_path('src/Domain'))],
             default                                      => []
         };
 
-        return suggest(
+        $this->appOrDomain = suggest(
             sprintf('On which %s do you want to add your %s', $cases[0], $this->command->getType()->getName()),
             function (string $value) use ($cases) {
                 return collect($cases[1])->filter(fn ($o) => Str::contains($o, $value, true))->toArray();
@@ -101,5 +81,32 @@ final class NameResolver
             ? $name->beforeLast('/')->replace('/', '\\')->toString()
             : '';
         $this->className = $name->afterLast('/')->toString();
+    }
+
+    private function setNamespace(): void
+    {
+        if ($this->isGlobal()) {
+            $this->namespace = sprintf(
+                'Support\\%s\\%s',
+                $this->command->getType()->getNamespace(),
+                $this->directory ? '\\'.$this->directory : '',
+            );
+        } else {
+            $this->namespace = sprintf(
+                $this->command->getNamespaceTemplate().'%s',
+                $this->appOrDomain,
+                $this->command->getType()->getNamespace(),
+                $this->directory ? '\\'.$this->directory : '',
+            );
+        }
+    }
+
+    private function setPath(): void
+    {
+        $this->path = sprintf(
+            '%s/'.$this->command->getFileNameTemplate(),
+            Str::ucfirst(Str::replace('\\', '/', $this->namespace)),
+            $this->className,
+        );
     }
 }

@@ -17,7 +17,7 @@ Creates a new policy.
 >     $request = $this->app['request'];
 >
 >     $app = match (true) {
->         $request->is('your-app-prefix/*')  => 'YourApp', // YourApp is the app name inside "src/App"
+>         $request->is('your-app-prefix/*')  => 'YourApp', // YourApp is the app name inside "src/Application"
 >         $request->is('your-app2-prefix/*') => 'YourAppTwo',
 >         default                            => null,
 >     };

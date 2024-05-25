@@ -30,7 +30,8 @@ Register the namespaces inside your `composer.json`:
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/",
       "Application\\": "src/Application",
-      "Domain\\": "src/Domain"
+      "Domain\\": "src/Domain",
+      "Support\\": "src/Support"
     }
   },
   // ...

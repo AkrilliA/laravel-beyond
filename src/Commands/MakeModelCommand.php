@@ -3,9 +3,7 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
-use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
-use Illuminate\Support\Str;
 
 final class MakeModelCommand extends DomainCommand
 {
