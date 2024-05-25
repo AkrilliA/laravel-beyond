@@ -7,9 +7,9 @@ Creates a new Laravel command.
 ## Signature
 `beyond:make:command {name} {--command=command:name} {--force}`
 
-| Parameters | Description             |
-|------------|-------------------------|
-| name       | The name of you command |
+| Parameters | Description              |
+|------------|--------------------------|
+| name       | The name of your command |
 
 | Flags     | Description             |
 |-----------|-------------------------|

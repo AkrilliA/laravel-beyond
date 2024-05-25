@@ -8,9 +8,9 @@ dispense with sending the notification to the administrator.
 ## Signature 
 `beyond:make:process {name} {--force}`
 
-| Parameters | Description             |
-|------------|-------------------------|
-| name       | The name of you process |
+| Parameters | Description              |
+|------------|--------------------------|
+| name       | The name of your process |
 
 | Flags   | Description             |
 |---------|-------------------------|

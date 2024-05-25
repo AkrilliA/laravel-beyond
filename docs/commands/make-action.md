@@ -6,9 +6,9 @@ own action or (maybe better) consider using a [process](make-process.md).
 ## Signature
 `beyond:make:action {name} {--force}`
 
-| Parameters | Description            |
-|------------|------------------------|
-| name       | The name of you action |
+| Parameters | Description             |
+|------------|-------------------------|
+| name       | The name of your action |
 
 | Flags   | Description             |
 |---------|-------------------------|

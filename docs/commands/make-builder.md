@@ -3,7 +3,7 @@ Creates a new Laravel Eloquent builder for a model.
 
 > [!NOTE]
 > You need to add the builder to your model
-> ```
+> ```php
 > public function newEloquentBuilder($query): Builder
 > {
 >     return new UserBuilder($query);
@@ -12,7 +12,7 @@ Creates a new Laravel Eloquent builder for a model.
 
 > [!NOTE]
 > For proper IDE support add the following docblock to you model
-> ```
+> ```php
 > /**
 >  * @method static UserBuilder query()
 >  */
@@ -22,9 +22,9 @@ Creates a new Laravel Eloquent builder for a model.
 ## Signature
 `beyond:make:builder {name} {--force}`
 
-| Parameters | Description             |
-|------------|-------------------------|
-| name       | The name of you builder |
+| Parameters | Description              |
+|------------|--------------------------|
+| name       | The name of your builder |
 
 | Flags   | Description             |
 |---------|-------------------------|
