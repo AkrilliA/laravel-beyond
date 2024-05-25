@@ -5,7 +5,7 @@
 - [`beyond:make:command`](commands/make-command.md)
 - [`beyond:make:controller`](commands/make-controller.md)
 - [`beyond:make:job`](commands/make-job.md)
-- `beyond:make:policy`
+- [`beyond:make:policy`](commands/make-policy.md)
 - [`beyond:make:process`](commands/make-process.md)
 - `beyond:make:query`
 - `beyond:make:request`
