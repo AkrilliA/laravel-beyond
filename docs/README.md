@@ -10,7 +10,6 @@
 - [`beyond:make:query`](commands/make-query.md)
 - [`beyond:make:request`](commands/make-request.md)
 - [`beyond:make:resource`](commands/make-resource.md)
-- [`beyond:make:rule`](commands/make-rule.md)
 
 ### Domain
 - [`beyond:make:action`](commands/make-action.md)
@@ -22,3 +21,7 @@
 - `beyond:make:listener`
 - `beyond:make:model`
 - `beyond:make:observer`
+
+### Support
+- [`beyond:make:provider`](commands/make-provider.md)
+- [`beyond:make:rule`](commands/make-rule.md)

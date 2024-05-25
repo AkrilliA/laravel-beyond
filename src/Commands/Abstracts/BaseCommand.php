@@ -25,8 +25,6 @@ abstract class BaseCommand extends Command
 
     abstract public function getNamespaceTemplate(): string;
 
-    abstract public function getBaseCommandName(): string;
-
     abstract public function getType(): Type;
 
     public function getFileNameTemplate(): string

@@ -10,7 +10,7 @@ class MakeRuleCommandTest extends TestCase
     {
         $this->artisan('beyond:make:rule User.UniqueUser');
 
-        $file = beyond_app_path('User/Rules/UniqueUser.php');
+        $file = beyond_support_path('Rules/UniqueUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -20,44 +20,16 @@ class MakeRuleCommandTest extends TestCase
 
     public function testCanMakeRuleUsingForce(): void
     {
-        $this->artisan('beyond:make:rule User.UniqueUser');
+        $this->artisan('beyond:make:rule User.User/UniqueUser');
 
-        $file = beyond_app_path('User/Rules/UniqueUser.php');
+        $file = beyond_support_path('Rules/User/UniqueUser.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
         $this->assertStringNotContainsString('{{ namespace }}', $contents);
         $this->assertStringNotContainsString('{{ className }}', $contents);
 
-        $code = $this->artisan('beyond:make:rule User.UniqueUser --force');
-
-        $code->assertOk();
-    }
-
-    public function testCanMakeGlobalRule(): void
-    {
-        $this->artisan('beyond:make:rule User.UniqueUser --global');
-
-        $file = beyond_support_path('Rules/UniqueUser.php');
-        $contents = file_get_contents($file);
-
-        $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
-    }
-
-    public function testCanMakeGlobalRuleUsingForce(): void
-    {
-        $this->artisan('beyond:make:rule User.UniqueUser --global');
-
-        $file = beyond_support_path('Rules/UniqueUser.php');
-        $contents = file_get_contents($file);
-
-        $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
-
-        $code = $this->artisan('beyond:make:rule User.UniqueUser --global --force');
+        $code = $this->artisan('beyond:make:rule User/UniqueUser --force');
 
         $code->assertOk();
     }

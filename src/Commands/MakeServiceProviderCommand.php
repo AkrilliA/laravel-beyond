@@ -3,9 +3,10 @@
 namespace AkrilliA\LaravelBeyond\Commands;
 
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\SupportCommand;
 use AkrilliA\LaravelBeyond\Type;
 
-final class MakeServiceProviderCommand extends ApplicationCommand
+final class MakeServiceProviderCommand extends SupportCommand
 {
     protected $signature = 'beyond:make:provider {name} {--force}';
 

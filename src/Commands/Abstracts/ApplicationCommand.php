@@ -8,9 +8,4 @@ abstract class ApplicationCommand extends BaseCommand
     {
         return 'Application\\%s\\%s';
     }
-
-    public function getBaseCommandName(): string
-    {
-        return 'App';
-    }
 }

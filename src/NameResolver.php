@@ -5,6 +5,7 @@ namespace AkrilliA\LaravelBeyond;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\BaseCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
+use AkrilliA\LaravelBeyond\Commands\Abstracts\SupportCommand;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 
@@ -12,7 +13,7 @@ use function Laravel\Prompts\suggest;
 
 final class NameResolver
 {
-    private string $appOrDomain;
+    private ?string $appOrDomain = null;
 
     private string $namespace;
 
@@ -49,7 +50,8 @@ final class NameResolver
 
     private function isGlobal(): bool
     {
-        return $this->command->hasOption('global') && $this->command->option('global');
+        return $this->command instanceof SupportCommand
+            || ($this->command->hasOption('global') && $this->command->option('global'));
     }
 
     private function setAppOrDomain(Stringable $name): void

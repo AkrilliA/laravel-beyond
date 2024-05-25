@@ -2,10 +2,10 @@
 
 namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 
-abstract class DomainCommand extends BaseCommand
+abstract class SupportCommand extends BaseCommand
 {
     public function getNamespaceTemplate(): string
     {
-        return 'Domain\\%s\\%s';
+        return 'Support\\%s';
     }
 }

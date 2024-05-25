@@ -8,9 +8,9 @@ class MakeServiceProviderCommandTest extends TestCase
 {
     public function testCanMakeProvider(): void
     {
-        $this->artisan('beyond:make:provider User.UserServiceProvider');
+        $this->artisan('beyond:make:provider UserServiceProvider');
 
-        $file = beyond_app_path('User/Providers/UserServiceProvider.php');
+        $file = beyond_support_path('Providers/UserServiceProvider.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
@@ -19,15 +19,15 @@ class MakeServiceProviderCommandTest extends TestCase
 
     public function testCanMakeProviderUsingForce(): void
     {
-        $this->artisan('beyond:make:provider User.UserServiceProvider');
+        $this->artisan('beyond:make:provider UserServiceProvider');
 
-        $file = beyond_app_path('User/Providers/UserServiceProvider.php');
+        $file = beyond_support_path('Providers/UserServiceProvider.php');
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
         $this->assertStringNotContainsString('{{ module }}', $contents);
 
-        $code = $this->artisan('beyond:make:provider User.UserServiceProvider --force');
+        $code = $this->artisan('beyond:make:provider UserServiceProvider --force');
 
         $code->assertOk();
     }
