@@ -20,18 +20,18 @@ composer require --dev akrillia/laravel-beyond
 Add Laravel Beyonds namespaces inside your `composer.json`:
 ```json
 {
-  // ...
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/",
-      "Database\\Factories\\": "database/factories/",
-      "Database\\Seeders\\": "database/seeders/",
-      "Application\\": "src/Application",
-      "Domain\\": "src/Domain",
-      "Support\\": "src/Support"
-    }
-  },
-  // ...
+ // ...
+ "autoload": {
+  "psr-4": {
+   "App\\": "app/",
+   "Database\\Factories\\": "database/factories/",
+   "Database\\Seeders\\": "database/seeders/",
+   "Application\\": "src/Application",
+   "Domain\\": "src/Domain",
+   "Support\\": "src/Support"
+  }
+ },
+ // ...
 }
 ```
 
@@ -45,31 +45,31 @@ commands and how to use them.
 ## Directory structure
 ```
 |- src
-|  |- Application
-|  |  |- Admin
-|  |  |  |- Commands
-|  |  |  |- Controllers
-|  |  |  |- Jobs
-|  |  |  |- Policies
-|  |  |  |- Processes
-|  |  |  |- Queries
-|  |  |  |- Requests
-|  |  |  |- Resources
-|  |- Domain
-|  |  |- User
-|  |  |  |- Actions
-|  |  |  |- Builder
-|  |  |  |- Collections
-|  |  |  |- DataObjects
-|  |  |  |- Enums
-|  |  |  |- Events
-|  |  |  |- Listeners
-|  |  |  |- Models
-|  |  |  |- Observers
-|  |- Support
-|  |  |- Casts
-|  |  |- Providers
-|  |  |- Rules
+| |- Application
+| | |- Admin
+| | | |- Commands
+| | | |- Controllers
+| | | |- Jobs
+| | | |- Policies
+| | | |- Processes
+| | | |- Queries
+| | | |- Requests
+| | | |- Resources
+| |- Domain
+| | |- User
+| | | |- Actions
+| | | |- Builder
+| | | |- Collections
+| | | |- DataObjects
+| | | |- Enums
+| | | |- Events
+| | | |- Listeners
+| | | |- Models
+| | | |- Observers
+| |- Support
+| | |- Casts
+| | |- Providers
+| | |- Rules
 ```
 
 ## Contributors
