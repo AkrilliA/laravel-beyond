@@ -10,9 +10,6 @@ In version 7 we changed the way how Laravel Beyond works. We now do no longer ch
 directory structure, instead we place the DDD structure inside a separate `src` directory. This ensures
 compatibility with any other (Laravel related) package. 
 
-## Upgrade Guide
-Please read our [Upgrade Guide](UPGRADE.md) in case you are using an older version or `regnerisch/laravel-beyond`.
-
 ## Installation
 
 Install laravel-beyond with composer:
@@ -20,7 +17,7 @@ Install laravel-beyond with composer:
 composer require --dev akrillia/laravel-beyond
 ```
 
-Register the namespaces inside your `composer.json`:
+Add Laravel Beyonds namespaces inside your `composer.json`:
 ```json
 {
   // ...
@@ -37,7 +34,9 @@ Register the namespaces inside your `composer.json`:
   // ...
 }
 ```
-Run `composer dump-autoload` and everything is set up for using Laravel Beyond commands. 
+
+> [!WARNING]
+> Do not forget to run `composer dump-autoload` after adding the namespaces.
 
 ## Documentation
 Take a look at our documentation inside [`/docs`](docs/README.md) to learn about the available 
@@ -56,7 +55,6 @@ commands and how to use them.
 |  |  |  |- Queries
 |  |  |  |- Requests
 |  |  |  |- Resources
-|  |  |  |- Rules
 |  |- Domain
 |  |  |- User
 |  |  |  |- Actions
@@ -68,6 +66,10 @@ commands and how to use them.
 |  |  |  |- Listeners
 |  |  |  |- Models
 |  |  |  |- Observers
+|  |  Support
+|  |  |  |- Casts
+|  |  |  |- Providers
+|  |  |  |- Rules
 ```
 
 ## Contributors

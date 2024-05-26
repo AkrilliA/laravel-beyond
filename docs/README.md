@@ -18,7 +18,7 @@
 - [`beyond:make:enum`](commands/make-enum.md)
 - `beyond:make:event`
 - `beyond:make:listener`
-- `beyond:make:model`
+- [`beyond:make:model`](commands/make-model.md)
 - `beyond:make:observer`
 - [`beyond:make:scope`](commands/make-scope.md)
 

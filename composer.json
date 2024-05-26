@@ -2,7 +2,7 @@
     "name": "akrillia/laravel-beyond",
     "type": "library",
     "license": "ISC",
-    "version": "7.0.0-beta.8",
+    "version": "7.0.0",
     "autoload": {
         "psr-4": {
             "AkrilliA\\LaravelBeyond\\": "src/"
@@ -49,12 +49,6 @@
         "spatie/laravel-data": "^3.7|^4.0",
         "spatie/laravel-queueable-action": "^2.14",
         "phpstan/phpstan": "^1.10|^2.0"
-    },
-    "suggest": {
-        "spatie/laravel-query-builder": "This package is required for Queries.",
-        "spatie/laravel-data": "This package is required for DataTransferObjects.",
-        "spatie/laravel-queueable-action": "This package is required for queueable actions.",
-        "qossmic/deptrac-shim": "This package can help you enforce architectural decisions by Laraval Beyond."
     },
     "config": {
         "allow-plugins": {
