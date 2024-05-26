@@ -66,10 +66,10 @@ commands and how to use them.
 |  |  |  |- Listeners
 |  |  |  |- Models
 |  |  |  |- Observers
-|  |  Support
-|  |  |  |- Casts
-|  |  |  |- Providers
-|  |  |  |- Rules
+|  |- Support
+|  |  |- Casts
+|  |  |- Providers
+|  |  |- Rules
 ```
 
 ## Contributors
