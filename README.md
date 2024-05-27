@@ -74,9 +74,18 @@ commands and how to use them.
 
 ## Contributors
 
-![List of contributors](https://contrib.rocks/image?repo=akrillia/laravel-beyond)
+|                                 Maintainer                                  |                                          Maintainer                                           |
+|:---------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------:|
+| ![regnerisch](https://avatars.githubusercontent.com/u/9422737?size=120&v=4) | ![Maintainer alexanderkroneis](https://avatars.githubusercontent.com/u/12985989?size=120&v=4) |
+|                [@regnerisch](https://github.com/regnerisch)                 |                   [@alexanderkroneis](https://github.com/alexanderkroneis)                    |
 
-Made with [contrib.rocks](https://contrib.rocks).
+**Contributors:**
+- [@nilsvennemann](https://github.com/nilsvennemann)
+- [@Enaah](https://github.com/Enaah)
+- [@thewebartisan7](https://github.com/thewebartisan7)
+- [@Wulfheart](https://github.com/Wulfheart)
+- [@dimzeta](https://github.com/dimzeta)
+- [@krishnahimself](https://github.com/krishnahimself)
 
 ## License
 
