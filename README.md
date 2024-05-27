@@ -74,7 +74,7 @@ commands and how to use them.
 
 ## Contributors
 
-[Contributors](https://github.com/akrillia/laravel-beyond/graphs/contributors)
+![Contributors](https://github.com/akrillia/laravel-beyond/graphs/contributors)
 
 Made with [contrib.rocks](https://contrib.rocks).
 
