@@ -74,14 +74,9 @@ commands and how to use them.
 
 ## Contributors
 
-- [@regnerisch](https://github.com/regnerisch)
-- [@alexgaal](https://github.com/alexgaal)
-- [@nilsvennemann](https://github.com/nilsvennemann)
-- [@Enaah](https://github.com/Enaah)
-- [@thewebartisan7](https://github.com/thewebartisan7)
-- [@Wulfheart](https://github.com/Wulfheart)
-- [@dimzeta](https://github.com/dimzeta)
-- [@krishnahimself](https://github.com/krishnahimself)
+[Contributors](https://github.com/akrillia/laravel-beyond/graphs/contributors)
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ## License
 
