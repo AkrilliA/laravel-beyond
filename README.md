@@ -74,10 +74,10 @@ commands and how to use them.
 
 ## Contributors
 
-|                                 Maintainer                                  |                                          Maintainer                                           |
-|:---------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------:|
-| ![regnerisch](https://avatars.githubusercontent.com/u/9422737?size=120&v=4) | ![Maintainer alexanderkroneis](https://avatars.githubusercontent.com/u/12985989?size=120&v=4) |
-|                [@regnerisch](https://github.com/regnerisch)                 |                   [@alexanderkroneis](https://github.com/alexanderkroneis)                    |
+|                                       Maintainer                                       |                                          Maintainer                                           |
+|:--------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------:|
+| ![Maintainer regnerisch](https://avatars.githubusercontent.com/u/9422737?size=120&v=4) | ![Maintainer alexanderkroneis](https://avatars.githubusercontent.com/u/12985989?size=120&v=4) |
+|                      [@regnerisch](https://github.com/regnerisch)                      |                   [@alexanderkroneis](https://github.com/alexanderkroneis)                    |
 
 **Contributors:**
 - [@nilsvennemann](https://github.com/nilsvennemann)
