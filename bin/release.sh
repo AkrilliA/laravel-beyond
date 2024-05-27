@@ -14,6 +14,12 @@ RELEASE_BRANCH="7.x"
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 VERSION=$1
 
+# Make sure all tests are successful
+if ! bash bin/test.sh > /dev/null 2>&1; then
+  echo "Tests did not complete without errors!"
+  exit 1
+fi
+
 # Make sure current branch and release branch match.
 if [[ "$RELEASE_BRANCH" != "$CURRENT_BRANCH" ]]
 then

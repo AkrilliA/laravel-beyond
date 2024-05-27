@@ -1,4 +1,9 @@
 # Documentation
+
+> [!CAUTION]
+> Keep in mind: Laravel Beyond is a dev dependency. Do not use its helper functions like
+> `beyond_path`, `beyond_app_path`, `beyond_domain_path` or others.
+
 ## Commands
 ### Application
 - [`beyond:make:command`](commands/make-command.md)
@@ -16,10 +21,10 @@
 - [`beyond:make:collection`](commands/make-collection.md)
 - [`beyond:make:data`](commands/make-data.md)
 - [`beyond:make:enum`](commands/make-enum.md)
-- `beyond:make:event`
-- `beyond:make:listener`
+- [`beyond:make:event`](commands/make-event.md)
+- [`beyond:make:listener`](commands/make-listener.md)
 - [`beyond:make:model`](commands/make-model.md)
-- `beyond:make:observer`
+- [`beyond:make:observer`](commands/make-observer.md)
 - [`beyond:make:scope`](commands/make-scope.md)
 
 ### Support

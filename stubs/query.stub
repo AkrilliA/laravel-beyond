@@ -10,8 +10,8 @@ final class {{ className }} extends QueryBuilder
 {
     public function __construct(Request $request)
     {
-        // $subject = Model::query()
-        
+        $subject = Model::query();
+
         parent::__construct($subject, $request);
     }
 }

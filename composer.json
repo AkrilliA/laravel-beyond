@@ -50,15 +50,5 @@
         "spatie/laravel-queueable-action": "^2.14",
         "phpstan/phpstan": "^1.10|^2.0"
     },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
-    },
-    "scripts": {
-        "pint": "vendor/bin/pint",
-        "test": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan"
-    },
     "minimum-stability": "dev"
 }
