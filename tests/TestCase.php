@@ -46,4 +46,16 @@ class TestCase extends BaseTestCase
         closedir($handle);
         rmdir($directory);
     }
+
+    protected function assertNamespace(string $namespace, string $contents): void
+    {
+        $this->assertStringNotContainsString('{{ namespace }}', $contents);
+        $this->assertStringContainsString("namespace {$namespace};", $contents);
+    }
+
+    protected function assertClassName(string $className, string $contents): void
+    {
+        $this->assertStringNotContainsString('{{ className }}', $contents);
+        $this->assertStringContainsString("class {$className}", $contents);
+    }
 }

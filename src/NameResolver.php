@@ -89,7 +89,7 @@ final class NameResolver
     {
         if ($this->isGlobal()) {
             $this->namespace = sprintf(
-                'Support\\%s\\%s',
+                'Support\\%s%s',
                 $this->command->getType()->getNamespace(),
                 $this->directory ? '\\'.$this->directory : '',
             );

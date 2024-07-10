@@ -14,8 +14,8 @@ class MakeCastCommandTest extends TestCase
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
+        $this->assertNamespace('Support\\Casts', $contents);
+        $this->assertClassName('TimezoneCast', $contents);
     }
 
     public function testCanMakeCastUsingForce(): void
@@ -26,8 +26,8 @@ class MakeCastCommandTest extends TestCase
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
+        $this->assertNamespace('Support\\Casts', $contents);
+        $this->assertClassName('TimezoneCast', $contents);
 
         $code = $this->artisan('beyond:make:cast TimezoneCast --force');
 

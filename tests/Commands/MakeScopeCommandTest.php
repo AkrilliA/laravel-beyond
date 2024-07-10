@@ -14,8 +14,8 @@ class MakeScopeCommandTest extends TestCase
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
+        $this->assertNamespace('Domain\\User\\Scopes', $contents);
+        $this->assertClassName('ActiveScope', $contents);
     }
 
     public function testCanMakeScopeUsingForce(): void
@@ -26,8 +26,8 @@ class MakeScopeCommandTest extends TestCase
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ namespace }}', $contents);
-        $this->assertStringNotContainsString('{{ className }}', $contents);
+        $this->assertNamespace('Domain\\User\\Scopes', $contents);
+        $this->assertClassName('ActiveScope', $contents);
 
         $code = $this->artisan('beyond:make:scope User.ActiveScope --force');
 

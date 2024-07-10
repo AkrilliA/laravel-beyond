@@ -14,7 +14,8 @@ class MakeServiceProviderCommandTest extends TestCase
         $contents = file_get_contents($file);
 
         $this->assertFileExists($file);
-        $this->assertStringNotContainsString('{{ module }}', $contents);
+        $this->assertNamespace('Support\\Providers', $contents);
+        $this->assertClassName('UserServiceProvider', $contents);
     }
 
     public function testCanMakeProviderUsingForce(): void
