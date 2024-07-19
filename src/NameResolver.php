@@ -2,9 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond;
 
-use AkrilliA\LaravelBeyond\Commands\Abstracts\ApplicationCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\BaseCommand;
-use AkrilliA\LaravelBeyond\Commands\Abstracts\DomainCommand;
 use AkrilliA\LaravelBeyond\Commands\Abstracts\SupportCommand;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
@@ -64,10 +62,10 @@ final class NameResolver
             return;
         }
 
-        $cases = match (true) {
-            $this->command instanceof ApplicationCommand => ['app', beyond_get_choices(base_path('src/Application'))],
-            $this->command instanceof DomainCommand      => ['domain', beyond_get_choices(base_path('src/Domain'))],
-            default                                      => []
+        $cases = match ($this->command->getAffiliation()) {
+            Affiliation::APPLICATION => ['app', beyond_get_choices(base_path('src/Application'))],
+            Affiliation::DOMAIN      => ['domain', beyond_get_choices(base_path('src/Domain'))],
+            default                  => []
         };
 
         $this->appOrDomain = suggest(

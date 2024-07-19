@@ -2,10 +2,12 @@
 
 namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 
+use AkrilliA\LaravelBeyond\Affiliation;
+
 abstract class ApplicationCommand extends BaseCommand
 {
-    public function getNamespaceTemplate(): string
+    public function getAffiliation(): Affiliation
     {
-        return 'Application\\%s\\%s';
+        return Affiliation::APPLICATION;
     }
 }

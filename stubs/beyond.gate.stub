@@ -1,0 +1,51 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Auth\Access\Gate as AuthGate;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+
+final class Gate extends AuthGate
+{
+    private ?string $app = null;
+
+    public function app(string $app): self
+    {
+        $this->app = $app;
+
+        return $this;
+    }
+
+    protected function guessPolicyName($class): array
+    {
+        if ($this->guessPolicyNamesUsingCallback) {
+            return Arr::wrap(call_user_func($this->guessPolicyNamesUsingCallback, $class, $this->app));
+        }
+
+        if ($this->app) {
+            $namespace = 'Application\\%s\\Policies\\%sPolicy';
+            $policyClass = sprintf(
+                $namespace,
+                $this->app,
+                basename(str_replace('\\', '/', $class))
+            );
+
+            if (class_exists($policyClass)) {
+                return [$policyClass];
+            }
+        }
+
+        $classDirname = str_replace('/', '\\', dirname(str_replace('\\', '/', $class)));
+
+        $classDirnameSegments = explode('\\', $classDirname);
+
+        return Arr::wrap(Collection::times(count($classDirnameSegments), function ($index) use ($class, $classDirnameSegments) {
+            $classDirname = implode('\\', array_slice($classDirnameSegments, 0, $index));
+
+            return $classDirname.'\\Policies\\'.class_basename($class).'Policy';
+        })->reverse()->values()->first(function ($class) {
+            return class_exists($class);
+        }) ?: [$classDirname.'\\Policies\\'.class_basename($class).'Policy']);
+    }
+}

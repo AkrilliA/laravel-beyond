@@ -31,3 +31,6 @@
 - [`beyond:make:cast`](commands/make-cast.md)
 - [`beyond:make:provider`](commands/make-provider.md)
 - [`beyond:make:rule`](commands/make-rule.md)
+
+### Other
+- [`beyond:publish:gate`](commands/publish-gate.md)

@@ -2,6 +2,7 @@
 
 namespace AkrilliA\LaravelBeyond\Commands\Abstracts;
 
+use AkrilliA\LaravelBeyond\Affiliation;
 use AkrilliA\LaravelBeyond\NameResolver;
 use AkrilliA\LaravelBeyond\Type;
 use Illuminate\Console\Command;
@@ -23,9 +24,14 @@ abstract class BaseCommand extends Command
 
     abstract protected function getStub(): string;
 
-    abstract public function getNamespaceTemplate(): string;
+    abstract public function getAffiliation(): Affiliation;
 
     abstract public function getType(): Type;
+
+    public function getNamespaceTemplate(): string
+    {
+        return $this->getAffiliation()->toNamespaceTemplate();
+    }
 
     public function getFileNameTemplate(): string
     {
@@ -86,7 +92,7 @@ abstract class BaseCommand extends Command
                 $this->getStub(),
                 beyond_path($fqn->getPath()),
                 $refactor,
-                (bool) $this->option('force')
+                $this->hasOption('force') ? (bool) $this->option('force') : false
             );
 
             info($this->getType()->getName()." [{$fqn->getPath()}] created successfully.");
