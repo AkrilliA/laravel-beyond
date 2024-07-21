@@ -1,8 +1,8 @@
 # `beyond:make:command`
 Creates a new Laravel command.
 
-> [!NOTE]
-> You need to add the command at `App\Console\Kernel`.
+> [!IMPORTANT]
+> You need to add your command with `Artisan::registerCommand(YourCommand::class)` inside `routes/console.php`.
 
 ## Signature
 `beyond:make:command {name} {--command=command:name} {--force}`
