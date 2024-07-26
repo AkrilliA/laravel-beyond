@@ -2,6 +2,7 @@
 .phpunit.cache/
 vendor/
 
+.DS_Store
 .php-cs-fixer.cache
 .phpunit.result.cache
 composer.lock
