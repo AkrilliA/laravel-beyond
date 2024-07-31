@@ -20,6 +20,12 @@ if ! bash bin/test.sh > /dev/null 2>&1; then
   exit 1
 fi
 
+COMPOSER_JSON="composer.json"
+if ! grep -q "\"version\": \"$VERSION\"," "$COMPOSER_JSON"; then
+  echo "Version mismatch with composer.json. Did you forget to update version?"
+  exit 1
+fi
+
 # Make sure current branch and release branch match.
 if [[ "$RELEASE_BRANCH" != "$CURRENT_BRANCH" ]]
 then
