@@ -6,19 +6,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [7.0.3]
-### Fixed
-- Version mismatch by [@regnerisch](https://github.com/regnerisch)
-
-## [7.0.2]
-### Changed
-- Stubs by [@regnerisch](https://github.com/regnerisch)
-
-## [7.0.1]
+## [7.0.4] - 2024-07-31
 ### Changed
 - Changelog by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0]
+## [7.0.3] - 2024-07-31
+### Fixed
+- Version mismatch by [@regnerisch](https://github.com/regnerisch)
+
+## [7.0.2] - Deleted due version mismatch
+### Changed
+- Stubs by [@regnerisch](https://github.com/regnerisch)
+
+## [7.0.1] - Deleted due version mismatch
+### Changed
+- Changelog by [@regnerisch](https://github.com/regnerisch)
+
+## [7.0.0] - 2024-07-26
+### Added
+- Documentation by [@regnerisch](https://github.com/regnerisch)
+
+## [7.0.0-beta.8] - 2024-04-24
 ### Added
 - Universal usable `--global` flag by [@regnerisch](https://github.com/regnerisch)
 
@@ -31,18 +39,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Removed Commands: `beyond:make:app`, `beyond:make:middleware`, `beyond:make:migration`, `beyond:make:notification`, `beyond:publish:deptrac` by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.7]
+## [7.0.0-beta.7] - 2023-12-18
 ### Changed
 - Change directory structure back to v6, as it seems to be a better one by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.6]
+## [7.0.0-beta.6] - 2023-12-01
 ### Added
 - Add missing changes in CHANGELOG.md by [@regnerisch](https://github.com/regnerisch)
 
 ### Changed
 - Change module selection by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.5]
+## [7.0.0-beta.5] - 2023-12-01
 ### Added
 - Add tests by [@alexanderkroneis](https://github.com/alexanderkroneis)
 - Add windows tests by [@alexanderkroneis](https://github.com/alexanderkroneis) in [#98](https://github.com/akrillia/laravel-beyond/pull/98)
@@ -59,7 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Support for php8.1 by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.4]
+## [7.0.0-beta.4] - 2023-08-07
 ### Added
 - Add `beyond:make:migration` command by [@regnerisch](https://github.com/regnerisch)
 - Add [phpstan](https://github.com/phpstan/phpstan) and fix errors by [@regnerisch](https://github.com/regnerisch)
@@ -72,11 +80,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace `pest` with `phpunit` by [@regnerisch](https://github.com/regnerisch)
 - Changed `beyond:make:{command} Module/ClassName` to `beyond:make:{command} Module.ClassName` to support directories by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.3]
+## [7.0.0-beta.3] - 2023-08-04
 ### Changed
 - Update dependencies by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.2]
+## [7.0.0-beta.2] - 2023-08-03
 ### Added
 - Add alias for `beyond:make:dto` by [@regnerisch](https://github.com/regnerisch)
 
@@ -87,7 +95,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Swap deprecated rule interface by [@regnerisch](https://github.com/regnerisch)
 - Swap default behaviour on `beyond:make:module` by [@regnerisch](https://github.com/regnerisch)
 
-## [7.0.0-beta.1]
+## [7.0.0-beta.1] - 2023-03-19
 
 ## [6.0.1] - 2023-02-22
 
@@ -182,11 +190,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.3...HEAD
-[7.0.3]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.2...v7.0.3
-[7.0.2]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.1...v7.0.2
-[7.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0...v7.0.1
-[7.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.7...v7.0.0
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.4...HEAD
+[7.0.4]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.3...v7.0.4
+[7.0.3]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0...v7.0.3
+[7.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.8...v7.0.0
+[7.0.0-beta.8]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.7...v7.0.0-beta.8
 [7.0.0-beta.7]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.6...v7.0.0-beta.7
 [7.0.0-beta.6]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.5...v7.0.0-beta.6
 [7.0.0-beta.5]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.4...v7.0.0-beta.5
