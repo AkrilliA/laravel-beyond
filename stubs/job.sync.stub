@@ -13,7 +13,7 @@ final class {{ className }}
         //
     }
 
-    public function handle()
+    public function handle(): void
     {
         //
     }

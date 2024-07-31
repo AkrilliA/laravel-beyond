@@ -12,7 +12,7 @@ final class {{ className }}
         //
     }
 
-    public function handle($event)
+    public function handle($event): void
     {
         //
     }

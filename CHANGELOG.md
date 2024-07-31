@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.2]
+### Changed
+- Stubs by [@regnerisch](https://github.com/regnerisch)
+
 ## [7.0.1]
 ### Changed
 - Changelog by [@regnerisch](https://github.com/regnerisch)
@@ -174,7 +178,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.1...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.2...HEAD
+[7.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.1...v7.0.2
 [7.0.1]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0...v7.0.1
 [7.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.7...v7.0.0
 [7.0.0-beta.7]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.6...v7.0.0-beta.7

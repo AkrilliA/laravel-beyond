@@ -18,7 +18,7 @@ final class {{ className }} implements ShouldQueue
         //
     }
 
-    public function handle()
+    public function handle(): void
     {
         //
     }
