@@ -44,11 +44,11 @@
     "require-dev": {
         "phpunit/phpunit": "^v11.0",
         "orchestra/testbench": "^9.1|^10.1",
-        "laravel/pint": "^1.10|^2.0",
-        "spatie/laravel-query-builder": "^5.2",
-        "spatie/laravel-data": "^3.7|^4.0",
-        "spatie/laravel-queueable-action": "^2.14",
-        "phpstan/phpstan": "^1.10|^2.0"
+        "laravel/pint": "^v1.21",
+        "spatie/laravel-query-builder": "^6.3.1",
+        "spatie/laravel-data": "^4.13",
+        "spatie/laravel-queueable-action": "^2.16",
+        "phpstan/phpstan": "^2.1"
     },
     "minimum-stability": "dev"
 }
