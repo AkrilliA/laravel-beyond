@@ -42,7 +42,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.3",
+        "phpunit/phpunit": "^v11.0",
         "orchestra/testbench": "^9.1|^10.1",
         "laravel/pint": "^1.10|^2.0",
         "spatie/laravel-query-builder": "^5.2",
