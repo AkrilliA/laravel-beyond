@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.1.0] - 2025-03-10
+### Added
+- Add `beyond:make:adr-action` command by [@regnerisch](https://github.com/regnerisch)
+- Support for Laravel 12.x by [@regnerisch](https://github.com/regnerisch)
+
 ## [7.0.4] - 2024-07-31
 ### Changed
 - Changelog by [@regnerisch](https://github.com/regnerisch)
@@ -190,7 +195,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove auto generation of changelog in release it by [@regnerisch](https://github.com/regnerisch)
 
-[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.4...HEAD
+[Unreleased]: https://github.com/regnerisch/laravel-beyond/compare/v7.1.0...HEAD
+[7.1.0]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.4...v7.1.0
 [7.0.4]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.3...v7.0.4
 [7.0.3]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0...v7.0.3
 [7.0.0]: https://github.com/regnerisch/laravel-beyond/compare/v7.0.0-beta.8...v7.0.0

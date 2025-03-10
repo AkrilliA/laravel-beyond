@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeProcessCommandTest extends TestCase
 {
-    public function testCanMakeAction(): void
+    public function test_can_make_action(): void
     {
         $this->artisan('beyond:make:process User.AdminStoreUserProcess');
 
@@ -18,7 +18,7 @@ class MakeProcessCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeActionUsingForce(): void
+    public function test_can_make_action_using_force(): void
     {
         $this->artisan('beyond:make:process User.AdminStoreUserProcess');
 

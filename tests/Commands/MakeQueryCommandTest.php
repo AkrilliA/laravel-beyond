@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeQueryCommandTest extends TestCase
 {
-    public function testCanMakeQuery(): void
+    public function test_can_make_query(): void
     {
         $this->artisan('beyond:make:query User.IndexUserQuery');
 
@@ -18,7 +18,7 @@ class MakeQueryCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeQueryUsingForce(): void
+    public function test_can_make_query_using_force(): void
     {
         $this->artisan('beyond:make:query User.IndexUserQuery');
 

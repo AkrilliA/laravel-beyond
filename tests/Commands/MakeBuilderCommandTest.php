@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeBuilderCommandTest extends TestCase
 {
-    public function testCanMakeBuilder(): void
+    public function test_can_make_builder(): void
     {
         $this->artisan('beyond:make:builder User.UserBuilder');
 
@@ -18,7 +18,7 @@ class MakeBuilderCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeBuilderUsingForce(): void
+    public function test_can_make_builder_using_force(): void
     {
         $this->artisan('beyond:make:builder User.UserBuilder');
 

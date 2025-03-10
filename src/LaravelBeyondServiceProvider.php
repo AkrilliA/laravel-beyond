@@ -21,7 +21,7 @@ final class LaravelBeyondServiceProvider extends ServiceProvider
     {
         $exclude = [];
 
-        $fs = new Filesystem();
+        $fs = new Filesystem;
         $files = $fs->files(__DIR__.DIRECTORY_SEPARATOR.'Commands');
 
         return array_map(

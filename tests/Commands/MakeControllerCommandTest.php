@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeControllerCommandTest extends TestCase
 {
-    public function testCanMakeController(): void
+    public function test_can_make_controller(): void
     {
         $this->artisan('beyond:make:controller User.UserController');
 
@@ -18,7 +18,7 @@ class MakeControllerCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeControllerUsingForce(): void
+    public function test_can_make_controller_using_force(): void
     {
         $this->artisan('beyond:make:controller User.UserController');
 
@@ -33,7 +33,7 @@ class MakeControllerCommandTest extends TestCase
         $code->assertOk();
     }
 
-    public function testCanMakeApiController(): void
+    public function test_can_make_api_controller(): void
     {
         $this->artisan('beyond:make:controller User.UserController --api');
 
@@ -51,7 +51,7 @@ class MakeControllerCommandTest extends TestCase
         }
     }
 
-    public function testCanMakeApiControllerUsingForce(): void
+    public function test_can_make_api_controller_using_force(): void
     {
         $this->artisan('beyond:make:controller User.UserController --api');
 
@@ -73,7 +73,7 @@ class MakeControllerCommandTest extends TestCase
         $code->assertOk();
     }
 
-    public function testCanMakeInvokableController(): void
+    public function test_can_make_invokable_controller(): void
     {
         $this->artisan('beyond:make:controller User.UserController --invokable');
 
@@ -86,7 +86,7 @@ class MakeControllerCommandTest extends TestCase
         $this->assertStringContainsString('__invoke()', $contents);
     }
 
-    public function testCanMakeInvokableControllerUsingForce(): void
+    public function test_can_make_invokable_controller_using_force(): void
     {
         $this->artisan('beyond:make:controller User.UserController --invokable');
 

@@ -2,6 +2,4 @@
 
 namespace AkrilliA\LaravelBeyond\Exceptions;
 
-class AlreadyExistsException extends \Exception
-{
-}
+class AlreadyExistsException extends \Exception {}

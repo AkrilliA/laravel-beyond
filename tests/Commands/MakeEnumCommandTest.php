@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeEnumCommandTest extends TestCase
 {
-    public function testCanMakeEnum(): void
+    public function test_can_make_enum(): void
     {
         $this->artisan('beyond:make:enum User.UserType');
 
@@ -18,7 +18,7 @@ class MakeEnumCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeEnumUsingForce(): void
+    public function test_can_make_enum_using_force(): void
     {
         $this->artisan('beyond:make:enum User.UserType');
 

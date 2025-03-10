@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeEventCommandTest extends TestCase
 {
-    public function testCanMakeEvent(): void
+    public function test_can_make_event(): void
     {
         $this->artisan('beyond:make:event User.UserCreated');
 
@@ -18,7 +18,7 @@ class MakeEventCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeEventUsingForce(): void
+    public function test_can_make_event_using_force(): void
     {
         $this->artisan('beyond:make:event User.UserCreated');
 

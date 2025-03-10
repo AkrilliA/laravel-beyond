@@ -7,8 +7,7 @@ class MoveAndRefactorFileAction
     public function __construct(
         protected MoveFileAction $moveFileAction,
         protected RefactorFileAction $refactorFileAction
-    ) {
-    }
+    ) {}
 
     /**
      * @param  array<string, string>  $refactor

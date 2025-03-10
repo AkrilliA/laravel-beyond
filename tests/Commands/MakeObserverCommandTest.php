@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeObserverCommandTest extends TestCase
 {
-    public function testCanMakeObserver(): void
+    public function test_can_make_observer(): void
     {
         $this->artisan('beyond:make:observer User.UserObserver');
 
@@ -18,7 +18,7 @@ class MakeObserverCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeObserverUsingForce(): void
+    public function test_can_make_observer_using_force(): void
     {
         $this->artisan('beyond:make:observer User.UserObserver');
 

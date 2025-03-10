@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeCastCommandTest extends TestCase
 {
-    public function testCanMakeCast(): void
+    public function test_can_make_cast(): void
     {
         $this->artisan('beyond:make:cast TimezoneCast');
 
@@ -18,7 +18,7 @@ class MakeCastCommandTest extends TestCase
         $this->assertClassName('TimezoneCast', $contents);
     }
 
-    public function testCanMakeCastUsingForce(): void
+    public function test_can_make_cast_using_force(): void
     {
         $this->artisan('beyond:make:cast TimezoneCast');
 

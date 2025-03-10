@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeCommandCommandTest extends TestCase
 {
-    public function testCanMakeCommand(): void
+    public function test_can_make_command(): void
     {
         $this->artisan('beyond:make:command User.CreateUser');
 
@@ -18,7 +18,7 @@ class MakeCommandCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeCommandUsingForce(): void
+    public function test_can_make_command_using_force(): void
     {
         $this->artisan('beyond:make:command User.CreateUser');
 
@@ -33,7 +33,7 @@ class MakeCommandCommandTest extends TestCase
         $code->assertOk();
     }
 
-    public function testCanMakeCommandWithPredefinedSignature(): void
+    public function test_can_make_command_with_predefined_signature(): void
     {
         $this->artisan('beyond:make:command User.CreateUser --command=test:execute');
 
@@ -46,7 +46,7 @@ class MakeCommandCommandTest extends TestCase
         $this->assertStringContainsString('test:execute', $contents);
     }
 
-    public function testCanMakeCommandWithPredefinedSignatureUsingForce(): void
+    public function test_can_make_command_with_predefined_signature_using_force(): void
     {
         $this->artisan('beyond:make:command User.CreateUser --command=test:execute');
 

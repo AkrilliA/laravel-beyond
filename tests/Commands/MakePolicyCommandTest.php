@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakePolicyCommandTest extends TestCase
 {
-    public function testCanMakePolicy(): void
+    public function test_can_make_policy(): void
     {
         $this->artisan('beyond:make:policy User.UserPolicy');
 
@@ -18,7 +18,7 @@ class MakePolicyCommandTest extends TestCase
         $this->assertClassName('UserPolicy', $contents);
     }
 
-    public function testCanMakePolicyUsingForce(): void
+    public function test_can_make_policy_using_force(): void
     {
         $this->artisan('beyond:make:policy User.UserPolicy');
 
@@ -34,7 +34,7 @@ class MakePolicyCommandTest extends TestCase
         $code->assertOk();
     }
 
-    public function testCanMakeAppPolicyIfGatePublished(): void
+    public function test_can_make_app_policy_if_gate_published(): void
     {
         $this->artisan('beyond:publish:gate');
         $this->artisan('beyond:make:policy User.UserPolicy');

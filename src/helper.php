@@ -47,8 +47,8 @@ if (! function_exists('beyond_copy_stub')) {
             : __DIR__.'/../stubs/'.$stub;
 
         $action = new CopyAndRefactorFileAction(
-            new CopyFileAction(new NormalizePathAction()),
-            new RefactorFileAction()
+            new CopyFileAction(new NormalizePathAction),
+            new RefactorFileAction
         );
 
         $action->execute(
@@ -66,7 +66,7 @@ if (! function_exists('beyond_get_choices')) {
      */
     function beyond_get_choices(string $path): array
     {
-        $fs = new Filesystem();
+        $fs = new Filesystem;
 
         $fs->ensureDirectoryExists($path);
 

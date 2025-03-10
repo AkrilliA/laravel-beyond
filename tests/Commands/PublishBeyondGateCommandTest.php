@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class PublishBeyondGateCommandTest extends TestCase
 {
-    public function testCanPublishBeyondGate(): void
+    public function test_can_publish_beyond_gate(): void
     {
         $this->artisan('beyond:publish:gate');
 

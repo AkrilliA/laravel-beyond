@@ -10,8 +10,7 @@ final readonly class Type
         private string $type,
         private ?string $name = null,
         private ?string $namespace = null
-    ) {
-    }
+    ) {}
 
     public function getType(): string
     {

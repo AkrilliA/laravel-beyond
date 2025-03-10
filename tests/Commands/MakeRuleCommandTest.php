@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeRuleCommandTest extends TestCase
 {
-    public function testCanMakeRule(): void
+    public function test_can_make_rule(): void
     {
         $this->artisan('beyond:make:rule UniqueUser');
 
@@ -18,7 +18,7 @@ class MakeRuleCommandTest extends TestCase
         $this->assertClassName('UniqueUser', $contents);
     }
 
-    public function testCanMakeRuleUsingForce(): void
+    public function test_can_make_rule_using_force(): void
     {
         $this->artisan('beyond:make:rule User/UniqueUser');
 

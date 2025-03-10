@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeResourceCommandTest extends TestCase
 {
-    public function testCanMakeResource(): void
+    public function test_can_make_resource(): void
     {
         $this->artisan('beyond:make:resource User.UserResource');
 
@@ -18,7 +18,7 @@ class MakeResourceCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeResourceUsingForce(): void
+    public function test_can_make_resource_using_force(): void
     {
         $this->artisan('beyond:make:resource User.UserResource');
 

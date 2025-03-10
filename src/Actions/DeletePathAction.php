@@ -8,14 +8,13 @@ class DeletePathAction
 {
     public function __construct(
         private readonly NormalizePathAction $normalizePathAction
-    ) {
-    }
+    ) {}
 
     public function execute(string $path): void
     {
         $path = $this->normalizePathAction->execute($path);
 
-        $fs = new Filesystem();
+        $fs = new Filesystem;
 
         if ($fs->isDirectory($path)) {
             $fs->deleteDirectory($path);

@@ -8,8 +8,7 @@ class MoveFileAction
 {
     public function __construct(
         private readonly NormalizePathAction $normalizePathAction
-    ) {
-    }
+    ) {}
 
     public function execute(string $sourcePath, string $targetPath, bool $force = false): void
     {
@@ -18,7 +17,7 @@ class MoveFileAction
             $targetPath,
         ]);
 
-        $fs = new Filesystem();
+        $fs = new Filesystem;
 
         $fs->ensureDirectoryExists(dirname($targetPath));
 

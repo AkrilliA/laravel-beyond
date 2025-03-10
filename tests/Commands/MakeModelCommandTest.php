@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeModelCommandTest extends TestCase
 {
-    public function testCanMakeModel(): void
+    public function test_can_make_model(): void
     {
         $this->artisan('beyond:make:model User.User');
 
@@ -18,7 +18,7 @@ class MakeModelCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeModelUsingForce(): void
+    public function test_can_make_model_using_force(): void
     {
         $this->artisan('beyond:make:model User.User');
 

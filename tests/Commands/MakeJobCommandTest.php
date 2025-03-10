@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeJobCommandTest extends TestCase
 {
-    public function testCanMakeJob(): void
+    public function test_can_make_job(): void
     {
         $this->artisan('beyond:make:job User.CancelTrials');
 
@@ -19,7 +19,7 @@ class MakeJobCommandTest extends TestCase
         $this->assertStringContainsString('use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;', $contents);
     }
 
-    public function testCanMakeJobUsingForce(): void
+    public function test_can_make_job_using_force(): void
     {
         $this->artisan('beyond:make:job User.CancelTrials');
 
@@ -36,7 +36,7 @@ class MakeJobCommandTest extends TestCase
         $code->assertOk();
     }
 
-    public function testCanMakeSyncedJob(): void
+    public function test_can_make_synced_job(): void
     {
         $this->artisan('beyond:make:job User.CancelTrials --sync');
 
@@ -49,7 +49,7 @@ class MakeJobCommandTest extends TestCase
         $this->assertStringContainsString('use Dispatchable;', $contents);
     }
 
-    public function testCanMakeSyncedJobUsingForce(): void
+    public function test_can_make_synced_job_using_force(): void
     {
         $this->artisan('beyond:make:job User.CancelTrials --sync');
 

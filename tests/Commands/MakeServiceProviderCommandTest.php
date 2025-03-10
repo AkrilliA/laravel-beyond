@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeServiceProviderCommandTest extends TestCase
 {
-    public function testCanMakeProvider(): void
+    public function test_can_make_provider(): void
     {
         $this->artisan('beyond:make:provider UserServiceProvider');
 
@@ -18,7 +18,7 @@ class MakeServiceProviderCommandTest extends TestCase
         $this->assertClassName('UserServiceProvider', $contents);
     }
 
-    public function testCanMakeProviderUsingForce(): void
+    public function test_can_make_provider_using_force(): void
     {
         $this->artisan('beyond:make:provider UserServiceProvider');
 

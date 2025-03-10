@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeCollectionCommandTest extends TestCase
 {
-    public function testCanMakeCollection(): void
+    public function test_can_make_collection(): void
     {
         $this->artisan('beyond:make:collection User.UserCollection');
 
@@ -18,7 +18,7 @@ class MakeCollectionCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeCollectionUsingForce(): void
+    public function test_can_make_collection_using_force(): void
     {
         $this->artisan('beyond:make:collection User.UserCollection');
 

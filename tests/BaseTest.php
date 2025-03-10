@@ -4,7 +4,7 @@ namespace Tests;
 
 class BaseTest extends TestCase
 {
-    public function testPathHelpers(): void
+    public function test_path_helpers(): void
     {
         $this->assertEquals(base_path('src'), beyond_path());
         $this->assertEquals(beyond_path('Application'), beyond_app_path());
@@ -12,7 +12,7 @@ class BaseTest extends TestCase
         $this->assertEquals(beyond_path('Support'), beyond_support_path());
     }
 
-    public function testCanMakeClassWithDirectory(): void
+    public function test_can_make_class_with_directory(): void
     {
         $this->artisan('beyond:make:action User.Admin/UserStoreAction');
 
@@ -24,7 +24,7 @@ class BaseTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeClassWithDeepDirectory(): void
+    public function test_can_make_class_with_deep_directory(): void
     {
         $this->artisan('beyond:make:action User.Admin/SuperAdmin/UserStoreAction');
 

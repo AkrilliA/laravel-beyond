@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeDataTransferObjectCommandTest extends TestCase
 {
-    public function testCanMakeDataTransferObject(): void
+    public function test_can_make_data_transfer_object(): void
     {
         $this->artisan('beyond:make:data User.UserData');
 
@@ -18,7 +18,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeDataTransferObjectUsingForce(): void
+    public function test_can_make_data_transfer_object_using_force(): void
     {
         $this->artisan('beyond:make:data User.UserData');
 
@@ -34,7 +34,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
         $code->assertOk();
     }
 
-    public function testCanMakeDataTransferWithAliasObject(): void
+    public function test_can_make_data_transfer_with_alias_object(): void
     {
         $this->artisan('beyond:make:dto User.UserData');
 
@@ -46,7 +46,7 @@ class MakeDataTransferObjectCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeDataTransferWithAliasObjectUsingForce(): void
+    public function test_can_make_data_transfer_with_alias_object_using_force(): void
     {
         $this->artisan('beyond:make:dto User.UserData');
 

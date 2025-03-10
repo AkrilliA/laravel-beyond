@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeRequestCommandTest extends TestCase
 {
-    public function testCanMakeRequest(): void
+    public function test_can_make_request(): void
     {
         $this->artisan('beyond:make:request User.StoreUserRequest');
 
@@ -18,7 +18,7 @@ class MakeRequestCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeRequestUsingForce(): void
+    public function test_can_make_request_using_force(): void
     {
         $this->artisan('beyond:make:request User.StoreUserRequest');
 

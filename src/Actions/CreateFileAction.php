@@ -9,15 +9,14 @@ class CreateFileAction
 {
     public function __construct(
         private readonly NormalizePathAction $normalizePathAction
-    ) {
-    }
+    ) {}
 
     /**
      * @param  string|array<int, string>|array<string, string>  $files
      */
     public function execute(string|array $files): void
     {
-        $fs = new Filesystem();
+        $fs = new Filesystem;
         $files = Arr::wrap($files);
 
         foreach ($files as $file => $contents) {

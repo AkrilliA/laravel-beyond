@@ -8,8 +8,7 @@ class CreateDirectoryAction
 {
     public function __construct(
         private readonly NormalizePathAction $normalizePathAction
-    ) {
-    }
+    ) {}
 
     /**
      * @param  string|array<string>  $directory
@@ -24,7 +23,7 @@ class CreateDirectoryAction
             return;
         }
 
-        (new Filesystem())->ensureDirectoryExists(
+        (new Filesystem)->ensureDirectoryExists(
             $this->normalizePathAction->execute(base_path('modules/'.$directory))
         );
     }

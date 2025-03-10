@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeListenerCommandTest extends TestCase
 {
-    public function testCanMakeListener(): void
+    public function test_can_make_listener(): void
     {
         $this->artisan('beyond:make:listener User.SendShipmentNotification');
 
@@ -18,7 +18,7 @@ class MakeListenerCommandTest extends TestCase
         $this->assertStringNotContainsString('{{ className }}', $contents);
     }
 
-    public function testCanMakeListenerUsingForce(): void
+    public function test_can_make_listener_using_force(): void
     {
         $this->artisan('beyond:make:listener User.SendShipmentNotification');
 

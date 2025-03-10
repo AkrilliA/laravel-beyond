@@ -9,8 +9,7 @@ class CopyFileAction
 {
     public function __construct(
         private readonly NormalizePathAction $normalizePathAction
-    ) {
-    }
+    ) {}
 
     public function execute(string $srcPath, string $targetPath, bool $force = false): void
     {
@@ -19,7 +18,7 @@ class CopyFileAction
             $targetPath,
         ]);
 
-        $fs = new Filesystem();
+        $fs = new Filesystem;
 
         $fs->ensureDirectoryExists(
             dirname($targetPath),

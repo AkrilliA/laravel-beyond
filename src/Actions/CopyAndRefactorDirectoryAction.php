@@ -8,15 +8,14 @@ class CopyAndRefactorDirectoryAction
 {
     public function __construct(
         protected CopyAndRefactorFileAction $copyAndRefactorFileAction,
-    ) {
-    }
+    ) {}
 
     /**
      * @param  array<string, string>  $refactor
      */
     public function execute(string $sourcePath, string $targetPath, array $refactor = [], bool $force = false): void
     {
-        $fs = new Filesystem();
+        $fs = new Filesystem;
         $files = $fs->files($sourcePath);
 
         foreach ($files as $file) {

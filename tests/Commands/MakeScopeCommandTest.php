@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MakeScopeCommandTest extends TestCase
 {
-    public function testCanMakeScope(): void
+    public function test_can_make_scope(): void
     {
         $this->artisan('beyond:make:scope User.ActiveScope');
 
@@ -18,7 +18,7 @@ class MakeScopeCommandTest extends TestCase
         $this->assertClassName('ActiveScope', $contents);
     }
 
-    public function testCanMakeScopeUsingForce(): void
+    public function test_can_make_scope_using_force(): void
     {
         $this->artisan('beyond:make:scope User.ActiveScope');
 

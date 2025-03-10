@@ -2,6 +2,4 @@
 
 namespace AkrilliA\LaravelBeyond\Exceptions;
 
-class RequiredPackagesAreMissingException extends \Exception
-{
-}
+class RequiredPackagesAreMissingException extends \Exception {}
