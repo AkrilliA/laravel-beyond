@@ -29,9 +29,9 @@
     "require": {
         "php": "^8.2",
         "ext-fileinfo": "^8.2",
-        "illuminate/support": "^11.0|^12.0",
-        "illuminate/console": "^11.0|^12.0",
-        "illuminate/filesystem": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0|^13.0",
+        "illuminate/console": "^11.0|^12.0|^13.0",
+        "illuminate/filesystem": "^11.0|^12.0|^13.0",
         "laravel/prompts": "^v0.3.5"
     },
     "extra": {
@@ -42,8 +42,8 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^v11.0",
-        "orchestra/testbench": "^9.1|^10.1",
+        "phpunit/phpunit": "^11.0|^12.0|^13.0",
+        "orchestra/testbench": "^9.1|^10.1|^11.x-dev",
         "laravel/pint": "^v1.21",
         "spatie/laravel-query-builder": "^6.3.1",
         "spatie/laravel-data": "^4.13",
